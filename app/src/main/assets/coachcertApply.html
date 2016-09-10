@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,init-scale=1.0" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title isback="1" btn="0" navbar="0">申请认证</title>
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" type="text/css" />
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -12,6 +12,7 @@
 			$(document).bind('mobileinit', function() {
 				$.mobile.pushStateEnabled = false;
 			});
+			
 		</script>
 		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 		<script type="application/javascript" src="js/iscroll.js"></script>
@@ -28,19 +29,25 @@
 		<script src="js/new/mobiscroll.android-ics-2.5.2.js" type="text/javascript"></script>
 		<link href="css/new//mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
 	</head>
-
+	
 	<body style="background:#fffefe;">
 		<div class="iinput">
 			<!--<div class="phto-cxl"><div class="img" ><img  src="images/page/photo.jpg" id="imgsfile"></div></div>-->
-			<input type="text" placeholder="姓名" id="nickname">
-			<input type="text" placeholder="单次教学参考价格" id="coachprice">
+			<p class="iinput_title">姓名：</p>
+			<input type="text" placeholder="将作为昵称公开显示" id="nickname">
+			<p class="iinput_title">单次教学参考价格：</p>
+			<input type="text" id="coachprice">
 			<div class="textareaBox">
-				<textarea id="coachadept" class="textarea" data-role="none" style="outline:none;" placeholder="个人介绍"></textarea>
+				<p class="iinput_title">个人介绍：</p>
+				<textarea id="coachadept" class="textarea" data-role="none" style="outline:none;border: none;"></textarea>
 			</div>
+			
 			<div class="textareaBox">
-				<textarea id="applydescr" class="textarea" data-role="none" style="outline:none;" placeholder="申请描述"></textarea>
+				<p class="iinput_title">申请描述：</p>
+				<textarea id="applydescr" class="textarea" data-role="none" style="outline:none;border: none;"></textarea>
 			</div>
 			<div class="iinput-cxl">
+				
 				<input type="submit" value="提交" onclick="updateMember();">
 			</div>
 			<script type="text/javascript">
@@ -95,6 +102,10 @@
 				}
 				$(document).ready(function() {
 					$('#nickname').val(nickname);
+					
+					var c=myScroll.windowHeight();
+					$(".iinput").css("height",c+"px");
+					console.log(c)
 				});
 			</script>
 		</div>

@@ -8,7 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -18,33 +18,35 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.android.volley.VolleyError;
-import com.maxiaobu.healthclub.App;
+import com.hyphenate.chat.EMClient;
 import com.maxiaobu.healthclub.MainActivity;
 import com.maxiaobu.healthclub.R;
+import com.maxiaobu.healthclub.chat.DemoHelper;
+import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.service.UpdataService;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestListener;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * 开屏页
  * 设置动画 --guide-登录--主页面--更新--初始化环信
  */
 public class SplashActivity extends AppCompatActivity {
-
+    private static final int sleepTime = 2000;
+    private Timer mTimer;
 
     private ImageView iv_start;
 
-    private static final int sleepTime = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
-			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		}
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
@@ -55,53 +57,74 @@ public class SplashActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         iv_start = (ImageView) findViewById(R.id.iv_start);
-        initImage();
+        initImageAnimation();
+
+        mTimer = new Timer();
+        mTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (DemoHelper.getInstance().isLoggedIn() && null!=SPUtils.getString(SplashActivity.this, Constant.MEMID)) {
+                    //自动登录,进入主页面前加载全部组群及会话
+                    long start = System.currentTimeMillis();
+                    EMClient.getInstance().groupManager().loadAllGroups();
+                    EMClient.getInstance().chatManager().loadAllConversations();
+                    long costTime = System.currentTimeMillis() - start;
+                    // TODO: 2016/9/7 版本更新 、context用app
+                    checkVersion();
+                    //没到两秒等两秒
+                    if (sleepTime - costTime > 0) {
+                        try {
+                            Thread.sleep(sleepTime - costTime);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    //进入主界面
+                   goHomeActivity();
+                } else {
+                    try {
+                        Thread.sleep(sleepTime);
+                    } catch (InterruptedException e) {
+                    }
+                    //没登录过进入登录界面
+                    checkGuide();
+                }
+            }
+        }, 0);
     }
 
-    private void initImage() {
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mTimer.cancel();
+
+    }
+
+    private void initImageAnimation() {
         final ScaleAnimation scaleAnim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
                 0.5f);
         scaleAnim.setFillAfter(true);
         scaleAnim.setDuration(2000);
-        scaleAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                checkGuide();
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
         iv_start.startAnimation(scaleAnim);
-
     }
 
     private void checkGuide() {
         boolean enter_guide = SPUtils.getBoolean(this, "enter_guide", true);
         if (enter_guide) {
-            this.finish();
-            startActivity(new Intent(this, GuideActivity.class));
+            startActivity(new Intent(SplashActivity.this, GuideActivity.class));
             overridePendingTransition(android.R.anim.fade_in,
                     android.R.anim.fade_out);
             finish();
         } else {
-//            Log.d("SplashActivity", "enter_guide1:" + enter_guide1);
-
-            checkVersion();
-            startActivity();
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            SplashActivity.this.finish();
         }
 
     }
 
     private void checkVersion() {
-        App.getRequestInstance().get(this, "http://192.168.1.121:8080/efithealth/mbcoach.do?pageIndex=1&tarid=M000440", new RequestListener() {
+        /*App.getRequestInstance().get(this, "http://192.168.1.121:8080/efithealth/mbcoach.do?pageIndex=1&tarid=M000440", new RequestListener() {
             @Override
             public void requestSuccess(String s) {
                 String lastVersion = "1.0.2";
@@ -110,7 +133,6 @@ public class SplashActivity extends AppCompatActivity {
                 String version = "100";
                 String versionName = getAppVersionName(SplashActivity.this);
                 if (versionName.equals(version)) {
-                    startActivity();
                 } else {
                     //版本需要更新
                     showUpdateDialog(msg, apkUrl);
@@ -121,7 +143,7 @@ public class SplashActivity extends AppCompatActivity {
             public void requestAgain(NodataFragment nodataFragment) {
                 checkVersion();
             }
-        });
+        });*/
     }
 
 
@@ -139,7 +161,7 @@ public class SplashActivity extends AppCompatActivity {
                         intent.putExtra("url", apkUrl);
                         startService(intent);
                         dialog.dismiss();
-                        startActivity();
+                        goHomeActivity();
 
                     }
                 })
@@ -149,7 +171,7 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         dialog.dismiss();
-                        startActivity();
+                        goHomeActivity();
                     }
                 })
                 .show();
@@ -167,7 +189,7 @@ public class SplashActivity extends AppCompatActivity {
         return versionName;
     }
 
-    private void startActivity() {
+    private void goHomeActivity() {
         Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
         startActivity(intent);
         overridePendingTransition(android.R.anim.fade_in,

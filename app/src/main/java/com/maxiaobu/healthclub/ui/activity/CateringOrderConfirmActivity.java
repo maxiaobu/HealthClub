@@ -162,6 +162,7 @@ initData();
                             Intent intent = new Intent(new Intent(CateringOrderConfirmActivity.this, PayActivity.class));
                             intent.putExtra("totlePrice", String.valueOf(mTotlePrice));
                             intent.putExtra("ordno", String.valueOf(object.getOrdno()));
+                            intent.putExtra(Constant.PAY_TYPE,"cater");
 //                                Log.d("OrderConfirmActivity", object.getOrdno().toString());
                             startActivity(intent);
                         } else {

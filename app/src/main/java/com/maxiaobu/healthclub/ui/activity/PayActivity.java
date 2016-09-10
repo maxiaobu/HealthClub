@@ -2,13 +2,17 @@ package com.maxiaobu.healthclub.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.VolleyError;
 import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
@@ -30,7 +34,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PayActivity extends BaseAty implements View.OnClickListener{
+public class PayActivity extends BaseAty implements View.OnClickListener {
 
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
@@ -59,6 +63,7 @@ public class PayActivity extends BaseAty implements View.OnClickListener{
     private String mTotlePrice;
     private int mTotalEbi;
     private String mOrdno;
+    private String mPayType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,7 @@ public class PayActivity extends BaseAty implements View.OnClickListener{
 
     @Override
     public void initView() {
+        mPayType = getIntent().getStringExtra(Constant.PAY_TYPE);
         mTotlePrice = getIntent().getStringExtra("totlePrice");
         mOrdno = getIntent().getStringExtra("ordno");
         setCommonBackToolBar(mToolbarCommon, mTvTitleCommon, "支付页");
@@ -125,7 +131,18 @@ public class PayActivity extends BaseAty implements View.OnClickListener{
         if (mCbEPay.isChecked()) {
 //            Log.d("PayActivity", mOrdno);
             if (mTotalEbi > Integer.parseInt(mTotlePrice)) {//仅 e币
-                App.getRequestInstance().post(this, UrlPath.URL_EBI_PAY, new RequestParams("ordno", "{\"ordno\":" + mOrdno + "}"), new RequestListener() {
+                RequestParams params;
+                String url;
+                if (mPayType != null && mPayType.equals("course")) {
+                    params = new RequestParams("ordno", mOrdno);
+                    params.put("memid", SPUtils.getString(PayActivity.this, Constant.MEMID));
+                    url = UrlPath.URL_COURSE_EBI_PAY;
+                } else {
+                    params = new RequestParams("ordno", "{\"ordno\":" + mOrdno + "}");
+                    url = UrlPath.URL_EBI_PAY;
+                }
+                //CO-20160905-994
+                App.getRequestInstance().post(this, url, params, new RequestListener() {
                     @Override
                     public void requestSuccess(String s) {
                         try {
@@ -161,10 +178,40 @@ public class PayActivity extends BaseAty implements View.OnClickListener{
     }
 
     private void startAty() {
-        Intent intent = new Intent();
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.setClass(PayActivity.this, HomeActivity.class);
-        intent.putExtra("foodFlag", 1);
-        startActivity(intent);
+        if (!TextUtils.isEmpty(mPayType) && mPayType.equals("course")) {
+            new MaterialDialog.Builder(PayActivity.this)
+                    .content("支付成功，是否下载预约")
+                    .positiveText("现在预约")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            Intent intent = new Intent();
+                            intent.setClass(PayActivity.this, ReservationActivity.class);
+                            intent.putExtra(Constant.PAY_RESULT, 0);
+                            startActivity(intent);
+                            PayActivity.this.finish();
+                        }
+                    })
+                    .negativeText("稍后预约")
+                    .onNegative(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            Intent intent = new Intent();
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.setClass(PayActivity.this, HomeActivity.class);
+                            intent.putExtra(Constant.PAY_RESULT, 0);
+                            startActivity(intent);
+                        }
+                    }).show();
+
+
+        }else {
+            Intent intent = new Intent();
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setClass(PayActivity.this, HomeActivity.class);
+            intent.putExtra("PAY_RESULT", 1);
+            startActivity(intent);
+        }
+
     }
 }

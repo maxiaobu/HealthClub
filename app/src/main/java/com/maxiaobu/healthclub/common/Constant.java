@@ -29,6 +29,7 @@ public class Constant {
      * 数据库缓存目录
      */
     public static final String CACHE_DIR_DATABASE;
+
     static {
         // TODO: 2016/7/29 maxiaobu 换项目名
         if (Environment.MEDIA_MOUNTED.equals(Environment
@@ -44,6 +45,11 @@ public class Constant {
     }
 
 
+    public static final int RESULT_OK=0x0001;
+    public static final int RESULT_REQUEST_ONE=0x0002;
+    public static final int RESULT_REQUEST_SECOND=0x0003;
+    public static final String PAY_TYPE="payType";
+    public static final String PAY_RESULT="payResult";
 
     /**
      * 经度
@@ -67,8 +73,48 @@ public class Constant {
      * 用户id
      */
     public static final String MEMID = "memid";
+    public static final String USER_ID = "userId";
+
     /**
      * 用户昵称
      */
     public static final String NICK_NAME = "nickname";
+
+    /**
+     * 用户头像
+     */
+    public static final String AVATAR = "avatar";
+
+
+    /**
+     * ???
+     */
+    public static final String MY_SIGN = "mysign";
+    /**
+     * 收货人姓名
+     */
+    public static final String REC_NAME = "recname";
+
+    /**
+     * 收货人电话
+     */
+    public static final String REC_PHONE = "recphone"; /**
+     /**
+     * 收货人地址
+     */
+    public static final String REC_ADDRESS = "recaddress";
+    /**
+     * 用户生日
+     */
+    public static final String BRITHDAY = "brithday";
+
+
+    /**
+     * 用户性别
+     */
+    public static final String GENDER = "gender";
+
+
+
+
 }

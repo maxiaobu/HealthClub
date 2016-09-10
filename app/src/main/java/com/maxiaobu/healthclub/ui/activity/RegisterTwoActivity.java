@@ -24,22 +24,25 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
+import com.baidu.mapapi.http.AsyncHttpClient;
+import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanMlogin;
+import com.maxiaobu.healthclub.common.beangson.BeanMrsendCode;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
 import com.maxiaobu.volleykit.JsonUtils;
+import com.maxiaobu.volleykit.NodataFragment;
+import com.maxiaobu.volleykit.RequestListener;
+import com.maxiaobu.volleykit.RequestParams;
 
 import org.json.JSONObject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cz.msebera.android.httpclient.Header;
 
 public class RegisterTwoActivity extends BaseAty implements View.OnClickListener {
 
@@ -223,44 +226,29 @@ public class RegisterTwoActivity extends BaseAty implements View.OnClickListener
                 gender = "1";
             }
             final String userPhone = getIntent().getStringExtra("mobphone");
-            com.loopj.android.http.RequestParams params = new com.loopj.android.http.RequestParams();
+            RequestParams params = new RequestParams();
             params.put("mempass", mEtPassword.getText().toString().trim());
             params.put("nickname", mEtNikeName.getText().toString().trim());
             params.put("gender", gender);
             params.put("mobphone", userPhone);
-            AsyncHttpClient client = new AsyncHttpClient();
-            client.post(this, UrlPath.URL_REGISTER, params, new JsonHttpResponseHandler() {
+            App.getRequestInstance().post(this, UrlPath.URL_REGISTER, params, new RequestListener() {
                 @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    super.onSuccess(statusCode, headers, response);
-                    String responseString = response.toString();
-//                Log.d("LoginActivity", responseString);
+                public void requestSuccess(String s) {
                     // TODO: 2016/9/5 换bean
-                    BeanMlogin data = JsonUtils.object(responseString, BeanMlogin.class);
+                    BeanMrsendCode data = JsonUtils.object(s, BeanMrsendCode.class);
                     data.getMsgFlag();
                     Toast.makeText(RegisterTwoActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                     if ("1".equals(data.getMsgFlag())) {
-
-                        Intent intent = new Intent();
-//                        intent.putExtra("mobphone", userPhone);
-//                        intent.putExtra("mempass", mEtPassword.getText().toString().trim());
-//                        intent.putExtra("where", 0);
-                        intent.setClass(RegisterTwoActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            ActivityOptions options =
-                                    ActivityOptions.makeSceneTransitionAnimation(RegisterTwoActivity.this, mFab, mFab.getTransitionName());
-                            startActivity(intent, options.toBundle());
-                        } else {
-
-                        }*/
+                        RegisterTwoActivity.this.setResult(1);
+                        RegisterTwoActivity.this.finish();
+                    } else {
+                        Toast.makeText(RegisterTwoActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
-                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                    super.onFailure(statusCode, headers, responseString, throwable);
-                    Log.d("LoginActivity", responseString);
+                public void requestAgain(NodataFragment nodataFragment) {
+                    regist();
                 }
             });
         }

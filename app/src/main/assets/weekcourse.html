@@ -7,7 +7,8 @@
 <title isback="1" navbar="0" btn="0" >课程表</title>
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/jquery.min.js"></script><!--clubid=C000174-->
 <script>
 $(document).bind('mobileinit', function () {
     $.mobile.pushStateEnabled = false;
@@ -20,19 +21,30 @@ $(document).bind('mobileinit', function () {
 <div data-role="page" data-enhance="true">
 <div data-role="content" class="timeTable" style="box-shadow:none;">
 	<div class="title">
-    	<p class="p1"><i id="clubname">羿健康健身俱乐部</i>课程表</p>
-    	<p class="p2"><!-- Yi health fitness club curriculum --></p>
+		<img src="images/page/bg_tuanchao_xuanze.png" style="width: 100%;"/>
+		<p class="p1">选择课程：</p>
+    	<!--<p class="p1"><i id="clubname">羿健康健身俱乐部</i>课程表</p>-->
+    	<!--<p class="p2"></p>--><!-- Yi health fitness club curriculum -->
+    	<ul class="weekItem" id="weektab">
+	    	<li>周日</li>
+	        <li>周一</li>
+	        <li>周二</li>
+	        <li>周三</li>
+	        <li>周四</li>
+	        <li>周五</li>
+	        <li>周六</li>
+	    </ul>
     </div>
 	<div class="weeks">
-    <ul class="weekItem" id="weektab">
-    	<li>日</li>
-        <li>一</li>
-        <li>二</li>
-        <li>三</li>
-        <li>四</li>
-        <li>五</li>
-        <li>六</li>
-    </ul>
+    <!--<ul class="weekItem" id="weektab">
+    	<li>周日</li>
+        <li>周一</li>
+        <li>周二</li>
+        <li>周三</li>
+        <li>周四</li>
+        <li>周五</li>
+        <li>周六</li>
+    </ul>-->
     <div class="box01_c" id="weekcon">
         <div style="position:relative;">
         	<dl id="tab0">
@@ -77,7 +89,7 @@ $(document).bind('mobileinit', function () {
 			w = w - 2;
 		}
 		week_click(w);
-		$("#weekcon dl:last").css({"padding-bottom": "0", "margin-bottom": "10px"});
+		/*$("#weekcon dl:last").css({"padding-bottom": "0", "margin-bottom": "10px"});*/
 	}
 	function week_click(num) {
 		$("#weektab li").removeClass('on').eq(num).addClass('on');
@@ -88,9 +100,9 @@ $(document).bind('mobileinit', function () {
 	var clubid = parmData.clubid; //parmData.clubid;
 	window.onload=function(){
 		initData();
-		week_init();
 	}
 	function initData(){
+		//http://127.0.0.1:8020/assets/weekcourse.html?clubid=C000174
 		$.ajax({
 	        type: "POST", //请求方式
 	        url: serviceUrl+"mgweekcourse.do", //请求路径
@@ -121,10 +133,17 @@ $(document).bind('mobileinit', function () {
                       });
                 	  $("#tab"+weekday).append(dd);
                    });
+                   week_init();
 	            }
 	        }
 	    });		
 	}
+	//计算课程表可滚动区域高度
+	$(document).ready(function(){
+		var imgheight=parseInt($(".title").css("height"));
+		var height=window.screen.height-imgheight
+		$(".box01_c").css("height",height+"px")
+	})
 </script>
 </body>
 </html>

@@ -44,7 +44,6 @@ public class TrainerCourseFragment extends BaseFrg {
     @Bind(R.id.rv_group)
     RecyclerView mRvGroup;
 
-    private View mRootView;
     private List<BeanCoachesDetail.PcourseListBean> mPcourseData;
     private List<BeanCoachesDetail.GcourseListBean> mGcourseData;
     private AdapterPcourseFrg mPersonalAdapter;

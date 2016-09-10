@@ -15,6 +15,7 @@
 		</script>
 		<script src="js/mframe.js"></script>
 		<script src="js/lib/ios-orientationchange-fix.js"></script>
+
 	</head>
 
 	<body class="detail">
@@ -28,6 +29,7 @@
 					if (data.msgFlag === "1") {
 						var myDiv = document.getElementById("essayReview");
 						myDiv.innerHTML = data.econtent;
+						document.getElementsByTagName("p")[1].style.color="#bbb";
 					}
 					var aELs = document.getElementsByTagName("a");
 					for (var i = 0, max = aELs.length; i < aELs.length; i++) {
@@ -35,6 +37,8 @@
 					}
 				}
 			);
+
+			
 		</script>
 	</body>
 

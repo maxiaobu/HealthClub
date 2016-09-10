@@ -9,10 +9,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
-import android.transition.Explode;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.util.Log;
@@ -26,31 +24,24 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.VolleyError;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
+import com.baidu.mapapi.http.AsyncHttpClient;
 import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
-import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanMlogin;
+import com.maxiaobu.healthclub.common.beangson.BeanMrsendCode;
 import com.maxiaobu.healthclub.utils.RegularUtils;
-import com.maxiaobu.healthclub.utils.storage.SPUtils;
-import com.maxiaobu.volleykit.IRequest;
 import com.maxiaobu.volleykit.JsonUtils;
+import com.maxiaobu.volleykit.NodataFragment;
 import com.maxiaobu.volleykit.RequestListener;
+import com.maxiaobu.volleykit.RequestParams;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cz.msebera.android.httpclient.Header;
 
 public class RegisterActivity extends BaseAty implements View.OnClickListener {
 
@@ -99,26 +90,26 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
 
     }
 
-    @OnClick({R.id.bt_go,R.id.tv_get_code})
+    @OnClick({R.id.bt_go, R.id.tv_get_code})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_go:
 //                RegisterActivity.this.finish();
 //                startActivity(new Intent(RegisterActivity.this,RegisterTwoActivity.class));
-                if (!RegularUtils.isMobile(mEtUsername.getText().toString().trim())){
+                if (!RegularUtils.isMobile(mEtUsername.getText().toString().trim())) {
                     Toast.makeText(this, "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
-                }else if (TextUtils.isEmpty(mEtCode.getText().toString().trim())){
+                } else if (TextUtils.isEmpty(mEtCode.getText().toString().trim())) {
                     Toast.makeText(this, "请输入验证码", Toast.LENGTH_SHORT).show();
-                }else {
-                    iscodeok(mEtUsername.getText().toString().trim(),mEtCode.getText().toString().trim());
+                } else {
+                    iscodeok(mEtUsername.getText().toString().trim(), mEtCode.getText().toString().trim());
                 }
                 break;
             case R.id.tv_get_code:
-                if (RegularUtils.isMobile(mEtUsername.getText().toString().trim())){
-                    tvSmsCaptchaCountDown(RegisterActivity.this,mTvGetCode,60);
-                   getCode(mEtUsername.getText().toString().trim());
-                }else {
+                if (RegularUtils.isMobile(mEtUsername.getText().toString().trim())) {
+                    tvSmsCaptchaCountDown(RegisterActivity.this, mTvGetCode, 60);
+                    getCode(mEtUsername.getText().toString().trim());
+                } else {
                     Toast.makeText(this, "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
                 }
                 break;
@@ -134,7 +125,7 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
     }
 
     private void ShowEnterAnimation() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Transition transition = TransitionInflater.from(this).inflateTransition(R.transition.fabtransition);
             getWindow().setSharedElementEnterTransition(transition);
 
@@ -146,7 +137,7 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
 
                 @Override
                 public void onTransitionEnd(Transition transition) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         transition.removeListener(this);
                     }
 
@@ -173,7 +164,7 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
     }
 
     public void animateRevealShow() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Animator mAnimator = ViewAnimationUtils.createCircularReveal(mCvAdd, mCvAdd.getWidth() / 2, 0, mFab.getWidth() / 2, mCvAdd.getHeight());
             mAnimator.setDuration(500);
             mAnimator.setInterpolator(new AccelerateInterpolator());
@@ -194,7 +185,7 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
     }
 
     public void animateRevealClose() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Animator mAnimator = ViewAnimationUtils.createCircularReveal(mCvAdd, mCvAdd.getWidth() / 2, 0, mCvAdd.getHeight(), mFab.getWidth() / 2);
             mAnimator.setDuration(500);
             mAnimator.setInterpolator(new AccelerateInterpolator());
@@ -219,7 +210,7 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
     /**
      * 短信验证码倒计时
      */
-    public  void tvSmsCaptchaCountDown(final Context context, final TextView tv, int smsTime) {
+    public void tvSmsCaptchaCountDown(final Context context, final TextView tv, int smsTime) {
         tv.setOnClickListener(null);
         tv.setActivated(false);
         tv.setClickable(false);
@@ -235,10 +226,10 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
                 tv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (RegularUtils.isMobile(mEtUsername.getText().toString().trim())){
-                            tvSmsCaptchaCountDown(RegisterActivity.this,mTvGetCode,60);
+                        if (RegularUtils.isMobile(mEtUsername.getText().toString().trim())) {
+                            tvSmsCaptchaCountDown(RegisterActivity.this, mTvGetCode, 60);
                             getCode(mEtUsername.getText().toString().trim());
-                        }else {
+                        } else {
                             Toast.makeText(RegisterActivity.this, "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -250,73 +241,77 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
     /**
      * 获取验证码
      */
-    private void getCode(String userPhone) {
-        com.loopj.android.http.RequestParams params=new com.loopj.android.http.RequestParams();
-        params.put("mobphone",userPhone);
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.post(this, UrlPath.URL_SENDCODE,params,new JsonHttpResponseHandler(){
+    private void getCode(final String userPhone) {
+        RequestParams params = new RequestParams();
+        params.put("mobphone", userPhone);
+        App.getRequestInstance().post(this, UrlPath.URL_SENDCODE, params, new RequestListener() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
-                String responseString = response.toString();
-                Log.d("LoginActivity", responseString);
+            public void requestSuccess(String s) {
+                Log.d("LoginActivity", s);
                 // TODO: 2016/9/5 换bean
-                BeanMlogin data = JsonUtils.object(responseString, BeanMlogin.class);
+                BeanMrsendCode data = JsonUtils.object(s, BeanMrsendCode.class);
                 data.getMsgFlag();
                 Toast.makeText(RegisterActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
-                if (!"1".equals(data.getMsgFlag())){
+                if (!"1".equals(data.getMsgFlag())) {
                     // TODO: 2016/9/5 填写验证码
+                } else {
+                    Toast.makeText(RegisterActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-                Log.d("LoginActivity", responseString);
+            public void requestAgain(NodataFragment nodataFragment) {
+                getCode(userPhone);
             }
         });
     }
 
     /**
      * 验证验证码
-     * @param code  验证码
+     *
+     * @param code 验证码
      */
-    public void iscodeok(final String userPhone, String code) {
-        com.loopj.android.http.RequestParams params=new com.loopj.android.http.RequestParams();
-        params.put("mobphone",userPhone);
-        params.put("identcode",code);
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.post(this, UrlPath.URL_SENDCODE_CHECK,params,new JsonHttpResponseHandler(){
+    public void iscodeok(final String userPhone, final String code) {
+        RequestParams params = new RequestParams();
+        params.put("mobphone", userPhone);
+        params.put("identcode", code);
+        App.getRequestInstance().post(this, UrlPath.URL_SENDCODE_CHECK, params, new RequestListener() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
-                String responseString = response.toString();
-//                Log.d("LoginActivity", responseString);
+            public void requestSuccess(String s) {
                 // TODO: 2016/9/5 换bean
-                BeanMlogin data = JsonUtils.object(responseString, BeanMlogin.class);
+                BeanMrsendCode data = JsonUtils.object(s, BeanMrsendCode.class);
                 data.getMsgFlag();
                 Toast.makeText(RegisterActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
-                if ("1".equals(data.getMsgFlag())){
+                if ("1".equals(data.getMsgFlag())) {
                     Intent intent = new Intent();
                     intent.putExtra("mobphone", userPhone);
                     intent.setClass(RegisterActivity.this, RegisterTwoActivity.class);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         ActivityOptions options =
                                 ActivityOptions.makeSceneTransitionAnimation(RegisterActivity.this, mFab, mFab.getTransitionName());
-                        startActivity(intent, options.toBundle());
+                        startActivityForResult(intent, 1, options.toBundle());
                     } else {
-                        startActivity(intent);
+                        startActivityForResult(intent, 1);
                     }
+                } else {
+                    Toast.makeText(RegisterActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-                Log.d("LoginActivity", responseString);
+            public void requestAgain(NodataFragment nodataFragment) {
+                iscodeok(userPhone, code);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == 1) {
+            RegisterActivity.this.setResult(1);
+            RegisterActivity.this.finish();
+        }
     }
 
     // 获取点击事件

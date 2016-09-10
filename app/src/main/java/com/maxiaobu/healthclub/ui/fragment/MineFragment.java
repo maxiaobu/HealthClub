@@ -13,12 +13,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
+import com.maxiaobu.healthclub.ui.activity.MyBespeakActivity;
 import com.maxiaobu.healthclub.ui.activity.OrderListActivity;
 import com.maxiaobu.healthclub.ui.weiget.observablescrollview.ObservableScrollView;
 import com.maxiaobu.healthclub.ui.weiget.observablescrollview.ScrollViewListener;
+import com.maxiaobu.healthclub.utils.storage.SPUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -102,12 +105,19 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
 
     }
 
-    @OnClick({R.id.ly_order})
+    @OnClick({R.id.ly_order,R.id.ly_login_out,R.id.ly_appointment})
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ly_order:
                 startActivity(new Intent(getActivity(), OrderListActivity.class));
+                break;
+            case R.id.ly_login_out:
+                SPUtils.clearAllData(getActivity());
+                Toast.makeText(getActivity(), "njhjj", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.ly_appointment:
+                startActivity(new Intent(getActivity(), MyBespeakActivity.class));
                 break;
             default:
                 break;

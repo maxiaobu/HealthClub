@@ -59,10 +59,15 @@ public class ModifyOrderAddressActivity extends BaseAty implements View.OnClickL
     public void initView() {
         setCommonBackToolBar(mToolbarCommon, mTvTitleCommon, "地址详情");
         String[] split = getIntent().getStringExtra("recaddress").split("区");
-        mAddress = split[1];
-        mArea =split[0]+"区";
-        mTvArea.setText(mArea);
-        mEdAddress.setText(mAddress);
+        if ( getIntent().getStringExtra("recaddress")!=null){
+            mAddress = split[1];
+            mArea =split[0]+"区";
+            mTvArea.setText(mArea);
+            mEdAddress.setText(mAddress);
+        }
+
+
+
 
     }
 

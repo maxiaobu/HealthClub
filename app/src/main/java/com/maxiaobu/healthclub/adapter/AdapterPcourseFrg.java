@@ -1,16 +1,19 @@
 package com.maxiaobu.healthclub.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.beangson.BeanCoachesDetail;
+import com.maxiaobu.healthclub.ui.activity.PersionalCourseActivity;
 
 import java.util.List;
 
@@ -39,7 +42,7 @@ public class AdapterPcourseFrg extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        BeanCoachesDetail.PcourseListBean listBean = mData.get(position);
+        final BeanCoachesDetail.PcourseListBean listBean = mData.get(position);
         MyViewHolder viewHolder = (MyViewHolder) holder;
         if (listBean.getClubcount()>1){
             viewHolder.mTvClubName.setVisibility(View.INVISIBLE);
@@ -55,6 +58,14 @@ public class AdapterPcourseFrg extends RecyclerView.Adapter {
             viewHolder.mTvClubName.setText(listBean.getClubname());
             viewHolder.mTvAddress.setText(listBean.getAddress());
         }
+        viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mActivity, PersionalCourseActivity.class);
+                intent.putExtra("pcourseid",listBean.getPcourseid());
+                mActivity.startActivity(intent);
+            }
+        });
 
 
     }
@@ -79,6 +90,8 @@ public class AdapterPcourseFrg extends RecyclerView.Adapter {
         TextView mTvAddress;
         @Bind(R.id.tv_more_club)
         TextView mTvMoreClub;
+        @Bind(R.id.ly_root)
+        LinearLayout mLyRoot;
 
 
         public MyViewHolder(View itemView) {

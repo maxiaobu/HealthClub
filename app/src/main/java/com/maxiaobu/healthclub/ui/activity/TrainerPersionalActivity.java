@@ -1,5 +1,6 @@
 package com.maxiaobu.healthclub.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
@@ -10,9 +11,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
@@ -21,6 +24,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
+import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanmDynamicList;
@@ -40,9 +44,12 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import maxiaobu.easeui.EaseConstant;
+import maxiaobu.easeui.utils.EaseUserUtils;
 
 
-public class TrainerPersionalActivity extends BaseAty implements AppBarLayout.OnOffsetChangedListener {
+public class TrainerPersionalActivity extends BaseAty implements AppBarLayout.OnOffsetChangedListener, View.OnClickListener {
 
     @Bind(R.id.iv_header)
     ImageView mIvHeader;
@@ -202,6 +209,28 @@ public class TrainerPersionalActivity extends BaseAty implements AppBarLayout.On
         adapter.addFragment(new TrainerCourseFragment(), "课程");
         adapter.addFragment(new TrainerDynamicFragment(), "动态");
         viewPager.setAdapter(adapter);
+    }
+
+    @OnClick({R.id.fab_talk})
+    @Override
+    public void onClick(View v) {
+        Intent intent=new Intent();
+        switch (v.getId()) {
+            case R.id.fab_talk:
+                String userId = getIntent().getStringExtra("tarid");
+                if (userId==SPUtils.getString(this,Constant.MEMID)){
+                    Toast.makeText(this, "自己不能和自己聊天", Toast.LENGTH_SHORT).show();
+                }else {
+                    String nickname = DemoHelper.getInstance().getUserInfo(userId).getNickname();
+                    intent.putExtra(Constant.USER_ID,userId);
+                    intent.putExtra(Constant.NICK_NAME,  nickname );
+                    intent.setClass(this,ChatActivity.class);
+                    startActivity(intent);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     static class Adapter extends FragmentPagerAdapter {

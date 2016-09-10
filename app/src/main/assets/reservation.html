@@ -8,19 +8,30 @@
 		<title isback="1" btn="0" navbar="0">预约</title>
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" type="text/css" />
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		
+   		<link href="css/mui.min.css" rel="stylesheet"/>
+   		<style>
+   			.mui-popup-text{
+   				line-height: 40px;
+   			}
+   		</style>
+   		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script>
+			document.getElementsByTagName('html')[0].style.fontSize=screen.width/10 + "px";
 			$(document).bind('mobileinit', function() {
 				$.mobile.pushStateEnabled = false;
 			});
 		</script>
 		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 		<script type="text/javascript" src="js/mframe.js"></script>
+		<!--http://127.0.0.1:8020/assets/reservation.html?coachid=M000440&orderid=CO-20160907-477&memid=M000014-->
 	</head>
 
 	<body>
 		<div data-role="page" style="background:none;">
 			<div data-role="content" class="reservation">
+				
 				<div class="frame_photo">
 					<div class="frame_photo_bespeak">
 						<div class="photo_myself">
@@ -29,14 +40,15 @@
 							</div>
 						</div>
 						<div class="club_2">
+							<h1 id="coursename" class="moveing ">课程名</h1>
+							<p class="p_m"><i id="times">4.0</i>&nbsp;&nbsp;&nbsp;&nbsp;<i id="enddate" style="margin-right: 10px;">5.0</i></p>
 							<p id="nickname" class="coach_1">教练名称</p>
 							<p id="clubname" class="moine_coach">俱乐部名称</p>
 						</div>
 						<div class="clear"></div>
 						<div class="clear"></div>
-						<h1 id="coursename" class="moveing ">课程名</h1>
-						<p class="p_m"><i id="times"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i id="enddate"></i></p>
-						<p id="address" class="a_ddress">俱乐部地址</p>
+						
+						<!--<p id="address" class="a_ddress">俱乐部地址</p>-->
 					</div>
 				</div>
 				<div class="res_down">
@@ -86,9 +98,10 @@
 							</li>
 						</ul>
 					</div>
-					<div id="content">
+					<div id="content" style="background: #fff;">
 						<div id="tab7">
 							<ul>
+								
 							</ul>
 						</div>
 						<div id="tab1">
@@ -118,21 +131,37 @@
 					</div>
 				</div>
 			</div>
-			<div id="side" r_time="" class="side">
+			<!--mui替换弹出窗口-->
+			<!--<div id="side" r_time="" class="side">
 				<div class="s_content">
 					<p>确认预约11月25日周五13:00？</p>
 					<div class="btnList">
 						<a href="javascript:submit()" rel="external" data-role="none">确认</a><a id="close" href="" rel="external" data-role="none">取消</a>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<script type="text/javascript">
+			
 				window.onload = function() {
 					//对头部日期进行初始化
 					initDate();
 					initData();
+					mui.init();
 				};
-
+				var url = window.location.href
+				parmData = getUrlParam(url);
+				function getUrlParam(string) {
+					var obj = {};
+					if (string.indexOf("?") != -1) {
+						var string = string.substr(string.indexOf("?") + 1);
+						var strs = string.split("&");
+						for (var i = 0; i < strs.length; i++) {
+							var tempArr = strs[i].split("=");
+							obj[tempArr[0]] = decodeURI(tempArr[1]);
+						}
+					}
+					return obj;
+				}
 				function resetTabs() {
 					$("#content > div").hide(); //隐藏所有内容
 					$("#tabs a").attr("class", ""); //重置“id”
@@ -168,7 +197,7 @@
 				function initData() {
 					$.ajax({
 						type: "POST",
-						url: serviceUrl + "mmanager.do",
+						url: serviceUrl + "mgetCoachtimeline.do",
 						data: {
 							coachid: parmData.coachid //教练id
 						},
@@ -177,17 +206,20 @@
 							var msgFlag = data.msgFlag;
 							if (msgFlag == 1) {
 								//初始化订单信息
-								$("#nickname").text(parmData.nickname);
-								$("#clubname").text(parmData.clubname);
-								$("#times").text(parmData.times);
-								$("#address").text(parmData.address);
-								$("#enddate").text(parmData.enddate);
-								$("#coursename").text(parmData.coursename);
-								$("#imgsfile").attr("src", parmData.imgsfile);
+								$("#nickname").text(parmData.nickname);//是哇性格
+								$("#clubname").text(parmData.clubname);//俱乐部
+								$("#times").text(parmData.times);//剩余次数
+								$("#address").text(parmData.address);//地址
+								$("#enddate").text(parmData.enddate);//结束时间
+								$("#coursename").text(parmData.coursename);//力量训练
+								$("#imgsfile").attr("src", parmData.imgsfile);//头像
 								var d = new Date();
 								$.each(data.managerlist, function(index, content) {
-									if (Number(content.weekday) > 0) {
 										console.log(content.weekday);
+									if (Number(content.weekday) >= 0) {
+										if(content.weekday==0){
+											content.weekday=7
+										}
 										var times = content.schtimeslice.split("|");
 										$.each(times, function(index, parm) {
 											if (parm != "") {
@@ -195,6 +227,8 @@
 												var li = $("<li><a href=''>" + parm + ":00</a></li>");
 												li.bind("click", function() {//选择档期事件
 													var d = new Date();
+													li.parent().find("a").attr("class","");//按钮图案变化
+													$(this).find("a").attr("class","elect");
 													var today = $("#current .p2").text();
 													var day = $(".current .p2").text();
 													var month = d.getMonth() + 1;
@@ -207,13 +241,33 @@
 													}
 													if(day===today&&d.getHours()>parm){
 														alertMessage("warn", "已经超过该预约时间");
+														$(this).find("a").attr("class","");
 													}else{
-														$("#side p").text("确认预约" + month + "月" + day + "日(" + $(".current .p1").text() + ")" + parm + ":00?");
+														/*$("#side p").text("确认预约" + month + "月" + day + "日(" + $(".current .p1").text() + ")" + parm + ":00?");
 														$("#side").attr("r_time", parm);
-														$("#side").attr("style", "display:block");
+														$("#side").attr("style", "display:none");
+														*/
+														
+											                /*var btnArray = ['否', '是'];*/
+											                mui.confirm("确认预约" + month + "月" + day + "日(" + $(".current .p1").text() + ")" + parm + ":00?", ' ',function(e) {
+											                  	if (e.index == 1) {
+											                        /*info.innerText = '你刚确认MUI是个好框架';*/
+											                       submit();
+											                    } else {
+											                        /*info.innerText = 'MUI没有得到你的认可，继续加油'*/
+											                       
+											                    }
+											                })
+											            
 													}
 												});
 												$("#tab" + content.weekday + " ul").append(li);
+												
+											}else{//没时间段显示无预约
+												var img=$("<img src='images/page/icon_wuyuyue.png' />");
+												
+												$("#tab" + content.weekday + " ul").append(img);
+												$("#tab" + content.weekday + " ul").find("li").nextAll("img").css("display","none");
 											}
 										});
 									}
@@ -243,9 +297,9 @@
 						}
 					}
 				})();
-				$("#close").click(function() {
+				/*$("#close").click(function() {
 					$("#side").attr("style", "display:none");
-				});
+				});*/
 				//确认预约
 				function submit() {
 					var d = new Date();
@@ -253,6 +307,7 @@
 					var day = $(".current .p2").text();
 					var month = d.getMonth() + 1;
 					var year = d.getFullYear();
+					var parm=$(".elect").text();
 					if ((today - day) > 7) { //当选择日期是下个月的某一天
 						if (month == 12) { //如果该月是12月则年份增加月份变为1月
 							year += 1;
@@ -261,14 +316,13 @@
 							month += 1;
 						}
 					}
-					var dateStr = year + "-" + month + "-" + day + " " + $("#side").attr("r_time") + ":00";
-					console.log(dateStr+","+parmData.orderid+parmData.coachid);
+					var dateStr = year + "-" + month + "-" + day + " " + parm ;
+					console.log(dateStr+","+parmData.orderid+parmData.coachid + getMemid());
 					$.ajax({
 						type: "POST",
 						url: serviceUrl + "mbcorderlessonsave.do",
 						dataType: "JSON",
 						data: {
-							coachid: parmData.coachid,
 							begintime: dateStr,
 							ordno: parmData.orderid,
 							memid : getMemid()
@@ -276,12 +330,32 @@
 						success: function(data) {
 							if (data.msgFlag == 1) {
 								alertMessage("success","预约成功");
-								var page = "bespeak.html?memid="+getMemid();
-								window.location.href = page;
+//								var page = "bespeak.html?memid="+getMemid();
+//								window.location.href = page;
+								!window.mobile||window.mobile.gotoBespeakList();
 							}
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log(XMLHttpRequest.status);
+						console.log(XMLHttpRequest.readyState);
+						console.log(textStatus);
 						}
 					});
 				}
+				$(document).ready(function(){//给content定高
+					var height=window.screen.height;
+					$(".reservation").css("height",height)
+					var pheight=parseFloat($(".frame_photo").css("height"));
+					var pbottom=parseFloat($(".frame_photo").css("margin-bottom"))*3;
+					var rheight=parseFloat($("#tag7").css("height"));
+					var conheight=height-pheight-pbottom-rheight-64;
+					var c=myScroll.windowHeight();
+					var con=c-pheight-pbottom-rheight;
+					$("#content").css("height",con+"px")
+					/*$("#content").css("height",conheight+"px");*/
+					
+				})
+				
 			</script>
 	</body>
 

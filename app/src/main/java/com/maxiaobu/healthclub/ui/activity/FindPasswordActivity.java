@@ -13,7 +13,6 @@ import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -25,22 +24,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.balysv.materialripple.MaterialRippleLayout;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.UrlPath;
-import com.maxiaobu.healthclub.common.beangson.BeanMlogin;
+import com.maxiaobu.healthclub.common.beangson.BeanMrsendCode;
 import com.maxiaobu.healthclub.utils.RegularUtils;
 import com.maxiaobu.volleykit.JsonUtils;
-
-import org.json.JSONObject;
+import com.maxiaobu.volleykit.NodataFragment;
+import com.maxiaobu.volleykit.RequestListener;
+import com.maxiaobu.volleykit.RequestParams;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cz.msebera.android.httpclient.Header;
 
 public class FindPasswordActivity extends BaseAty implements View.OnClickListener {
 
@@ -95,9 +92,6 @@ public class FindPasswordActivity extends BaseAty implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_go:
-//                RegisterActivity.this.finish();
-//                startActivity(new Intent(RegisterActivity.this,RegisterTwoActivity.class));
-
                 if (!RegularUtils.isMobile(mEtPhoneNum.getText().toString().trim())) {
                     Toast.makeText(this, "请输入正确的手机号码", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(mEtGetCode.getText().toString().trim())) {
@@ -121,7 +115,25 @@ public class FindPasswordActivity extends BaseAty implements View.OnClickListene
 
     @Override
     public void onBackPressed() {
-        animateRevealClose();
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            animateRevealClose();
+        }else {
+            this.finish();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==1&&requestCode==1){
+            String passWord = data.getStringExtra("passWord");
+            Intent intent = new Intent();
+            intent.putExtra("passWord",passWord);
+            intent.putExtra("userName",data.getStringExtra("userName"));
+            this.setResult(1,intent);
+            this.finish();
+        }
+
     }
 
     private void ShowEnterAnimation() {
@@ -210,7 +222,7 @@ public class FindPasswordActivity extends BaseAty implements View.OnClickListene
     /**
      * 短信验证码倒计时
      */
-    public  void tvSmsCaptchaCountDown(final Context context, final TextView tv, int smsTime) {
+    public void tvSmsCaptchaCountDown(final Context context, final TextView tv, int smsTime) {
         tv.setOnClickListener(null);
         tv.setActivated(false);
         tv.setClickable(false);
@@ -243,30 +255,25 @@ public class FindPasswordActivity extends BaseAty implements View.OnClickListene
     /**
      * 获取验证码
      */
-    private void getCode(String userPhone) {
+    private void getCode(final String userPhone) {
         RequestParams params = new RequestParams();
         params.put("mobphone", userPhone);
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.post(this, UrlPath.URL_SENDCODE_FORGET, params, new JsonHttpResponseHandler() {
+        App.getRequestInstance().post(this, UrlPath.URL_SENDCODE_FORGET, params, new RequestListener() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
-                String responseString = response.toString();
-                Log.d("LoginActivity", responseString);
-                // TODO: 2016/9/5 换bean
-                BeanMlogin data = JsonUtils.object(responseString, BeanMlogin.class);
+            public void requestSuccess(String s) {
+                BeanMrsendCode data = JsonUtils.object(s, BeanMrsendCode.class);
                 data.getMsgFlag();
                 Toast.makeText(FindPasswordActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                 if ("1".equals(data.getMsgFlag())) {
                     // TODO: 2016/9/5 填写验证码
+                } else {
+//                    Toast.makeText(FindPasswordActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-                Log.d("LoginActivity", responseString);
+            public void requestAgain(NodataFragment nodataFragment) {
+                getCode(userPhone);
             }
         });
     }
@@ -276,19 +283,15 @@ public class FindPasswordActivity extends BaseAty implements View.OnClickListene
      *
      * @param code 验证码
      */
-    public void iscodeok(final String userPhone, String code) {
+    public void iscodeok(final String userPhone, final String code) {
         RequestParams params = new RequestParams();
         params.put("mobphone", userPhone);
         params.put("identcode", code);
-        AsyncHttpClient client = new AsyncHttpClient();
-        client.post(this, UrlPath.URL_SENDCODE_CHECK_FORGET, params, new JsonHttpResponseHandler() {
+        App.getRequestInstance().post(this, UrlPath.URL_SENDCODE_CHECK_FORGET, params, new RequestListener() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
-                String responseString = response.toString();
-//                Log.d("LoginActivity", responseString);
+            public void requestSuccess(String s) {
                 // TODO: 2016/9/5 换bean
-                BeanMlogin data = JsonUtils.object(responseString, BeanMlogin.class);
+                BeanMrsendCode data = JsonUtils.object(s, BeanMrsendCode.class);
                 data.getMsgFlag();
                 Toast.makeText(FindPasswordActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                 if ("1".equals(data.getMsgFlag())) {
@@ -298,17 +301,16 @@ public class FindPasswordActivity extends BaseAty implements View.OnClickListene
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         ActivityOptions options =
                                 ActivityOptions.makeSceneTransitionAnimation(FindPasswordActivity.this, mFab, mFab.getTransitionName());
-                        startActivity(intent, options.toBundle());
+                        startActivityForResult(intent,1, options.toBundle());
                     } else {
-                        startActivity(intent);
+                        startActivityForResult(intent,1);
                     }
                 }
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-                Log.d("LoginActivity", responseString);
+            public void requestAgain(NodataFragment nodataFragment) {
+                iscodeok(userPhone,code);
             }
         });
     }

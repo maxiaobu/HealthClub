@@ -50,8 +50,8 @@ public class OrderListActivity extends BaseAty {
             mViewpager.setOffscreenPageLimit(1);
         }
         mTabs.setupWithViewPager(mViewpager);
-        if (foodFlag==2){
-            mViewpager.setCurrentItem(1,true);
+        if (foodFlag!=-1){
+            mViewpager.setCurrentItem(foodFlag,true);
         }
     }
 

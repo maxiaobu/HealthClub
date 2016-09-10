@@ -8,7 +8,7 @@
 <title isback="1" btn="0" navbar="0" id="titleText">动感单车</title>
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css" type="text/css" />
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script><!--gcourseid=GC000042-->
     <script>
         $(document).bind('mobileinit', function () {
             $.mobile.pushStateEnabled = false;
@@ -29,17 +29,44 @@
       <li class="li_list">
         <div class="video"> <a rel="external" data-role="none"><img src="images/page/big_btn4.png" id="imgpfile"/></a> </div>
         <div class="corder">
-          <p class="corder_title" id="gcoursename">增肌方法论</p>
-          <span class="price" id="gcourseprice"><i name="gcourseprice">凭会员卡免费预约</i></span></div>
-        <div class="corder_name"><i id="coachname">张宇星</i> | <i id="clubname"> 沈阳羿健康健身俱乐部</i></div>
+          <p class="corder_title" id="gcoursename">动感单车</p>
+          <span class="price" id="gcourseprice"><i name="gcourseprice" style="color: #969696;font-weight: normal;font-size: 17px;padding-top: 7px;">凭会员卡免费预约</i></span></div>
+        <div class="corder_name"><!--<i id="coachname">张宇星</i> | --><i id="clubname"> 沈阳羿健康健身俱乐部</i></div>
+        <div class="corder_star">
+			<div class="star_kong">
+				<img src="images/icon_xingxing_kongxin.png" />
+				<img src="images/icon_xingxing_kongxin.png" />
+				<img src="images/icon_xingxing_kongxin.png" />
+				<img src="images/icon_xingxing_kongxin.png" />
+				<img src="images/icon_xingxing_kongxin.png" />
+			</div>
+			<div class="star_shi">
+				<div style="width: 100px;">
+					<img src="images/icon_xingxing.png" />
+					<img src="images/icon_xingxing.png" />
+					<img src="images/icon_xingxing.png" />
+					<img src="images/icon_xingxing.png" />
+					<img src="images/icon_xingxing.png" />
+				</div>
+				
+			</div>
+			
+		</div>
         <div class="hr1"></div>
         <div id="datum-arr">
-        <a  rel="external" data-role="none">
-            <p id="conphone"></p><img class="arrou" src="images/arrow2.png">
-        </a>        
-          <a id="tog"  rel="external" data-role="none">
-          <p id="address"></p>
-          </a>
+		
+          <!--<a id="tog"  rel="external" data-role="none">-->
+      	<a id="tog" href="" class="click_club" rel="external" data-role="none" style="display:block;border-bottom:1px solid #dadada;">
+			<p id="address">沈阳市和平区市府大路北<span id="club_title" style="color:#D6D6D6 ;float: right;"></span></p>
+			<img id="arrou" class="arrou" src="images/jiantou_botton_default.png" /> </a>
+		<a href="" rel="external" data-role="none" class="click_times" style="border-bottom: 1px solid #dadada;"> <span class="tenper"><!--<em id="pcoursetimes">10次</em>/<em id="pcoursedays">2月</em>--><em id="pcoursedate">10月29日</em></span><img class="arrou" src="images/jiantou_botton_default.png"> </a>
+		<a rel="external" data-role="none" class="click_tel">
+			<p id="conphone" href="tel:130111">13011111111</p>
+			<img class="arrou" src="images/jiantou_botton_default.png">
+			<div class="hr1-cxl" style="border: 0 none;"></div>
+		</a>
+          <!--<p id="address"></p>-->
+         
           <!--根据业务需要不要-->
          <!-- <a  rel="external" data-role="none"> <span class="tenper"><i>10次</i id="gcoursetimes">/<i id="gcoursedays">2月</i></span> <img id="arrou" class="arrou"  src="images/arrow2.png"/></a>-->
           
@@ -54,22 +81,38 @@
               羿健康在全球范围内举足轻重。我们的市场资本额超过许多国家的国内生产总值，我们的消费者遍布180多个国家和地区。庞大规模带来的是责任和机遇。我们的责任是做一个符合社会道德要求的企业公民，在现在和未来的世世代代确保每个人有更高的生活质量。我们的机遇则更高瞻远瞩，并与我们的“目标”息息相关。</p>
           </div>
         </div>-->
-        <div class="introduce" style="margin-bottom:60px;">
-          <div class="title-cxl">下单须知</div>
-          <div class="content">
-            <p>宗旨、价值观及原则康的宗旨是在现在和未来的世世代代确保每个人有更高的生活质量。宗旨是引领，为我们公司的抉择及行动带来了灵感与指导。</p>
-          </div>
-        </div>
+        <div class="introduce notice">
+			<div class="title-cxl" style="width: 20%;float: left;padding-top: 25px;font-size:1.4em;color: #f17142;">下单须知:</div>
+			<div class="content notice_write">
+				<p id="resinform" style="width: 70%;float: left;color: #f17142;">请在玉佛发牢骚似懂非懂浪费哦是减肥神经反射。</p>
+				
+			</div>
+			
+		</div>
         <div class="qqq">
           <div class="inset">
-            <p ><i name="gcourseprice">凭会员卡免费预约</i></p>
-            <a href="javascript:gotoExe()" rel="external" data-role="none">确认支付</a> </div>
+            <p ><!--<i name="gcourseprice">凭会员卡免费预约</i>--></p>
+            <a href="javascript:gotoExe()" rel="external" data-role="none" style="background:url(images/page/button_yuyue_up.png) ;background-size: cover;"></a> </div>
         </div>
       </li>
     </ul>
   </div>
 </div>
 <script type="text/javascript">
+var url = window.location.href
+parmData = getUrlParam(url);
+function getUrlParam(string) {
+	var obj = {};
+	if (string.indexOf("?") != -1) {
+		var string = string.substr(string.indexOf("?") + 1);
+		var strs = string.split("&");
+		for (var i = 0; i < strs.length; i++) {
+			var tempArr = strs[i].split("=");
+			obj[tempArr[0]] = decodeURI(tempArr[1]);
+		}
+	}
+	return obj;
+}
 var gcourseid = parmData.gcourseid;
 function initData(){
 	$.ajax({
@@ -93,6 +136,8 @@ function initData(){
 //     		    $("i[name=gcourseprice]").text(bGcourse.gcourseprice);
                 $("#coachname").text(bGcourse.coachname);
                 $("#clubname").text(bClub.clubname);
+                $("#resinform").text(bGcourse.resinform);
+                $(".star_shi").css("width",parseFloat(bClub.evascore*20) + "px");
                 var mobphone = $("#conphone");
                 mobphone.text(bClub.conphone);
                 mobphone.parent("a").bind("click", function(){

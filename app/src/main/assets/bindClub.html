@@ -20,22 +20,25 @@
 <div data-role="page" style="background:none;">
   <div data-role="content" class="bind">
   	  <div class="datum">
-      	  <p class="bind_p" id="clubname">羿健康健身俱乐部</p>
-          <a href="tel:123456789" rel="external" data-role="none"><p id="conphone">123456789</p><img src="images/page/gonext.png" width="15" height="20" /></a>
+      	  <!--<p class="bind_p" id="clubname">羿健康健身俱乐部</p>-->
+          <a href="tel:123456789" rel="external" data-role="none"><p id="conphone">123456789</p><img src="images/jiantou_botton_default1.png" width="15" height="20" /></a>
           <a href="" rel="external" data-role="none">场地参考价格：<i id="clubprices">200</i>/次</a>
-          <a href="" rel="external" data-role="none"><p id="address">沈阳市和平区市府大路三经街北市家园3号楼1单元</p><img src="images/page/gonext.png" width="15" height="20" /></a>
+          <a href="" rel="external" data-role="none"><p id="address" style="line-height: 20px;">沈阳市和平区市府大路三经街北市家园3号楼1单元</p><!--<img src="images/page/gonext.png" width="15" height="20" />--></a>
       </div>
       <div class="datum_d">
       	<ul>
-        	<li><input data-role="none" type="text" placeholder="单次场地费用" id="clubprice"></li>
-            <li><input data-role="none" type="text" placeholder="单次教学价格" id="coachprice"></li>
-            <li><textarea data-role="none" rows="3" placeholder="绑定申请说明" id="bapplydescr"></textarea></li>
+        	<li><input data-role="none" type="text" placeholder="单次场地费用：" id="clubprice"></li>
+            <li><input data-role="none" type="text" placeholder="单次教学价格：" id="coachprice"></li>
+            <li><textarea data-role="none" rows="4" placeholder="绑定申请说明：" id="bapplydescr"></textarea></li>
         </ul>
       </div>
       <div class="o_btn_1"><a href="javascript:void(0);" data-role="none" rel="external" onclick="bindSubmit();">提交绑定申请</a></div>
   </div>
 </div>
 <script type="text/javascript">
+var c=myScroll.windowHeight();
+$(".bind").css("height",c+"px");
+console.log(c)
 var clubid = parmData.clubid;
 var coachid = parmData.coachid?parmData.coachid:parmData.memid;
 

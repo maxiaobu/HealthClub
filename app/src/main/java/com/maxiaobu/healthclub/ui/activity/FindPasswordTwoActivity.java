@@ -21,21 +21,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
+import com.baidu.mapapi.http.AsyncHttpClient;
+import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanMlogin;
+import com.maxiaobu.healthclub.common.beangson.BeanMrsendCode;
 import com.maxiaobu.volleykit.JsonUtils;
+import com.maxiaobu.volleykit.NodataFragment;
+import com.maxiaobu.volleykit.RequestListener;
+import com.maxiaobu.volleykit.RequestParams;
 
 import org.json.JSONObject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cz.msebera.android.httpclient.Header;
 
 public class FindPasswordTwoActivity extends BaseAty implements View.OnClickListener {
 
@@ -97,29 +99,26 @@ public class FindPasswordTwoActivity extends BaseAty implements View.OnClickList
                 RequestParams params = new RequestParams();
                 params.put("mempass", mEtPassword.getText().toString().trim());
                 params.put("mobphone", userPhone);
-                AsyncHttpClient client = new AsyncHttpClient();
-                client.post(this, UrlPath.URL_RESETPASSWORD, params, new JsonHttpResponseHandler() {
+                App.getRequestInstance().post(this, UrlPath.URL_RESETPASSWORD, params, new RequestListener() {
                     @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        super.onSuccess(statusCode, headers, response);
-                        String responseString = response.toString();
-//                Log.d("LoginActivity", responseString);
+                    public void requestSuccess(String s) {
                         // TODO: 2016/9/5 换bean
-                        BeanMlogin data = JsonUtils.object(responseString, BeanMlogin.class);
+                        BeanMrsendCode data = JsonUtils.object(s, BeanMrsendCode.class);
                         data.getMsgFlag();
                         Toast.makeText(FindPasswordTwoActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                         if ("1".equals(data.getMsgFlag())) {
 
                             Intent intent = new Intent();
-                            intent.setClass(FindPasswordTwoActivity.this, LoginActivity.class);
-                            startActivity(intent);
+                            intent.putExtra("passWord",mEtPassword.getText().toString().trim());
+                            intent.putExtra("userName",userPhone);
+                            FindPasswordTwoActivity.this.setResult(1,intent);
+                            FindPasswordTwoActivity.this.finish();
                         }
                     }
 
                     @Override
-                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                        super.onFailure(statusCode, headers, responseString, throwable);
-                        Log.d("LoginActivity", responseString);
+                    public void requestAgain(NodataFragment nodataFragment) {
+                        nodataFragment.dismissAllowingStateLoss();
                     }
                 });
             }
@@ -131,7 +130,12 @@ public class FindPasswordTwoActivity extends BaseAty implements View.OnClickList
 
     @Override
     public void onBackPressed() {
-        animateRevealClose();
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            animateRevealClose();
+        }else {
+            this.finish();
+        }
+
     }
 
     private void ShowEnterAnimation() {

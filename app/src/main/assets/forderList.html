@@ -60,8 +60,8 @@
 					_ajax(
 						serviceUrl + "morderlist.do", {
 							pageIndex: pageIndex++, //当前页码
-							listtype: "forderlist",//写死，就写他
-							memid: getMemid()//用户id
+							listtype: "forderlist",
+							memid: getMemid()
 						},
 						function(data) {
 							if (data.msgFlag === "1") {

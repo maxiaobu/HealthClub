@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<title isback="1" btn="0" navbar="0">按摩订单列表</title>		
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		<script src="js/mframe.js"></script>	
+		<script src="js/jquery.min.js"></script>" 
+	</head>
+
+	<body>
+		<div data-role="page" style="background:none;display: none;" id="content">
+			<div class="orderlist">
+				<div data-role="content">
+					<div class="li_list" id="morderlistLi">
+						<div id="morderlist">							
+						</div>
+						<div id="nodata" class="nodata" style="display: none;">
+							<span class="pullUpLabel">没有更多数据了</span>
+						</div>
+						<div id="pullUp" onclick="initData('forderlist')">
+							<span class="pullUpIcon"></span><span class="pullUpLabel">点击加载更多...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="notips" data-role="content" id="error" style="width:100%;height:520px;display:none; background:url(images/page/404.png) no-repeat center center;background-size:cover;">
+			<div class="notips_down" style="position:absolute;bottom:65px;">
+			    <p class="black">网络状况很糟糕</p>				  
+		    </div>
+		</div>
+		<script type="text/javascript">
+			var pageIndex = 1;		
+			ajax_service = function(interface,data,callback){		
+		$.ajax( serviceUrl+interface, {
+			data: data, 
+			dataType: 'json',
+			type: 'post',
+			timeout:10000,//超时时间设置为10秒；
+			success: function(data) { 
+						return callback(data.msgFlag,data);
+				},error: function(xhr, type, errorThrown) {
+						return callback("error","网络不给力");
+				}
+		});	
+	}
+			function initData() {
+				ajax_service("mmassageorderList.do",
+				{pageIndex: pageIndex, //当前页码
+					memid: getMemid()
+				},
+					function(flag,return_data){					
+						if(flag =="1"){
+							var morderListData = return_data.massageorderList;							
+							//无数据处理								
+							if (morderListData.length == 0 && pageIndex == 1) {			
+								document.getElementById("morderlistLi").innerHTML=getNoDataDiv("您还没有配餐订单", "");
+								$("#content").show();
+								return;
+							}
+							//数据不足一页则不显示「点击加载更多」
+							if (morderListData.length < 10) {
+								$("#pullUp").hide();
+								$("#nodata").show();
+							}				
+							careateHTML(morderListData);
+							pageIndex++;
+							$("#content").show();
+						}else{							
+							$("#error").show();
+						}
+					});
+				}
+				var careateHTML = function(jsondata){
+					var div = document.getElementById("morderlist");
+					console.log(JSON.stringify(jsondata))
+					$.each(jsondata, function(idex,item) {
+						var div_item = document.createElement("div");
+						div_item.className = "order_1";
+						div_item.id = item.orderid;
+						var div_1 = document.createElement("div");
+						div_1.className = "order-up";
+						var innerhtml = '<div class="order_left">';
+						innerhtml+= '<div class="img">';
+						innerhtml+= '<a href="javascript:void(0);" rel="external" data-role="none"><img src="'+item.imgsfilename+'"></a>';
+						innerhtml+= '</div>';
+						innerhtml+= '<a class="tit_name" href="javascript:void(0);" rel="external" data-role="none" id="clubname">羿健康俱乐部</a>';
+						innerhtml+= '</div>';
+						innerhtml+= '<div class="order_right"><p id="fpaystatus">'+item.orderstatusname+'</p></div>';
+						div_1.innerHTML = innerhtml;					
+						div_item.appendChild(div_1);
+						var div_2 = document.createElement("div");
+						div_2.className = "order-middle";
+						innerhtml = '<p><span id="mername">'+item.massagename+'</span><i>&nbsp;<i id="buynum">'+item.ordamt+'元</i></i></p>';
+						if(item.ordstatus=="1"){//已完成
+							innerhtml+= '<div class="order-down" id="forderExeDiv1">';
+							innerhtml+= '<a href=javascript:another("'+item.massageid+'","'+item.massagename+'","'+item.ordamt+'") data-role="none" rel="external">再来一单</a>';
+							innerhtml+= '</div>';
+						}else{//未完成
+							if(item.paystatus=="1"){//待评价
+								innerhtml+= '<div class="order-down" id="forderExeDiv1">';
+								innerhtml+= '<a href=javascript:ping("'+item.orderid+'") data-role="none" rel="external" >评价</a>';
+								innerhtml+= '</div>';
+							}else{//待支付
+								innerhtml+= '<div class="order-down_1" id="forderExeDiv2" >';
+								innerhtml+= '<a href="javascript:void(0);" data-role="none" rel="external" >继续支付</a>';
+								innerhtml+='<a href=javascript:delorder("'+item.orderid+'") data-role="none" rel="external" onclick=>删除</a>';
+								innerhtml+= '</div>';
+							}
+						
+						}
+						div_2.innerHTML = innerhtml;
+						div_item.appendChild(div_2);
+						div.appendChild(div_item);						
+					});
+				}
+				//再来一单
+				var another = function(messageid,messagename,price){
+					window.mobile.newAnmoOotherOrder(messageid,messagename,price);
+				}
+				//删除订单
+				var delorder = function(orderid ){		
+					ajax_service("mdeleteMassageOrder.do",{"orderid":orderid},function(flag,return_data){
+						if(flag =="1"){
+							$("#"+orderid).remove();
+							alertMessage("message","订单删除成功");
+							if($("#morderlist").children().length==0){
+								document.getElementById("morderlistLi").innerHTML=getNoDataDiv("您还没有按摩订单", "");
+								$("#nodata").hide();
+								$("#pullUp").hide();
+							}
+						}else{
+							alertMessage("message",return_data.msgContent);
+						}
+					});
+				}
+				//订单评价
+				var ping = function(orderid){
+					
+				}
+				function commitExe() { //因为该方法入参个数不确定,所以采用了动态入参,通过 arguments[参数下标] 的形式获得参数
+					var page;
+					var type; //请求类型
+					//判断参数个数
+					if (arguments.length > 0) {
+						if (arguments.length > 0) {
+							type = arguments[0];
+							switch (type) {
+								case "del": //点击「删除」
+									var orderid = arguments[1];
+									_ajax(
+										serviceUrl + "mdeleteByList.do", {
+											ordno: "'" + orderid + "'",
+											listtype: "forderlist"
+										},
+										function(data) {
+											var msgFlag = data.msgFlag;
+											if (msgFlag === "1") {
+												alertMessage("success", "删除成功");
+												forderList.removeChild(forderList.querySelector("#" + orderid));
+												//删除后需要上一页面刷新
+												!window.mobile||window.mobile.isrefresh();
+											} else {
+												alertMessage("error", "删除失败，请稍后再试");
+											}
+										}
+									);
+									//删除完成后若无其他订单数据,则显示无数据提示
+									if (forderList.lastChild.style.display === "none") {
+										forderList.removeChild(forderList.querySelector("div"));
+										var nodata = document.createElement("div");
+										nodata.innerHTML = getNoDataDiv("您还没有配餐订单", "");
+										forderList.appendChild(nodata);
+										forderList.nextElementSibling.style.display = "none";
+									}
+									break;
+								case "payFood": //点击「继续支付」
+									var ordno = arguments[1];
+									_ajax(
+										serviceUrl + "mselectForderByOrdno.do", {
+											ordno: ordno
+										},
+										function(data) {
+											var msgFlag = data.msgFlag;
+											if (msgFlag == 1) {
+												var bForder = data.bForder;
+												var ordamt = bForder.ordamt;
+												var memid = bForder.memid;
+												var page = "pay.html?ordno=" + ordno + "&ordamt=" + ordamt + "&memid=" + memid;
+												if (window.mobile) {
+													window.mobile.popNewWindow(page);
+												} else {
+													window.location.href = page;
+												}
+												//需要上一页面刷新
+												!window.mobile||window.mobile.isrefresh();
+											} else {
+												alertMessage("error", "支付失败!");
+											}
+										}
+									);
+									break;
+								case "payFoodAgain":
+									var ordno = arguments[1];
+									_ajax(
+										serviceUrl + "mselectForderByOrdno.do", {
+											ordno: ordno
+										},
+										function(data) {
+											var msgFlag = data.msgFlag;
+											if (msgFlag == 1) {
+												var bForder = data.bForder;
+												var merList = data.merList;
+												var ordamt = bForder.ordamt;
+												var memid = bForder.memid;
+												var merInfo = "";
+												for (var i = 0, max = merList.length; i < max; i++) {
+													var merData = merList[i];
+													merInfo += merData.merid + "|";
+													merInfo += merData.mername + "|";
+													merInfo += merData.merdescr + "|";
+													merInfo += merData.buynum + "|";
+													merInfo += merData.merprice + ",";
+												}
+												var page = "foodmerBuy.html?memid=" + memid + "&merInfo=" + merInfo + "&ordamt=" + ordamt;
+												console.log(merInfo);
+												if (window.mobile) {
+													window.mobile.popNewWindow(page);
+												} else {
+													window.location.href = page;
+												}
+												//需要上一页面刷新
+												!window.mobile||window.mobile.isrefresh();
+											} else {
+												alertMessage("error", "支付失败!");
+											}
+										}
+									);
+									break;
+								default:
+									break;
+							}
+						}
+					}
+				}
+
+				function init() {
+					initData();
+				}
+				document.addEventListener("DOMContentLoaded", init, false);
+			</script>
+	</body>
+
+</html>

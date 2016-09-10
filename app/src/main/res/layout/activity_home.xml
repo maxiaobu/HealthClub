@@ -11,6 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
+    <View
+        android:id="@+id/view_point"
+        android:layout_width="2dp"
+        android:layout_height="2dp"
+        android:background="@color/colorAccent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/sz_40"
+        android:layout_marginLeft="@dimen/sz_150"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
