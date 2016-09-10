@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context="com.maxiaobu.healthclub.ui.activity.CoachcertApplyActivity">
     <include layout="@layout/common_title"/>
     <TextView
@@ -37,7 +38,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/sz_20"/>
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/ed_phone_num"
+        android:id="@+id/ed_price"
         android:layout_width="match_parent"
         android:layout_height="@dimen/sz_30"
         android:gravity="center_vertical"
@@ -57,8 +58,8 @@
         android:textColor="@color/colorTextThird"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/sz_20"/>
-    <TextView
-        android:id="@+id/tv_introduction"
+    <EditText
+        android:id="@+id/ed_introduction"
         android:layout_width="match_parent"
         android:layout_height="@dimen/sz_30"
         tools:text="阿斯蒂芬送达方式大幅大事发生的"
@@ -87,5 +88,14 @@
         android:background="@color/white"
         android:paddingTop="@dimen/sz_10"
         />
+    <TextView
+        android:id="@+id/tv_send"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sz_50"
+        android:background="@drawable/bg_food_order_select"
+        android:layout_marginLeft="@dimen/sz_20"
+        android:layout_marginRight="@dimen/sz_20"
+        android:text="申请认证"
+        android:gravity="center"/>
 
 </LinearLayout>

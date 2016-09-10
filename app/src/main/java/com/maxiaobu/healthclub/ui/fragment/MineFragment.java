@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
+import com.maxiaobu.healthclub.ui.activity.CoachcertApplyActivity;
 import com.maxiaobu.healthclub.ui.activity.MyBespeakActivity;
 import com.maxiaobu.healthclub.ui.activity.OrderListActivity;
 import com.maxiaobu.healthclub.ui.weiget.observablescrollview.ObservableScrollView;
@@ -105,7 +106,7 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
 
     }
 
-    @OnClick({R.id.ly_order,R.id.ly_login_out,R.id.ly_appointment})
+    @OnClick({R.id.ly_order,R.id.ly_login_out,R.id.ly_appointment,R.id.ly_authentication})
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -118,6 +119,9 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
                 break;
             case R.id.ly_appointment:
                 startActivity(new Intent(getActivity(), MyBespeakActivity.class));
+                break;
+            case R.id.ly_authentication:
+                startActivity(new Intent(getActivity(), CoachcertApplyActivity.class));
                 break;
             default:
                 break;

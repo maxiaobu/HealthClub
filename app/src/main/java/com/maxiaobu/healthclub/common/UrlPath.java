@@ -265,4 +265,11 @@ public class UrlPath {
      */
     public static final String URL_MY_BESPEAK = URL_BASE + "mmyBespeak.do";
 
+
+    /**
+     * 申请认证
+     * http://192.168.1.182:8080/efithealth/mcoachcertApply.do?memid=M000439&nickname=马小布&coachprice=100&coachadept=快捷方式的恢复开机后&applydescr=的萨科罚金电视里看见弗兰克
+     */
+    public static final String URL_MCOACHCERTAPPLY = URL_BASE + "mcoachcertApply.do";
+
 }
