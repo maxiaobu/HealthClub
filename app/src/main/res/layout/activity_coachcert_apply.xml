@@ -79,7 +79,7 @@
     <android.support.v7.widget.AppCompatEditText
         android:id="@+id/ed_describe"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/sz_80"
+        android:layout_height="wrap_content"
         android:paddingLeft="@dimen/sz_20"
         android:gravity="top"
         android:textColor="@color/colorTextSecondary"

@@ -271,5 +271,10 @@ public class UrlPath {
      * http://192.168.1.182:8080/efithealth/mcoachcertApply.do?memid=M000439&nickname=马小布&coachprice=100&coachadept=快捷方式的恢复开机后&applydescr=的萨科罚金电视里看见弗兰克
      */
     public static final String URL_MCOACHCERTAPPLY = URL_BASE + "mcoachcertApply.do";
+    /**
+     * 健腰腿背
+     * http://192.168.1.182:8080/efithealth/mgettrainingitem.do
+     */
+    public static final String URL_MGETTRAININGITEM = URL_BASE + "mgettrainingitem.do";
 
 }

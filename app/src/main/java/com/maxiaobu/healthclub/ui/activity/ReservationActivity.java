@@ -50,8 +50,9 @@ public class ReservationActivity extends BaseAty {
         // 在js中调用本地java方法
         mWebView.addJavascriptInterface(new WebAppInterface(this), "mobile");
         mWebView.getSettings().setDefaultTextEncodingName("utf-8");
-        mWebView.loadUrl("file:///android_asset/reservation.html"+"?nickname=");
+
         mWebView.setWebViewClient(new MyWebViewClient());
+        mWebView.loadUrl("file:///android_asset/reservation.html"+"?nickname=");
     }
 
     @Override
