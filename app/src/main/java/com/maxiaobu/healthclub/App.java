@@ -5,6 +5,10 @@ import android.app.Application;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.hyphenate.chat.EMOptions;
 import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.common.Constant;
@@ -31,6 +35,8 @@ import maxiaobu.easeui.utils.EaseUserUtils;
 public class App extends Application {
     private static App instance;
     private static IRequest sIRequest;
+    private LocationClient mLocationClient;
+    public BDLocationListener myListener = new MyLocationListener();
 
     public static IRequest getRequestInstance(){
         return sIRequest;
@@ -48,106 +54,70 @@ public class App extends Application {
         EMOptions options = new EMOptions();
         options.setAcceptInvitationAlways(false);
         DemoHelper.getInstance().init(this);
-
+        // 声明LocationClient类
+        mLocationClient = new LocationClient(instance);
+        mLocationClient.registerLocationListener(myListener);
+        setLocationOption();
+        mLocationClient.start();
 
     }
 
 
     public Map<String, String> getImgWallInfo() {
         Map<String, String> map = new HashMap<>();
-        map.put("topImgList", SPUtils.getString(getBaseContext(), "topImgList"));
-        map.put("topidList", SPUtils.getString(getBaseContext(), "topidlist", ""));
-        map.put("moreImgList", (SPUtils.getString(getBaseContext(), "moreImgList", "")));
-        map.put("moreidList", SPUtils.getString(getBaseContext(), "moreidlist", ""));
+        map.put("topImgList", SPUtils.getString("topImgList"));
+        map.put("topidList", SPUtils.getString("topidlist", ""));
+        map.put("moreImgList", (SPUtils.getString("moreImgList", "")));
+        map.put("moreidList", SPUtils.getString( "moreidlist", ""));
         return map;
     }
 
 
-    /**
-     * 同步服务器个人信息
-     */
-    public void update_local_myinfo() {
-        RequestParams params = new RequestParams("memid", SPUtils.getString(instance, Constant.MEMID));
-        getRequestInstance().post(UrlPath.URL_MYINFO, instance, params, new RequestListener() {
-            @Override
-            public void requestSuccess(String s) {
-                try {
-                    JSONObject data = new JSONObject(s);
-                    if (data == null) {
-                        Toast.makeText(App.this, "同步服务器失败！", Toast.LENGTH_SHORT).show();
-                    } else {
-                        if (data.getString("msgFlag").equals("1")) {
-                            JSONObject memberobj = data.getJSONObject("member");
-                            String nickname = memberobj.getString("nickname");
-                            String brithday = memberobj.getString("birth").toString();
-                            String sex = memberobj.getString("gender");
-                            String mysign = memberobj.getString("signature");
-                            String addressname = memberobj.getString("recname");
-                            String addresphone = memberobj.getString("recphone");
-                            String address = memberobj.getString("recaddress");
-                            String memrole = memberobj.getString("memrole");
-                            String headpage =memberobj.getString("headpage");
-                            String headImgUrl = UrlPath.URL_RESOURCE + memberobj.getString("imgpfile");
-                            SPUtils.putString(getBaseContext(), "nickname",nickname );
-                            SPUtils.putString(getBaseContext(), Constant.BRITHDAY, brithday);
-                            SPUtils.putString(getBaseContext(), Constant.GENDER, sex);
-                            SPUtils.putString(getBaseContext(), Constant.MY_SIGN, mysign);
-                            SPUtils.putString(getBaseContext(), Constant.REC_NAME, addressname);
-                            SPUtils.putString(getBaseContext(), Constant.REC_PHONE, addresphone);
-                            SPUtils.putString(getBaseContext(), Constant.REC_ADDRESS, address);
-                            SPUtils.putString(getBaseContext(), "headImgUrl", headImgUrl);
-                            SPUtils.putString(getBaseContext(), "memrole", memrole);
-                            SPUtils.putString(getBaseContext(), "headpage", headpage);
 
-                            DemoHelper instance = DemoHelper.getInstance();
-                            instance.getUserProfileManager().updateCurrentUserNickName(nickname);
-                            instance.getUserProfileManager().setCurrentUserAvatar(headImgUrl);
-                            JSONArray imglist_top = data.getJSONArray("istopfile");
-                            String topImglist = "";
-                            String topidlist = "";
-                            for (int i = 0; i < imglist_top.length(); i++) {
-                                topImglist += imglist_top.getJSONObject(i).getString("imgpfilename");
-                                topidlist += imglist_top.getJSONObject(i).getString("medid");
-                                if (i != imglist_top.length() - 1) {
-                                    topImglist += ",";
-                                    topidlist += ",";
-                                }
-                            }
-                            String moreImglist = "";
-                            String moreidlist = "";
-                            JSONArray imglist_more = data.getJSONArray("imagefile");
-                            for (int i = 0; i < imglist_more.length(); i++) {
-                                moreImglist += imglist_more.getJSONObject(i).getString("imgpfilename");
-                                moreidlist += imglist_more.getJSONObject(i).getString("medid");
-                                if (i != imglist_more.length() - 1) {
-                                    moreImglist += ",";
-                                    moreidlist += ",";
-                                }
-                            }
 
-                            SPUtils.putString(getInstance(), "topImgList", topImglist);
-                            SPUtils.putString(getInstance(),  "moreImgList", moreImglist);
-                            SPUtils.putString(getInstance(), "topidlist", topidlist);
-                            SPUtils.putString(getInstance(), "topidlist", topidlist);
-                            Log.e("MyApplication", "照片墙信息更新成功");
+    //// 百度MAP///////////////////////////////////////////////////////////////////////
+    // 设置百度MAP 定位相关参数
+    private void setLocationOption() {
+        LocationClientOption option = new LocationClientOption();
+        option.setCoorType("bd09ll");// 可选，默认gcj02，设置返回的定位结果坐标系
+        option.setAddrType("all");
+        option.setIsNeedAddress(true);// 位置，一定要设置，否则后面得不到地址
+//		option.setOpenGps(true);// 打开GPS
 
-                            Log.e("MyApplication", "个人信息更新成功");
-
-                        } else {
-                            Toast.makeText(App.this, "服务器连接不稳定！", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void requestAgain(NodataFragment nodataFragment) {
-
-            }
-        });
+        //默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
+        option.setIgnoreKillProcess(false);
+        option.setScanSpan(60000);// 多长时间进行一次请求       option.setLocationMode(LocationMode.Hight_Accuracy);// 高精度
+        mLocationClient.setLocOption(option);// 使用设置
     }
 
+    /**
+     * Description:百度MAP 定位成功回调接口方法
+     *
+     * @author Xushd
+     * @since 2016年2月20日上午11:14:36
+     */
+    public class MyLocationListener implements BDLocationListener {
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            // Receive Location
+            SPUtils.putString(Constant.LATITUDE,location.getLatitude() + "");
+            SPUtils.putString(Constant.LONGITUDE, location.getLongitude() + "");
+
+
+            String local_city = location.getCity();
+            Log.i("myapp","beyond");
+//			mLocationClient.stop();
+            if (local_city != null) {
+                String cityname = local_city.substring(0, local_city.length() - 1).toString();
+                SPUtils.putString(Constant.CITY, location.getCity());
+            }
+            else {
+                SPUtils.putString(Constant.CITY, "沈阳");
+            }
+        }
+        public void onReceivePoi(BDLocation location) {
+
+        }
+    }
 
 }

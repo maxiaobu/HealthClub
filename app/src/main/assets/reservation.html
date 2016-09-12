@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport" id="vp" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta http-equiv="Access-Control-Allow-Origin" content="*">
 		<title isback="1" btn="0" navbar="0">预约</title>
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" type="text/css" />
@@ -18,7 +18,31 @@
    		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script>
-			document.getElementsByTagName('html')[0].style.fontSize=screen.width/10 + "px";
+			(function (root) {
+			  var docEl = document.documentElement,
+			    timer = null;
+			  function changeRem () {
+			    root.rem = docEl.getBoundingClientRect().width / 16;
+			    docEl.style.fontSize = root.rem + 'px';
+			  }
+			
+			  root.addEventListener('resize', function () {
+			    clearTimeout(timer);
+			    timer = setTimeout(changeRem, 300);
+			    location.reload();
+			    height();
+			  });
+			  root.addEventListener('pageshow', function (e) {
+			    if (e.persisted) {
+			      clearTimeout(timer);
+			      timer = setTimeout(changeRem, 300);
+			      height();
+			      
+			    }
+			  });
+			  changeRem();
+			})(window, undefined);
+
 			$(document).bind('mobileinit', function() {
 				$.mobile.pushStateEnabled = false;
 			});
@@ -147,6 +171,7 @@
 					initDate();
 					initData();
 					mui.init();
+					height();
 				};
 				var url = window.location.href
 				parmData = getUrlParam(url);
@@ -206,13 +231,13 @@
 							var msgFlag = data.msgFlag;
 							if (msgFlag == 1) {
 								//初始化订单信息
-								$("#nickname").text(parmData.nickname);//是哇性格
-								$("#clubname").text(parmData.clubname);//俱乐部
-								$("#times").text(parmData.times);//剩余次数
-								$("#address").text(parmData.address);//地址
-								$("#enddate").text(parmData.enddate);//结束时间
-								$("#coursename").text(parmData.coursename);//力量训练
-								$("#imgsfile").attr("src", parmData.imgsfile);//头像
+								$("#nickname").text(parmData.nickname);
+								$("#clubname").text(parmData.clubname);
+								$("#times").text(parmData.times);
+								$("#address").text(parmData.address);
+								$("#enddate").text(parmData.enddate);
+								$("#coursename").text(parmData.coursename);
+								$("#imgsfile").attr("src", parmData.imgsfile);
 								var d = new Date();
 								$.each(data.managerlist, function(index, content) {
 										console.log(content.weekday);
@@ -265,7 +290,7 @@
 												
 											}else{//没时间段显示无预约
 												var img=$("<img src='images/page/icon_wuyuyue.png' />");
-												
+												img.addClass("noreservation");
 												$("#tab" + content.weekday + " ul").append(img);
 												$("#tab" + content.weekday + " ul").find("li").nextAll("img").css("display","none");
 											}
@@ -342,19 +367,21 @@
 						}
 					});
 				}
-				$(document).ready(function(){//给content定高
-					var height=window.screen.height;
-					$(".reservation").css("height",height)
-					var pheight=parseFloat($(".frame_photo").css("height"));
-					var pbottom=parseFloat($(".frame_photo").css("margin-bottom"))*3;
-					var rheight=parseFloat($("#tag7").css("height"));
-					var conheight=height-pheight-pbottom-rheight-64;
-					var c=myScroll.windowHeight();
-					var con=c-pheight-pbottom-rheight;
-					$("#content").css("height",con+"px")
+				
+					function height(){
+						var height=myScroll.windowHeight();
+						$(".reservation").css("height",height)
+						var pheight=parseFloat($(".frame_photo").css("height"));
+						var pbottom=parseFloat($(".frame_photo").css("margin-bottom"))*2;
+						var rheight=parseFloat($("#tag7").css("height"));
+						/*var conheight=height-pheight-pbottom-rheight-64;*/
+						var c=myScroll.windowHeight();
+						var con=c-pheight-pbottom-rheight;
+						$("#content").css("height",con+"px")
+					}
+					
 					/*$("#content").css("height",conheight+"px");*/
 					
-				})
 				
 			</script>
 	</body>

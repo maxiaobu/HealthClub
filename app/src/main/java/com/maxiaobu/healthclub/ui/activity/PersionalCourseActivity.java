@@ -104,7 +104,7 @@ public class PersionalCourseActivity extends BaseAty implements EasyPermissions.
 
         @JavascriptInterface
         public String getmemid() {
-            return SPUtils.getString(getApplicationContext(), Constant.MEMID);
+            return SPUtils.getString( Constant.MEMID);
         }
     }
 

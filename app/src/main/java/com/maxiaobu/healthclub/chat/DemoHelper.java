@@ -41,6 +41,8 @@ import com.maxiaobu.healthclub.chat.utils.PreferenceManager;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanAccountInfo;
 import com.maxiaobu.healthclub.ui.activity.ChatActivity;
+import com.maxiaobu.healthclub.ui.activity.HomeActivity;
+import com.maxiaobu.healthclub.ui.activity.LoginActivity;
 import com.maxiaobu.volleykit.NodataFragment;
 import com.maxiaobu.volleykit.RequestJsonListener;
 import com.maxiaobu.volleykit.RequestListener;
@@ -691,7 +693,7 @@ public class DemoHelper {
      * user has logged into another device
      */
     protected void onConnectionConflict() {
-        Intent intent = new Intent(appContext, MainActivity.class);
+        Intent intent = new Intent(appContext, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(Constant.ACCOUNT_CONFLICT, true);
         appContext.startActivity(intent);
@@ -701,7 +703,7 @@ public class DemoHelper {
      * account is removed
      */
     protected void onCurrentAccountRemoved() {
-        Intent intent = new Intent(appContext, MainActivity.class);
+        Intent intent = new Intent(appContext, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(Constant.ACCOUNT_REMOVED, true);
         appContext.startActivity(intent);
@@ -717,7 +719,7 @@ public class DemoHelper {
         // 获取user信息，demo是从内存的好友列表里获取，
         // 实际开发中，可能还需要从服务器获取用户信息,
         // 从服务器获取的数据，最好缓存起来，避免频繁的网络请求
-        EaseUser user = null;
+        EaseUser user ;
         //若userId是当前用户的id,返回当前用户的id
         if (username.equals(EMClient.getInstance().getCurrentUser()))
             return getUserProfileManager().getCurrentUserInfo();

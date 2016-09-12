@@ -105,7 +105,7 @@ public class MsjOrderFragment extends BaseFrg implements OnRefreshListener, OnLo
         params.put("pageIndex", String.valueOf(mCurrentPage));
         params.put("listtype", "morderlist");
 //        params.put("memid", aaaaMyApplication.getInstance().getMemid());
-        params.put("memid", SPUtils.getString(getActivity(), Constant.MEMID));
+        params.put("memid", SPUtils.getString( Constant.MEMID));
         App.getRequestInstance().post(getActivity(), UrlPath.URL_MSJ_ORDER_LIST, params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {

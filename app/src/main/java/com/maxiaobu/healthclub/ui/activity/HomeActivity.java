@@ -10,12 +10,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
 import com.hyphenate.util.EMLog;
 import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
@@ -24,16 +27,28 @@ import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.chat.Constant;
 import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.chat.db.InviteMessgeDao;
+import com.maxiaobu.healthclub.chat.db.UserDao;
 import com.maxiaobu.healthclub.chat.runtimepermissions.PermissionsManager;
 import com.maxiaobu.healthclub.chat.runtimepermissions.PermissionsResultAction;
+import com.maxiaobu.healthclub.common.UrlPath;
+import com.maxiaobu.healthclub.common.beangson.BeanAccountInfo;
 import com.maxiaobu.healthclub.ui.fragment.ConversationListFragment;
 import com.maxiaobu.healthclub.ui.fragment.DiscoveryFragment;
 import com.maxiaobu.healthclub.ui.fragment.HomeFragment;
 import com.maxiaobu.healthclub.ui.fragment.MineFragment;
 import com.maxiaobu.healthclub.ui.fragment.TalkFragment;
+import com.maxiaobu.healthclub.utils.HealthUtil;
+import com.maxiaobu.volleykit.NodataFragment;
+import com.maxiaobu.volleykit.RequestJsonListener;
+import com.maxiaobu.volleykit.RequestParams;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import maxiaobu.easeui.domain.EaseUser;
 
 public class HomeActivity extends BaseAty {
 
@@ -158,6 +173,9 @@ public class HomeActivity extends BaseAty {
         mMineFragment = MineFragment.newInstance();
         switchContent(nowFragment, mHomeFragment);
 
+
+
+
     }
 
     @Override
@@ -165,7 +183,7 @@ public class HomeActivity extends BaseAty {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                App.getInstance().update_local_myinfo();
+                HealthUtil.update_local_myinfo();
             }
         }).start();
 
@@ -182,7 +200,7 @@ public class HomeActivity extends BaseAty {
                 orderIntent.putExtra("orderFlag", 2);
                 orderIntent.setClass(HomeActivity.this, OrderListActivity.class);
                 startActivity(orderIntent);
-            }else if (intent.getIntExtra(com.maxiaobu.healthclub.common.Constant.PAY_RESULT, -1) == 0){
+            } else if (intent.getIntExtra(com.maxiaobu.healthclub.common.Constant.PAY_RESULT, -1) == 0) {
                 orderIntent.putExtra("orderFlag", 1);
                 orderIntent.setClass(HomeActivity.this, OrderListActivity.class);
                 startActivity(orderIntent);

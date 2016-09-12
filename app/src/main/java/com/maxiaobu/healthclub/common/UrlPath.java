@@ -12,7 +12,7 @@ public class UrlPath {
      * http://192.168.1.173:8080/efithealth/
      * 121
      */
-    public static final String URL_HOST = "http://192.168.1.121:8080/efithealth/";
+    public static final String URL_HOST = "http://192.168.1.182:8080/efithealth/";
     /**
      * 外网
      * http://192.168.1.185:18080/efithealth/
@@ -145,14 +145,14 @@ public class UrlPath {
     public static final String URL_ACCOUNT_INFO = URL_BASE + "maccount.do";
     /**
      * 配餐订单的e币支付
-     * <p>
+     * <p/>
      * http://192.168.1.121:8080/efithealth/mfoodoutBYcoin.do?ordno={"ordno":["FO-20160825-305","FO-20160825-306"]}
      * {"msgFlag":"1","msgContent":"配餐支付成功"}
      */
     public static final String URL_EBI_PAY = URL_BASE + "mfoodoutBYcoin.do";
     /**
      * 课程订单的e币支付
-     * <p>
+     * <p/>
      * http://192.168.1.121:8080/efithealth/moutBYcoin.do?ordno=CO-20160905-994
      * {"msgFlag":"1","msgContent":"配餐支付成功"}
      */
@@ -177,7 +177,7 @@ public class UrlPath {
     /**
      * 单个订单修改地址
      * http://192.168.1.121:8080/efithealth/mupdateAddress.do?updateMode=all&region
-     * <p>
+     * <p/>
      * 参数：updateMode（all，tomorrow）
      * region（区域）
      * address（地址）
@@ -207,7 +207,7 @@ public class UrlPath {
 
     /**
      * 查看配送详情
-     * <p>
+     * <p/>
      * http://192.168.1.121:8080/efithealth/mselectDelivery.do?ordno=FO-20160726-170
      */
     public static final String URL_FOOD_DISPATCH_DETAIL = URL_BASE + "mselectDelivery.do";
@@ -220,7 +220,7 @@ public class UrlPath {
      * longitude: 经度,
      * sorttype: 不限；按距离、按好评(evascore)、按热度(coursetimes),
      * gender:不限；男(1)；女(0)
-     * <p>
+     * <p/>
      * http://192.168.1.121:8080/efithealth/mcoachList.do?memid=M000439&pageIndex=1&latitude=41.811237&longitude=123.432856&sorttytpe=distance&gender=all
      */
     public static final String URL_COACHES_LIST = URL_BASE + "mcoachList.do";
@@ -245,9 +245,7 @@ public class UrlPath {
 
     /**
      * 修改个人信息
-     * http://192.168.1.121:8080/efithealth/mupdateMember.do?memid=M000440&nickname=马小布&signature=&recaddress=&recname=&recphone=&birthday=&gender=&dimg=
-     *
-     *
+     * http://192.168.1.121:8080/efithealth/mupdateMember.do?memid=M000440&nickname=%E9%A9%AC%E5%B0%8F%E5%B8%83&signature=&recaddress=asdfsdf&recname=sdafsdf&recphone=18624616670&birthday=1988/12/12&gender=0&dimg==
      */
     public static final String URL_MYINFO_UPDATE = URL_BASE
             + "mupdateMember.do";
@@ -276,5 +274,64 @@ public class UrlPath {
      * http://192.168.1.182:8080/efithealth/mgettrainingitem.do
      */
     public static final String URL_MGETTRAININGITEM = URL_BASE + "mgettrainingitem.do";
+
+    /**
+     * 俱乐部列表
+     * http://192.168.1.121:8080/efithealth/mbclubList.do?pageIndex=1&memid=M000440&latitude=123&longitude=123&sorttype=
+     * pageIndex: pageindex++, //当前页码
+     * memid: memid, //当前用户id
+     * latitude: latitude,
+     * longitude: longitude,
+     * sorttype: sortType
+     */
+    public static final String URL_MBCLUBLIST = URL_BASE + "mbclubList.do";
+    /**
+     * 绑定俱乐部列表
+     * pageIndex: bindpageIndex++, //当前页码
+     * memid: memid //当前用户id
+     *  http://192.168.1.121:8080/efithealth/mbindList.do?pageIndex=1&memid=M000440
+     */
+    public static final String URL_MBINDLIST = URL_BASE + "mbindList.do";
+    /**
+     * 未绑定俱乐部列表
+     * pageIndex: bindpageIndex++, //当前页码
+     * memid: memid //当前用户id
+     *  http://192.168.1.121:8080/efithealth/munbindList.do?pageIndex=1&memid=M000440
+     */
+    public static final String URL_MUNBINDLIST = URL_BASE + "munbindList.do";
+
+    /**
+     *课程管理
+     * http://192.168.1.121:8080/efithealth/mcourseList.do?linestatus=1&coachid=M000440
+     * map.put("coachid", (String) SharedPreferencesUtils.getParam(
+     *getActivity(), "memid", "")); // 会员id
+     *map.put("linestatus", "1");// 状态 0 历史 1 上线
+     * coachid=M000440  会员id
+     * linestatus=1
+     */
+    public static final String URL_MCOURSELIST = URL_BASE + "mcourseList.do";// 课程管理->上线课程
+
+    /**
+     * 同步服务器照片墙
+     * http://192.168.1.121:8080/efithealth/mphotowall.do?memid=M000440
+     */
+    public static final String URL_MPHOTOWALL = URL_BASE + "mphotowall.do";
+
+    /**
+     * 异步更新好友信息
+     * http://192.168.1.121:8080/efithealth/mgetfriends.do?memid=M000440
+     *
+     *
+     */
+    public static final String URL_MGETFRIENDS = URL_BASE + "mgetfriends.do";
+
+    /**
+     * 异步获取首页信息
+     * http://192.168.1.121:8080/efithealth/mindex.do?memid=M000440&longitude=&latitude=
+     */
+    public static final String URL_MINDEX = URL_BASE + "mindex.do";
+
+
+
 
 }

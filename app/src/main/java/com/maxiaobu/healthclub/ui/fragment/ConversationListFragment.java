@@ -4,6 +4,8 @@ package com.maxiaobu.healthclub.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.util.Pair;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,14 +19,28 @@ import android.widget.Toast;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.util.NetUtils;
+import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.MainActivity;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.chat.Constant;
+import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.chat.db.InviteMessgeDao;
+import com.maxiaobu.healthclub.chat.db.UserDao;
+import com.maxiaobu.healthclub.common.UrlPath;
+import com.maxiaobu.healthclub.common.beangson.BeanAccountInfo;
 import com.maxiaobu.healthclub.ui.activity.ChatActivity;
 import com.maxiaobu.healthclub.ui.activity.HomeActivity;
+import com.maxiaobu.healthclub.utils.storage.SPUtils;
+import com.maxiaobu.volleykit.NodataFragment;
+import com.maxiaobu.volleykit.RequestJsonListener;
+import com.maxiaobu.volleykit.RequestParams;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import maxiaobu.easeui.domain.EaseUser;
 import maxiaobu.easeui.model.EaseAtMessageHelper;
 import maxiaobu.easeui.ui.EaseConversationListFragment;
 
@@ -33,12 +49,14 @@ import maxiaobu.easeui.ui.EaseConversationListFragment;
  */
 public class ConversationListFragment extends EaseConversationListFragment {
     private TextView errorText;
+    private ConversationListFragment instance;
+
 
     @Override
     protected void initView() {
         super.initView();
         // TODO: 2016/9/6 重写加载失败页面
-        View errorView = (LinearLayout) View.inflate(getActivity(),R.layout.em_chat_neterror_item, null);
+        View errorView = (LinearLayout) View.inflate(getActivity(), R.layout.em_chat_neterror_item, null);
         errorItemContainer.addView(errorView);
         errorText = (TextView) errorView.findViewById(R.id.tv_connect_errormsg);
     }
@@ -46,6 +64,7 @@ public class ConversationListFragment extends EaseConversationListFragment {
     @Override
     protected void setUpView() {
         super.setUpView();
+        instance = this;
         // register context menu
         registerForContextMenu(conversationListView);
         conversationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -59,11 +78,11 @@ public class ConversationListFragment extends EaseConversationListFragment {
                 else {
                     // start chat acitivity
                     Intent intent = new Intent(getActivity(), ChatActivity.class);
-                    if(conversation.isGroup()){
-                        if(conversation.getType() == EMConversation.EMConversationType.ChatRoom){
+                    if (conversation.isGroup()) {
+                        if (conversation.getType() == EMConversation.EMConversationType.ChatRoom) {
                             // it's group chat
                             intent.putExtra(Constant.EXTRA_CHAT_TYPE, Constant.CHATTYPE_CHATROOM);
-                        }else{
+                        } else {
                             intent.putExtra(Constant.EXTRA_CHAT_TYPE, Constant.CHATTYPE_GROUP);
                         }
 
@@ -74,37 +93,61 @@ public class ConversationListFragment extends EaseConversationListFragment {
                 }
             }
         });
-        //red packet code : 红包回执消息在会话列表最后一条消息的展示
-        /*conversationListView.setConversationListHelper(new EaseConversationListHelper() {
-            @Override
-            public String onSetItemSecondaryText(EMMessage lastMessage) {
-                if (lastMessage.getBooleanAttribute(RedPacketConstant.MESSAGE_ATTR_IS_RED_PACKET_ACK_MESSAGE, false)) {
-                    String sendNick = lastMessage.getStringAttribute(RedPacketConstant.EXTRA_RED_PACKET_SENDER_NAME, "");
-                    String receiveNick = lastMessage.getStringAttribute(RedPacketConstant.EXTRA_RED_PACKET_RECEIVER_NAME, "");
-                    String msg;
-                    if (lastMessage.direct() == EMMessage.Direct.RECEIVE) {
-                        msg = String.format(getResources().getString(R.string.msg_someone_take_red_packet), receiveNick);
-                    } else {
-                        if (sendNick.equals(receiveNick)) {
-                            msg = getResources().getString(R.string.msg_take_red_packet);
-                        } else {
-                            msg = String.format(getResources().getString(R.string.msg_take_someone_red_packet), sendNick);
-                        }
-                    }
-                    return msg;
+
+
+// TODO: 2016/9/12 会话列表头像加载
+        Map<String, EMConversation> conversations = EMClient.getInstance().chatManager().getAllConversations();
+        List<Pair<Long, EMConversation>> sortList = new ArrayList<Pair<Long, EMConversation>>();
+        synchronized (conversations) {
+            for (final EMConversation conversation : conversations.values()) {
+                if (conversation.getAllMessages().size() != 0) {
+                    sortList.add(new Pair<Long, EMConversation>(conversation.getLastMessage().getMsgTime(), conversation));
                 }
-                return null;
+                String userName = conversation.getUserName();
+                Log.d("ConversationListFragmen", userName);
+                if (!userName.equals("admin")) {
+                    App.getRequestInstance().post(getActivity(), UrlPath.URL_ACCOUNT_INFO, BeanAccountInfo.class
+                            , new RequestParams("memid","M"+ userName.substring(1)),
+                            new RequestJsonListener<BeanAccountInfo>() {
+                                @Override
+                                public void requestSuccess(BeanAccountInfo beanAccountInfo) {
+                                    String s = "m" + beanAccountInfo.getMemid().substring(1);
+                                    EaseUser easeUser = new EaseUser(s);
+                                    String nickName = beanAccountInfo.getNickname();
+                                    String avatar = beanAccountInfo.getImgsfile();
+                                    Log.d("ConversationListFragmen", nickName + "*********" + avatar);
+                                    easeUser.setAvatar(avatar);
+                                    easeUser.setNick(nickName);
+                                    // 存入内存
+                                    Map<String, EaseUser> contactList = DemoHelper.getInstance().getContactList();
+                                    contactList.put(s, easeUser);
+                                    // 存入db
+                                    UserDao dao = new UserDao(App.getInstance());
+                                    List<EaseUser> users = new ArrayList<EaseUser>();
+                                    users.add(easeUser);
+                                    dao.saveContactList(users);
+                                    DemoHelper.getInstance().getModel().setContactSynced(true);
+                                    // 通知listeners联系人同步完毕
+                                    DemoHelper.getInstance().notifyContactsSyncListener(true);
+                                }
+
+                                @Override
+                                public void requestAgain(NodataFragment nodataFragment) {
+
+                                }
+                            });
+                }
             }
-        });*/
-        super.setUpView();
-        //end of red packet code
+        }
+
+
     }
 
 
     @Override
     protected void onConnectionDisconnected() {
         super.onConnectionDisconnected();
-        if (NetUtils.hasNetwork(getActivity())){
+        if (NetUtils.hasNetwork(getActivity())) {
             errorText.setText(R.string.can_not_connect_chat_server_connection);
         } else {
             errorText.setText(R.string.the_current_network);
@@ -129,7 +172,7 @@ public class ConversationListFragment extends EaseConversationListFragment {
         if (tobeDeleteCons == null) {
             return true;
         }
-        if(tobeDeleteCons.getType() == EMConversation.EMConversationType.GroupChat){
+        if (tobeDeleteCons.getType() == EMConversation.EMConversationType.GroupChat) {
             EaseAtMessageHelper.get().removeAtMeGroup(tobeDeleteCons.getUserName());
         }
         try {

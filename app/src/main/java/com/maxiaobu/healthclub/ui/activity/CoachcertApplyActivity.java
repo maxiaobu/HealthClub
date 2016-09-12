@@ -64,7 +64,7 @@ public class CoachcertApplyActivity extends BaseAty {
                 }else {
                     // http://192.168.1.182:8080/efithealth/mcoachcertApply.do?memid=M000439&nickname=马小布&coachprice=100&coachadept=快捷方式的恢复开机后&applydescr=的萨科罚金电视里看见弗兰克
                     RequestParams params = new RequestParams();
-                    params.put("memid", SPUtils.getString(CoachcertApplyActivity.this, Constant.MEMID));
+                    params.put("memid", SPUtils.getString( Constant.MEMID));
                     params.put("nickname", mEdName.getText().toString());
                     params.put("coachprice", mEdPrice.getText().toString());
                     params.put("coachadept", mEdIntroduction.getText().toString());

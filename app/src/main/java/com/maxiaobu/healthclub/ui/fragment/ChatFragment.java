@@ -22,7 +22,6 @@ import com.hyphenate.chat.EMMessage;
 import com.hyphenate.util.EasyUtils;
 import com.hyphenate.util.PathUtil;
 import com.maxiaobu.healthclub.App;
-import com.maxiaobu.healthclub.MainActivity;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.chat.Constant;
 import com.maxiaobu.healthclub.chat.DemoHelper;
@@ -37,6 +36,7 @@ import com.maxiaobu.healthclub.common.beangson.BeanAccountInfo;
 import com.maxiaobu.healthclub.ui.activity.ChatRoomDetailsActivity;
 import com.maxiaobu.healthclub.ui.activity.ContextMenuActivity;
 import com.maxiaobu.healthclub.ui.activity.GroupDetailsActivity;
+import com.maxiaobu.healthclub.ui.activity.HomeActivity;
 import com.maxiaobu.healthclub.ui.activity.ImageGridActivity;
 import com.maxiaobu.volleykit.NodataFragment;
 import com.maxiaobu.volleykit.RequestJsonListener;
@@ -59,7 +59,7 @@ import maxiaobu.easeui.widget.emojicon.EaseEmojiconMenu;
 
 /**
  */
-public class ChatFragment extends EaseChatFragment implements EaseChatFragment.EaseChatFragmentHelper {
+public class  ChatFragment extends EaseChatFragment implements EaseChatFragment.EaseChatFragmentHelper {
     // constant start from 11 to avoid conflict with constant in base class
     private static final int ITEM_VIDEO = 11;
     private static final int ITEM_FILE = 12;
@@ -112,7 +112,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
             if (user != null && user.getNickname() != null && user.getAvatar() != null) {
                 titleBar.setTitle(user.getNick());
             } else {
-                RequestParams params = new RequestParams("memid", toChatUsername);
+                RequestParams params = new RequestParams("memid", "M"+toChatUsername.substring(1));
                 App.getRequestInstance().post(getActivity(), UrlPath.URL_ACCOUNT_INFO, BeanAccountInfo.class, params, new RequestJsonListener<BeanAccountInfo>() {
                     @Override
                     public void requestSuccess(BeanAccountInfo beanAccountInfo) {
@@ -130,8 +130,6 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
                         demoHelper.getModel().setContactSynced(true);
                         demoHelper.notifyContactsSyncListener(true);
                         titleBar.setTitle(nickname);
-
-
                     }
 
                     @Override
@@ -147,7 +145,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
             @Override
             public void onClick(View v) {
                 if (EasyUtils.isSingleActivity(getActivity())) {
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
                 }
                 onBackPressed();

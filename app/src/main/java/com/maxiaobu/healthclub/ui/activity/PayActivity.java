@@ -85,7 +85,7 @@ public class PayActivity extends BaseAty implements View.OnClickListener {
 
     @Override
     public void initData() {
-        RequestParams params = new RequestParams("memid", SPUtils.getString(this, Constant.MEMID));
+        RequestParams params = new RequestParams("memid", SPUtils.getString( Constant.MEMID));
         App.getRequestInstance().post(this, UrlPath.URL_ACCOUNT_INFO, params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {
@@ -135,7 +135,7 @@ public class PayActivity extends BaseAty implements View.OnClickListener {
                 String url;
                 if (mPayType != null && mPayType.equals("course")) {
                     params = new RequestParams("ordno", mOrdno);
-                    params.put("memid", SPUtils.getString(PayActivity.this, Constant.MEMID));
+                    params.put("memid", SPUtils.getString( Constant.MEMID));
                     url = UrlPath.URL_COURSE_EBI_PAY;
                 } else {
                     params = new RequestParams("ordno", "{\"ordno\":" + mOrdno + "}");

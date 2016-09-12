@@ -91,7 +91,7 @@ public class MyBespeakActivity extends BaseAty implements OnRefreshListener, OnL
     @Override
     public void initData() {
         RequestParams params = new RequestParams();
-        params.put("memid", SPUtils.getString(this, Constant.MEMID));
+        params.put("memid", SPUtils.getString( Constant.MEMID));
         App.getRequestInstance().post(this, UrlPath.URL_MY_BESPEAK, BeanMmyBespeak.class, params, new RequestJsonListener<BeanMmyBespeak>() {
             @Override
             public void requestSuccess(BeanMmyBespeak beanMmyBespeak) {

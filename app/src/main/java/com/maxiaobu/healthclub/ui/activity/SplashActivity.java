@@ -6,9 +6,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -19,11 +20,11 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.hyphenate.chat.EMClient;
-import com.maxiaobu.healthclub.MainActivity;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.service.UpdataService;
+import com.maxiaobu.healthclub.utils.HealthUtil;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
 
 import java.util.Timer;
@@ -38,7 +39,14 @@ public class SplashActivity extends AppCompatActivity {
     private Timer mTimer;
 
     private ImageView iv_start;
-
+    public Handler m_handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+//            HealthUtil.update_loacl_friend();
+//            HealthUtil.update_local_myinfo();
+//            HealthUtil.update_loacl_indexdata();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +71,9 @@ public class SplashActivity extends AppCompatActivity {
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if (DemoHelper.getInstance().isLoggedIn() && null!=SPUtils.getString(SplashActivity.this, Constant.MEMID)) {
+                if (DemoHelper.getInstance().isLoggedIn() && null!=SPUtils.getString( Constant.MEMID)) {
+                    Message message = new Message();
+                    m_handler.sendMessage(message);
                     //自动登录,进入主页面前加载全部组群及会话
                     long start = System.currentTimeMillis();
                     EMClient.getInstance().groupManager().loadAllGroups();
@@ -110,7 +120,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void checkGuide() {
-        boolean enter_guide = SPUtils.getBoolean(this, "enter_guide", true);
+        boolean enter_guide = SPUtils.getBoolean( "enter_guide", true);
         if (enter_guide) {
             startActivity(new Intent(SplashActivity.this, GuideActivity.class));
             overridePendingTransition(android.R.anim.fade_in,

@@ -151,7 +151,7 @@ public class TrainerPersionalActivity extends BaseAty implements AppBarLayout.On
         RequestParams params = new RequestParams();
         params.put("pageIndex", "1");
         params.put("tarid", getIntent().getStringExtra("tarid"));
-        params.put("memid", SPUtils.getString(this, Constant.MEMID));
+        params.put("memid", SPUtils.getString( Constant.MEMID));
         App.getRequestInstance().post(this, UrlPath.URL_MEMBER_DYNAMIC_LIST, params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {
@@ -218,7 +218,7 @@ public class TrainerPersionalActivity extends BaseAty implements AppBarLayout.On
         switch (v.getId()) {
             case R.id.fab_talk:
                 String userId = getIntent().getStringExtra("tarid");
-                if (userId==SPUtils.getString(this,Constant.MEMID)){
+                if (userId==SPUtils.getString(Constant.MEMID)){
                     Toast.makeText(this, "自己不能和自己聊天", Toast.LENGTH_SHORT).show();
                 }else {
                     String nickname = DemoHelper.getInstance().getUserInfo(userId).getNickname();

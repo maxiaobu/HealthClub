@@ -83,7 +83,7 @@ public class CourseBuyActivity extends BaseAty {
 
         @JavascriptInterface
         public String getmemid() {
-           return SPUtils.getString(getApplicationContext(),Constant.MEMID);
+           return SPUtils.getString(Constant.MEMID);
         }
     }
 

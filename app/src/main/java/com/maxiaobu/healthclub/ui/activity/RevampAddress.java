@@ -14,6 +14,7 @@ import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
+import com.maxiaobu.healthclub.utils.HealthUtil;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
 import com.maxiaobu.volleykit.NodataFragment;
 import com.maxiaobu.volleykit.RequestListener;
@@ -57,9 +58,9 @@ public class RevampAddress extends BaseAty {
     @Override
     public void initView() {
         setCommonBackToolBar(mToolbarCommon, mTvTitleCommon, "修改信息");
-        String address = SPUtils.getString(this, Constant.REC_ADDRESS);
-        String name = SPUtils.getString(this, Constant.REC_NAME);
-        String phone = SPUtils.getString(this, Constant.REC_PHONE);
+        String address = SPUtils.getString( Constant.REC_ADDRESS);
+        String name = SPUtils.getString( Constant.REC_NAME);
+        String phone = SPUtils.getString( Constant.REC_PHONE);
 
         if ("".equals(address)) {
             String[] split = address.split("区");
@@ -84,14 +85,14 @@ public class RevampAddress extends BaseAty {
 
     private void saveInfo() {
         RequestParams params = new RequestParams();
-        params.put("memid", SPUtils.getString(RevampAddress.this, Constant.MEMID));
-        params.put("nickname", SPUtils.getString(RevampAddress.this, Constant.NICK_NAME));
-        params.put("signature", SPUtils.getString(RevampAddress.this, Constant.MY_SIGN));
+        params.put("memid", SPUtils.getString( Constant.MEMID));
+        params.put("nickname", SPUtils.getString( Constant.NICK_NAME));
+        params.put("signature", SPUtils.getString(Constant.MY_SIGN));
         params.put("recaddress", mEdAddress.getText().toString());
         params.put("recname", mEdConsignee.getText().toString());
         params.put("recphone", mEdPhoneNum.getText().toString());
-        params.put("birthday", SPUtils.getString(RevampAddress.this, Constant.BRITHDAY));
-        params.put("gender", SPUtils.getString(RevampAddress.this, Constant.GENDER));
+        params.put("birthday", SPUtils.getString( Constant.BRITHDAY));
+        params.put("gender", SPUtils.getString( Constant.GENDER));
         params.put("dimg", "");
         App.getRequestInstance().post(RevampAddress.this, UrlPath.URL_MYINFO_UPDATE, params, new RequestListener() {
             @Override
@@ -103,7 +104,7 @@ public class RevampAddress extends BaseAty {
                     if (code.equals("[\"1\",\"1\"]")) {
 //                        Log.i("flag", code.equals("[\"1\",\"1\"]") + "");
                         Toast.makeText(RevampAddress.this, "修改成功", Toast.LENGTH_SHORT).show();
-                        App.getInstance().update_local_myinfo();
+                        HealthUtil.update_local_myinfo();
                         Intent intent = new Intent();
                         intent.putExtra(Constant.REC_NAME, mEdConsignee.getText().toString());
                         intent.putExtra(Constant.REC_PHONE, mEdPhoneNum.getText().toString());

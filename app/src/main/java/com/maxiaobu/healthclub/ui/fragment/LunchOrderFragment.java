@@ -219,7 +219,7 @@ public class LunchOrderFragment extends BaseFrg implements OnRefreshListener, On
     public void initData() {
         RequestParams params = new RequestParams();
         params.put("listtype", "forderlist");
-        params.put("memid", SPUtils.getString(getActivity(), Constant.MEMID));
+        params.put("memid", SPUtils.getString( Constant.MEMID));
         App.getRequestInstance().post(getActivity(), UrlPath.URL_FOOD_ORDER_LIST, params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {

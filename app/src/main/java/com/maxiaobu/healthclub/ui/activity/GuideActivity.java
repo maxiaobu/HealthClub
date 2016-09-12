@@ -112,7 +112,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.tv_guide_skip:
             case R.id.btn_guide_enter:
-                SPUtils.putBoolean(this, "enter_guide", false);
+                SPUtils.putBoolean("enter_guide", false);
 
                 startActivity(new Intent(GuideActivity.this, LoginActivity.class));
                 this.finish();

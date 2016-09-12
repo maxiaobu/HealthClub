@@ -96,7 +96,7 @@ public class CateringOrderConfirmActivity extends BaseAty implements View.OnClic
 
     @Override
     public void initData() {
-        RequestParams para = new RequestParams("memid", SPUtils.getString(this, Constant.MEMID));
+        RequestParams para = new RequestParams("memid", SPUtils.getString( Constant.MEMID));
         App.getRequestInstance().post(this, UrlPath.URL_USER_INFO_BY_ID, para, new RequestListener() {
             @Override
             public void requestSuccess(String s) {
@@ -146,7 +146,7 @@ initData();
                 break;
             case R.id.tv_now_order:
                 RequestParams requestParams = new RequestParams();
-                requestParams.put("memid",SPUtils.getString(this,Constant.MEMID));
+                requestParams.put("memid",SPUtils.getString(Constant.MEMID));
                 requestParams.put("mernum", String.valueOf(mNum));
                 requestParams.put("ordamt", String.valueOf(mTotlePrice));
                 requestParams.put("isShopcart", "0");

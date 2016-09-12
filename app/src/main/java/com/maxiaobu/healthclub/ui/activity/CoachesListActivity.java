@@ -147,9 +147,9 @@ public class CoachesListActivity extends BaseAty implements OnRefreshListener, O
     public void initData() {
         RequestParams params = new RequestParams();
         params.put("pageIndex", String.valueOf(mCurrentPage));
-        params.put("memid", SPUtils.getString(this, Constant.MEMID));
-        params.put("latitude", String.valueOf(SPUtils.getFloat(this, Constant.LATITUDE)));
-        params.put("longitude", String.valueOf(SPUtils.getFloat(this, Constant.LONGITUDE)));
+        params.put("memid", SPUtils.getString( Constant.MEMID));
+        params.put("latitude", String.valueOf(SPUtils.getString(Constant.LATITUDE)));
+        params.put("longitude", String.valueOf(SPUtils.getString( Constant.LONGITUDE)));
         params.put("sorttytpe", mSortType);
         params.put("gender", mFilterType);
         //        Log.d("CoachesListActivity", String.valueOf(mCurrentPage) + "+++++" + SPUtils.getString(this, Index.MEMID) + "+++++" + String.valueOf(SPUtils.getFloat(this, Index.LATITUDE)) + "+++++" + String.valueOf(SPUtils.getFloat(this, Index.LONGITUDE)) + "+++++" + mSortType);
@@ -197,7 +197,6 @@ public class CoachesListActivity extends BaseAty implements OnRefreshListener, O
             case R.id.ivNoDataBac:
                 initData();
                 break;
-
             default:
                 break;
         }

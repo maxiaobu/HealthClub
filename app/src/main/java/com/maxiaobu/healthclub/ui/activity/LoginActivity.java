@@ -2,9 +2,11 @@ package com.maxiaobu.healthclub.ui.activity;
 
 import android.app.ActivityOptions;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -98,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
 
         //如果有用户名放上
-        String userId = SPUtils.getString(this, Constant.USER_ID);
+        String userId = SPUtils.getString( Constant.USER_ID);
         if (userId != null) {
             mEtUsername.setText(userId);
         }
@@ -154,6 +156,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent.getBooleanExtra(com.maxiaobu.healthclub.chat.Constant.ACCOUNT_CONFLICT,false)){
+            Toast.makeText(this, "账户在其他设备登录", Toast.LENGTH_SHORT).show();
+        }else if(intent.getBooleanExtra(com.maxiaobu.healthclub.chat.Constant.ACCOUNT_REMOVED,false)){
+            Toast.makeText(this, "账户被移除", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void login(final String userName, final String password) {
         if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
             Toast.makeText(this, "手机号和密码不能为空！", Toast.LENGTH_SHORT).show();
@@ -187,13 +199,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         String nickname = data.getMember().getNickname();
                         String memid = data.getMember().getMemid();
                         String avatar=data.getMember().getImgsfilename();
-                        SPUtils.putString(LoginActivity.this, Constant.MEMID, memid);
-                        SPUtils.putString(LoginActivity.this, Constant.NICK_NAME, nickname);
-                        SPUtils.putString(LoginActivity.this, Constant.AVATAR, avatar);
-                        SPUtils.putString(LoginActivity.this,Constant.USER_ID,userName);
-                        SPUtils.putString(LoginActivity.this,Constant.REC_ADDRESS,data.getMember().getRecaddress());
-                        SPUtils.putString(LoginActivity.this,Constant.REC_NAME,data.getMember().getRecname());
-                        SPUtils.putString(LoginActivity.this,Constant.REC_PHONE,data.getMember().getRecphone());
+                        SPUtils.putString( Constant.MEMID, memid);
+                        SPUtils.putString( Constant.NICK_NAME, nickname);
+                        SPUtils.putString( Constant.AVATAR, avatar);
+                        SPUtils.putString(Constant.USER_ID,userName);
+                        SPUtils.putString(Constant.REC_ADDRESS,data.getMember().getRecaddress());
+                        SPUtils.putString(Constant.REC_NAME,data.getMember().getRecname());
+                        SPUtils.putString(Constant.REC_PHONE,data.getMember().getRecphone());
 
 
                         // TODO: 2016/9/7 登录环信
@@ -313,6 +325,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             LoginActivity.this.finish();
         }
     }
+
+
+  /*  private BroadcastReceiver msgCountReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            noReadMsgCount();
+        }
+    };
+
+    *//**
+     * 注销成功广播
+     *//*
+    public void registerMsgReceiver() {
+        IntentFilter myIntentFilter = new IntentFilter();
+        myIntentFilter.addAction(Constants.RECEIVER_MSGCOUNT);
+        registerReceiver(msgCountReceiver, myIntentFilter);
+    }*/
 
 
 }

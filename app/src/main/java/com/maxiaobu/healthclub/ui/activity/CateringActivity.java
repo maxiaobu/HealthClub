@@ -215,7 +215,7 @@ public class CateringActivity extends BaseAty implements OnRefreshListener, OnLo
     @Override
     public void initData() {
         RequestParams params = new RequestParams();
-        params.put("memid", SPUtils.getString(this, Constant.MEMID));
+        params.put("memid", SPUtils.getString( Constant.MEMID));
         params.put("pageIndex", String.valueOf(currentPage));
         params.put("sorttype", sorttype);//sorttype: merprice(按价格排序)； createtime(按时间排序)； 不排序不传值
         params.put("mertype", mertype);//mertype:all全部；1增肌；2塑形；3减脂

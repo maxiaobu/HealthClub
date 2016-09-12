@@ -217,6 +217,8 @@ public class EaseConversationListFragment extends EaseBaseFragment{
                 if (conversation.getAllMessages().size() != 0) {
                     sortList.add(new Pair<Long, EMConversation>(conversation.getLastMessage().getMsgTime(), conversation));
                 }
+
+
             }
         }
         try {

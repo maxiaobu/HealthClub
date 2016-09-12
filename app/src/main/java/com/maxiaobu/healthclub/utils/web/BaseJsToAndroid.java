@@ -81,7 +81,7 @@ public class BaseJsToAndroid {
 	 */
 	@JavascriptInterface
 	public String getmemid() {
-		String memid =SPUtils.getString(context,"memid", "");
+		String memid =SPUtils.getString("memid", "");
 		return memid;
 	}
 
