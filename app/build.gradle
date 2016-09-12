@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.maxiaobu.healthclub"
         minSdkVersion 15
-        targetSdkVersion 17
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -18,9 +18,7 @@ android {
         }
     }
     repositories {
-        flatDir {
-            dirs 'libs'
-        }
+
         maven { url "https://jitpack.io" }
         mavenCentral()
     }
@@ -41,13 +39,19 @@ android {
 
 
 
+
+
+
+
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile(name: 'volleykit', ext: 'aar')
     compile files('libs/bolts-tasks-1.4.0.jar')
     compile files('libs/parse-android-1.13.0.jar')
+    compile files('libs/org.apache.http.legacy.jar')
     compile project(':easeui')
+
     compile 'com.android.support:support-v4:24.2.0'
     compile 'com.android.support:support-v4:24.2.0'
     compile 'com.android.support:cardview-v7:24.2.0'

@@ -18,10 +18,10 @@ import com.maxiaobu.healthclub.adapter.AdapterGcourseFrg;
 import com.maxiaobu.healthclub.adapter.AdapterPcourseFrg;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanCoachesDetail;
-import com.maxiaobu.volleykit.JsonUtils;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestListener;
-import com.maxiaobu.volleykit.RequestParams;
+import com.maxiaobu.healthclub.volleykit.JsonUtils;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,7 +89,8 @@ public class TrainerCourseFragment extends BaseFrg {
         RequestParams params = new RequestParams();
         params.put("pageIndex", "1");
         params.put("tarid", getActivity().getIntent().getStringExtra("tarid"));
-        App.getRequestInstance().post(getActivity(), UrlPath.URL_COACHES_DETAIL, params, new RequestListener() {
+        App.getRequestInstance().post(getActivity(), UrlPath.URL_COACHES_DETAIL,
+                params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {
                 BeanCoachesDetail object = JsonUtils.object(s, BeanCoachesDetail.class);

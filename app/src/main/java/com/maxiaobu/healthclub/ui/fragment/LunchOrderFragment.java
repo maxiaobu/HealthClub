@@ -33,10 +33,10 @@ import com.maxiaobu.healthclub.ui.activity.CateringDetailActivity;
 import com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView;
 import com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
-import com.maxiaobu.volleykit.JsonUtils;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestListener;
-import com.maxiaobu.volleykit.RequestParams;
+import com.maxiaobu.healthclub.volleykit.JsonUtils;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -119,7 +119,9 @@ public class LunchOrderFragment extends BaseFrg implements OnRefreshListener, On
                                 dialog.dismiss();
                                 //http://192.168.1.121:8080/efithealth/mcancelForder.do?ordno=FO-20160726-170
                                 // {"msgFlag":"1","msgContent":"取消订单成功"}
-                                App.getRequestInstance().post(getActivity(), UrlPath.URL_CANCEL_ORDER, new RequestParams("ordno", what), new RequestListener() {
+                                App.getRequestInstance().post(getActivity(),
+                                        UrlPath.URL_CANCEL_ORDER, new RequestParams("ordno", what),
+                                        new RequestListener() {
                                     @Override
                                     public void requestSuccess(String s) {
                                         try {

@@ -12,9 +12,6 @@ import android.widget.TextView;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.ui.fragment.BindClubListFragment;
-import com.maxiaobu.healthclub.ui.fragment.CourseOrderFragment;
-import com.maxiaobu.healthclub.ui.fragment.LunchOrderFragment;
-import com.maxiaobu.healthclub.ui.fragment.MsjOrderFragment;
 import com.maxiaobu.healthclub.ui.fragment.UnbindClubListFragment;
 
 import java.util.ArrayList;

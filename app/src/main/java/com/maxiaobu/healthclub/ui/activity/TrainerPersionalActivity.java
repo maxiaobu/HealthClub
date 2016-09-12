@@ -34,10 +34,10 @@ import com.maxiaobu.healthclub.ui.fragment.TrainerDynamicFragment;
 import com.maxiaobu.healthclub.ui.weiget.toolsbar.MyNestedScrollView;
 import com.maxiaobu.healthclub.ui.weiget.toolsbar.WrapContentHeightViewPager;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
-import com.maxiaobu.volleykit.JsonUtils;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestListener;
-import com.maxiaobu.volleykit.RequestParams;
+import com.maxiaobu.healthclub.volleykit.JsonUtils;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -152,7 +152,8 @@ public class TrainerPersionalActivity extends BaseAty implements AppBarLayout.On
         params.put("pageIndex", "1");
         params.put("tarid", getIntent().getStringExtra("tarid"));
         params.put("memid", SPUtils.getString( Constant.MEMID));
-        App.getRequestInstance().post(this, UrlPath.URL_MEMBER_DYNAMIC_LIST, params, new RequestListener() {
+        App.getRequestInstance().post(this, UrlPath.URL_MEMBER_DYNAMIC_LIST,
+                params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {
                 BeanmDynamicList object = JsonUtils.object(s, BeanmDynamicList.class);

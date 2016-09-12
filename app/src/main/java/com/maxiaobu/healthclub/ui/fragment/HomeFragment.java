@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.ui.activity.CateringActivity;
+import com.maxiaobu.healthclub.ui.activity.ClubListActivity;
 import com.maxiaobu.healthclub.ui.activity.CoachesListActivity;
 import com.maxiaobu.healthclub.ui.weiget.RectImageView;
 
@@ -52,8 +53,8 @@ public class HomeFragment extends BaseFrg implements View.OnClickListener {
     ImageView mImgMore1;
     @Bind(R.id.iv_course)
     RectImageView mIvCourse;
-    @Bind(R.id.smallId2)
-    RectImageView mSmallId2;
+    @Bind(R.id.iv_club)
+    RectImageView mIvClub;
     @Bind(R.id.smallId3)
     RectImageView mSmallId3;
     @Bind(R.id.iv_catering)
@@ -100,7 +101,7 @@ public class HomeFragment extends BaseFrg implements View.OnClickListener {
 
     }
 
-    @OnClick({R.id.iv_course, R.id.iv_catering})
+    @OnClick({R.id.iv_course, R.id.iv_catering,R.id.iv_club})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -110,6 +111,10 @@ public class HomeFragment extends BaseFrg implements View.OnClickListener {
             case R.id.iv_catering:
                 startActivity(new Intent(getActivity(), CateringActivity.class));
                 break;
+            case R.id.iv_club:
+                startActivity(new Intent(getActivity(), ClubListActivity.class));
+                break;
+
             default:
                 break;
         }

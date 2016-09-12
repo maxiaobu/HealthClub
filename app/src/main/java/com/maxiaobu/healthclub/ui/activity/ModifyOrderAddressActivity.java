@@ -15,11 +15,10 @@ import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanModifyOrderAddress;
-import com.maxiaobu.volleykit.IRequest;
-import com.maxiaobu.volleykit.JsonUtils;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestListener;
-import com.maxiaobu.volleykit.RequestParams;
+import com.maxiaobu.healthclub.volleykit.JsonUtils;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -121,7 +120,8 @@ public class ModifyOrderAddressActivity extends BaseAty implements View.OnClickL
                     params.put("region", String.valueOf(mTvArea.getText()));
                     params.put("address", String.valueOf(mEdAddress.getText()));
                     params.put("ordno", String.valueOf(getIntent().getStringExtra("ordno")));
-                    App.getRequestInstance().post(this, UrlPath.URL_MODIFY_ORDER_ADDRESS, params,  new RequestListener() {
+                    App.getRequestInstance().post(this, UrlPath.URL_MODIFY_ORDER_ADDRESS,
+                            params,  new RequestListener() {
                         @Override
                         public void requestSuccess(String json) {
                             Log.d("ModifyOrderAddressActiv", json);

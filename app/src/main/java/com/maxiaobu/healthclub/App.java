@@ -1,9 +1,7 @@
 package com.maxiaobu.healthclub;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -12,22 +10,11 @@ import com.baidu.location.LocationClientOption;
 import com.hyphenate.chat.EMOptions;
 import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.common.Constant;
-import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
-import com.maxiaobu.volleykit.IRequest;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestListener;
-import com.maxiaobu.volleykit.RequestParams;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.maxiaobu.healthclub.volleykit.IRequest;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import maxiaobu.easeui.domain.EaseUser;
-import maxiaobu.easeui.utils.EaseUserUtils;
 
 /**
  * Created by 马小布 on 2016/9/2.

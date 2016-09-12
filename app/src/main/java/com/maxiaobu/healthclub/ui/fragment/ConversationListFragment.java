@@ -32,9 +32,9 @@ import com.maxiaobu.healthclub.common.beangson.BeanAccountInfo;
 import com.maxiaobu.healthclub.ui.activity.ChatActivity;
 import com.maxiaobu.healthclub.ui.activity.HomeActivity;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestJsonListener;
-import com.maxiaobu.volleykit.RequestParams;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestJsonListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;

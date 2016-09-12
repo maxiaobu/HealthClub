@@ -38,9 +38,9 @@ import com.maxiaobu.healthclub.ui.activity.ContextMenuActivity;
 import com.maxiaobu.healthclub.ui.activity.GroupDetailsActivity;
 import com.maxiaobu.healthclub.ui.activity.HomeActivity;
 import com.maxiaobu.healthclub.ui.activity.ImageGridActivity;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestJsonListener;
-import com.maxiaobu.volleykit.RequestParams;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestJsonListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import java.io.File;
 import java.io.FileOutputStream;

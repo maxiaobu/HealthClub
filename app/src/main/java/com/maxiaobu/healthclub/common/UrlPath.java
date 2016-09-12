@@ -7,6 +7,8 @@ import com.maxiaobu.healthclub.utils.storage.SPUtils;
  * Created by 马小布 on 2016/9/3.
  */
 public class UrlPath {
+    public static final String TEXT_IMG="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2449950469,2297536915&fm=80";
+
     /**
      * 内网
      * http://192.168.1.173:8080/efithealth/
@@ -274,6 +276,11 @@ public class UrlPath {
      * http://192.168.1.182:8080/efithealth/mgettrainingitem.do
      */
     public static final String URL_MGETTRAININGITEM = URL_BASE + "mgettrainingitem.do";
+
+
+
+
+
 
     /**
      * 俱乐部列表

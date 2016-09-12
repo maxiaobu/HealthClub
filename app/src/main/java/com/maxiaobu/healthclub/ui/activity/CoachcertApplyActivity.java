@@ -16,9 +16,9 @@ import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestListener;
-import com.maxiaobu.volleykit.RequestParams;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -69,7 +69,8 @@ public class CoachcertApplyActivity extends BaseAty {
                     params.put("coachprice", mEdPrice.getText().toString());
                     params.put("coachadept", mEdIntroduction.getText().toString());
                     params.put("applydescr", mEdDescribe.getText().toString());
-                    App.getRequestInstance().post(CoachcertApplyActivity.this, UrlPath.URL_MCOACHCERTAPPLY, params, new RequestListener() {
+                    App.getRequestInstance().post(CoachcertApplyActivity.this,
+                            UrlPath.URL_MCOACHCERTAPPLY, params, new RequestListener() {
                         @Override
                         public void requestSuccess(String s) {
                             try {

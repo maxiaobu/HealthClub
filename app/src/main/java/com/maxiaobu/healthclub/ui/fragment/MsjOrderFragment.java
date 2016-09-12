@@ -27,10 +27,10 @@ import com.maxiaobu.healthclub.common.beangson.BeanMsjOrderList;
 import com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView;
 import com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
-import com.maxiaobu.volleykit.JsonUtils;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestListener;
-import com.maxiaobu.volleykit.RequestParams;
+import com.maxiaobu.healthclub.volleykit.JsonUtils;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -106,7 +106,8 @@ public class MsjOrderFragment extends BaseFrg implements OnRefreshListener, OnLo
         params.put("listtype", "morderlist");
 //        params.put("memid", aaaaMyApplication.getInstance().getMemid());
         params.put("memid", SPUtils.getString( Constant.MEMID));
-        App.getRequestInstance().post(getActivity(), UrlPath.URL_MSJ_ORDER_LIST, params, new RequestListener() {
+        App.getRequestInstance().post(getActivity(),
+                UrlPath.URL_MSJ_ORDER_LIST, params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {
                 BeanMsjOrderList object = JsonUtils.object(s, BeanMsjOrderList.class);

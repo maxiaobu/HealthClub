@@ -18,7 +18,7 @@ import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
 import com.maxiaobu.healthclub.utils.web.BaseJsToAndroid;
-import com.maxiaobu.volleykit.RequestParams;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

@@ -74,16 +74,16 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Home">
-        </activity>
-        <activity
-            android:name=".ui.activity.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/GuideTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/GuideTheme">
         </activity>
         <activity
             android:name=".ui.activity.LoginActivity"
@@ -239,7 +239,17 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".ui.activity.CourseManageActivity"
+        <activity
+            android:name=".ui.activity.CourseManageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ui.activity.ClubDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".ui.activity.CoachesManageActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme.NoActionBar">
         </activity>

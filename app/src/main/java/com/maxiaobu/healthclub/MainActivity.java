@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.volley.VolleyError;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestJsonListener;
 
 
 public class MainActivity extends AppCompatActivity {

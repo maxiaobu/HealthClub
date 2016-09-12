@@ -16,9 +16,9 @@ import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.utils.HealthUtil;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestListener;
-import com.maxiaobu.volleykit.RequestParams;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,7 +94,8 @@ public class RevampAddress extends BaseAty {
         params.put("birthday", SPUtils.getString( Constant.BRITHDAY));
         params.put("gender", SPUtils.getString( Constant.GENDER));
         params.put("dimg", "");
-        App.getRequestInstance().post(RevampAddress.this, UrlPath.URL_MYINFO_UPDATE, params, new RequestListener() {
+        App.getRequestInstance().post(RevampAddress.this, UrlPath.URL_MYINFO_UPDATE
+                , params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {
                 try {

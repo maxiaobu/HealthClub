@@ -28,10 +28,10 @@ import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanMlogin;
 import com.maxiaobu.healthclub.common.beangson.BeanMrsendCode;
-import com.maxiaobu.volleykit.JsonUtils;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestListener;
-import com.maxiaobu.volleykit.RequestParams;
+import com.maxiaobu.healthclub.volleykit.JsonUtils;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import org.json.JSONObject;
 
@@ -99,7 +99,8 @@ public class FindPasswordTwoActivity extends BaseAty implements View.OnClickList
                 RequestParams params = new RequestParams();
                 params.put("mempass", mEtPassword.getText().toString().trim());
                 params.put("mobphone", userPhone);
-                App.getRequestInstance().post(this, UrlPath.URL_RESETPASSWORD, params, new RequestListener() {
+                App.getRequestInstance().post(this, UrlPath.URL_RESETPASSWORD
+                        , params, new RequestListener() {
                     @Override
                     public void requestSuccess(String s) {
                         // TODO: 2016/9/5 换bean

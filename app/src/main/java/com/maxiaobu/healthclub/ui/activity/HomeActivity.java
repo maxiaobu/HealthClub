@@ -38,9 +38,6 @@ import com.maxiaobu.healthclub.ui.fragment.HomeFragment;
 import com.maxiaobu.healthclub.ui.fragment.MineFragment;
 import com.maxiaobu.healthclub.ui.fragment.TalkFragment;
 import com.maxiaobu.healthclub.utils.HealthUtil;
-import com.maxiaobu.volleykit.NodataFragment;
-import com.maxiaobu.volleykit.RequestJsonListener;
-import com.maxiaobu.volleykit.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
