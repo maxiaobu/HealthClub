@@ -13,10 +13,8 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.android.volley.VolleyError;
 import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
-import com.maxiaobu.healthclub.MainActivity;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;

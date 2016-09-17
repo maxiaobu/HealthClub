@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.maxiaobu.healthclub.MainActivity;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
 
@@ -115,7 +114,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                 SPUtils.putBoolean("enter_guide", false);
 
                 startActivity(new Intent(GuideActivity.this, LoginActivity.class));
-                this.finish();
+                GuideActivity.this.finish();
                 break;
 
             default:

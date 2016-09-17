@@ -20,6 +20,7 @@ import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.ui.activity.BindClubListActivity;
 import com.maxiaobu.healthclub.ui.activity.CoachcertApplyActivity;
 import com.maxiaobu.healthclub.ui.activity.CoachesManageActivity;
+import com.maxiaobu.healthclub.ui.activity.MineTeachingAppointmentActivity;
 import com.maxiaobu.healthclub.ui.activity.MyBespeakActivity;
 import com.maxiaobu.healthclub.ui.activity.OrderListActivity;
 import com.maxiaobu.healthclub.ui.weiget.observablescrollview.ObservableScrollView;
@@ -109,7 +110,7 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
     }
 
     @OnClick({R.id.ly_order,R.id.ly_login_out,R.id.ly_appointment,R.id.ly_authentication,
-            R.id.ly_course_manage,R.id.ly_club_list})
+            R.id.ly_course_manage,R.id.ly_club_list,R.id.ly_teaching_appointment})
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -120,17 +121,25 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
                 SPUtils.clearAllData(getActivity());
                 Toast.makeText(getActivity(), "njhjj", Toast.LENGTH_SHORT).show();
                 break;
+            //预约
             case R.id.ly_appointment:
                 startActivity(new Intent(getActivity(), MyBespeakActivity.class));
                 break;
+            //申请认证
             case R.id.ly_authentication:
                 startActivity(new Intent(getActivity(), CoachcertApplyActivity.class));
                 break;
+            //俱乐部列表
             case R.id.ly_club_list:
                 startActivity(new Intent(getActivity(), BindClubListActivity.class));
                 break;
+            //课程管理
             case R.id.ly_course_manage:
                 startActivity(new Intent(getActivity(), CoachesManageActivity.class));
+                break;
+            //教学预约
+            case R.id.ly_teaching_appointment:
+                startActivity(new Intent(getActivity(), MineTeachingAppointmentActivity.class));
                 break;
             default:
                 break;

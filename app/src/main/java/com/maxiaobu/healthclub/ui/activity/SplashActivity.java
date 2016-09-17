@@ -10,8 +10,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
@@ -19,7 +21,12 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.hyphenate.chat.EMClient;
+import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.common.Constant;
@@ -37,6 +44,8 @@ import java.util.TimerTask;
 public class SplashActivity extends AppCompatActivity {
     private static final int sleepTime = 2000;
     private Timer mTimer;
+    private LocationClient mLocationClient;
+    public BDLocationListener myListener;
 
     private ImageView iv_start;
     public Handler m_handler = new Handler() {
@@ -58,24 +67,30 @@ public class SplashActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-
+        iv_start = (ImageView) findViewById(R.id.iv_start);
+        initImageAnimation();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        iv_start = (ImageView) findViewById(R.id.iv_start);
-        initImageAnimation();
 
+
+        mLocationClient = new LocationClient(App.getInstance());
         mTimer = new Timer();
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
+                //自动登录,进入主页面前加载全部组群及会话
+                long start = System.currentTimeMillis();
+                myListener = new MyLocationListener();
+                mLocationClient.registerLocationListener(myListener);
+                setLocationOption();
+                mLocationClient.start();
+
                 if (DemoHelper.getInstance().isLoggedIn() && null!=SPUtils.getString( Constant.MEMID)) {
                     Message message = new Message();
                     m_handler.sendMessage(message);
-                    //自动登录,进入主页面前加载全部组群及会话
-                    long start = System.currentTimeMillis();
                     EMClient.getInstance().groupManager().loadAllGroups();
                     EMClient.getInstance().chatManager().loadAllConversations();
                     long costTime = System.currentTimeMillis() - start;
@@ -111,12 +126,13 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void initImageAnimation() {
-        final ScaleAnimation scaleAnim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
-                0.5f);
-        scaleAnim.setFillAfter(true);
-        scaleAnim.setDuration(2000);
-        iv_start.startAnimation(scaleAnim);
+//        final ScaleAnimation scaleAnim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
+//                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+//                0.5f);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0f, 1f);
+        alphaAnimation.setFillAfter(true);
+        alphaAnimation.setDuration(2000);
+        iv_start.startAnimation(alphaAnimation);
     }
 
     private void checkGuide() {
@@ -128,7 +144,9 @@ public class SplashActivity extends AppCompatActivity {
             finish();
         } else {
             startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-            SplashActivity.this.finish();
+            overridePendingTransition(android.R.anim.fade_in,
+                    android.R.anim.fade_out);
+            finish();
         }
 
     }
@@ -205,5 +223,50 @@ public class SplashActivity extends AppCompatActivity {
         overridePendingTransition(android.R.anim.fade_in,
                 android.R.anim.fade_out);
         finish();
+    }
+
+    //// 百度MAP///////////////////////////////////////////////////////////////////////
+    // 设置百度MAP 定位相关参数
+    private void setLocationOption() {
+        LocationClientOption option = new LocationClientOption();
+        option.setCoorType("bd09ll");// 可选，默认gcj02，设置返回的定位结果坐标系
+        option.setAddrType("all");
+        option.setIsNeedAddress(true);// 位置，一定要设置，否则后面得不到地址
+//		option.setOpenGps(true);// 打开GPS
+
+        //默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
+        option.setIgnoreKillProcess(false);
+        option.setScanSpan(60000);// 多长时间进行一次请求       option.setLocationMode(LocationMode.Hight_Accuracy);// 高精度
+        mLocationClient.setLocOption(option);// 使用设置
+    }
+
+    /**
+     * Description:百度MAP 定位成功回调接口方法
+     *
+     * @author Xushd
+     * @since 2016年2月20日上午11:14:36
+     */
+    public class MyLocationListener implements BDLocationListener {
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            // Receive Location
+            SPUtils.putString(Constant.LATITUDE,location.getLatitude() + "");
+            SPUtils.putString(Constant.LONGITUDE, location.getLongitude() + "");
+            String local_city = location.getCity();
+            Log.i("myapp","beyond");
+
+            if (local_city != null) {
+//                String cityname = local_city.substring(0, local_city.length() - 1).toString();
+                SPUtils.putString(Constant.CITY, location.getCity());
+                Log.d("MyLocationListener", location.getCity());
+            }
+            else {
+                SPUtils.putString(Constant.CITY, "沈阳");
+            }
+            			mLocationClient.stop();
+        }
+        public void onReceivePoi(BDLocation location) {
+
+        }
     }
 }

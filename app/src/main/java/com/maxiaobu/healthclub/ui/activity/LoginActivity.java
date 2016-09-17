@@ -192,7 +192,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void requestSuccess(String s) {
                     String responseString = s.toString();
-                    Log.d("LoginActivity", responseString);
+//                    Log.d("LoginActivity", responseString);
                     BeanMlogin data = JsonUtils.object(responseString, BeanMlogin.class);
                     data.getMsgFlag();
                     if ("1".equals(data.getMsgFlag())) {
@@ -207,9 +207,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         SPUtils.putString(Constant.REC_NAME,data.getMember().getRecname());
                         SPUtils.putString(Constant.REC_PHONE,data.getMember().getRecphone());
 
-
                         // TODO: 2016/9/7 登录环信
-                        loginHx(memid,password,nickname,avatar,pd);
+                        loginHx("m"+memid.substring(1),password,nickname,avatar,pd);
                     } else {
                         Toast.makeText(LoginActivity.this, data.getMsgContent().get(0), Toast.LENGTH_SHORT).show();
                     }
@@ -223,14 +222,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void loginHx(final String userID, String passWord, final String nickName, final String avatar, final ProgressDialog pd) {
-        EMClient.getInstance().login(userID, passWord, new EMCallBack() {
+    private void loginHx(final String memId, String passWord, final String nickName, final String avatar, final ProgressDialog pd) {
+        EMClient.getInstance().login(memId, passWord, new EMCallBack() {
             @Override
             public void onSuccess() {
                 // 将自己服务器返回的环信账号、昵称和头像URL设置到帮助类中。
                 boolean updatenick = DemoHelper.getInstance().getUserProfileManager().updateCurrentUserNickName(nickName);// 更新当前用户的昵称
                 DemoHelper.getInstance().getUserProfileManager().setCurrentUserAvatar(avatar);
-                DemoHelper.getInstance().setCurrentUserName(userID); // 环信Id
+                DemoHelper.getInstance().setCurrentUserName(memId); // 环信Id
                 if (!updatenick) {
                     Log.e("LoginActivity", "更新用户昵称失败");
                 }

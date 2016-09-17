@@ -23,6 +23,7 @@ import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanClubList;
 import com.maxiaobu.healthclub.common.beangson.BeanCoachesListAty;
 import com.maxiaobu.healthclub.ui.activity.ClubDetailActivity;
+import com.maxiaobu.healthclub.ui.activity.CoachesOnlineManageActivity;
 import com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView;
 import com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
@@ -94,7 +95,7 @@ public class CoachesOnlineListFragment extends BaseFrg
             @Override
             public void onItemClick(View view, String tarid) {
                 Intent intent = new Intent(getActivity(),
-                        ClubDetailActivity.class);
+                        CoachesOnlineManageActivity.class);
                 intent.putExtra("tarid", tarid);
                 startActivity(intent);
             }

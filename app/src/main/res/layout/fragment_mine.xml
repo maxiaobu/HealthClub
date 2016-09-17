@@ -1,8 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
              tools:context="com.maxiaobu.healthclub.ui.fragment.MineFragment">
 
 
@@ -13,458 +13,725 @@
         android:scrollbars="none"
 
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:background="@color/grayBackgroud"
+            android:orientation="vertical"
             >
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/sz_240"
                 android:background="@mipmap/bg_mine">
+
                 <ImageView
                     android:id="@+id/iv_header"
                     android:layout_width="@dimen/sz_80"
                     android:layout_height="@dimen/sz_80"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/sz_80"
-                    android:src="@mipmap/test_header"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:src="@mipmap/test_header"/>
+
                 <TextView
                     android:id="@+id/tv_header_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="马小布"
-                    android:textSize="@dimen/sz_16"
-                    android:textColor="@color/white"
                     android:layout_below="@id/iv_header"
                     android:layout_centerHorizontal="true"
-                    android:drawableRight="@mipmap/ic_mine_edit"
+                    android:layout_marginTop="@dimen/sz_12"
                     android:drawablePadding="@dimen/sz_4"
-                    android:layout_marginTop="@dimen/sz_12"/>
+                    android:drawableRight="@mipmap/ic_mine_edit"
+                    android:text="马小布"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sz_16"/>
             </RelativeLayout>
             <!--购物车 订单   预约  余额-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/sz_60"
-                android:orientation="horizontal"
+                android:background="@color/white"
                 android:gravity="center"
-                android:background="@color/white">
-                <LinearLayout
-                    android:id="@+id/ly_cart"
+                android:orientation="horizontal">
+                <!--购物车-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="15dp"
-                        android:text="购物车"
-                        />
-                    <TextView
-                        android:id="@+id/tv_cart_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1"
-                        android:textSize="15dp"
-                        android:layout_marginTop="@dimen/sz_4"/>
-                </LinearLayout>
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_cart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="购物车"
+                            android:textSize="15dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_cart_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sz_4"
+                            android:text="1"
+                            android:textSize="15dp"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
+
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray"/>
+                <!--订单-->
+                <com.balysv.materialripple.MaterialRippleLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
+                    android:layout_weight="1"
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="订单"
+                            android:textSize="15dp"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_order_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sz_4"
+                            android:text="2"
+                            android:textSize="15dp"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
+
                 <View
                     android:layout_width="1px"
                     android:layout_height="match_parent"
                     android:background="@color/gray"/>
 
-                <LinearLayout
-                    android:id="@+id/ly_order"
+                <!--预约-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="订单"
-                        android:textSize="15dp"
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_appointment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                        />
-                    <TextView
-                        android:id="@+id/tv_order_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2"
-                        android:textSize="15dp"
-                        android:layout_marginTop="@dimen/sz_4"/>
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="预约"
+                            android:textSize="15dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_appointment_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sz_4"
+                            android:text="3"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
+
                 <View
                     android:layout_width="1px"
                     android:layout_height="match_parent"
                     android:background="@color/gray"/>
-                <LinearLayout
-                    android:id="@+id/ly_appointment"
+
+                <!--余额-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="预约"
-                        android:textSize="15dp"
-                        />
-                    <TextView
-                        android:id="@+id/tv_appointment_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3"
-                        android:layout_marginTop="@dimen/sz_4"/>
-                </LinearLayout>
-                <View
-                    android:layout_width="1px"
                     android:layout_height="match_parent"
-                    android:background="@color/gray"/>
-                <LinearLayout
-                    android:id="@+id/ly_balance"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="余额"
-                        android:textSize="15dp"
-                        />
-                    <TextView
-                        android:id="@+id/tv_balance_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="4"
-                        android:layout_marginTop="@dimen/sz_4"/>
-                </LinearLayout>
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_balance"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="余额"
+                            android:textSize="15dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_balance_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sz_4"
+                            android:text="4"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
             </LinearLayout>
 
             <!--我的好友  个人信息   我的会员卡  签到-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/sz_80"
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/sz_12"
-                android:background="@color/white">
-                <LinearLayout
-                    android:id="@+id/ly_my_friend"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!--我的好友-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_mine_friend"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="我的好友"
-                        android:layout_marginTop="@dimen/sz_6"/>
-                </LinearLayout>
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_my_friend"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_mine_friend"
+                            />
 
-                <LinearLayout
-                    android:id="@+id/ly_persional_info"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sz_6"
+                            android:text="我的好友"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
+                <!--个人信息-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_mine_personal_info"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="个人信息"
-                        android:layout_marginTop="@dimen/sz_6"/>
-                </LinearLayout>
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_persional_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/ly_my_cart"
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_mine_personal_info"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sz_6"
+                            android:text="个人信息"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
+              <!--我的会员卡-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_mine_cart"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="我的会员卡"
-                        android:layout_marginTop="@dimen/sz_6"/>
-                </LinearLayout>
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_my_cart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/ly_qiandao"
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_mine_cart"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sz_6"
+                            android:text="我的会员卡"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
+
+                <!--签到-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_mine_qiandao"
-                        />
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_qiandao"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="签到"
-                        android:layout_marginTop="@dimen/sz_6"/>
-                </LinearLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_mine_qiandao"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/sz_6"
+                            android:text="签到"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
             </LinearLayout>
 
             <!--申请认证-->
-            <LinearLayout
-                android:id="@+id/ly_authentication"
+            <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/sz_50"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/sz_20"
-                android:background="@color/white">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="申请认证"
-                    android:textSize="@dimen/sz_16"
-                    android:layout_marginLeft="@dimen/sz_20"
-                    />
-                <ImageView
-                    android:layout_width="@dimen/sz_18"
-                    android:layout_height="@dimen/sz_18"
-                    android:src="@mipmap/ic_arrow_right"
-                    android:layout_marginRight="@dimen/sz_20"/>
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                app:mrl_rippleAlpha="0.1"
+                app:mrl_rippleColor="#585858"
+                app:mrl_rippleDelayClick="true"
+                app:mrl_rippleHover="true"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleDimension="10dp"
+                android:layout_marginTop="@dimen/sz_20">
+                <LinearLayout
+                    android:id="@+id/ly_authentication"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sz_50"
+
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/sz_20"
+                        android:layout_weight="1"
+                        android:text="申请认证"
+                        android:textSize="@dimen/sz_16"
+                        />
+
+                    <ImageView
+                        android:layout_width="@dimen/sz_18"
+                        android:layout_height="@dimen/sz_18"
+                        android:layout_marginRight="@dimen/sz_20"
+                        android:src="@mipmap/ic_arrow_right"/>
+                </LinearLayout>
+            </com.balysv.materialripple.MaterialRippleLayout>
+
 
             <!--教练专有-->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="visible">
-                <LinearLayout
-                    android:id="@+id/ly_course_manage"
+                <!--课程管理-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/sz_50"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="@dimen/sz_20"
-                    android:background="@color/white">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="课程管理"
-                        android:textSize="@dimen/sz_16"
-                        android:layout_marginLeft="@dimen/sz_20"
-                        />
-                    <ImageView
-                        android:layout_width="@dimen/sz_18"
-                        android:layout_height="@dimen/sz_18"
-                        android:src="@mipmap/ic_arrow_right"
-                        android:layout_marginRight="@dimen/sz_20"/>
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp"
+                    android:layout_marginTop="@dimen/sz_20">
+                    <LinearLayout
+                        android:id="@+id/ly_course_manage"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/sz_50"
+
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/sz_20"
+                            android:layout_weight="1"
+                            android:text="课程管理"
+                            android:textSize="@dimen/sz_16"
+                            />
+
+                        <ImageView
+                            android:layout_width="@dimen/sz_18"
+                            android:layout_height="@dimen/sz_18"
+                            android:layout_marginRight="@dimen/sz_20"
+                            android:src="@mipmap/ic_arrow_right"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="@color/gray"/>
-                <LinearLayout
-                    android:id="@+id/ly_teaching_appointment"
+
+                <!--教学预约-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/sz_50"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@color/white">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="教学预约"
-                        android:textSize="@dimen/sz_16"
-                        android:layout_marginLeft="@dimen/sz_20"
-                        />
-                    <ImageView
-                        android:layout_width="@dimen/sz_18"
-                        android:layout_height="@dimen/sz_18"
-                        android:src="@mipmap/ic_arrow_right"
-                        android:layout_marginRight="@dimen/sz_20"/>
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_teaching_appointment"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/sz_50"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/sz_20"
+                            android:layout_weight="1"
+                            android:text="教学预约"
+                            android:textSize="@dimen/sz_16"
+                            />
+
+                        <ImageView
+                            android:layout_width="@dimen/sz_18"
+                            android:layout_height="@dimen/sz_18"
+                            android:layout_marginRight="@dimen/sz_20"
+                            android:src="@mipmap/ic_arrow_right"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="@color/gray"/>
-                <LinearLayout
-                    android:id="@+id/ly_club_list"
+
+                <!--俱乐部列表-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/sz_50"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@color/white">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="俱乐部列表"
-                        android:textSize="@dimen/sz_16"
-                        android:layout_marginLeft="@dimen/sz_20"
-                        />
-                    <ImageView
-                        android:layout_width="@dimen/sz_18"
-                        android:layout_height="@dimen/sz_18"
-                        android:src="@mipmap/ic_arrow_right"
-                        android:layout_marginRight="@dimen/sz_20"/>
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_club_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/sz_50"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/sz_20"
+                            android:layout_weight="1"
+                            android:text="俱乐部列表"
+                            android:textSize="@dimen/sz_16"
+                            />
+
+                        <ImageView
+                            android:layout_width="@dimen/sz_18"
+                            android:layout_height="@dimen/sz_18"
+                            android:layout_marginRight="@dimen/sz_20"
+                            android:src="@mipmap/ic_arrow_right"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="@color/gray"/>
-                <LinearLayout
-                    android:id="@+id/ly_my_student"
+
+                <!--我的学员-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/sz_50"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@color/white">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="我的学员"
-                        android:textSize="@dimen/sz_16"
-                        android:layout_marginLeft="@dimen/sz_20"
-                        />
-                    <ImageView
-                        android:layout_width="@dimen/sz_18"
-                        android:layout_height="@dimen/sz_18"
-                        android:src="@mipmap/ic_arrow_right"
-                        android:layout_marginRight="@dimen/sz_20"/>
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_my_student"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/sz_50"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/sz_20"
+                            android:layout_weight="1"
+                            android:text="我的学员"
+                            android:textSize="@dimen/sz_16"
+                            />
+
+                        <ImageView
+                            android:layout_width="@dimen/sz_18"
+                            android:layout_height="@dimen/sz_18"
+                            android:layout_marginRight="@dimen/sz_20"
+                            android:src="@mipmap/ic_arrow_right"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="@color/gray"/>
-                <LinearLayout
-                    android:id="@+id/ly_file_management"
+
+                <!--档案管理-->
+                <com.balysv.materialripple.MaterialRippleLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/sz_50"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@color/white">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="档案管理"
-                        android:textSize="@dimen/sz_16"
-                        android:layout_marginLeft="@dimen/sz_20"
-                        />
-                    <ImageView
-                        android:layout_width="@dimen/sz_18"
-                        android:layout_height="@dimen/sz_18"
-                        android:src="@mipmap/ic_arrow_right"
-                        android:layout_marginRight="@dimen/sz_20"/>
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    app:mrl_rippleAlpha="0.1"
+                    app:mrl_rippleColor="#585858"
+                    app:mrl_rippleDelayClick="true"
+                    app:mrl_rippleHover="true"
+                    app:mrl_rippleOverlay="true"
+                    app:mrl_rippleDimension="10dp" >
+                    <LinearLayout
+                        android:id="@+id/ly_file_management"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/sz_50"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/sz_20"
+                            android:layout_weight="1"
+                            android:text="档案管理"
+                            android:textSize="@dimen/sz_16"
+                            />
+
+                        <ImageView
+                            android:layout_width="@dimen/sz_18"
+                            android:layout_height="@dimen/sz_18"
+                            android:layout_marginRight="@dimen/sz_20"
+                            android:src="@mipmap/ic_arrow_right"/>
+                    </LinearLayout>
+                </com.balysv.materialripple.MaterialRippleLayout>
+
             </LinearLayout>
 
             <!--黑名单-->
-            <LinearLayout
-                android:id="@+id/ly_blacklist"
+            <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/sz_50"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                app:mrl_rippleAlpha="0.1"
+                app:mrl_rippleColor="#585858"
+                app:mrl_rippleDelayClick="true"
+                app:mrl_rippleHover="true"
+                app:mrl_rippleOverlay="true"
                 android:layout_marginTop="@dimen/sz_20"
-                android:background="@color/white">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="黑名单"
-                    android:textSize="@dimen/sz_16"
-                    android:layout_marginLeft="@dimen/sz_20"
-                    />
-                <ImageView
-                    android:layout_width="@dimen/sz_18"
-                    android:layout_height="@dimen/sz_18"
-                    android:src="@mipmap/ic_arrow_right"
-                    android:layout_marginRight="@dimen/sz_20"/>
-            </LinearLayout>
+                app:mrl_rippleDimension="10dp" >
+                <LinearLayout
+                    android:id="@+id/ly_blacklist"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sz_50"
+
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/sz_20"
+                        android:layout_weight="1"
+                        android:text="黑名单"
+                        android:textSize="@dimen/sz_16"
+                        />
+
+                    <ImageView
+                        android:layout_width="@dimen/sz_18"
+                        android:layout_height="@dimen/sz_18"
+                        android:layout_marginRight="@dimen/sz_20"
+                        android:src="@mipmap/ic_arrow_right"/>
+                </LinearLayout>
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/gray"/>
             <!--顶部设置-->
-            <LinearLayout
-                android:id="@+id/ly_set_top"
+            <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/sz_50"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:background="@color/white">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="顶部设置"
-                    android:textSize="@dimen/sz_16"
-                    android:layout_marginLeft="@dimen/sz_20"
-                    />
-                <ImageView
-                    android:layout_width="@dimen/sz_18"
-                    android:layout_height="@dimen/sz_18"
-                    android:src="@mipmap/ic_arrow_right"
-                    android:layout_marginRight="@dimen/sz_20"/>
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                app:mrl_rippleAlpha="0.1"
+                app:mrl_rippleColor="#585858"
+                app:mrl_rippleDelayClick="true"
+                app:mrl_rippleHover="true"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleDimension="10dp" >
+                <LinearLayout
+                    android:id="@+id/ly_set_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sz_50"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/sz_20"
+                        android:layout_weight="1"
+                        android:text="顶部设置"
+                        android:textSize="@dimen/sz_16"
+                        />
+
+                    <ImageView
+                        android:layout_width="@dimen/sz_18"
+                        android:layout_height="@dimen/sz_18"
+                        android:layout_marginRight="@dimen/sz_20"
+                        android:src="@mipmap/ic_arrow_right"/>
+                </LinearLayout>
+            </com.balysv.materialripple.MaterialRippleLayout>
+
 
             <!--推出登录-->
-            <LinearLayout
-                android:id="@+id/ly_login_out"
+            <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/sz_50"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/sz_20"
-                android:background="@color/white">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="退出登录"
-                    android:textSize="@dimen/sz_16"
-                    android:layout_marginLeft="@dimen/sz_20"
-                    />
-                <ImageView
-                    android:layout_width="@dimen/sz_18"
-                    android:layout_height="@dimen/sz_18"
-                    android:src="@mipmap/ic_arrow_right"
-                    android:layout_marginRight="@dimen/sz_20"/>
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                app:mrl_rippleAlpha="0.1"
+                app:mrl_rippleColor="#585858"
+                app:mrl_rippleDelayClick="true"
+                app:mrl_rippleHover="true"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleDimension="10dp"
+                android:layout_marginTop="@dimen/sz_20">
+                <LinearLayout
+                    android:id="@+id/ly_login_out"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/sz_50"
+
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/sz_20"
+                        android:layout_weight="1"
+                        android:text="退出登录"
+                        android:textSize="@dimen/sz_16"
+                        />
+
+                    <ImageView
+                        android:layout_width="@dimen/sz_18"
+                        android:layout_height="@dimen/sz_18"
+                        android:layout_marginRight="@dimen/sz_20"
+                        android:src="@mipmap/ic_arrow_right"/>
+                </LinearLayout>
+            </com.balysv.materialripple.MaterialRippleLayout>
+
         </LinearLayout>
     </com.maxiaobu.healthclub.ui.weiget.observablescrollview.ObservableScrollView>
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
@@ -473,10 +740,10 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_common"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#F27241"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
             >
 
             <TextView
@@ -485,14 +752,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textColor="@android:color/white"
-                android:text="我"/>
+                android:text="我"
+                android:textColor="@android:color/white"/>
+
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="right|center_vertical"
-                android:src="@mipmap/ic_plus"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp"
+                android:src="@mipmap/ic_plus"/>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 </FrameLayout>

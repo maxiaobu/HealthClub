@@ -1,5 +1,6 @@
 package com.maxiaobu.healthclub.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
 import com.maxiaobu.healthclub.BaseAty;
@@ -22,12 +24,13 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * create by 马小布 2016.9.12
  * 课程管理
  */
-public class CoachesManageActivity extends BaseAty {
+public class CoachesManageActivity extends BaseAty implements View.OnClickListener{
 
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
@@ -75,6 +78,16 @@ public class CoachesManageActivity extends BaseAty {
         adapter.addFragment(new CoachesOnlineListFragment(), "上线课程");
         adapter.addFragment(new CoachesHistoryListFragment(), "历史课程");
         viewPager.setAdapter(adapter);
+    }
+
+    @OnClick({R.id.float_action_button})
+    @Override
+    public void onClick(View view) {
+        switch (R.id.float_action_button){
+            case R.id.float_action_button:
+                startActivity(new Intent(this,CoachesReleaseActivity.class));
+                break;
+        }
     }
 
     static class Adapter extends FragmentPagerAdapter {

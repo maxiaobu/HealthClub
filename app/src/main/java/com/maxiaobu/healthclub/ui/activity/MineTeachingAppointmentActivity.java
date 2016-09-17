@@ -18,6 +18,7 @@ import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.adapter.AdapterMyBespeak;
+import com.maxiaobu.healthclub.adapter.AdapterTeachingAppointment;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanMmyBespeak;
@@ -34,7 +35,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MyBespeakActivity extends BaseAty implements OnRefreshListener, OnLoadMoreListener {
+public class MineTeachingAppointmentActivity extends BaseAty implements OnRefreshListener, OnLoadMoreListener {
 
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
@@ -54,18 +55,18 @@ public class MyBespeakActivity extends BaseAty implements OnRefreshListener, OnL
     TextView mTvNodataContent;
     @Bind(R.id.rlNoData)
     RelativeLayout mRlNoData;
+
     /**
      * 0刷新  1加载
      */
     private int mLoadType;
     private int mCurrentPage;
-    private AdapterMyBespeak mAdapter;
+    private AdapterTeachingAppointment mAdapter;
     private List<BeanMmyBespeak.BespeaklistBean> mData;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_bespeak);
+        setContentView(R.layout.activity_mine_teaching_appointment);
         ButterKnife.bind(this);
         initView();
         initData();
@@ -73,7 +74,7 @@ public class MyBespeakActivity extends BaseAty implements OnRefreshListener, OnL
 
     @Override
     public void initView() {
-        setCommonBackToolBar(mToolbarCommon,mTvTitleCommon,"我的预约");
+        setCommonBackToolBar(mToolbarCommon,mTvTitleCommon,"我的教学预约");
         mLoadType = 0;
         mCurrentPage = 1;
         mData = new ArrayList<>();
@@ -83,7 +84,7 @@ public class MyBespeakActivity extends BaseAty implements OnRefreshListener, OnL
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mSwipeTarget.setLayoutManager(layoutManager);
         mSwipeTarget.setItemAnimator(new DefaultItemAnimator());
-        mAdapter = new AdapterMyBespeak(this, mData);
+        mAdapter = new AdapterTeachingAppointment(this, mData);
         mSwipeTarget.setAdapter(mAdapter);
 
     }
@@ -113,7 +114,7 @@ public class MyBespeakActivity extends BaseAty implements OnRefreshListener, OnL
 //                    mAdapter.notifyItemRangeInserted(position, object.getForderList().size());
                     mSwipeToLoadLayout.setLoadingMore(false);
                 } else {
-                    Toast.makeText(MyBespeakActivity.this, "刷新什么情况", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MineTeachingAppointmentActivity.this, "刷新什么情况", Toast.LENGTH_SHORT).show();
                 }
             }
 

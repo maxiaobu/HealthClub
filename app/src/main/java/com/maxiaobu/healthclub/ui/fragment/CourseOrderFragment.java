@@ -1,18 +1,32 @@
 package com.maxiaobu.healthclub.ui.fragment;
 
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
+import com.aspsine.swipetoloadlayout.OnRefreshListener;
+import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
+import com.maxiaobu.healthclub.adapter.AdapterCourseOrderFrg;
+import com.maxiaobu.healthclub.adapter.AdapterLunchOrderFrg;
+import com.maxiaobu.healthclub.common.beangson.BeanLunchOrderList;
+import com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView;
+import com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,16 +34,34 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CourseOrderFragment extends BaseFrg {
+public class CourseOrderFragment extends BaseFrg  implements OnRefreshListener, OnLoadMoreListener {
 
 
-    @Bind(R.id.web_view)
-    WebView mWebView;
+    @Bind(R.id.swipe_refresh_header)
+    RefreshHeaderView mSwipeRefreshHeader;
+    @Bind(R.id.swipe_target)
+    RecyclerView mSwipeTarget;
+    @Bind(R.id.swipe_load_more_footer)
+    LoadMoreFooterView mSwipeLoadMoreFooter;
+    @Bind(R.id.swipeToLoadLayout)
+    SwipeToLoadLayout mSwipeToLoadLayout;
+    @Bind(R.id.ivNoDataLogo)
+    ImageView mIvNoDataLogo;
+    @Bind(R.id.tv_nodata_content)
+    TextView mTvNodataContent;
+    @Bind(R.id.rlNoData)
+    RelativeLayout mRlNoData;
+
+    /**
+     * 0刷新  1加载
+     */
+    private int mLoadType;
+    private int mCurrentPage;
+    private AdapterCourseOrderFrg mAdapter;
+    private List<BeanLunchOrderList.ForderListBean> mData;
 
     public CourseOrderFragment() {
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,7 +76,7 @@ public class CourseOrderFragment extends BaseFrg {
     @Override
     public void initView() {
 // 设置WebView支持JavaScript
-        mWebView.getSettings().setJavaScriptEnabled(true);
+//        mWebView.getSettings().setJavaScriptEnabled(true);
         // 在js中调用本地java方法
 //        mWebView.addJavascriptInterface(new BaseJsToAndroid(getActivity()), "mobile");
         // 在js中调用本地java方法
@@ -53,16 +85,16 @@ public class CourseOrderFragment extends BaseFrg {
         // "mobile");
         // 添加客户端支持
         // 设置进度条
-        mWebView.setWebChromeClient(new WebChromeClient() {
+        /*mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-               /* if (newProgress == 100) {
+               *//* if (newProgress == 100) {
                     // 隐藏进度条
 //                    swipeLayout.setRefreshing(false);
                 } else {
                     if (!swipeLayout.isRefreshing())
                         swipeLayout.setRefreshing(true);
-                }*/
+                }*//*
 
                 super.onProgressChanged(view, newProgress);
             }
@@ -96,7 +128,18 @@ public class CourseOrderFragment extends BaseFrg {
                 view.loadUrl("javascript:window.mobile.loadPageData("
                         + "document.title,$('title').attr('isback'),$('title').attr('btn'),$('title').attr('navbar'))");
             }
-        });
+        });*/
+        mLoadType = 0;
+        mCurrentPage = 1;
+        mData = new ArrayList<>();
+        mSwipeToLoadLayout.setOnRefreshListener(this);
+        mSwipeToLoadLayout.setOnLoadMoreListener(this);
+        mSwipeTarget.setHasFixedSize(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        mSwipeTarget.setLayoutManager(layoutManager);
+        mSwipeTarget.setItemAnimator(new DefaultItemAnimator());
+        mAdapter = new AdapterCourseOrderFrg(getActivity(), mData);
+        mSwipeTarget.setAdapter(mAdapter);
     }
 
     @Override
@@ -109,4 +152,37 @@ public class CourseOrderFragment extends BaseFrg {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        initData();
+    }
+
+    @Override
+    public void onRefresh() {
+        mCurrentPage = 1;
+        mLoadType = 0;
+        if (mSwipeToLoadLayout != null) {
+            mSwipeToLoadLayout.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    initData();
+                }
+            }, 2);
+        }
+    }
+
+    @Override
+    public void onLoadMore() {
+        mCurrentPage++;
+        mLoadType = 1;
+        mSwipeToLoadLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                initData();
+            }
+        });
+    }
+
 }

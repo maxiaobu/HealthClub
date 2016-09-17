@@ -140,8 +140,6 @@ public class ModifyOrderAddressActivity extends BaseAty implements View.OnClickL
                         public void requestAgain(NodataFragment nodataFragment) {
                             initData();
                         }
-
-
                     });
                 }
                 break;

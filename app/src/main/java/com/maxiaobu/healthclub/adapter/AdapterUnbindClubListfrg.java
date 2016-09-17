@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanCoachesListAty;
+import com.maxiaobu.healthclub.ui.weiget.GlideCircleTransform;
 
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class AdapterUnbindClubListfrg extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final MyViewHolder viewHolder = (MyViewHolder) holder;
 //        BeanCoachesListAty.CoachListBean listBean = mData.get(position);
-        Glide.with(mContext).load(UrlPath.TEXT_IMG).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
+        Glide.with(mContext).load(UrlPath.TEXT_IMG).transform(new GlideCircleTransform(mContext)).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
         viewHolder.mTvName.setText("马小布");
         viewHolder.mTvDistance.setText("距您" + "12KM");
         viewHolder.mTvAddress.setText("快捷方式的回复可见很快就会失控垃圾发电");

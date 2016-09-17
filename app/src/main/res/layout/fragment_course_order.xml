@@ -4,10 +4,30 @@
              android:layout_height="match_parent"
              tools:context="com.maxiaobu.healthclub.ui.fragment.CourseOrderFragment">
 
-    <WebView
-        android:id="@+id/web_view"
+    <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
+        android:id="@+id/swipeToLoadLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_select">
+
+        <com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView
+            android:id="@+id/swipe_refresh_header"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/swipe_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView
+            android:id="@id/swipe_load_more_footer"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"/>
+    </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+    <include layout="@layout/common_nodata"/>
 
 </FrameLayout>

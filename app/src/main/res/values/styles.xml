@@ -42,7 +42,7 @@
         <item name="android:maxHeight">24.5dip</item>
     </style>
     <style name="TabBlackOrange">
-        <item name="android:textSize">@dimen/sz_14</item>
+        <item name="android:textSize">@dimen/sz_16</item>
     </style>
 
     <style name="LoginTheme" parent="Theme.AppCompat.Light.DarkActionBar">

@@ -6,32 +6,26 @@ import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
-import android.util.Pair;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BadgeItem;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-import com.hyphenate.chat.EMClient;
-import com.hyphenate.chat.EMConversation;
 import com.hyphenate.util.EMLog;
-import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
-import com.maxiaobu.healthclub.MainActivity;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.chat.Constant;
 import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.chat.db.InviteMessgeDao;
-import com.maxiaobu.healthclub.chat.db.UserDao;
 import com.maxiaobu.healthclub.chat.runtimepermissions.PermissionsManager;
 import com.maxiaobu.healthclub.chat.runtimepermissions.PermissionsResultAction;
-import com.maxiaobu.healthclub.common.UrlPath;
-import com.maxiaobu.healthclub.common.beangson.BeanAccountInfo;
 import com.maxiaobu.healthclub.ui.fragment.ConversationListFragment;
 import com.maxiaobu.healthclub.ui.fragment.DiscoveryFragment;
 import com.maxiaobu.healthclub.ui.fragment.HomeFragment;
@@ -39,13 +33,8 @@ import com.maxiaobu.healthclub.ui.fragment.MineFragment;
 import com.maxiaobu.healthclub.ui.fragment.TalkFragment;
 import com.maxiaobu.healthclub.utils.HealthUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import maxiaobu.easeui.domain.EaseUser;
 
 public class HomeActivity extends BaseAty {
 
@@ -83,6 +72,18 @@ public class HomeActivity extends BaseAty {
     private AlertDialog.Builder accountRemovedBuilder;
     private boolean isConflictDialogShow;//在其他设备登录 dialog显示中
     private boolean isAccountRemovedDialogShow;//如果账户移除 dialog显示中
+    //false：当前为首页 true:当前非首页
+    private boolean isHomePage = false;
+    //是否可以退出应用
+    private boolean isExit = true;
+
+    Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            isExit = true;
+        }
+    };
     /**
      * 消息数据库
      */
@@ -132,8 +133,6 @@ public class HomeActivity extends BaseAty {
             //如果账户移除
             showAccountRemovedDialog();
         }
-
-
         mBottomNavigationBar
                 .setMode(BottomNavigationBar.MODE_FIXED)
 //                .setBarBackgroundColor(R.color.white);
@@ -149,17 +148,14 @@ public class HomeActivity extends BaseAty {
             @Override
             public void onTabSelected(int position) {
                 switchFragment(position);
-
             }
 
             @Override
             public void onTabUnselected(int position) {
-
             }
 
             @Override
             public void onTabReselected(int position) {
-
             }
         });
 //        bottomNavigationBar.setBarBackgroundColor(R.color.white);
@@ -169,6 +165,7 @@ public class HomeActivity extends BaseAty {
         mDiscoveryFragment = DiscoveryFragment.newInstance();
         mMineFragment = MineFragment.newInstance();
         switchContent(nowFragment, mHomeFragment);
+        isHomePage=true;
 
 
 
@@ -219,25 +216,49 @@ public class HomeActivity extends BaseAty {
         ButterKnife.unbind(this);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (isHomePage) {
+            exit();
+        } else {
+            mBottomNavigationBar.selectTab(0);
+        }
+    }
+
     /**
-     * 底部导航跳转
-     *
-     * @param position
+     * 退出应用
      */
+    private void exit() {
+        if (isExit) {
+            isExit = false;
+            Toast.makeText(getApplicationContext(), "再按一次退出",
+                    Toast.LENGTH_SHORT).show();
+            // 利用handler延迟发送更改状态信息
+            mHandler.sendEmptyMessageDelayed(0, 2000);
+        } else {
+            finish();
+        }
+    }
     public void switchFragment(int position) {
         runnable = null;
         switch (position) {
             case 0:
                 switchContent(nowFragment, mHomeFragment);
+                isHomePage=true;
                 break;
             case 1:
                 switchContent(nowFragment, mTalkFragment);
+                isHomePage=false;
                 break;
             case 2:
                 switchContent(nowFragment, mDiscoveryFragment);
+                isHomePage=false;
+
                 break;
             case 3:
                 switchContent(nowFragment, mMineFragment);
+                isHomePage=false;
+
                 break;
             default:
                 break;
@@ -245,12 +266,6 @@ public class HomeActivity extends BaseAty {
 
     }
 
-    /**
-     * 导航切换
-     *
-     * @param from
-     * @param to
-     */
     private void switchContent(Fragment from, Fragment to) {
         if (nowFragment != to) {
             nowFragment = to;
