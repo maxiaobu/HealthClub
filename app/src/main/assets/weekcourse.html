@@ -75,7 +75,6 @@ $(document).bind('mobileinit', function () {
 </div>
 </div>
 <script type="text/javascript">
-
 	function week_init() {
 		$("#weektab li").each(function (i) {
 			$(this).click(function () {
@@ -141,7 +140,7 @@ $(document).bind('mobileinit', function () {
 	//计算课程表可滚动区域高度
 	$(document).ready(function(){
 		var imgheight=parseInt($(".title").css("height"));
-		var height=window.screen.height-imgheight
+		var height=myScroll.windowHeight()-imgheight
 		$(".box01_c").css("height",height+"px")
 	})
 </script>

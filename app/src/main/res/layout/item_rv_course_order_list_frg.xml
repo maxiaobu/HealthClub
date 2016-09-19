@@ -155,6 +155,45 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/sz_18"
                />
+            <LinearLayout
+                android:id="@+id/ly_nopay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:id="@+id/tv_pay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_add"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_food_cart_select"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/sz_6"
+                    android:paddingBottom="@dimen/sz_6"
+
+                    android:text="继续支付"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sz_18"/>
+
+                <TextView
+                    android:id="@+id/tv_delete"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/sz_20"
+                    android:layout_toRightOf="@id/iv_add"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_food_cart_select"
+                    android:gravity="center"
+                    android:text="删除"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sz_18"
+                    android:paddingTop="@dimen/sz_6"
+                    android:paddingBottom="@dimen/sz_6"/>
+            </LinearLayout>
+
 
 
         </LinearLayout>

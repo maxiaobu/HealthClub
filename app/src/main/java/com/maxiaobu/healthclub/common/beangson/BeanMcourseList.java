@@ -66,7 +66,7 @@ public class BeanMcourseList {
 
     public static class CourseListBean {
         private String address;
-        private int clubcount;
+        private String clubcount;
         private String clubid;
         private String clubname;
         private String coachid;
@@ -79,11 +79,11 @@ public class BeanMcourseList {
         private String imgsfilename;
         private String mobphone;
         private Object modifytime;
-        private int pcoursedays;
+        private String pcoursedays;
         private String pcourseid;
         private String pcoursename;
         private String pcourseprice;
-        private int pcoursetimes;
+        private String pcoursetimes;
         private String resinform;
 
         public String getAddress() {
@@ -94,11 +94,11 @@ public class BeanMcourseList {
             this.address = address;
         }
 
-        public int getClubcount() {
+        public String getClubcount() {
             return clubcount;
         }
 
-        public void setClubcount(int clubcount) {
+        public void setClubcount(String clubcount) {
             this.clubcount = clubcount;
         }
 
@@ -198,11 +198,11 @@ public class BeanMcourseList {
             this.modifytime = modifytime;
         }
 
-        public int getPcoursedays() {
+        public String getPcoursedays() {
             return pcoursedays;
         }
 
-        public void setPcoursedays(int pcoursedays) {
+        public void setPcoursedays(String pcoursedays) {
             this.pcoursedays = pcoursedays;
         }
 
@@ -230,11 +230,11 @@ public class BeanMcourseList {
             this.pcourseprice = pcourseprice;
         }
 
-        public int getPcoursetimes() {
+        public String getPcoursetimes() {
             return pcoursetimes;
         }
 
-        public void setPcoursetimes(int pcoursetimes) {
+        public void setPcoursetimes(String pcoursetimes) {
             this.pcoursetimes = pcoursetimes;
         }
 

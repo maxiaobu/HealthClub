@@ -21,6 +21,7 @@ import com.maxiaobu.healthclub.adapter.AdapterMyBespeak;
 import com.maxiaobu.healthclub.adapter.AdapterTeachingAppointment;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
+import com.maxiaobu.healthclub.common.beangson.BeanMcoachBespeak;
 import com.maxiaobu.healthclub.common.beangson.BeanMmyBespeak;
 import com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView;
 import com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView;
@@ -62,7 +63,7 @@ public class MineTeachingAppointmentActivity extends BaseAty implements OnRefres
     private int mLoadType;
     private int mCurrentPage;
     private AdapterTeachingAppointment mAdapter;
-    private List<BeanMmyBespeak.BespeaklistBean> mData;
+    private List<BeanMcoachBespeak.CoachBespeaklistBean> mData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,17 +94,16 @@ public class MineTeachingAppointmentActivity extends BaseAty implements OnRefres
     public void initData() {
         RequestParams params = new RequestParams();
         params.put("memid", SPUtils.getString( Constant.MEMID));
-        App.getRequestInstance().post(this, UrlPath.URL_MY_BESPEAK, BeanMmyBespeak.class, params, new RequestJsonListener<BeanMmyBespeak>() {
+        App.getRequestInstance().post(this, UrlPath.URL_MCOACHBESPEAK, BeanMcoachBespeak.class, params, new RequestJsonListener<BeanMcoachBespeak>() {
             @Override
-            public void requestSuccess(BeanMmyBespeak beanMmyBespeak) {
-                mData = beanMmyBespeak.getBespeaklist();
+            public void requestSuccess(BeanMcoachBespeak beanMcoachBespeak) {
                 if (mLoadType == 0) {//刷新
-                    if (beanMmyBespeak.getBespeaklist().size() == 0) {
+                    if (beanMcoachBespeak.getCoachBespeaklist().size() == 0) {
                         mRlNoData.setVisibility(View.VISIBLE);
                         mTvNodataContent.setText("暂无订单");
                     }
                     mData.clear();
-                    mData.addAll(beanMmyBespeak.getBespeaklist());
+                    mData.addAll(beanMcoachBespeak.getCoachBespeaklist());
                     mAdapter.notifyDataSetChanged();
                     if (mSwipeToLoadLayout != null) {
                         mSwipeToLoadLayout.setRefreshing(false);

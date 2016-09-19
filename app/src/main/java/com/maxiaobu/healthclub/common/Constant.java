@@ -46,8 +46,11 @@ public class Constant {
 
 
     public static final int RESULT_OK=0x0001;
+    public static final int RESULT_OK_ONE=0x0011;
+    public static final int RESULT_OK_TWO=0x0012;
     public static final int RESULT_REQUEST_ONE=0x0002;
     public static final int RESULT_REQUEST_SECOND=0x0003;
+    public static final int RESULT_REQUEST_THIRD=0x0004;
     public static final String PAY_TYPE="payType";
     public static final String PAY_RESULT="payResult";
 
@@ -98,7 +101,7 @@ public class Constant {
     /**
      * 收货人电话
      */
-    public static final String REC_PHONE = "recphone"; /**
+    public static final String REC_PHONE = "recphone";
      /**
      * 收货人地址
      */
@@ -108,11 +111,16 @@ public class Constant {
      */
     public static final String BRITHDAY = "brithday";
 
-
+    /**
+     * 用户身份
+     */
+    public static final String MEMROLE = "memrole";
     /**
      * 用户性别
      */
     public static final String GENDER = "gender";
+
+
 
 
 

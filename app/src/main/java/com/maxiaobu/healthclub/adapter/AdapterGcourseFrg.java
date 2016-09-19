@@ -44,6 +44,7 @@ public class AdapterGcourseFrg extends RecyclerView.Adapter {
         viewHolder.mTvNum.setText(listBean.getPcoursetimes()+"次/"+listBean.getPcoursedays()+"天");
         viewHolder.mTvClubName.setText(listBean.getClubname());
         viewHolder.mTvAddress.setText(listBean.getAddress());
+        viewHolder.mTvPrice.setText(listBean.getPcourseprice());
 
     }
 

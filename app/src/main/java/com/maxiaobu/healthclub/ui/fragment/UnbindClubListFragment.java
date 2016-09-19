@@ -10,6 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
@@ -17,14 +21,11 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
-import com.maxiaobu.healthclub.adapter.AdapterClubListAty;
 import com.maxiaobu.healthclub.adapter.AdapterUnbindClubListfrg;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
-import com.maxiaobu.healthclub.common.beangson.BeanClubList;
-import com.maxiaobu.healthclub.common.beangson.BeanCoachesListAty;
+import com.maxiaobu.healthclub.common.beangson.BeanMunbindList;
 import com.maxiaobu.healthclub.ui.activity.ClubDetailActivity;
-import com.maxiaobu.healthclub.ui.activity.ClubListActivity;
 import com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView;
 import com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
@@ -45,6 +46,7 @@ import butterknife.OnClick;
 public class UnbindClubListFragment extends BaseFrg
         implements OnRefreshListener, OnLoadMoreListener, View.OnClickListener {
 
+
     @Bind(R.id.swipe_refresh_header)
     RefreshHeaderView mSwipeRefreshHeader;
     @Bind(R.id.swipe_target)
@@ -53,15 +55,20 @@ public class UnbindClubListFragment extends BaseFrg
     LoadMoreFooterView mSwipeLoadMoreFooter;
     @Bind(R.id.swipeToLoadLayout)
     SwipeToLoadLayout mSwipeToLoadLayout;
-
+    @Bind(R.id.ivNoDataLogo)
+    ImageView mIvNoDataLogo;
+    @Bind(R.id.tv_nodata_content)
+    TextView mTvNodataContent;
+    @Bind(R.id.rlNoData)
+    RelativeLayout mRlNoData;
     /**
      * 0刷新  1加载
      */
     private int mDataType;
     private int mCurrentPage;
 
-    List<BeanCoachesListAty.CoachListBean> mData;
     private AdapterUnbindClubListfrg mAdapter;
+    private List<BeanMunbindList.UnbindListBean> mData;
 
     public UnbindClubListFragment() {
     }
@@ -99,8 +106,6 @@ public class UnbindClubListFragment extends BaseFrg
                 startActivity(intent);
             }
         });
-
-
     }
 
     @Override
@@ -108,20 +113,37 @@ public class UnbindClubListFragment extends BaseFrg
         RequestParams params = new RequestParams();
         params.put("pageIndex", String.valueOf(mCurrentPage)); //当前页码
         params.put("memid", SPUtils.getString(Constant.MEMID));//当前用户id
-        params.put("latitude", SPUtils.getString(Constant.LATITUDE));
-        params.put("longitude", SPUtils.getString(Constant.LONGITUDE));
-//        params.put("sorttype", mSortType);
-        App.getRequestInstance().post(getActivity(), UrlPath.URL_MBCLUBLIST, BeanClubList.class, params, new RequestJsonListener<BeanClubList>() {
-            @Override
-            public void requestSuccess(BeanClubList beanClubList) {
+        App.getRequestInstance().post(getActivity(), UrlPath.URL_MUNBINDLIST, BeanMunbindList.class, params, new RequestJsonListener<BeanMunbindList>() {
+                    @Override
+                    public void requestSuccess(BeanMunbindList beanMunbindList) {
 
-            }
+                        if (mDataType == 0) {//刷新
+                            if (beanMunbindList.getUnbindList().size()>0) {
+                                mData.clear();
+                                mData.addAll(beanMunbindList.getUnbindList());
+                                mAdapter.notifyDataSetChanged();
+                                if (mSwipeToLoadLayout != null) {
+                                    mSwipeToLoadLayout.setRefreshing(false);
+                                }
+                            } else {
+                                mRlNoData.setVisibility(View.VISIBLE);
+                            }
+                        } else if (mDataType == 1) {//加载更多
+                            int position = mAdapter.getItemCount();
+                            mData.addAll(beanMunbindList.getUnbindList());
+                            mAdapter.notifyItemRangeInserted(position, beanMunbindList.getUnbindList().size());
+                            mSwipeToLoadLayout.setLoadingMore(false);
+                        } else {
+                            Toast.makeText(getActivity(), "刷新什么情况", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
-            @Override
-            public void requestAgain(NodataFragment nodataFragment) {
-                nodataFragment.dismissAllowingStateLoss();
-            }
-        });
+                    @Override
+                    public void requestAgain(NodataFragment nodataFragment) {
+                        initData();
+                    }
+                }
+        );
     }
 
     @OnClick({})
@@ -158,6 +180,7 @@ public class UnbindClubListFragment extends BaseFrg
             }, 2);
         }
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

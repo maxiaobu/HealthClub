@@ -24,7 +24,7 @@
             tools:src="@mipmap/ic_test_header"
             android:scaleType="fitXY"
             android:layout_marginLeft="@dimen/sz_10"
-            android:layout_marginTop="@dimen/sz_16"
+            android:layout_marginTop="@dimen/sz_10"
             android:layout_marginRight="@dimen/sz_10"/>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                 android:gravity="bottom"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="@dimen/sz_18"
-                android:layout_marginTop="@dimen/sz_10"/>
+                android:layout_marginTop="@dimen/sz_4"/>
             <TextView
                 android:id="@+id/tv_distance"
                 android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
                 android:textColor="@color/colorTextThird"
                 android:layout_marginRight="@dimen/sz_20"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/sz_10"/>
+                />
             <TextView
                 android:id="@+id/tv_address"
                 android:layout_width="wrap_content"

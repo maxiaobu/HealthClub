@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
+import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.ui.activity.ChatActivity;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
 
@@ -17,6 +18,8 @@ public class BaseJsToAndroid {
 	public BaseJsToAndroid(Context context) {
 		this.context = context;
 	}
+
+
 
 	/**
 	 * 任何一页控制
@@ -81,8 +84,7 @@ public class BaseJsToAndroid {
 	 */
 	@JavascriptInterface
 	public String getmemid() {
-		String memid =SPUtils.getString("memid", "");
-		return memid;
+		return SPUtils.getString( Constant.MEMID);
 	}
 
 	/**

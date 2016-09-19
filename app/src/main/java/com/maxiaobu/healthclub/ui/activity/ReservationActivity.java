@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -52,7 +53,11 @@ public class ReservationActivity extends BaseAty {
         mWebView.getSettings().setDefaultTextEncodingName("utf-8");
 
         mWebView.setWebViewClient(new MyWebViewClient());
-        mWebView.loadUrl("file:///android_asset/reservation.html"+"?nickname=");
+        mWebView.loadUrl("file:///android_asset/reservation.html"+"?coachid="
+                +getIntent().getStringExtra("coachid")+"&orderid="+getIntent().getStringExtra("orderid"));
+       String page = "file:///android_asset/reservation.html?+ "&nickname=" + corderList.getCa_nickname() + "&clubname=" + corderList.getClubname() + "&address=" + corderList.getAddress();
+        page += "&coursename=" +corderList.getCoursename() + "&enddate=" + formatdate(corderList.getOrdenddate().getTime()) + "&times=" + corderList.getOrdcoursetimes()+ "&orderid=" + corderList.getOrdno();
+        page +="&imgsfile="+corderList.getCa_imgsfilename();
     }
 
     @Override
@@ -89,11 +94,6 @@ public class ReservationActivity extends BaseAty {
 //            startActivity(intent);
         }
 
-
-        @JavascriptInterface
-        public String getmemid() {
-            return SPUtils.getString( Constant.MEMID);
-        }
     }
 
 

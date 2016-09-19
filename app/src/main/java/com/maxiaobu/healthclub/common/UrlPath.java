@@ -7,14 +7,14 @@ import com.maxiaobu.healthclub.utils.storage.SPUtils;
  * Created by 马小布 on 2016/9/3.
  */
 public class UrlPath {
-    public static final String TEXT_IMG="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2449950469,2297536915&fm=80";
+    public static final String TEXT_IMG = "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2449950469,2297536915&fm=80";
 
     /**
      * 内网
      * http://192.168.1.173:8080/efithealth/
      * 121
      */
-    public static final String URL_HOST = "http://192.168.1.182:8080/efithealth/";
+    public static final String URL_HOST = "http://192.168.1.121:8080/efithealth/";
     /**
      * 外网
      * http://192.168.1.185:18080/efithealth/
@@ -125,10 +125,10 @@ public class UrlPath {
 
     /**
      * 配餐订单列表
-     * pageIndex: pageIndex++, //当前页码
+     * pageIndex: pageIndex++, //当前页码forderlist
      * listtype: "forderlist",//写死，就写他，区分出订餐订单
      * memid: getMemid()//用户id
-     * http://192.168.1.113:8080/efithealth/morderlist.do?memid=M000455&listtype=forderlist&pageIndex=1
+     * http://192.168.1.113:8080/efithealth/morderlist.do?memid=M000455&listtype=corderlist&pageIndex=1
      */
     public static final String URL_FOOD_ORDER_LIST = URL_BASE + "morderlist.do";
 
@@ -278,10 +278,6 @@ public class UrlPath {
     public static final String URL_MGETTRAININGITEM = URL_BASE + "mgettrainingitem.do";
 
 
-
-
-
-
     /**
      * 俱乐部列表
      * http://192.168.1.121:8080/efithealth/mbclubList.do?pageIndex=1&memid=M000440&latitude=123&longitude=123&sorttype=
@@ -296,23 +292,23 @@ public class UrlPath {
      * 绑定俱乐部列表
      * pageIndex: bindpageIndex++, //当前页码
      * memid: memid //当前用户id
-     *  http://192.168.1.121:8080/efithealth/mbindList.do?pageIndex=1&memid=M000440
+     * http://192.168.1.121:8080/efithealth/mbindList.do?pageIndex=1&memid=M000440
      */
     public static final String URL_MBINDLIST = URL_BASE + "mbindList.do";
     /**
      * 未绑定俱乐部列表
      * pageIndex: bindpageIndex++, //当前页码
      * memid: memid //当前用户id
-     *  http://192.168.1.121:8080/efithealth/munbindList.do?pageIndex=1&memid=M000440
+     * http://192.168.1.121:8080/efithealth/munbindList.do?pageIndex=1&memid=M000440
      */
     public static final String URL_MUNBINDLIST = URL_BASE + "munbindList.do";
 
     /**
-     *课程管理
+     * 课程管理
      * http://192.168.1.121:8080/efithealth/mcourseList.do?linestatus=1&coachid=M000440
      * map.put("coachid", (String) SharedPreferencesUtils.getParam(
-     *getActivity(), "memid", "")); // 会员id
-     *map.put("linestatus", "1");// 状态 0 历史 1 上线
+     * getActivity(), "memid", "")); // 会员id
+     * map.put("linestatus", "1");// 状态 0 历史 1 上线
      * coachid=M000440  会员id
      * linestatus=1
      */
@@ -327,8 +323,6 @@ public class UrlPath {
     /**
      * 异步更新好友信息
      * http://192.168.1.121:8080/efithealth/mgetfriends.do?memid=M000440
-     *
-     *
      */
     public static final String URL_MGETFRIENDS = URL_BASE + "mgetfriends.do";
 
@@ -338,7 +332,32 @@ public class UrlPath {
      */
     public static final String URL_MINDEX = URL_BASE + "mindex.do";
 
+    /**
+     * 课程管理->发布课程
+     */
+    public static final String URL_ISSUE_COURSE = URL_BASE + "mpcoursesave.do";//
 
+    /**
+     * 课程管理->获得教练绑定的俱乐部信息
+     * http://192.168.1.121:8080/efithealth/mbindList.do?memid=M000440
+     */
+    public static final String URL_CLUB_MESSAGE = URL_BASE + "mbindList.do";//
 
+    /**
+     * 课程修改
+     * http://192.168.1.121:8080/efithealth/mupdateCourse.do?memid=M000440
+     */
+    public static final String URL_UPDATECOURSE = URL_BASE + "mupdateCourse.do";//
+    /**
+     * http://192.168.1.121:8080/efithealth/mupdateCourse.do?pcourseid=
+     */
+    public static final String URL_DELETECOURSE = URL_BASE + "mdeleteCourse.do";// 课程删除
 
+    /**
+     * 我的教学预约
+     * pageIndex: pageindex++, //当前页码
+     * memid: memid //当前用户id
+     * http://192.168.1.121:8080/efithealth/mcoachBespeak.do?memid=M000440&pageIndex=1
+     */
+    public static final String URL_MCOACHBESPEAK = URL_BASE + "mcoachBespeak.do";
 }

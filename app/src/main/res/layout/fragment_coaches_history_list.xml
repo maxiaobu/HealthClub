@@ -29,4 +29,5 @@
             android:gravity="center"/>
     </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
 
+    <include layout="@layout/common_nodata"/>
 </FrameLayout>

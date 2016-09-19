@@ -13,17 +13,26 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.adapter.AdapterCourseOrderFrg;
 import com.maxiaobu.healthclub.adapter.AdapterLunchOrderFrg;
+import com.maxiaobu.healthclub.common.Constant;
+import com.maxiaobu.healthclub.common.UrlPath;
+import com.maxiaobu.healthclub.common.beangson.BeanCorderList;
 import com.maxiaobu.healthclub.common.beangson.BeanLunchOrderList;
 import com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView;
 import com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView;
+import com.maxiaobu.healthclub.utils.storage.SPUtils;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestJsonListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +43,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CourseOrderFragment extends BaseFrg  implements OnRefreshListener, OnLoadMoreListener {
+public class CourseOrderFragment extends BaseFrg implements OnRefreshListener, OnLoadMoreListener {
 
 
     @Bind(R.id.swipe_refresh_header)
@@ -58,10 +67,11 @@ public class CourseOrderFragment extends BaseFrg  implements OnRefreshListener, 
     private int mLoadType;
     private int mCurrentPage;
     private AdapterCourseOrderFrg mAdapter;
-    private List<BeanLunchOrderList.ForderListBean> mData;
+    private List<BeanCorderList.CorderListBean> mData;
 
     public CourseOrderFragment() {
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -144,6 +154,39 @@ public class CourseOrderFragment extends BaseFrg  implements OnRefreshListener, 
 
     @Override
     public void initData() {
+        RequestParams params = new RequestParams();
+        params.put("pageIndex", String.valueOf(mCurrentPage));
+        params.put("listtype", "corderlist");
+        params.put("memid", SPUtils.getString(Constant.MEMID));
+        App.getRequestInstance().post(getActivity(), UrlPath.URL_FOOD_ORDER_LIST, BeanCorderList.class, params, new RequestJsonListener<BeanCorderList>() {
+            @Override
+            public void requestSuccess(BeanCorderList result) {
+                if (mLoadType == 0) {//刷新
+                    if (result.getCorderList().size() == 0) {
+                        mRlNoData.setVisibility(View.VISIBLE);
+                        mTvNodataContent.setText("暂无订单");
+                    }
+                    mData.clear();
+                    mData.addAll(result.getCorderList());
+                    mAdapter.notifyDataSetChanged();
+                    if (mSwipeToLoadLayout != null) {
+                        mSwipeToLoadLayout.setRefreshing(false);
+                    }
+                } else if (mLoadType == 1) {//加载更多
+//                    int position = mAdapter.getItemCount();
+//                    mData.addAll(object.getForderList());
+//                    mAdapter.notifyItemRangeInserted(position, object.getForderList().size());
+                    mSwipeToLoadLayout.setLoadingMore(false);
+                } else {
+                    Toast.makeText(getActivity(), "刷新什么情况", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void requestAgain(NodataFragment nodataFragment) {
+                initData();
+            }
+        });
 
     }
 

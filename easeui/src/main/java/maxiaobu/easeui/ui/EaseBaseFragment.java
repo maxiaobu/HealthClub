@@ -23,9 +23,15 @@ public abstract class EaseBaseFragment extends Fragment{
         titleBar = (EaseTitleBar) getView().findViewById(R.id.title_bar);
         
         initView();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         setUpView();
     }
-    
+
     public void showTitleBar(){
         if(titleBar != null){
             titleBar.setVisibility(View.VISIBLE);

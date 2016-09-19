@@ -313,16 +313,14 @@ function getPageInfo() {
 
 function getMemid() {
 	var memid = "";
-	try {
+	
 		if (parmData.memid) {
 			memid = parmData.memid;
 		} else {
 			memid = window.mobile.getmemid();
 		}
 		//alert("来自手机端，Memid="+memid);
-	} catch (e) {
-		memid = "M000014"; //测试用,与移动段整合时注掉这句
-	}
+	
 	return memid;
 }
 

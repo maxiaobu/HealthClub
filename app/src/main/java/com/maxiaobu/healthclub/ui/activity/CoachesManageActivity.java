@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
+import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.ui.fragment.BindClubListFragment;
 import com.maxiaobu.healthclub.ui.fragment.CoachesHistoryListFragment;
 import com.maxiaobu.healthclub.ui.fragment.CoachesOnlineListFragment;
@@ -31,6 +32,7 @@ import butterknife.OnClick;
  * 课程管理
  */
 public class CoachesManageActivity extends BaseAty implements View.OnClickListener{
+
 
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
@@ -85,8 +87,16 @@ public class CoachesManageActivity extends BaseAty implements View.OnClickListen
     public void onClick(View view) {
         switch (R.id.float_action_button){
             case R.id.float_action_button:
-                startActivity(new Intent(this,CoachesReleaseActivity.class));
+                startActivityForResult(new Intent(this,CoachesReleaseActivity.class),Constant.RESULT_REQUEST_ONE);
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode== Constant.RESULT_OK||requestCode==Constant.RESULT_REQUEST_ONE){
+            initView();
         }
     }
 

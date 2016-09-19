@@ -184,6 +184,9 @@ public class PayActivity extends BaseAty implements View.OnClickListener {
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                             Intent intent = new Intent();
                             intent.setClass(PayActivity.this, ReservationActivity.class);
+                            intent.putExtra("coachid",getIntent().getStringExtra("coachid"));
+                            intent.putExtra("orderid", getIntent().getStringExtra("ordno"));
+
                             intent.putExtra(Constant.PAY_RESULT, 0);
                             startActivity(intent);
                             PayActivity.this.finish();

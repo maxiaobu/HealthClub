@@ -7,7 +7,7 @@
 		<title isback="1" btn="0" navbar="0" id="titleText"></title>
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" type="text/css" />
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
-		<script type="text/javascript" src="js/jquery.min.js"></script><!--pcourseid=PC000082-->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script>
 			
 			$(document).bind('mobileinit', function() {
@@ -24,7 +24,7 @@
 	<body>
 		<div class="person_index"> </div>
 		<div data-role="content" class="p_content">
-			<div id="slider" class="swipe cou_sw">
+			<div id="slider" class="swipe cou_sw" <!--style="display: none;"-->>
 				<ul class="box01_list">
 					<li class="li_list">
 						<div class="video">
@@ -58,12 +58,12 @@
 						<div id="datum-arr">
 							<a rel="external" data-role="none" class="click_tel" href="javascript:void(0);">
 								<p id="conphone">13011111111</p>
-								<img class="arrou" src="images/jiantou_botton_default.png">
+								<img class="arrou" src="images/jiantou_botton_default.png" style="width: 18px;height: 18px;">
 								<div class="hr1-cxl"></div>
 							</a>
-							<a id="tog" href="javascript:void(0);" rel="external" data-role="none" class="click_club" style="display:block;border-bottom:1px solid #dadada;">
+							<a id="tog" href="javascript:void(0);" rel="external" data-role="none" class="click_club" style="display:block;">
 								<p>俱乐部<span id="club_title" style="color:#D6D6D6 ;float: right;"></span></p>
-								<img id="arrou" class="arrou" src="images/jiantou_botton_default.png" /> </a><!--class="arrox"切换-->
+								<img id="arrou" class="arrou" src="images/jiantou_botton_default.png" style="width: 18px; height: 18px;"/> </a><!--class="arrox"切换-->
 							<!--a多俱乐部可选点击下拉菜单-->
 							<div id="togg" style="display:none">
 								<div class="clear_mar" id="address">
@@ -90,16 +90,17 @@
 								<div class="hr1-cxl"></div>
 							</a>-->
 						</div>
-						<div class="introduce">
+						<div style="height: 0px;-webkit-transform:scaleY(.5);transform: scaleY(.5); -webkit-transform-origin:0 0;padding-bottom:20px ;background:#f5f5f5 ;"></div>
+						<div class="introduce" >
 				            <div class="title-cxl">详细介绍：</div>
 				            <div class="content intro_in">
 				            <p id="detailsurl" style="width: 85.8%;">宗旨、价值观及原则康的宗旨是在现在和未来的世世代代确保每个人有更高的生活质量。宗旨是引领，为我们公司的抉择及行动带来了灵感与指导。
 				            </p>
-				            <img src="images/jiantou_botton_default.png" />
+				            <img src="images/jiantou_botton_default.png" style="width: 18px;height: 18px;"/>
 				          </div>
 				        </div>
 						<div class="introduce notice">
-							<div class="title-cxl" style="width: 20%;float: left;padding-top: 25px;font-size:1.4em;color: #f17142;">下单须知:</div>
+							<div class="title-cxl" style="width: 20%;float: left;padding-top: 24px;font-size:1.4em;color: #f17142;">下单须知:</div>
 							<div class="content notice_write">
 								<p id="resinform" style="width: 70%;float: left;color: #f17142;">请在玉佛发牢骚似懂非懂浪费哦是减肥神经反射。</p>
 								
@@ -109,13 +110,13 @@
 						<div class="qqq">
 							<div class="inset">
 								<!--<p id="pcourseprices">550元</p>-->
-								<a href="javascript:gotoExe()" rel="external" data-role="none"></a> </div>
+								<a href="javascript:gotoExe()" rel="external" data-role="none">购买课程</a> </div>
 						</div>
 					</li>
 					<li class="li_intro" style="display: none;">
 						<div class="intro_detail">
-							<p><span style="padding: 15px 0;font-size:16px ;line-height:30px ;">详细介绍:</span></p>
-							<div class="effect"><i style="line-height: 20px;"></i></div>
+							<p><span style="padding: 15px 0;font-size:2em ;line-height:20px ;">详细介绍:</span></p>
+							<div class="effect"><i style="line-height:1.8;font-size: 1.4em;">宗旨、价值观及原则康的宗旨是在现在和未来的世世代代确保每个人有更高的生活质量。</i></div>
 						</div>
 						<div class="toSure">确认</div>
 					</li>
@@ -129,21 +130,22 @@
 				margin-top: 8px;
 			}
 		</style>
-		<script>
-			
+		<script>/*http://127.0.0.1:8020/assets/pcourse.html?pcourseid=PC000082&memid=M000458*/
 			$(document).ready(function(e) {
 				//选择框消失出现切换
 			  $("#tog").click(function(){
 			  	
 			   if($("#arrou").attr("src")=="images/jiantou_botton_default.png")
 			   {
-				$("#arrou").attr("src","images/jiantou2_botton_default.png");
+				$("#arrou").attr("src","images/jiantou_botton_down.png");
 				$("#arrou").addClass("arrox");
+				$(".click_club").addClass("click_bor");
 			   }
 			   else
 			   {
 				$("#arrou").attr("src","images/jiantou_botton_default.png");
 				$("#arrou").removeClass("arrox");
+				$(".click_club").removeClass("click_bor");
 			   }
 			   $("#togg").toggle(); 
 			  });
@@ -191,7 +193,6 @@
 			}
 
 			function initData() {
-//				http://127.0.0.1:8020/assets/pcourse.html?pcourseid=PC000083
 				$.ajax({
 					type: "POST",
 					url: serviceUrl + "mbpcourse.do",
@@ -227,9 +228,6 @@
 							//循环加载列表数据
 							$.each(pcourseList, function(index, content) {
 								var address = $("#address").clone(true);
-								$(".clear_mar1").eq(0).find(".div").addClass("choosen");
-								 b=$(".choosen .p-hai").text();
-								$("#club_title").text(b);
 								address.attr("id", content.pcourseid);
 								console.log(content.pcourseid)
 								address.find("#addr").text(content.address);
@@ -248,7 +246,12 @@
 								address.appendTo($("#togg"));
 								
 							});
+							/*$(".clear_mar1").eq(0).find(".div").addClass("choosen");
+							 b=$(".choosen .p-hai").text();
+							 $("#club_title").text(b);*/ //自动选中第一个俱乐部
 						}
+						$(".swipe").css("display","block")
+						
 					}
 				});
 			}
@@ -265,7 +268,11 @@
 			}
 */
 			function gotoExe() {
-				if($("#togg div:visible").length>0&&(!$("#togg .clear_mar1").attr("id"))){
+				/*if($("#togg div:visible").length>0&&(!$("#togg .clear_mar1").attr("id"))){
+					alertMessage("warn","请选择俱乐部");
+					return;
+				}*/
+				if($("#togg .choosen").length==0){
 					alertMessage("warn","请选择俱乐部");
 					return;
 				}

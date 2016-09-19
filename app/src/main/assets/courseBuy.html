@@ -38,7 +38,7 @@
 							<p><span>联系电话：</span><i id="ca_mobphone"></i></p>
 							<!--<p>课程套餐：<i id="coursetimes"></i>次</span>&nbsp;/&nbsp;<i id="coursedays"></i>天</p>-->
 							<p><span>课程套餐：</span><i><em id="coursetimes"></em>次&nbsp;/&nbsp;<em id="coursedays"></em>天</i></p>
-							<p style="border-bottom: 1px solid #dadada;padding-bottom: 10px;"><span>上课时间：</span><i>自由预约</i></p>
+							<p class="course_p" style="padding-bottom: 10px;position: relative;"><span>上课时间：</span><i>自由预约</i></p>
 							<p>
 								<div style="text-align: right;padding:3px 0px ;">
 									<span>课程费用：</span><span id="coursefee"></span>元
@@ -72,7 +72,9 @@
         	</div>
 		</div>
 	</body>
-	<script>
+	<script>/*http://127.0.0.1:8020/assets/courseBuy.html?mertype=pcourse&courseid=PC000082&memid=M000458*/
+	//http://127.0.0.1:8020/assets/courseBuy.html?mertype=gcourse&courseid=GC000020&memid=M000455
+		/*$(".courseBuy").hide();*/
 		var mertype = parmData.mertype;
 		var memid = getMemid();
 		var courseid = parmData.courseid;
@@ -109,13 +111,13 @@
 						//课程信息
 						$("#coursename").text(data.coursename);
 						if (parmData.mertype == "gcourse") {
-							$(".qqq a").css("background","url(images/page/button_yuyue_up.png)");
-							$(".qqq a").css("background-size","cover")
+							
+							$(".qqq a").text("确认预约");
 							$("#coachname").text(data.coursename);
 							$("#coachname").show();
 						}else{
-							$(".qqq a").css("background","url(images/page/button_sure.png)");
-							$(".qqq a").css("background-size","cover")
+							
+							$(".qqq a").text("确认订单")
 						}
 						$("#address").text(data.address);
 						$("#ca_mobphone").text(data.ca_mobphone);
@@ -134,6 +136,7 @@
 					} else {
 						gotoErrorPage(data.msgContent);
 					}
+					$(".courseBuy").show();
 				}
 			});
 		}

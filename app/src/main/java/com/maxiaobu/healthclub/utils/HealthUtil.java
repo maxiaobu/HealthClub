@@ -62,7 +62,7 @@ public class HealthUtil {
                             SPUtils.putString(Constant.REC_PHONE, addresphone);
                             SPUtils.putString(Constant.REC_ADDRESS, address);
                             SPUtils.putString("headImgUrl", headImgUrl);
-                            SPUtils.putString("memrole", memrole);
+                            SPUtils.putString(Constant.MEMROLE, memrole);
                             SPUtils.putString("headpage", headpage);
 
                             DemoHelper instance = DemoHelper.getInstance();

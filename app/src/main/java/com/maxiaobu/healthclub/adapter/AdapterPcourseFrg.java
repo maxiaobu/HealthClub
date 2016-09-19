@@ -3,6 +3,7 @@ package com.maxiaobu.healthclub.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +29,12 @@ public class AdapterPcourseFrg extends RecyclerView.Adapter {
 
     private List<BeanCoachesDetail.PcourseListBean> mData;
     private Activity mActivity;
+    private String coachid;
 
-    public AdapterPcourseFrg(Activity activity, List<BeanCoachesDetail.PcourseListBean> data) {
+    public AdapterPcourseFrg(Activity activity, List<BeanCoachesDetail.PcourseListBean> data,String coachid,String nickName) {
         mActivity = activity;
         mData = data;
+        this.coachid=coachid;
     }
 
     @Override
@@ -44,6 +47,7 @@ public class AdapterPcourseFrg extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         final BeanCoachesDetail.PcourseListBean listBean = mData.get(position);
         MyViewHolder viewHolder = (MyViewHolder) holder;
+        viewHolder.mTvPrice.setText(listBean.getPcourseprice());
         if (listBean.getClubcount()>1){
             viewHolder.mTvClubName.setVisibility(View.INVISIBLE);
             viewHolder.mTvAddress.setVisibility(View.INVISIBLE);
@@ -63,6 +67,18 @@ public class AdapterPcourseFrg extends RecyclerView.Adapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mActivity, PersionalCourseActivity.class);
                 intent.putExtra("pcourseid",listBean.getPcourseid());
+                intent.putExtra("coachid",coachid);
+                intent.putExtra("nickname",listBean.get());
+                intent.putExtra("coachid",listBean.getClubname());
+                intent.putExtra("coachid",coachid);
+                intent.putExtra("coachid",coachid);
+                intent.putExtra("coachid",coachid);
+                intent.putExtra("coachid",coachid);
+
+                String page = "file:///android_asset/reservation.html?+ "&nickname=" + corderList.getCa_nickname() + "&clubname=" + corderList.getClubname() + "&address=" + corderList.getAddress();
+                page += "&coursename=" +corderList.getCoursename() + "&enddate=" + formatdate(corderList.getOrdenddate().getTime()) + "&times=" + corderList.getOrdcoursetimes()+ "&orderid=" + corderList.getOrdno();
+                page +="&imgsfile="+corderList.getCa_imgsfilename();
+                Log.d("AdapterPcourseFrg", listBean.getCoachid());
                 mActivity.startActivity(intent);
             }
         });

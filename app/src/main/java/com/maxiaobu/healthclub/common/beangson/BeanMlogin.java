@@ -7,102 +7,103 @@ import java.util.List;
  */
 public class BeanMlogin {
 
-
     /**
      * msgFlag : 1
      * msgContent : ["","登录成功!"]
-     * member : {"applydate":null,"applydatestr":"","applydescr":"","area":"","birth":"","birthday":{"date":1,"day":2,"hours":0,"minutes":0,"month":0,"nanos":0,"seconds":0,"time":315504000000,"timezoneOffset":-480,"year":80},"checkopinion":"","clubid":"","clubname":"","coachadept":"","coachcert":"0","coachcertname":"无","coachprice":0,"concernnum":0,"courseprice":0,"coursetimes":0,"createtime":{"date":19,"day":2,"hours":13,"minutes":14,"month":6,"nanos":0,"seconds":52,"time":1468905292000,"timezoneOffset":-480,"year":116},"createuser":"M000439","curMemrole":"mem","dayadd":"","distance":0,"distancestr":"","dynamicnum":0,"evascore":0,"evascoretotal":0,"evatimes":0,"follownum":3,"gender":"0","gendername":"女","headpage":"2","headpagename":"课程预约","identcode":"","identity":"","imagefile":[],"img":null,"imgfile":null,"imgfileFileName":"","imgpfile":"/image/bmember/M000439_1471834590778_p.png","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000439_1471834590778_p.png","imgsfile":"/image/bmember/M000439_1471834590778_s.png@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000439_1471834590778_s.png@!BMEMBER_S","isclubadmin":"0","isclubadminname":"否","ismanager":"","ispush":"1","ispushname":"开启","isstealth":"0","istopfile":[],"istrans":"1","latitude":41.751529,"lessonresent":0,"lessontotal":0,"linkurl":"","longitude":123.466112,"massagetimes":99,"memid":"M000439","memname":"","mempass":"e10adc3949ba59abbe56e057f20f883e","memrole":"mem","mobphone":"13897944728","modifytime":{"date":31,"day":3,"hours":15,"minutes":47,"month":7,"nanos":0,"seconds":20,"time":1472629640000,"timezoneOffset":-480,"year":116},"modifyuser":"M000439","nickname":"小孩","nowTime":0,"nowtimestr":"","openid":"","phonedeviceno":"747767A0-D933-4A25-B26B-B5A62F026155","pkeyListStr":"","posiupdatetime":{"date":7,"day":3,"hours":9,"minutes":44,"month":8,"nanos":0,"seconds":3,"time":1473212643000,"timezoneOffset":-480,"year":116},"recaddress":"和平区5","recname":"好","recphone":"13897900000","remark":"","resinform":"","signature":"","sorttype":"","status":"1","statusname":"有效","transtime":null,"updatetime":{"date":1,"day":4,"hours":15,"minutes":55,"month":8,"nanos":0,"seconds":56,"time":1472716556000,"timezoneOffset":-480,"year":116},"wxheadimgurl":"","wxnickname":"","wxopenid":"","wxregiarea":"","ycoincashnum":0,"ycoinnum":1400}
+     * member : {"applydate":{"date":18,"day":0,"hours":9,"minutes":45,"month":8,"nanos":0,"seconds":5,"time":1474163105000,"timezoneOffset":-480,"year":116},"applydatestr":"","applydescr":"啊啊啊啊啊啊\n","area":"","birth":"","birthday":{"date":8,"day":4,"hours":0,"minutes":0,"month":8,"nanos":0,"seconds":0,"time":1473264000000,"timezoneOffset":-480,"year":116},"checkopinion":"","clubid":"","clubname":"","coachadept":"啊啊啊啊\n","coachcert":"2","coachcertname":"已认证","coachprice":11111111111,"concernnum":0,"courseprice":0,"coursetimes":0,"createtime":{"date":16,"day":2,"hours":13,"minutes":25,"month":7,"nanos":0,"seconds":3,"time":1471325103000,"timezoneOffset":-480,"year":116},"createuser":"M000455","curMemrole":"coach","dayadd":"","distance":0,"distancestr":"","dynamicnum":0,"evascore":0,"evascoretotal":0,"evatimes":0,"follownum":1,"gender":"1","gendername":"男","headpage":"1","headpagename":"天气预报","identcode":"","identity":"","imagefile":[],"img":null,"imgfile":null,"imgfileFileName":"","imgpfile":"/image/bmember/M000455_1473305591090.png@!BMEMBER_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000455_1473305591090.png@!BMEMBER_P","imgsfile":"/image/bmember/M000455_1473305591090.png@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000455_1473305591090.png@!BMEMBER_S","isclubadmin":"0","isclubadminname":"否","ismanager":"","ispush":"1","ispushname":"开启","isstealth":"0","istopfile":[],"istrans":"1","latitude":41.751481,"lessonresent":0,"lessontotal":0,"linkurl":"","longitude":123.465997,"massagetimes":0,"memid":"M000455","memname":"","mempass":"e10adc3949ba59abbe56e057f20f883e","memrole":"coach","mobphone":"18624616670","modifytime":{"date":18,"day":0,"hours":9,"minutes":52,"month":8,"nanos":0,"seconds":47,"time":1474163567000,"timezoneOffset":-480,"year":116},"modifyuser":"platAdmin","nickname":"马小布","nowTime":0,"nowtimestr":"","openid":"","phonedeviceno":"","pkeyListStr":"","posiupdatetime":{"date":18,"day":0,"hours":9,"minutes":51,"month":8,"nanos":0,"seconds":19,"time":1474163479000,"timezoneOffset":-480,"year":116},"recaddress":"","recname":"钮政","recphone":"15040164600","remark":"教练认证审核人:平台管理员","resinform":"","signature":"","sorttype":"","status":"1","statusname":"有效","transtime":null,"updatetime":{"date":18,"day":0,"hours":9,"minutes":58,"month":8,"nanos":0,"seconds":23,"time":1474163903000,"timezoneOffset":-480,"year":116},"wxheadimgurl":"","wxnickname":"","wxopenid":"","wxregiarea":"","ycoincashnum":11823900,"ycoinnum":0}
      * friendslist : []
      */
 
     private String msgFlag;
     /**
-     * applydate : null
-     * applydatestr :
-     * applydescr :
-     * area :
-     * birth :
-     * birthday : {"date":1,"day":2,"hours":0,"minutes":0,"month":0,"nanos":0,"seconds":0,"time":315504000000,"timezoneOffset":-480,"year":80}
-     * checkopinion :
-     * clubid :
-     * clubname :
-     * coachadept :
-     * coachcert : 0
-     * coachcertname : 无
-     * coachprice : 0
+     * applydate : {"date":18,"day":0,"hours":9,"minutes":45,"month":8,"nanos":0,"seconds":5,"time":1474163105000,"timezoneOffset":-480,"year":116}
+     * applydatestr : 
+     * applydescr : 啊啊啊啊啊啊
+
+     * area : 
+     * birth : 
+     * birthday : {"date":8,"day":4,"hours":0,"minutes":0,"month":8,"nanos":0,"seconds":0,"time":1473264000000,"timezoneOffset":-480,"year":116}
+     * checkopinion : 
+     * clubid : 
+     * clubname : 
+     * coachadept : 啊啊啊啊
+
+     * coachcert : 2
+     * coachcertname : 已认证
+     * coachprice : 11111111111
      * concernnum : 0
      * courseprice : 0
      * coursetimes : 0
-     * createtime : {"date":19,"day":2,"hours":13,"minutes":14,"month":6,"nanos":0,"seconds":52,"time":1468905292000,"timezoneOffset":-480,"year":116}
-     * createuser : M000439
-     * curMemrole : mem
-     * dayadd :
+     * createtime : {"date":16,"day":2,"hours":13,"minutes":25,"month":7,"nanos":0,"seconds":3,"time":1471325103000,"timezoneOffset":-480,"year":116}
+     * createuser : M000455
+     * curMemrole : coach
+     * dayadd : 
      * distance : 0
-     * distancestr :
+     * distancestr : 
      * dynamicnum : 0
      * evascore : 0
      * evascoretotal : 0
      * evatimes : 0
-     * follownum : 3
-     * gender : 0
-     * gendername : 女
-     * headpage : 2
-     * headpagename : 课程预约
-     * identcode :
-     * identity :
+     * follownum : 1
+     * gender : 1
+     * gendername : 男
+     * headpage : 1
+     * headpagename : 天气预报
+     * identcode : 
+     * identity : 
      * imagefile : []
      * img : null
      * imgfile : null
-     * imgfileFileName :
-     * imgpfile : /image/bmember/M000439_1471834590778_p.png
-     * imgpfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000439_1471834590778_p.png
-     * imgsfile : /image/bmember/M000439_1471834590778_s.png@!BMEMBER_S
-     * imgsfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000439_1471834590778_s.png@!BMEMBER_S
+     * imgfileFileName : 
+     * imgpfile : /image/bmember/M000455_1473305591090.png@!BMEMBER_P
+     * imgpfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000455_1473305591090.png@!BMEMBER_P
+     * imgsfile : /image/bmember/M000455_1473305591090.png@!BMEMBER_S
+     * imgsfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000455_1473305591090.png@!BMEMBER_S
      * isclubadmin : 0
      * isclubadminname : 否
-     * ismanager :
+     * ismanager : 
      * ispush : 1
      * ispushname : 开启
      * isstealth : 0
      * istopfile : []
      * istrans : 1
-     * latitude : 41.751529
+     * latitude : 41.751481
      * lessonresent : 0
      * lessontotal : 0
-     * linkurl :
-     * longitude : 123.466112
-     * massagetimes : 99
-     * memid : M000439
-     * memname :
+     * linkurl : 
+     * longitude : 123.465997
+     * massagetimes : 0
+     * memid : M000455
+     * memname : 
      * mempass : e10adc3949ba59abbe56e057f20f883e
-     * memrole : mem
-     * mobphone : 13897944728
-     * modifytime : {"date":31,"day":3,"hours":15,"minutes":47,"month":7,"nanos":0,"seconds":20,"time":1472629640000,"timezoneOffset":-480,"year":116}
-     * modifyuser : M000439
-     * nickname : 小孩
+     * memrole : coach
+     * mobphone : 18624616670
+     * modifytime : {"date":18,"day":0,"hours":9,"minutes":52,"month":8,"nanos":0,"seconds":47,"time":1474163567000,"timezoneOffset":-480,"year":116}
+     * modifyuser : platAdmin
+     * nickname : 马小布
      * nowTime : 0
-     * nowtimestr :
-     * openid :
-     * phonedeviceno : 747767A0-D933-4A25-B26B-B5A62F026155
-     * pkeyListStr :
-     * posiupdatetime : {"date":7,"day":3,"hours":9,"minutes":44,"month":8,"nanos":0,"seconds":3,"time":1473212643000,"timezoneOffset":-480,"year":116}
-     * recaddress : 和平区5
-     * recname : 好
-     * recphone : 13897900000
-     * remark :
-     * resinform :
-     * signature :
-     * sorttype :
+     * nowtimestr : 
+     * openid : 
+     * phonedeviceno : 
+     * pkeyListStr : 
+     * posiupdatetime : {"date":18,"day":0,"hours":9,"minutes":51,"month":8,"nanos":0,"seconds":19,"time":1474163479000,"timezoneOffset":-480,"year":116}
+     * recaddress : 
+     * recname : 钮政
+     * recphone : 15040164600
+     * remark : 教练认证审核人:平台管理员
+     * resinform : 
+     * signature : 
+     * sorttype : 
      * status : 1
      * statusname : 有效
      * transtime : null
-     * updatetime : {"date":1,"day":4,"hours":15,"minutes":55,"month":8,"nanos":0,"seconds":56,"time":1472716556000,"timezoneOffset":-480,"year":116}
-     * wxheadimgurl :
-     * wxnickname :
-     * wxopenid :
-     * wxregiarea :
-     * ycoincashnum : 0
-     * ycoinnum : 1400
+     * updatetime : {"date":18,"day":0,"hours":9,"minutes":58,"month":8,"nanos":0,"seconds":23,"time":1474163903000,"timezoneOffset":-480,"year":116}
+     * wxheadimgurl : 
+     * wxnickname : 
+     * wxopenid : 
+     * wxregiarea : 
+     * ycoincashnum : 11823900
+     * ycoinnum : 0
      */
 
     private MemberBean member;
@@ -142,22 +143,35 @@ public class BeanMlogin {
     }
 
     public static class MemberBean {
-        private Object applydate;
+        /**
+         * date : 18
+         * day : 0
+         * hours : 9
+         * minutes : 45
+         * month : 8
+         * nanos : 0
+         * seconds : 5
+         * time : 1474163105000
+         * timezoneOffset : -480
+         * year : 116
+         */
+
+        private ApplydateBean applydate;
         private String applydatestr;
         private String applydescr;
         private String area;
         private String birth;
         /**
-         * date : 1
-         * day : 2
+         * date : 8
+         * day : 4
          * hours : 0
          * minutes : 0
-         * month : 0
+         * month : 8
          * nanos : 0
          * seconds : 0
-         * time : 315504000000
+         * time : 1473264000000
          * timezoneOffset : -480
-         * year : 80
+         * year : 116
          */
 
         private BirthdayBean birthday;
@@ -167,19 +181,19 @@ public class BeanMlogin {
         private String coachadept;
         private String coachcert;
         private String coachcertname;
-        private int coachprice;
-        private int concernnum;
-        private int courseprice;
-        private int coursetimes;
+        private long coachprice;
+        private String concernnum;
+        private String courseprice;
+        private String coursetimes;
         /**
-         * date : 19
+         * date : 16
          * day : 2
          * hours : 13
-         * minutes : 14
-         * month : 6
+         * minutes : 25
+         * month : 7
          * nanos : 0
-         * seconds : 52
-         * time : 1468905292000
+         * seconds : 3
+         * time : 1471325103000
          * timezoneOffset : -480
          * year : 116
          */
@@ -188,13 +202,13 @@ public class BeanMlogin {
         private String createuser;
         private String curMemrole;
         private String dayadd;
-        private int distance;
+        private String distance;
         private String distancestr;
-        private int dynamicnum;
-        private int evascore;
-        private int evascoretotal;
-        private int evatimes;
-        private int follownum;
+        private String dynamicnum;
+        private String evascore;
+        private String evascoretotal;
+        private String evatimes;
+        private String follownum;
         private String gender;
         private String gendername;
         private String headpage;
@@ -216,25 +230,25 @@ public class BeanMlogin {
         private String isstealth;
         private String istrans;
         private double latitude;
-        private int lessonresent;
-        private int lessontotal;
+        private String lessonresent;
+        private String lessontotal;
         private String linkurl;
         private double longitude;
-        private int massagetimes;
+        private String massagetimes;
         private String memid;
         private String memname;
         private String mempass;
         private String memrole;
         private String mobphone;
         /**
-         * date : 31
-         * day : 3
-         * hours : 15
-         * minutes : 47
-         * month : 7
+         * date : 18
+         * day : 0
+         * hours : 9
+         * minutes : 52
+         * month : 8
          * nanos : 0
-         * seconds : 20
-         * time : 1472629640000
+         * seconds : 47
+         * time : 1474163567000
          * timezoneOffset : -480
          * year : 116
          */
@@ -242,20 +256,20 @@ public class BeanMlogin {
         private ModifytimeBean modifytime;
         private String modifyuser;
         private String nickname;
-        private int nowTime;
+        private String nowTime;
         private String nowtimestr;
         private String openid;
         private String phonedeviceno;
         private String pkeyListStr;
         /**
-         * date : 7
-         * day : 3
+         * date : 18
+         * day : 0
          * hours : 9
-         * minutes : 44
+         * minutes : 51
          * month : 8
          * nanos : 0
-         * seconds : 3
-         * time : 1473212643000
+         * seconds : 19
+         * time : 1474163479000
          * timezoneOffset : -480
          * year : 116
          */
@@ -272,14 +286,14 @@ public class BeanMlogin {
         private String statusname;
         private Object transtime;
         /**
-         * date : 1
-         * day : 4
-         * hours : 15
-         * minutes : 55
+         * date : 18
+         * day : 0
+         * hours : 9
+         * minutes : 58
          * month : 8
          * nanos : 0
-         * seconds : 56
-         * time : 1472716556000
+         * seconds : 23
+         * time : 1474163903000
          * timezoneOffset : -480
          * year : 116
          */
@@ -289,16 +303,16 @@ public class BeanMlogin {
         private String wxnickname;
         private String wxopenid;
         private String wxregiarea;
-        private int ycoincashnum;
-        private int ycoinnum;
+        private String ycoincashnum;
+        private String ycoinnum;
         private List<?> imagefile;
         private List<?> istopfile;
 
-        public Object getApplydate() {
+        public ApplydateBean getApplydate() {
             return applydate;
         }
 
-        public void setApplydate(Object applydate) {
+        public void setApplydate(ApplydateBean applydate) {
             this.applydate = applydate;
         }
 
@@ -390,35 +404,35 @@ public class BeanMlogin {
             this.coachcertname = coachcertname;
         }
 
-        public int getCoachprice() {
+        public long getCoachprice() {
             return coachprice;
         }
 
-        public void setCoachprice(int coachprice) {
+        public void setCoachprice(long coachprice) {
             this.coachprice = coachprice;
         }
 
-        public int getConcernnum() {
+        public String getConcernnum() {
             return concernnum;
         }
 
-        public void setConcernnum(int concernnum) {
+        public void setConcernnum(String concernnum) {
             this.concernnum = concernnum;
         }
 
-        public int getCourseprice() {
+        public String getCourseprice() {
             return courseprice;
         }
 
-        public void setCourseprice(int courseprice) {
+        public void setCourseprice(String courseprice) {
             this.courseprice = courseprice;
         }
 
-        public int getCoursetimes() {
+        public String getCoursetimes() {
             return coursetimes;
         }
 
-        public void setCoursetimes(int coursetimes) {
+        public void setCoursetimes(String coursetimes) {
             this.coursetimes = coursetimes;
         }
 
@@ -454,11 +468,11 @@ public class BeanMlogin {
             this.dayadd = dayadd;
         }
 
-        public int getDistance() {
+        public String getDistance() {
             return distance;
         }
 
-        public void setDistance(int distance) {
+        public void setDistance(String distance) {
             this.distance = distance;
         }
 
@@ -470,43 +484,43 @@ public class BeanMlogin {
             this.distancestr = distancestr;
         }
 
-        public int getDynamicnum() {
+        public String getDynamicnum() {
             return dynamicnum;
         }
 
-        public void setDynamicnum(int dynamicnum) {
+        public void setDynamicnum(String dynamicnum) {
             this.dynamicnum = dynamicnum;
         }
 
-        public int getEvascore() {
+        public String getEvascore() {
             return evascore;
         }
 
-        public void setEvascore(int evascore) {
+        public void setEvascore(String evascore) {
             this.evascore = evascore;
         }
 
-        public int getEvascoretotal() {
+        public String getEvascoretotal() {
             return evascoretotal;
         }
 
-        public void setEvascoretotal(int evascoretotal) {
+        public void setEvascoretotal(String evascoretotal) {
             this.evascoretotal = evascoretotal;
         }
 
-        public int getEvatimes() {
+        public String getEvatimes() {
             return evatimes;
         }
 
-        public void setEvatimes(int evatimes) {
+        public void setEvatimes(String evatimes) {
             this.evatimes = evatimes;
         }
 
-        public int getFollownum() {
+        public String getFollownum() {
             return follownum;
         }
 
-        public void setFollownum(int follownum) {
+        public void setFollownum(String follownum) {
             this.follownum = follownum;
         }
 
@@ -678,19 +692,19 @@ public class BeanMlogin {
             this.latitude = latitude;
         }
 
-        public int getLessonresent() {
+        public String getLessonresent() {
             return lessonresent;
         }
 
-        public void setLessonresent(int lessonresent) {
+        public void setLessonresent(String lessonresent) {
             this.lessonresent = lessonresent;
         }
 
-        public int getLessontotal() {
+        public String getLessontotal() {
             return lessontotal;
         }
 
-        public void setLessontotal(int lessontotal) {
+        public void setLessontotal(String lessontotal) {
             this.lessontotal = lessontotal;
         }
 
@@ -710,11 +724,11 @@ public class BeanMlogin {
             this.longitude = longitude;
         }
 
-        public int getMassagetimes() {
+        public String getMassagetimes() {
             return massagetimes;
         }
 
-        public void setMassagetimes(int massagetimes) {
+        public void setMassagetimes(String massagetimes) {
             this.massagetimes = massagetimes;
         }
 
@@ -782,11 +796,11 @@ public class BeanMlogin {
             this.nickname = nickname;
         }
 
-        public int getNowTime() {
+        public String getNowTime() {
             return nowTime;
         }
 
-        public void setNowTime(int nowTime) {
+        public void setNowTime(String nowTime) {
             this.nowTime = nowTime;
         }
 
@@ -950,19 +964,19 @@ public class BeanMlogin {
             this.wxregiarea = wxregiarea;
         }
 
-        public int getYcoincashnum() {
+        public String getYcoincashnum() {
             return ycoincashnum;
         }
 
-        public void setYcoincashnum(int ycoincashnum) {
+        public void setYcoincashnum(String ycoincashnum) {
             this.ycoincashnum = ycoincashnum;
         }
 
-        public int getYcoinnum() {
+        public String getYcoinnum() {
             return ycoinnum;
         }
 
-        public void setYcoinnum(int ycoinnum) {
+        public void setYcoinnum(String ycoinnum) {
             this.ycoinnum = ycoinnum;
         }
 
@@ -982,71 +996,71 @@ public class BeanMlogin {
             this.istopfile = istopfile;
         }
 
-        public static class BirthdayBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+        public static class ApplydateBean {
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -1058,88 +1072,181 @@ public class BeanMlogin {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
+                this.year = year;
+            }
+        }
+
+        public static class BirthdayBean {
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
+            private long time;
+            private String timezoneOffset;
+            private String year;
+
+            public String getDate() {
+                return date;
+            }
+
+            public void setDate(String date) {
+                this.date = date;
+            }
+
+            public String getDay() {
+                return day;
+            }
+
+            public void setDay(String day) {
+                this.day = day;
+            }
+
+            public String getHours() {
+                return hours;
+            }
+
+            public void setHours(String hours) {
+                this.hours = hours;
+            }
+
+            public String getMinutes() {
+                return minutes;
+            }
+
+            public void setMinutes(String minutes) {
+                this.minutes = minutes;
+            }
+
+            public String getMonth() {
+                return month;
+            }
+
+            public void setMonth(String month) {
+                this.month = month;
+            }
+
+            public String getNanos() {
+                return nanos;
+            }
+
+            public void setNanos(String nanos) {
+                this.nanos = nanos;
+            }
+
+            public String getSeconds() {
+                return seconds;
+            }
+
+            public void setSeconds(String seconds) {
+                this.seconds = seconds;
+            }
+
+            public long getTime() {
+                return time;
+            }
+
+            public void setTime(long time) {
+                this.time = time;
+            }
+
+            public String getTimezoneOffset() {
+                return timezoneOffset;
+            }
+
+            public void setTimezoneOffset(String timezoneOffset) {
+                this.timezoneOffset = timezoneOffset;
+            }
+
+            public String getYear() {
+                return year;
+            }
+
+            public void setYear(String year) {
                 this.year = year;
             }
         }
 
         public static class CreatetimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -1151,88 +1258,88 @@ public class BeanMlogin {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }
 
         public static class ModifytimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -1244,88 +1351,88 @@ public class BeanMlogin {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }
 
         public static class PosiupdatetimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -1337,88 +1444,88 @@ public class BeanMlogin {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }
 
         public static class UpdatetimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -1430,19 +1537,19 @@ public class BeanMlogin {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }

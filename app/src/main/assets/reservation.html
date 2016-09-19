@@ -22,7 +22,7 @@
 			  var docEl = document.documentElement,
 			    timer = null;
 			  function changeRem () {
-			    root.rem = docEl.getBoundingClientRect().width / 16;
+			    root.rem = docEl.getBoundingClientRect().width / 10;
 			    docEl.style.fontSize = root.rem + 'px';
 			  }
 			
@@ -49,7 +49,7 @@
 		</script>
 		<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 		<script type="text/javascript" src="js/mframe.js"></script>
-		<!--http://127.0.0.1:8020/assets/reservation.html?coachid=M000440&orderid=CO-20160907-477&memid=M000014-->
+		
 	</head>
 
 	<body>
@@ -164,7 +164,7 @@
 					</div>
 				</div>
 			</div>-->
-			<script type="text/javascript">
+			<script type="text/javascript"><!--http://127.0.0.1:8020/assets/reservation.html?coachid=M000440&orderid=CO-20160907-477&memid=M000014-->
 			
 				window.onload = function() {
 					//对头部日期进行初始化
@@ -210,9 +210,19 @@
 						if (curDate > curMonthDays) {
 							curDate -= curMonthDays;
 						}
-						$("#tag" + dayOfWeek + " p.p2").text(curDate);
+						if (dayOfWeek==0) {
+							$("#tag" + 7 + " p.p2").text(curDate);
+						}else{
+							$("#tag" + dayOfWeek + " p.p2").text(curDate);
+						}
+						
 						if (i == 0) {
-							$("#tag" + dayOfWeek + " a").attr("id", "current").attr("class", "current");
+							if (dayOfWeek==0) {
+								$("#tag" + 7 + " a").attr("id", "current").attr("class", "current");
+							}else{
+								$("#tag" + dayOfWeek + " a").attr("id", "current").attr("class", "current");
+							}
+							
 						}
 					}
 				}
@@ -297,13 +307,15 @@
 										});
 									}
 								});
-								$("#tab" + d.getDay()).fadeIn(); // 显示第一个选项卡的内容
+								/*$("#tab" + d.getDay()).fadeIn(); // 显示第一个选项卡的内容*/
+								$($("#tabs .current").attr('name')).fadeIn();//显示当天选项卡
 							}
 						}
 					});
 				}
 				(function() {
 					$("#content > div").hide(); // 最初隐藏所有内容
+					/*$($("#tabs a").attr('name')).fadeIn();*/
 					$("#tabs a").on("click", function(e) {
 						e.preventDefault();
 						if ($(this).attr("class") == "current") { //检测当前选项卡
@@ -368,11 +380,11 @@
 					});
 				}
 				
-					function height(){
+					function height(){//content定高
 						var height=myScroll.windowHeight();
 						$(".reservation").css("height",height)
 						var pheight=parseFloat($(".frame_photo").css("height"));
-						var pbottom=parseFloat($(".frame_photo").css("margin-bottom"))*2;
+						var pbottom=parseFloat($(".frame_photo").css("margin-bottom"))*3;
 						var rheight=parseFloat($("#tag7").css("height"));
 						/*var conheight=height-pheight-pbottom-rheight-64;*/
 						var c=myScroll.windowHeight();

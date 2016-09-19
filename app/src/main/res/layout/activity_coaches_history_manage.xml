@@ -3,6 +3,7 @@
                xmlns:tools="http://schemas.android.com/tools"
                tools:context="com.maxiaobu.healthclub.ui.activity.CoachesHistoryManageActivity"
                android:orientation="vertical"
+               android:fitsSystemWindows="true"
                android:layout_width="match_parent"
                android:layout_height="match_parent">
     <include layout="@layout/common_title"/>
@@ -18,10 +19,11 @@
             >
 
             <ImageView
+                android:id="@+id/iv_top"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/sz_200"
-                android:background="@color/gray_pressed"
-                android:src="@mipmap/ic_test_header"/>
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_update_course"
+                android:scaleType="fitXY"/>
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
@@ -30,9 +32,11 @@
                 android:layout_marginTop="@dimen/sz_10"
                 android:gravity="center_vertical"
                 android:textColor="@color/colorTextSecondary"
-                android:hint="游泳课"
-
-                android:background="@color/white"/>
+                tools:hint="游泳课"
+                android:textColorHint="@color/colorTextHint"
+                android:background="@color/white"
+                android:imeOptions="actionNext"
+                />
             <!--20次-->
             <LinearLayout
                 android:id="@+id/ly_times"
@@ -49,7 +53,11 @@
                     android:paddingLeft="@dimen/sz_20"
                     android:background="@null"
                     android:textColor="@color/colorTextSecondary"
-                    android:hint="20"/>
+                    tools:hint="20"
+                    android:inputType="number"
+                    android:imeOptions="actionNext"
+
+                    android:textColorHint="@color/colorTextHint"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -75,7 +83,11 @@
                     android:paddingLeft="@dimen/sz_20"
                     android:background="@null"
                     android:textColor="@color/colorTextSecondary"
-                    android:hint="20"/>
+                    tools:hint="20"
+                    android:inputType="number"
+                    android:imeOptions="actionNext"
+
+                    android:textColorHint="@color/colorTextHint"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -101,26 +113,19 @@
                     android:paddingLeft="@dimen/sz_20"
                     android:background="@null"
                     android:textColor="@color/colorTextSecondary"
-                    android:hint="1800"/>
+                    tools:hint="1800"
+                    android:inputType="number"
+                    android:imeOptions="actionNext"
 
-                <ImageView
+                    android:textColorHint="@color/colorTextHint"/>
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@mipmap/ic_arrow_right"
+                    android:layout_height="match_parent"
+                    android:text="元"
+                    android:textColor="@color/colorTextThird"
+                    android:gravity="center_vertical"
                     android:layout_marginRight="@dimen/sz_20"/>
             </LinearLayout>
-            <!--价格必填-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/sz_36"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/sz_20"
-                android:textColor="@color/colorTextSecondary"
-                android:textSize="@dimen/sz_14"
-                android:hint="价格  (必填)"
-                android:layout_marginTop="@dimen/sz_10"
-                android:background="@color/white"/>
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/ed_content"
@@ -130,9 +135,11 @@
                 android:layout_marginTop="@dimen/sz_10"
                 android:paddingLeft="@dimen/sz_20"
                 android:paddingRight="@dimen/sz_20"
-                android:hint="sdjfhkjsdhfkljdshfkjhdsklfhdslkhflkjdhskfahdslkhflkdshfklsdhafkjhsdf"
+                tools:hint="sdjfhkjsdhfkljdshfkjhdsklfhdslkhflkjdhskfahdslkhflkdshfklsdhafkjhsdf"
                 android:paddingTop="@dimen/sz_10"
-                android:paddingBottom="@dimen/sz_20"/>
+                android:paddingBottom="@dimen/sz_20"
+                android:minHeight="@dimen/sz_80"
+                android:textColorHint="@color/colorTextHint"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
@@ -145,7 +152,7 @@
                     android:id="@+id/tv_online"
                     android:layout_width="@dimen/sz_100"
                     android:layout_height="@dimen/sz_44"
-                    android:text="上线"
+                    android:text="保存并上线"
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:background="@drawable/bg_food_order_select"
@@ -163,8 +170,6 @@
                     android:textColor="@color/white"
                     android:background="@drawable/bg_catering_select"
                     android:layout_marginRight="@dimen/sz_8"/>
-
-
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

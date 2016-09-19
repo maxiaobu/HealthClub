@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:fitsSystemWindows="true"
     tools:context="com.maxiaobu.healthclub.ui.activity.CoachesManageActivity">
 
     <LinearLayout
@@ -22,8 +22,8 @@
             android:background="@color/colorTextPrimary"
             app:tabIndicatorColor="@color/colorPrimary"
             app:tabMode="fixed"
-            app:tabTextAppearance="@style/TabBlackOrange"
             app:tabSelectedTextColor="@color/white"
+            app:tabTextAppearance="@style/TabBlackOrange"
             app:tabTextColor="@color/white"/>
 
 
@@ -41,7 +41,7 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/sz_24"
         android:clickable="true"
-        android:src="@mipmap/ic_test_header"
-
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_release_course"
         />
 </android.support.design.widget.CoordinatorLayout>

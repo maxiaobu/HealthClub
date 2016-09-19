@@ -75,7 +75,7 @@ public class ClubCourseFragment extends BaseFrg {
         LinearLayoutManager layoutManagerPersonal = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRvPersonal.setLayoutManager(layoutManagerPersonal);
         mRvPersonal.setItemAnimator(new DefaultItemAnimator());
-        mPersonalAdapter = new AdapterPcourseFrg(getActivity(), mPcourseData);
+        mPersonalAdapter = new AdapterPcourseFrg(getActivity(), mPcourseData,"");
         mRvPersonal.setAdapter(mPersonalAdapter);
 
         mRvGroup.setHasFixedSize(true);

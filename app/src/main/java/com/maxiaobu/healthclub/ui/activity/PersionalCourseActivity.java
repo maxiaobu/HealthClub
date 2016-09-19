@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -82,6 +83,8 @@ public class PersionalCourseActivity extends BaseAty implements EasyPermissions.
         public void popNewWindow(String page){
             Intent intent = new Intent();
             intent.putExtra("url",page);
+            intent.putExtra("coachid",getIntent().getStringExtra("coachid"));
+            Log.d("WebAppInterface", getIntent().getStringExtra("coachid"));
             intent.setClass(PersionalCourseActivity.this,CourseBuyActivity.class);
             startActivity(intent);
         }

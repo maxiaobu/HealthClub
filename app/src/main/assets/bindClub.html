@@ -18,10 +18,10 @@
 </head>
 <body>
 <div data-role="page" style="background:none;">
-  <div data-role="content" class="bind">
+  <div data-role="content" class="bind" style="display: none;">
   	  <div class="datum">
       	  <!--<p class="bind_p" id="clubname">羿健康健身俱乐部</p>-->
-          <a href="tel:123456789" rel="external" data-role="none"><p id="conphone">123456789</p><img src="images/jiantou_botton_default1.png" width="15" height="20" /></a>
+          <a href="tel:123456789" rel="external" data-role="none"><p id="conphone">123456789</p><img src="images/jiantou_botton_default.png" width="18" height="18" /></a>
           <a href="" rel="external" data-role="none">场地参考价格：<i id="clubprices">200</i>/次</a>
           <a href="" rel="external" data-role="none"><p id="address" style="line-height: 20px;">沈阳市和平区市府大路三经街北市家园3号楼1单元</p><!--<img src="images/page/gonext.png" width="15" height="20" />--></a>
       </div>
@@ -35,10 +35,9 @@
       <div class="o_btn_1"><a href="javascript:void(0);" data-role="none" rel="external" onclick="bindSubmit();">提交绑定申请</a></div>
   </div>
 </div>
-<script type="text/javascript">
+<script type="text/javascript">/*http://127.0.0.1:8020/assets/bindClub.html?clubid=C000174&coachid=M000447*/
 var c=myScroll.windowHeight();
 $(".bind").css("height",c+"px");
-console.log(c)
 var clubid = parmData.clubid;
 var coachid = parmData.coachid?parmData.coachid:parmData.memid;
 
@@ -70,6 +69,7 @@ function initData(){
 	                $("#clubprices").text(clubprices);
 	                $("#address").text(address);
 	            }
+	            $(".bind").show();
 	        }
 	    });	
 }

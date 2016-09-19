@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.maxiaobu.healthclub.R;
+import com.maxiaobu.healthclub.common.beangson.BeanMcoachBespeak;
 import com.maxiaobu.healthclub.common.beangson.BeanMmyBespeak;
 
 import java.util.List;
@@ -25,9 +26,9 @@ import butterknife.ButterKnife;
 public class AdapterTeachingAppointment extends RecyclerView.Adapter {
 
     private Activity mActivity;
-    private  List<BeanMmyBespeak.BespeaklistBean> mData;
+    private  List<BeanMcoachBespeak.CoachBespeaklistBean> mData;
 
-    public AdapterTeachingAppointment(Activity activity, List<BeanMmyBespeak.BespeaklistBean> mData) {
+    public AdapterTeachingAppointment(Activity activity,List<BeanMcoachBespeak.CoachBespeaklistBean> mData) {
         mActivity = activity;
         this.mData = mData;
     }
@@ -41,7 +42,7 @@ public class AdapterTeachingAppointment extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         MyViewHolder viewHolder = (MyViewHolder) holder;
-        BeanMmyBespeak.BespeaklistBean bean = mData.get(position);
+        BeanMcoachBespeak.CoachBespeaklistBean bean = mData.get(position);
         //0 代付款；1 待收货；2已完成
         Glide.with(mActivity).load(bean.getImgsfile()).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvPhoto);
         viewHolder.mTvName.setText(bean.getNickname());

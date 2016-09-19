@@ -42,8 +42,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/sz_6"
+                    android:layout_marginLeft="@dimen/sz_16"
                     android:text="排序"
+                    android:textSize="@dimen/sz_16"
                     android:textColor="@color/white"/>
 
                 <ImageView
@@ -77,8 +78,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/sz_6"
+                    android:layout_marginLeft="@dimen/sz_16"
                     android:text="筛选"
+                    android:textSize="@dimen/sz_16"
                     android:textColor="@color/white"/>
 
                 <ImageView

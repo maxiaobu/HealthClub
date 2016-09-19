@@ -94,8 +94,8 @@ public class RequestManager {
      * @param tag      上下文
      * @param params   post需要传的参数
      * @param listener 回调
-     *//*
-    public static void postImg(String url, Object tag, RequestParams params,
+     */
+    /*public static void postImg(String url, Object tag, RequestParams params,
                                RequestListener listener) {
         ByteArrayRequest request = new ByteArrayRequest(Request.Method.POST,
                 url, params, responseListener(listener, false),
@@ -119,9 +119,8 @@ public class RequestManager {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         addRequest(request, tag);
-    }
+    }*/
 
-    */
 
     /**
      * post 返回String 带进度条 nodata

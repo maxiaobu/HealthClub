@@ -69,6 +69,8 @@ public class CourseBuyActivity extends BaseAty {
             Log.d("WebAppInterface", ordno);
             intent.putExtra("totlePrice",ordamt);
             intent.putExtra(Constant.PAY_TYPE,"course");
+            intent.putExtra("coachid",getIntent().getStringExtra("coachid"));
+            Log.d("WebAppInterface", getIntent().getStringExtra("coachid"));
             intent.setClass(CourseBuyActivity.this,PayActivity.class);
             startActivity(intent);
         }
@@ -76,7 +78,6 @@ public class CourseBuyActivity extends BaseAty {
         @JavascriptInterface
         public void personalInfo() {
             Intent intent = new Intent();
-
             intent.setClass(CourseBuyActivity.this, RevampAddress.class);
             startActivityForResult(intent, Constant.RESULT_REQUEST_ONE);
         }

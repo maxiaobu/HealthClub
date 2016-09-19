@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
+import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.ui.activity.BindClubListActivity;
 import com.maxiaobu.healthclub.ui.activity.CoachcertApplyActivity;
 import com.maxiaobu.healthclub.ui.activity.CoachesManageActivity;
@@ -35,6 +36,8 @@ import butterknife.OnClick;
  * maxiaobu 2016-9-5
  */
 public class MineFragment extends BaseFrg implements View.OnClickListener, ScrollViewListener {
+
+
     @Bind(R.id.iv_header)
     ImageView mIvHeader;
     @Bind(R.id.tv_header_edit)
@@ -65,6 +68,18 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
     LinearLayout mLyQiandao;
     @Bind(R.id.ly_authentication)
     LinearLayout mLyAuthentication;
+    @Bind(R.id.ly_course_manage)
+    LinearLayout mLyCourseManage;
+    @Bind(R.id.ly_teaching_appointment)
+    LinearLayout mLyTeachingAppointment;
+    @Bind(R.id.ly_club_list)
+    LinearLayout mLyClubList;
+    @Bind(R.id.ly_my_student)
+    LinearLayout mLyMyStudent;
+    @Bind(R.id.ly_file_management)
+    LinearLayout mLyFileManagement;
+    @Bind(R.id.ly_trainer_root)
+    LinearLayout mLyTrainerRoot;
     @Bind(R.id.ly_blacklist)
     LinearLayout mLyBlacklist;
     @Bind(R.id.ly_set_top)
@@ -79,8 +94,6 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
     Toolbar mToolbarCommon;
     @Bind(R.id.app_bar_layout)
     AppBarLayout mAppBarLayout;
-
-
     private View mRootView;
 
     public MineFragment() {
@@ -100,6 +113,16 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
     @Override
     public void initView() {
         mScrollView.setScrollViewListener(this);
+        // 判断身份的
+        String memrole =SPUtils.getString(Constant.MEMROLE,"-1");
+//        Log.d("MineFragment", memrole);
+        if (memrole.equals("coach")) {
+            mLyTrainerRoot.setVisibility(View.VISIBLE);
+            mLyAuthentication.setVisibility(View.GONE);
+        } else if (memrole.equals("mem")) {
+            mLyTrainerRoot.setVisibility(View.GONE);
+            mLyAuthentication.setVisibility(View.VISIBLE);
+        }
 
 
     }
@@ -109,11 +132,11 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
 
     }
 
-    @OnClick({R.id.ly_order,R.id.ly_login_out,R.id.ly_appointment,R.id.ly_authentication,
-            R.id.ly_course_manage,R.id.ly_club_list,R.id.ly_teaching_appointment})
+    @OnClick({R.id.ly_order, R.id.ly_login_out, R.id.ly_appointment, R.id.ly_authentication,
+            R.id.ly_course_manage, R.id.ly_club_list, R.id.ly_teaching_appointment})
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ly_order:
                 startActivity(new Intent(getActivity(), OrderListActivity.class));
                 break;
@@ -162,7 +185,7 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
     @Override
     public void onScrollChanged(ObservableScrollView scrollView, int x, int y, int oldx, int oldy) {
         float a = y;
-        float b = a / 300;
+        float b = a / 1000;
         float max = (float) Math.max(0, 1 - b);
         Log.d("MineFragment", String.valueOf(b));
         mAppBarLayout.setAlpha(max);

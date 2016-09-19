@@ -74,17 +74,17 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Home">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/GuideTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.LoginActivity"
@@ -258,17 +258,20 @@
         <activity
             android:name=".ui.activity.CoachesOnlineManageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden">
         </activity>
         <activity
             android:name=".ui.activity.CoachesHistoryManageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden">
         </activity>
         <activity
             android:name=".ui.activity.CoachesReleaseActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden">
         </activity>
         <activity android:name=".ui.activity.MineTeachingAppointmentActivity"
                   android:screenOrientation="portrait"

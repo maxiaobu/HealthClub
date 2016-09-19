@@ -206,6 +206,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         SPUtils.putString(Constant.REC_ADDRESS,data.getMember().getRecaddress());
                         SPUtils.putString(Constant.REC_NAME,data.getMember().getRecname());
                         SPUtils.putString(Constant.REC_PHONE,data.getMember().getRecphone());
+                        SPUtils.putString(Constant.MEMROLE, data.getMember().getMemrole());
+//                        Log.d("LoginActivity", String.valueOf(b));
 
                         // TODO: 2016/9/7 登录环信
                         loginHx("m"+memid.substring(1),password,nickname,avatar,pd);

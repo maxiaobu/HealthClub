@@ -6,14 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.bumptech.glide.Glide;
 import com.maxiaobu.healthclub.R;
-import com.maxiaobu.healthclub.common.UrlPath;
-import com.maxiaobu.healthclub.common.beangson.BeanCoachesListAty;
+import com.maxiaobu.healthclub.common.beangson.BeanMbindList;
 import com.maxiaobu.healthclub.common.beangson.BeanMunbindList;
 import com.maxiaobu.healthclub.ui.weiget.GlideCircleTransform;
 
@@ -25,7 +23,7 @@ import butterknife.ButterKnife;
 /**
  * Created by 马小布 on 2016/8/31.
  */
-public class AdapterUnbindClubListfrg extends RecyclerView.Adapter {
+public class AdapterBindClubListfrg extends RecyclerView.Adapter {
 
 
 
@@ -40,9 +38,9 @@ public class AdapterUnbindClubListfrg extends RecyclerView.Adapter {
     }
 
     private Context mContext;
-    private List<BeanMunbindList.UnbindListBean> mData;
+    private List<BeanMbindList.BindListBean> mData;
 
-    public AdapterUnbindClubListfrg(Context context,List<BeanMunbindList.UnbindListBean> mData) {
+    public AdapterBindClubListfrg(Context context, List<BeanMbindList.BindListBean> mData) {
         mContext = context;
         this.mData = mData;
     }
@@ -56,12 +54,12 @@ public class AdapterUnbindClubListfrg extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final MyViewHolder viewHolder = (MyViewHolder) holder;
-        BeanMunbindList.UnbindListBean unbindListBean = mData.get(position);
-        Glide.with(mContext).load(unbindListBean.getClubmemimgsfile()).transform(new GlideCircleTransform(mContext)).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
-        viewHolder.mTvName.setText(unbindListBean.getClubname());
-        viewHolder.mTvDistance.setText("距您 " +unbindListBean.getDistance()+ "km");
-        viewHolder.mTvAddress.setText(unbindListBean.getAddress());
-        viewHolder.mTvContent.setText("场地参考价格:"+unbindListBean.getClubprice()+"元/次");
+        BeanMbindList.BindListBean bindListBean = mData.get(position);
+        Glide.with(mContext).load(bindListBean.getClubmemimgsfile()).transform(new GlideCircleTransform(mContext)).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
+        viewHolder.mTvName.setText(bindListBean.getClubname());
+        viewHolder.mTvDistance.setText("距您 " +bindListBean.getDistance()+ "km");
+        viewHolder.mTvAddress.setText(bindListBean.getAddress());
+        viewHolder.mTvContent.setText("场地参考价格:"+bindListBean.getClubprice()+"元/次");
         viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

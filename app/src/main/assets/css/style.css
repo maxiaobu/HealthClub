@@ -1953,6 +1953,7 @@ li.ui-block-b,
 	text-align: center;
 	line-height: 50px;
 	font-size: 16px;
+	text-shadow: none;
 }
 .li_intro .intro_detail {
 	position:absolute ;
@@ -2009,7 +2010,7 @@ li.ui-block-b,
 	background: #f5f5f5;
 }
 .p_content .li_list .notice .notice_write{
-	background: url(../images/icon_tanhao.png) no-repeat 92%center;
+	background: url(../images/icon_zhushi.png) no-repeat 92%center;
 	background-size:25px 25px ;
 	padding-left: 0px;
 }
@@ -4570,12 +4571,22 @@ a.abtn span {
 	background: #f5f5f5;
 	padding-left: 15px;
 	box-sizing: border-box;
-	border-bottom: 1px solid #ccc;
+	position: relative;
 }
-.box01_c dl .dd:last-child {
-	border: none;
+.box01_c dl .dd:last-child:after {
+	background: #fff;
 }
-
+.box01_c dl .dd:after{
+	content: "";
+	height: 1px;
+	background: #dadada;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	transform: scaleY(.5);
+	-webkit-transform: scaleY(.5);
+}
 .box01_c dl .dd em {
 	margin-left: 12%;
 }
@@ -4924,11 +4935,10 @@ a.abtn span {
 }
 
 .courseBuy .course_top {
-	border: 1px solid #dadada;
 	margin-top: 7px;
 	border-radius: 7px;
 	background: #fff;
-	
+	border: 1px solid #fff;
 }
 
 .courseBuy .ui-content {
@@ -4938,20 +4948,43 @@ a.abtn span {
 
 .courseBuy p.title {
 	margin: 0;
-	padding: 3px 0px;
+	padding: 7px 0px;
 	font-size: 1.6em;
 	color: #4c4c4c;
 	margin:0px 13.33px;
-	border-bottom: 1px solid #dedede;
+	/*border-bottom: 1px solid #dedede;*/
 	line-height: 30px;
+	position: relative;
 }
-
+.courseBuy p.title:after {
+	height: 1px;
+	content: "";
+	background: #dadada;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	transform: scaleY(.5);
+	-webkit-transform: scaleY(.5);
+	
+}
 .courseBuy .name {
 	overflow: hidden;
-	border-bottom: 1px solid #dedede;
+	/*border-bottom: 1px solid #dedede;*/
 	margin: 0px 13.33px ;
+	position: relative;
 }
-
+.courseBuy .name:after {
+	height: 1px;
+	content: "";
+	background: #dadada;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	transform: scaleY(.5);
+	-webkit-transform: scaleY(.5);
+}
 .courseBuy .name .img {
 	float: left;
 	width: 66px;
@@ -4973,7 +5006,7 @@ a.abtn span {
 }
 
 .courseBuy .name .txt2 {
-	width: 60%;
+	width: 70%;
 	float: left;
 	margin-left: 13.33px;
 }
@@ -4983,16 +5016,21 @@ a.abtn span {
 	color: #4c4c4c;
 	font-weight: bold;
 	line-height: 25px;
-	margin-top: 15px;
+	margin-top: 25px;
+	margin-bottom: 8px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .courseBuy .name .txt2 p.p2 {
 	font-size: 1.4em;
-	color: #4c4c4c;
+	color: #939393;
 	line-height: 16px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	margin-top: 8px;
 }
 
 .courseBuy .intro_course {
@@ -5011,10 +5049,21 @@ a.abtn span {
 .courseBuy .intro_course p {
 	margin: 8px 0;
 }
+.courseBuy .intro_course .course_p:after {
+	height: 1px;
+	content: "";
+	background: #dadada;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	transform: scaleY(.5);
+	-webkit-transform: scaleY(.5);
+}
 .courseBuy .course_bottom {
-	border: 1px solid #dadada;
+	border: 1px solid #fff;
 	margin-top: 7px;
-	margin-bottom: 60px;
+	margin-bottom: 65px;
 	border-radius: 7px;
 	background: #fff;
 }
@@ -5023,7 +5072,20 @@ a.abtn span {
 .courseBuy .course_bottom .top_in {
 	overflow: hidden;
 	margin: 0 13.33px;
-	border-bottom: 1px solid #dedede;
+	/*border-bottom: 1px solid #dedede;*/
+	padding: 7px 0;
+	position: relative;
+}
+.courseBuy .course_bottom .top_in:after {
+	height: 1px;
+	content: "";
+	background: #dadada;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	transform: scaleY(.5);
+	-webkit-transform: scaleY(.5);
 }
 .courseBuy .course_bottom .top_in img{
 	width: 18px;
@@ -6015,6 +6077,7 @@ a.abtn span {
 	margin: 0;
 	padding: 0;
 	background: #f5f5f5;
+	font-family: "微软雅黑";
 	/*width: 95.74%;
 	margin: 0 auto;*/
 }
@@ -6070,7 +6133,7 @@ a.abtn span {
 }
 
 .reservation .coach_1 {
-	font-size: 0.35rem;
+	font-size: 0.45rem;
 	color: #fff;
 	/*font-weight: bold;*/
 	line-height: 10px;
@@ -6081,7 +6144,7 @@ a.abtn span {
 }
 
 .reservation .moine_coach {
-	font-size: 0.35rem;
+	font-size: 0.45rem;
 	color: #fff;
 	padding-right: 10px;
 	line-height: 1.2;
@@ -6101,7 +6164,7 @@ a.abtn span {
 }
 
 .reservation .moveing {
-	font-size: 0.546rem;
+	font-size: 0.58rem;
 	color: #fff;
 	font-weight: bold;
 	/*line-height: 41px;*/
@@ -6115,10 +6178,10 @@ a.abtn span {
 	padding-left: 10px;
 	color: #f27243;
 	padding-top: 0.52rem;
-	line-height:10px ;
+	line-height:1.2 ;
 }
 .reservation .p_m i{
-		font-size: 0.35rem;
+		font-size: 0.45rem;
 
 }
 .reservation .a_ddress {
@@ -6139,21 +6202,28 @@ a.abtn span {
 .res_down .re_nav .p1{
 	color: #f27241;
 	font-weight: normal;
-	font-size: 0.32rem;
+	font-size: 0.45rem;
 }
 .res_down .re_nav .p2{
 	padding: 0.5rem 0;
-	font-size:0.32rem ;
+	font-size:0.45rem ;
 	font-weight: normal;
-	color: #404040;
+	color: #000;
 	margin-top: 0.2rem;
 }
 .res_down .re_nav {
 	overflow: hidden;
 	background: #fff;
 	font-size: 0.375rem;
+	padding-top:0.3115rem ;
+	
 }
-
+.res_down .whole{
+	overflow: hidden;
+	width: 100%;
+	background: #fff;
+	margin-top: 10px;
+}
 .res_down .re_nav li {
 	float: left;
 	width: 14.28%;
@@ -6163,7 +6233,13 @@ a.abtn span {
 	/*background: url(../images/page/shuxian.png) no-repeat right center;
 	background-size: 2px 57px;*/
 }
-
+.bor{
+	height:1px;
+	background: #dadada;
+	-webkit-transform:scaleY(.5);
+	 transform: scaleY(.5);
+	-webkit-transform-origin:0 0;
+}
 
 .res_down .re_nav li a.current .p1,
 .res_down .re_nav li a.current .p2 {
@@ -6199,16 +6275,36 @@ a.abtn span {
 	height: 100%;
 	position: relative;
 }
-
+.res_down #content ul.show_ul {
+	margin: 0;
+}
 .res_down #content ul li {
 	width: 100%;
 	text-align: center;
-	border-bottom: 1px solid #dadada;
+	/*border-bottom: 1px solid #dadada;*/
 	height: 20%;
 	box-sizing: border-box;
 	/*padding: 0 30px;*/
 	position: relative;
 }
+.res_down #content ul li em {
+	font-size: 0.6rem;
+	margin-left: 5%;
+	color: #4c4c4c;
+	font-weight: bold;
+}
+.res_down #content ul li:after{
+  content:"";
+  position: absolute;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  border-bottom:1px solid #dadada;
+  -webkit-transform:scaleY(.5);
+  transform: scaleY(.5);
+  -webkit-transform-origin:0 0;
+}
+.res_down #content ul li:after
 .res_down #content ul li:last-of-type {
 	border:0 none;
 }
@@ -6216,7 +6312,7 @@ a.abtn span {
 .res_down #content ul li a {
 	display: block;
 	color: #4c4c4c;
-	font-size: 0.469rem;
+	font-size: 0.58rem;
 	font-weight: bold;
     text-align: center;
    /* padding: 6% 0;*/
@@ -6233,7 +6329,7 @@ a.abtn span {
 	 background: url(../images/button_down.png) no-repeat center right;
 	 background-size: 0.7rem 0.7rem;
 }*/
-.res_down #content ul img{
+.res_down #content ul img.noreservation{
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -6421,15 +6517,15 @@ a.abtn span {
 .bind .datum a p {
 	float: left;
 	line-height: 30px;
-	width: 80%;
-	/*overflow: hidden;
+	width: 85%;
+	overflow: hidden;
 	text-overflow: ellipsis;
-	white-space: nowrap;*/
+	white-space: nowrap;
 }
 
 .bind .datum a img {
 	float: right;
-	margin-top: 20px;
+	margin-top: 22px;
 	margin-right: 14px;
 }
 
@@ -6442,7 +6538,7 @@ a.abtn span {
 }
 
 .bind .datum a:nth-child(1) {
-	background: url(../images/page/icon1.png) no-repeat 15px center;
+	background: url(../images/page/icon_phone.png) no-repeat 15px center;
 	background-size: 22px 22px;
 }
 
@@ -6979,8 +7075,7 @@ a.abtn span {
 	float: left;
 	margin-top: 20px;
 	/*margin-left: 10px;*/
-	border: 1px solid #cec0bc;
-	border-radius: 60px;
+	border-radius: 100%;
 	width: 70px;
 	height: 70px;
 	overflow: hidden;
@@ -7006,35 +7101,52 @@ a.abtn span {
 }
 
 .evaluate .e_top .text p.p1 {
-	font-size: 1.6em;
-	color: #4C4C4C;
+	font-size: 1.5em;
+	color: #262626;
 	line-height: 10px;
 	text-align: center;
 	font-weight: 700;
+	margin-bottom: 0.8em;
 }
 
 .evaluate .e_top .text p.p2 {
 	font-size: 1.4em;
-	color: #8e8e8e;
+	color: #939393;
 	line-height: 14px;
 	width: 70%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	margin: 1em auto;
+	margin: 0.5em auto;
 	text-align: center;
+	padding-bottom: 10px;
 }
 
 .evaluate .e_top .star .star_wrap{
 	width: 100px;
 	margin: 0 auto;
+	position: relative;
+	height: 20px;
 }
-
+.star_wrap .star_kong {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 3;
+}
+.star_wrap .star_shi {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 4;
+	width: 20px;
+	overflow: hidden;
+}
 .evaluate .e_top .star img {
-	width: 15px;
-	height: 15px;
+	width: 16px;
+	height: 16px;
 	/*float: left;*/
-	margin-right: 5px;
+	margin-right: 4px;
 	display: inline-block;
 }
 //评价的订单详情
@@ -7059,7 +7171,11 @@ a.abtn span {
 .evaluate .route{
 	height: 1px;
 	background: #dedede;
-	margin-top: 20px;
+	width: 90.2%;
+	margin: 0 auto;
+	margin-top: 30px;
+	transform: scaleY(.5);
+	-webkit-transform: scaleY(.5);
 }
 .evaluate .e_center .course_pic {
 	width: 65px;
@@ -7067,6 +7183,7 @@ a.abtn span {
 	float: left;
 	margin-right:15px ;
 	background: #ccc;
+	margin-top: 3px;
 }
 .evaluate .e_center .course_pic img {
 	width: 100%;
@@ -7076,14 +7193,17 @@ a.abtn span {
 	width: 70%;
 }
 .evaluate .e_center .course_text .p1{
-	font-size: 1.2rem;
+	font-size: 1.7em;
 	line-height: 10px;
 	margin: 15px 0;
+	font-weight: bold;
+	color: #262626;
 }
 .evaluate .e_center .course_text .p2,
 .evaluate .e_center .course_text .p3 {
 	line-height:5px;
-	font-size: 0.8em;
+	font-size: 1.3em;
+	color: #939393;
 }
 .evaluate .e_down {
 	width: 55%;
@@ -7131,7 +7251,7 @@ a.abtn span {
 
 .evaluate .e_pos a {
 	display: block;
-	font-size: 1.8em;
+	font-size: 1.6em;
 	color: #fff;
 	text-shadow: none;
 	font-weight: normal;
@@ -7936,12 +8056,11 @@ li.ui-block-b,
 	
 }
 .hr1 {
-	border-top: solid 1px #dadada;
+	/*border-top: solid 1px #dadada;*/
 	margin-top: 10px
 }
 
 .hr1-cxl {
-	border-top: solid 1px #dadada;
 	margin-top: 60px
 }
 
@@ -7984,7 +8103,7 @@ li.ui-block-b,
 
 .clear_mar {
 	margin-left: 45px;
-	border-bottom: 1px solid #cec0bc;
+	/*border-bottom: 1px solid #cec0bc;*/
 }
 /*#togg:last-child {
 	border-bottom: 1px solid #dadada;
@@ -7994,11 +8113,14 @@ li.ui-block-b,
 	border-bottom: 1px solid #cec0bc;
 }*/
 
-.clear_mar1:last-child {
-	margin-left: 0px;
-	border-bottom: 1px solid #dadada;
-}
 
+.clear_mar1:last-child:after{
+	height: 0;
+	border: 1px solid #dadada;
+	transform: scaleY(.5);
+	-webkit-transform: scaleY(.5);
+	transform-origin: 0 0;
+}
 .clear_mar:last-child {
 	margin-left: 0px;
 }
@@ -8132,16 +8254,29 @@ li.ui-block-b,
 	overflow: hidden;
 	position: relative;
 }
-
+#datum-arr a:after{
+	content: "";
+	border-top: 1px solid #dadada;
+	position: absolute;
+	-webkit-transform:scaleY(.5);
+   transform: scaleY(.5);
+  -webkit-transform-origin:0 0;
+   transform-origin: 0 0;
+   left: 0;
+   top: 0;
+   height: 0;
+   width: 100%;
+}
 #datum-arr a:last-child {
 	border: none;
 }
-#datum-arr a:last-child:after{
+/*#datum-arr a:last-child:after{
 	height: 10px;
 	content:"";
 	background: #f5f5f5;
 	display: block;
-}/*新增间隔*/
+}*/
+/*新增间隔*/
 #datum-arr a p {
 	float: left;
 	width: 70%;
@@ -8177,7 +8312,7 @@ li.ui-block-b,
 }
 
 #datum-arr .click_tel p {
-	background: url(../images/page/icon1.png) no-repeat 15px center;
+	background: url(../images/page/icon_phone.png) no-repeat 15px center;
 	background-size: 22px 22px;
 }
 
@@ -8271,7 +8406,7 @@ li.ui-block-b,
 
 .tenper {/*2016.8.31 改*/
 	padding:10px 0 10px 50px;
-	background: url(../images/page/icon_shijian.png) no-repeat 15px center;
+	background: url(../images/page/icon_clock.png) no-repeat 15px center;
 	background-size: 22px 22px;
 }
 
@@ -9018,10 +9153,16 @@ li.ui-block-b,
 	color: #4c4c4c !important;
 	font-size: 1.6em;
 	font-weight: normal;
-	background: url(../images/page/button_goumaikecheng_up.png);
-	background-size: cover;
+	background: #f27241;
+	text-shadow: none;
+	color: #fff !important;
 }
-
+.qqq a:active{
+	color: #fff !important;
+}
+.qqq a:hover {
+	color: #fff !important;
+}
 .q_pay a {
 	float: right;
 	margin-top: 5px;
@@ -9099,7 +9240,7 @@ li.ui-block-b,
 	float: left;
 	height: 25px;
 	width: 14.285%;
-	line-height: 28px;
+	/*line-height: 28px;*/
 	text-align: center;
 	cursor: pointer;
 	font-size: 1.4em;
@@ -9119,7 +9260,9 @@ li.ui-block-b,
 	display: block;
 	color: #4c4c4c !important;
 }
-
+.weekItem-cxl li a .p1{
+	color: #f27241;
+}
 .weekItem-cxl li a#current {
 	background: url(../images/page/current_1.png) no-repeat;
 	background-size: 100% 100%;
@@ -9173,8 +9316,6 @@ li.ui-block-b,
 	right: 0;
 	width: 100%;
 	height: 45px;
-	background: url(../images/page/btn_1.png) repeat-x;
-	background-size: 1px 45px;
 }
 
 .weeks-cxl .w_inset {
@@ -9195,7 +9336,77 @@ li.ui-block-b,
 	margin-right: 5px;
 	line-height: 20px;
 }
+.res_manager .whole .w_inset{
+	float: right;
+	padding-right: 5%;
+	margin: 12px 0;
+}
+.res_manager .whole .w_inset img {
+	display: inline-block;
+	margin-top: 7px;
+	vertical-align: top;
+	width: 0.5rem;
+	height: 0.5rem;
+	min-width: 20px;
+	min-height: 20px;
+}
+.res_manager .whole .w_inset span{
+	font-size: 0.5rem;
+	padding: 0;
+	margin: 0;
+	margin-right: 20px;
+	/*line-height: 20px;*/
+	line-height: 0.6rem;
+}
+.reservation .e_pos{
+	position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    height: 56px;
+    background: #fff;
+}
+.reservation .e_pos a{
+	display: block;
+    font-size: 0.8em;
+    color: #fff !important;
+    text-shadow: none;
+    font-weight: normal;
+    height: 46px;
+    line-height: 46px;
+    background: #f27241;
+    width: 94.2%;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-top: 5px;
+}
 
+.res_down #content .show_ul li {
+	text-align: left;
+	position: relative;
+	width: 100%;
+	height: 20%;
+}
+.res_down #content .show_ul li p{
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	margin-top: -17px;
+	width: 100%;
+}
+.res_down #content .show_ul li img{
+	position: absolute;
+    margin: 0;
+    right: 5%;
+    top: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    min-height: 20px;
+    min-width: 20px;
+    margin-top:5px ;
+    
+}
 .october {
 	font-size: 14px;
 	color: #444;
@@ -9210,7 +9421,6 @@ li.ui-block-b,
 }
 
 .qqq-cxl {
-	box-shadow: 0px -1px 3px #eae8e8;
 	width: 100%;
 	height: 50px;
 	bottom: 0px;
@@ -9246,8 +9456,8 @@ li.ui-block-b,
 
 .tru-cxl {
 	float: right;
-	padding-right: 15px;
-	padding-top: 15px;
+	/*padding-right: 15px;
+	padding-top: 15px;*/
 }
 
 .timeTable-cxl {
@@ -9330,7 +9540,14 @@ li.ui-block-b,
 .swimming {
 	padding-top: 10px;
 }
-
+@media screen and (min-width:568px){
+	.reservation .e_pos a{
+		font-size:0.6em ;
+	}
+	.res_down #content .show_ul li img{
+		margin: 0;
+	}
+}
 
 /*2016、2、1预约页*/
 
