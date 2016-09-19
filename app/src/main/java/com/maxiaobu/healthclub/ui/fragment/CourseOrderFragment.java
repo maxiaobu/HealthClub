@@ -1,7 +1,9 @@
 package com.maxiaobu.healthclub.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -15,6 +17,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -27,12 +31,17 @@ import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanCorderList;
 import com.maxiaobu.healthclub.common.beangson.BeanLunchOrderList;
+import com.maxiaobu.healthclub.ui.activity.CateringDetailActivity;
 import com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView;
 import com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
 import com.maxiaobu.healthclub.volleykit.NodataFragment;
 import com.maxiaobu.healthclub.volleykit.RequestJsonListener;
+import com.maxiaobu.healthclub.volleykit.RequestListener;
 import com.maxiaobu.healthclub.volleykit.RequestParams;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,60 +94,6 @@ public class CourseOrderFragment extends BaseFrg implements OnRefreshListener, O
 
     @Override
     public void initView() {
-// 设置WebView支持JavaScript
-//        mWebView.getSettings().setJavaScriptEnabled(true);
-        // 在js中调用本地java方法
-//        mWebView.addJavascriptInterface(new BaseJsToAndroid(getActivity()), "mobile");
-        // 在js中调用本地java方法
-        // web_load.addJavascriptInterface(new
-        // jsToAndroid_Find(),
-        // "mobile");
-        // 添加客户端支持
-        // 设置进度条
-        /*mWebView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-               *//* if (newProgress == 100) {
-                    // 隐藏进度条
-//                    swipeLayout.setRefreshing(false);
-                } else {
-                    if (!swipeLayout.isRefreshing())
-                        swipeLayout.setRefreshing(true);
-                }*//*
-
-                super.onProgressChanged(view, newProgress);
-            }
-        });
-        // 设置WebView支持JavaScript
-        mWebView.getSettings().setJavaScriptEnabled(true);
-        // 在js中调用本地java方法
-        // web_load.addJavascriptInterface(new
-        // jsToAndroid_Find(),
-        // "mobile");
-        mWebView.getSettings().setDefaultTextEncodingName("utf-8");
-        mWebView.loadUrl("file:///android_asset/corderList.html");
-        // 设置WebView中的客户端的行为
-        mWebView.setWebViewClient(new WebViewClient() {
-            // 让WebView对点击网页中的URL做出响应
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
-
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                // 页面加载完成 通过js回调函数实现获取页面信息
-                view.loadUrl("javascript:window.mobile.loadPageData("
-                        + "document.title,$('title').attr('isback'),$('title').attr('btn'),$('title').attr('navbar'))");
-            }
-        });*/
         mLoadType = 0;
         mCurrentPage = 1;
         mData = new ArrayList<>();
@@ -150,6 +105,68 @@ public class CourseOrderFragment extends BaseFrg implements OnRefreshListener, O
         mSwipeTarget.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new AdapterCourseOrderFrg(getActivity(), mData);
         mSwipeTarget.setAdapter(mAdapter);
+        mAdapter.setOnCancelItemClickListener(new AdapterCourseOrderFrg.OnCancelItemClickListener() {
+            @Override
+            public void onItemClick(View view, final String what) {
+                new MaterialDialog.Builder(getActivity())
+                        .title("确定删除订单？")
+                        .positiveColor(getResources().getColor(R.color.colorTextPrimary))
+                        .positiveText("确认")
+
+                        .onPositive(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                dialog.dismiss();
+                                //http://192.168.1.121:8080/efithealth/mcancelForder.do?ordno=FO-20160726-170
+                                // {"msgFlag":"1","msgContent":"取消订单成功"}
+                                RequestParams params = new RequestParams("ordno", what);
+                                params.put("listtype","corderlist");
+                                App.getRequestInstance().post(getActivity(),
+                                        UrlPath.URL_MDELETEBYLIST, params,
+                                        new RequestListener() {
+                                            @Override
+                                            public void requestSuccess(String s) {
+                                                try {
+                                                    JSONObject object = new JSONObject(s);
+                                                    Toast.makeText(getActivity(), object.get("msgContent").toString(), Toast.LENGTH_SHORT).show();
+                                                    mCurrentPage = 1;
+                                                    mLoadType = 0;
+                                                    initData();
+                                                } catch (JSONException e) {
+                                                    Toast.makeText(getActivity(), "接口变了，我告诉我凹", Toast.LENGTH_SHORT).show();
+                                                    e.printStackTrace();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void requestAgain(NodataFragment nodataFragment) {
+                                                nodataFragment.dismissAllowingStateLoss();
+                                            }
+
+                                        });
+                            }
+                        })
+                        .negativeColor(getResources().getColor(R.color.colorTextPrimary))
+                        .negativeText("取消")
+                        .onNegative(new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        mAdapter.setOnAgainItemClickListener(new AdapterCourseOrderFrg.OnAgainItemClickListener() {
+            @Override
+            public void onItemClick(View view, String what) {
+                Intent intent = new Intent(getActivity(),
+                        CateringDetailActivity.class);
+                intent.putExtra("merid", what);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

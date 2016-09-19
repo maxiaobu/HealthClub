@@ -50,9 +50,6 @@ public class AdapterLunchOrderFrg extends RecyclerView.Adapter {
     public void setOnAgainItemClickListener(OnAgainItemClickListener listener){
         mAgainListener =listener;
     }
-
-
-
     private Activity mActivity;
     private List<BeanLunchOrderList.ForderListBean> mData;
     private LunchOrderFragment fragment;
@@ -89,7 +86,6 @@ public class AdapterLunchOrderFrg extends RecyclerView.Adapter {
                 mActivity.startActivity(intent);
             }
         });
-
 
         if (listBean.getOrdstatus().equals("0")) {
             //未完成

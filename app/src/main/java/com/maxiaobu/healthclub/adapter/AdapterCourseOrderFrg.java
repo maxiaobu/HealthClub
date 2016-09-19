@@ -1,6 +1,7 @@
 package com.maxiaobu.healthclub.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.beangson.BeanCorderList;
+import com.maxiaobu.healthclub.ui.activity.FoodOrderDetailActivity;
+import com.maxiaobu.healthclub.ui.activity.PayActivity;
 import com.maxiaobu.healthclub.utils.TimesUtil;
 
 import java.util.List;
@@ -82,50 +85,97 @@ public class AdapterCourseOrderFrg extends RecyclerView.Adapter {
 
         viewHolder.mTvCourseName.setText(listBean.getCoursename());
         viewHolder.mTvClubName.setText(listBean.getClubname());
-        viewHolder.mTvEndTime.setText("截至日期"+
-                TimesUtil.stringsToTimestamp(String.valueOf(listBean.getOrdenddate().getTime()),"yyyy/MM/dd"));
-        viewHolder.mTvResidueTimes.setText( "剩余" + listBean.getOrdcoursetimes() + "次");
-        if (listBean.getPaystatus() == "0") {
+        viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.setClass(mActivity,FoodOrderDetailActivity.class);
+//                intent.putExtra("merid",String.valueOf( mData.get(position).getMbfordermerlist().get(0).getMerid()));
+                intent.putExtra("ordno",mData.get(position).getOrdno());
+                mActivity.startActivity(intent);
+            }
+        });
+
+
+        if (listBean.getPaystatus() .equals("0") ) {
             viewHolder.mTvComplete.setText("待付款");
             viewHolder.mTvAppointment.setVisibility(View.GONE);
-            corder.querySelector("#orderExeDiv1").style.display = "none";
-            corder.querySelector("#orderExeDiv2").style.display = "";
-            corder.querySelector("#orderExe2").innerHTML = "继续支付";
-            corder.querySelector("#orderExe2").href = "javascript:commitExe('payOrder','" + corderData.ordno + "')";
-            corder.querySelector("#orderDelExe").href = "javascript:commitExe('del','" + corderData.ordno + "')";
-        } else if (listBean.getOrdstatus() == "1") {
-            corder.querySelector("#paystatus").innerHTML = "已完成";
-            corder.querySelector("#orderExeDiv1").style.display = "none";
-            corder.querySelector("#orderExeDiv2").style.display = "";
-            corder.querySelector("#orderExe2").innerHTML = "再来一单";
-            corder.querySelector("#orderExe2").href = "javascript:commitExe('orderAgain','" + corderData.ordno + "')";
-            corder.querySelector("#orderDelExe").href = "javascript:commitExe('del','" + corderData.ordno + "')";
-        } else if (corderData.bespeaknum == corderData.coursenum) {
-            corder.querySelector("#paystatus").innerHTML = "待预约";
-            corder.querySelector("#orderExe1").innerHTML = "现在预约";
-            corder.querySelector("#orderExe1").href = "javascript:commitExe('bespeak','" + corderData.ordno + "','" + corderData.coachid + "')";
-        } else if (corderData.bespeaknum > corderData.coursenum) {
-            corder.querySelector("#paystatus").innerHTML = "已预约";
-            corder.querySelector("#orderExe1").href = "javascript:commitExe('查看预约','" + corderData.ordno + "')";
-        }
-        if (corderData.paystatus == "0") {
-            corder.querySelector("#ordbegindatestr").innerHTML = "";
-            corder.querySelector("#ordcoursetimes").innerHTML = corderData.coursedays + "天/" + corderData.ordcoursetimes + "次"
-        } else if (corderData.ordstatus == "1") {
-            var datestr = "截止到" + formatdate(corderData.ordenddate);
-            var t = corder.querySelector("#ordbegindatestr");
-            corder.querySelector("#ordbegindatestr").innerHTML = datestr;
-            corder.querySelector("#ordcoursetimes").innerHTML = corderData.coursedays + "天/" + corderData.ordcoursetimes + "次"
-        } else {
-            corder.querySelector("#ordbegindatestr").innerHTML = "截止到" + formatdate(corderData.ordenddate);
-            corder.querySelector("#ordcoursetimes").innerHTML = "剩余" + corderData.ordcoursetimes + "次";
-        }
-        if (corderData.paystatus === "2") {
-            corder.querySelector("#ordamt").innerHTML = "凭会员卡免费预约";
-        } else {
-            corder.querySelector("#ordamt").innerHTML = "共计：" + corderData.ordamt + "元";
-        }
+            viewHolder.mLyNopay.setVisibility(View.VISIBLE);
+            viewHolder.mTvRight.setText("继续支付");
+            viewHolder.mTvLeft.setText("删除");
+            viewHolder.mTvRight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(new Intent(mActivity, PayActivity.class));
+                    intent.putExtra("totlePrice", String.valueOf(mData.get(position).getOrdamt()));
+                    intent.putExtra("ordno", String.valueOf("["+mData.get(position).getOrdno()+"]"));
+//                                Log.d("OrderConfirmActivity", object.getOrdno().toString());
+                    mActivity.startActivity(intent);
+                }
+            });
+            viewHolder.mTvLeft.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener!=null){
+                        mListener.onItemClick(view,String.valueOf(mData.get(position).getOrdno()));
+                    }
+                }
+            });
+        } else if (listBean.getOrdstatus() .equals("1") ) {
+            viewHolder.mTvComplete.setText("已完成");
+            viewHolder.mTvAppointment.setVisibility(View.GONE);
+            viewHolder.mLyNopay.setVisibility(View.VISIBLE);
+            viewHolder.mTvRight.setText("再来一单");
+            viewHolder.mTvLeft.setText("删除");
+            viewHolder.mTvRight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mAgainListener.onItemClick(view,String.valueOf( mData.get(position).getCoachid() ));
+                }
+            });
+            viewHolder.mTvLeft.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener!=null){
+                        mListener.onItemClick(view,String.valueOf( mData.get(position).getOrdno() ));
+                    }
+                }
+            });
 
+        } else if (listBean.getBespeaknum() ==listBean.getCoursenum()) {
+            viewHolder.mTvComplete.setText("待预约");
+            viewHolder.mTvAppointment.setVisibility(View.VISIBLE);
+            viewHolder.mLyNopay.setVisibility(View.GONE);
+            viewHolder.mTvAppointment.setText("现在预约");
+            // TODO: 2016/9/19 yuyue
+//            corder.querySelector("#orderExe1").href = "javascript:commitExe('bespeak','" + corderData.ordno + "','" + corderData.coachid + "')";
+        } else if (listBean.getBespeaknum() >listBean.getCoursenum()) {
+            viewHolder.mTvComplete.setText("已预约");
+            viewHolder.mTvAppointment.setVisibility(View.VISIBLE);
+            viewHolder.mLyNopay.setVisibility(View.GONE);
+            viewHolder.mTvAppointment.setText("查看预约");
+            // TODO: 2016/9/19 yuyue
+//            corder.querySelector("#orderExe1").href = "javascript:commitExe('查看预约','" + corderData.ordno + "')";
+        }
+        if (listBean.getPaystatus() .equals("0")) {
+//            viewHolder.mTvResidueTimes.setText("剩余" + listBean.getOrdcoursetimes() + "次");
+            viewHolder.mTvResidueTimes.setText(listBean.getCoursedays() + "天/"  + listBean.getOrdcoursetimes() + "次");
+        } else if (listBean.getOrdstatus().equals("1") ) {
+            viewHolder.mTvEndTime.setText("截至日期" +
+                    TimesUtil.stringsToTimestamp(
+                            String.valueOf(listBean.getOrdenddate().getTime()), "yyyy/MM/dd"));
+            viewHolder.mTvResidueTimes.setText(listBean.getCoursedays() + "天/"  + listBean.getOrdcoursetimes() + "次");
+        } else {
+            viewHolder.mTvResidueTimes.setText("剩余" + listBean.getOrdcoursetimes() + "次");
+            viewHolder.mTvEndTime.setText("截至日期" +
+                    TimesUtil.stringsToTimestamp(
+                            String.valueOf(listBean.getOrdenddate().getTime()), "yyyy/MM/dd"));
+        }
+        if (listBean.getPaystatus() .equals("2")) {
+            viewHolder.mTvPrice.setText("凭会员卡免费预约");
+        } else {
+            viewHolder.mTvPrice.setText( "共计：" + listBean.getOrdamt() + "元");
+        }
 
 
     }
@@ -157,10 +207,10 @@ public class AdapterCourseOrderFrg extends RecyclerView.Adapter {
         TextView mTvResidueTimes;
         @Bind(R.id.tv_appointment)
         TextView mTvAppointment;
-        @Bind(R.id.tv_pay)
-        TextView mTvPay;
-        @Bind(R.id.tv_delete)
-        TextView mTvDelete;
+        @Bind(R.id.tv_right)
+        TextView mTvRight;
+        @Bind(R.id.tv_left)
+        TextView mTvLeft;
         @Bind(R.id.ly_nopay)
         LinearLayout mLyNopay;
         @Bind(R.id.ly_root)

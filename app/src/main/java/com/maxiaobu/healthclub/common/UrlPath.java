@@ -200,6 +200,14 @@ public class UrlPath {
      * {"msgFlag":"1","msgContent":"取消订单成功"}
      */
     public static final String URL_CANCEL_ORDER = URL_BASE + "mcancelForder.do";
+    /**
+     * 取消课程订单
+     * http://192.168.1.121:8080/efithealth/mdeleteByList.do?ordno=FO-20160726-170&listtype=corderlist
+     * ordno: "'" + orderid + "'",
+     *listtype: "corderlist"
+     * {"msgFlag":"1","msgContent":"取消订单成功"}
+     */
+    public static final String URL_MDELETEBYLIST = URL_BASE + "mdeleteByList.do";
 
     /**
      * 订单详情
