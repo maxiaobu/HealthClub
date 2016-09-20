@@ -48,14 +48,6 @@ public class SplashActivity extends AppCompatActivity {
     public BDLocationListener myListener;
 
     private ImageView iv_start;
-    public Handler m_handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-//            HealthUtil.update_loacl_friend();
-//            HealthUtil.update_local_myinfo();
-//            HealthUtil.update_loacl_indexdata();
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,18 +73,16 @@ public class SplashActivity extends AppCompatActivity {
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                //自动登录,进入主页面前加载全部组群及会话
+
                 long start = System.currentTimeMillis();
                 myListener = new MyLocationListener();
                 mLocationClient.registerLocationListener(myListener);
                 setLocationOption();
                 mLocationClient.start();
-
-                if (DemoHelper.getInstance().isLoggedIn() && null!=SPUtils.getString( Constant.MEMID)) {
-                    Message message = new Message();
-                    m_handler.sendMessage(message);
-                    EMClient.getInstance().groupManager().loadAllGroups();
-                    EMClient.getInstance().chatManager().loadAllConversations();
+                //自动登录,进入主页面前加载全部组群及会话
+                if (DemoHelper.getInstance().isLoggedIn() && null != SPUtils.getString(Constant.MEMID)) {
+//                    EMClient.getInstance().groupManager().loadAllGroups();
+//                    EMClient.getInstance().chatManager().loadAllConversations();
                     long costTime = System.currentTimeMillis() - start;
                     // TODO: 2016/9/7 版本更新 、context用app
                     checkVersion();
@@ -105,7 +95,7 @@ public class SplashActivity extends AppCompatActivity {
                         }
                     }
                     //进入主界面
-                   goHomeActivity();
+                    goHomeActivity();
                 } else {
                     try {
                         Thread.sleep(sleepTime);
@@ -136,7 +126,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void checkGuide() {
-        boolean enter_guide = SPUtils.getBoolean( "enter_guide", true);
+        boolean enter_guide = SPUtils.getBoolean("enter_guide", true);
         if (enter_guide) {
             startActivity(new Intent(SplashActivity.this, GuideActivity.class));
             overridePendingTransition(android.R.anim.fade_in,
@@ -250,21 +240,21 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         public void onReceiveLocation(BDLocation location) {
             // Receive Location
-            SPUtils.putString(Constant.LATITUDE,location.getLatitude() + "");
+            SPUtils.putString(Constant.LATITUDE, location.getLatitude() + "");
             SPUtils.putString(Constant.LONGITUDE, location.getLongitude() + "");
             String local_city = location.getCity();
-            Log.i("myapp","beyond");
+            Log.i("myapp", "beyond");
 
             if (local_city != null) {
 //                String cityname = local_city.substring(0, local_city.length() - 1).toString();
                 SPUtils.putString(Constant.CITY, location.getCity());
                 Log.d("MyLocationListener", location.getCity());
-            }
-            else {
+            } else {
                 SPUtils.putString(Constant.CITY, "沈阳");
             }
-            			mLocationClient.stop();
+            mLocationClient.stop();
         }
+
         public void onReceivePoi(BDLocation location) {
 
         }

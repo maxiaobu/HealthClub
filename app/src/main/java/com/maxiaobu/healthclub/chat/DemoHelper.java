@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.hyphenate.EMCallBack;
 import com.hyphenate.EMConnectionListener;
@@ -24,6 +25,8 @@ import com.hyphenate.chat.EMOptions;
 import com.hyphenate.chat.EMTextMessageBody;
 import com.hyphenate.exceptions.HyphenateException;
 import com.hyphenate.util.EMLog;
+import com.hyphenate.util.NetUtils;
+import com.maxiaobu.healthclub.MainActivity;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.chat.db.DemoDBManager;
 import com.maxiaobu.healthclub.chat.db.InviteMessgeDao;
@@ -372,6 +375,11 @@ public class DemoHelper {
                 } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                     onConnectionConflict();
                 }
+                if (NetUtils.hasNetwork(appContext)) {
+                    Toast.makeText(appContext, "连接不到聊天服务器", Toast.LENGTH_SHORT).show();
+                } /*else {
+                    Toast.makeText(appContext, "当前网络不可用，请检查网络设置", Toast.LENGTH_SHORT).show();
+                }*/
             }
 
             @Override
@@ -396,16 +404,22 @@ public class DemoHelper {
         };
 
         IntentFilter callFilter = new IntentFilter(EMClient.getInstance().callManager().getIncomingCallBroadcastAction());
-        if (callReceiver == null) {
+        if (callReceiver == null)
+
+        {
             callReceiver = new CallReceiver();
         }
 
         //register incoming call receiver
         appContext.registerReceiver(callReceiver, callFilter);
         //register connection listener
-        EMClient.getInstance().addConnectionListener(connectionListener);
+        EMClient.getInstance().
+
+                addConnectionListener(connectionListener);
+
         //register group and contact event listener
         registerGroupAndContactListener();
+
         //register message event listener
         registerMessageListener();
 
@@ -679,6 +693,7 @@ public class DemoHelper {
     }
 
     /**
+     * 账户在其他设备登录
      * user has logged into another device
      */
     protected void onConnectionConflict() {
@@ -689,6 +704,7 @@ public class DemoHelper {
     }
 
     /**
+     * 账户被删除
      * account is removed
      */
     protected void onCurrentAccountRemoved() {
@@ -708,7 +724,7 @@ public class DemoHelper {
         // 获取user信息，demo是从内存的好友列表里获取，
         // 实际开发中，可能还需要从服务器获取用户信息,
         // 从服务器获取的数据，最好缓存起来，避免频繁的网络请求
-        EaseUser user ;
+        EaseUser user;
         //若userId是当前用户的id,返回当前用户的id
         if (username.equals(EMClient.getInstance().getCurrentUser()))
             return getUserProfileManager().getCurrentUserInfo();

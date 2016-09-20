@@ -191,24 +191,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             App.getRequestInstance().post(this, UrlPath.URL_LOGIN, params, new RequestListener() {
                 @Override
                 public void requestSuccess(String s) {
-                    String responseString = s.toString();
-//                    Log.d("LoginActivity", responseString);
-                    BeanMlogin data = JsonUtils.object(responseString, BeanMlogin.class);
+                    final BeanMlogin data = JsonUtils.object(s, BeanMlogin.class);
                     data.getMsgFlag();
                     if ("1".equals(data.getMsgFlag())) {
-                        String nickname = data.getMember().getNickname();
-                        String memid = data.getMember().getMemid();
-                        String avatar=data.getMember().getImgsfilename();
-                        SPUtils.putString( Constant.MEMID, memid);
-                        SPUtils.putString( Constant.NICK_NAME, nickname);
-                        SPUtils.putString( Constant.AVATAR, avatar);
-                        SPUtils.putString(Constant.USER_ID,userName);
-                        SPUtils.putString(Constant.REC_ADDRESS,data.getMember().getRecaddress());
-                        SPUtils.putString(Constant.REC_NAME,data.getMember().getRecname());
-                        SPUtils.putString(Constant.REC_PHONE,data.getMember().getRecphone());
-                        SPUtils.putString(Constant.MEMROLE, data.getMember().getMemrole());
-//                        Log.d("LoginActivity", String.valueOf(b));
-
+                        final String nickname = data.getMember().getNickname();
+                        final String memid = data.getMember().getMemid();
+                        final String avatar=data.getMember().getImgsfile();
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                SPUtils.putString( Constant.MEMID, memid);
+                                SPUtils.putString( Constant.NICK_NAME, nickname);
+                                SPUtils.putString( Constant.AVATAR, avatar);
+                                SPUtils.putString(Constant.USER_ID,userName);
+                                SPUtils.putString(Constant.REC_ADDRESS,data.getMember().getRecaddress());
+                                SPUtils.putString(Constant.REC_NAME,data.getMember().getRecname());
+                                SPUtils.putString(Constant.REC_PHONE,data.getMember().getRecphone());
+                                SPUtils.putString(Constant.MEMROLE, data.getMember().getMemrole());
+                            }
+                        }).start();
                         // TODO: 2016/9/7 登录环信
                         loginHx("m"+memid.substring(1),password,nickname,avatar,pd);
                     } else {
@@ -235,8 +236,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (!updatenick) {
                     Log.e("LoginActivity", "更新用户昵称失败");
                 }
-                EMClient.getInstance().groupManager().loadAllGroups();
-                EMClient.getInstance().chatManager().loadAllConversations();
+//                EMClient.getInstance().groupManager().loadAllGroups();
+//                EMClient.getInstance().chatManager().loadAllConversations();
                 //如果aty还在,并且加载条正在显示
                 if (!LoginActivity.this.isFinishing() && pd.isShowing()) {
                     pd.dismiss();
@@ -310,15 +311,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void goHome() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                            EMClient.getInstance().login();
-                            /*Explode explode = new Explode();
-                            explode.setDuration(500);
-                            getWindow().setExitTransition(explode);
-                            getWindow().setEnterTransition(explode);
-                            ActivityOptionsCompat oc2 = ActivityOptionsCompat.makeSceneTransitionAnimation(LoginActivity.this);
-                            Intent i2 = new Intent(LoginActivity.this, HomeActivity.class);
-                            startActivity(i2, oc2.toBundle());
-                            LoginActivity.this.finish();*/
             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
             LoginActivity.this.finish();
         } else {
@@ -326,23 +318,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             LoginActivity.this.finish();
         }
     }
-
-
-  /*  private BroadcastReceiver msgCountReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            noReadMsgCount();
-        }
-    };
-
-    *//**
-     * 注销成功广播
-     *//*
-    public void registerMsgReceiver() {
-        IntentFilter myIntentFilter = new IntentFilter();
-        myIntentFilter.addAction(Constants.RECEIVER_MSGCOUNT);
-        registerReceiver(msgCountReceiver, myIntentFilter);
-    }*/
-
-
 }
