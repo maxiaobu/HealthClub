@@ -81,15 +81,16 @@ public class TimesUtil {
      * @param sdr 指定格式
      * @return  指定格式的时间
      */
-    public static String timestampToStringS(String time, SimpleDateFormat sdr) {
+    public static String timestampToStringS(String time, String sdr) {
+        SimpleDateFormat c = new SimpleDateFormat(sdr);
         String times;
         if (time.length() == 10) {
             long lcc = Long.valueOf(time);
             int i = Integer.parseInt(time);
-            times = sdr.format(new Date(i * 1000L));
+            times = c.format(new Date(i * 1000L));
         } else {
             long lcc = Long.valueOf(time);
-            times = sdr.format(new Date(lcc));
+            times = c.format(new Date(lcc));
         }
         return times;
     }

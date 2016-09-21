@@ -42,9 +42,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/sz_6"
                     android:text="排序"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/sz_16"
+                    android:textSize="@dimen/sz_16"/>
 
                 <ImageView
                     android:id="@+id/iv_menu_time"
@@ -77,9 +78,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/sz_6"
                     android:text="筛选"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/sz_16"
+                    android:textSize="@dimen/sz_16"/>
 
                 <ImageView
                     android:id="@+id/iv_menu_type"

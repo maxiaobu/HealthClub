@@ -10,11 +10,18 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.Constant;
+import com.maxiaobu.healthclub.common.UrlPath;
+import com.maxiaobu.healthclub.common.beangson.BeanMbpcourse;
+import com.maxiaobu.healthclub.utils.TimesUtil;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
 import com.maxiaobu.healthclub.utils.web.BaseJsToAndroid;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestJsonListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -57,23 +64,45 @@ public class CourseBuyActivity extends BaseAty {
 
     }
 
-    public class WebAppInterface{
+    public class WebAppInterface extends BaseJsToAndroid {
         Context mContext;
-        WebAppInterface(Context c){
-            mContext=c;
+
+        WebAppInterface(Context c) {
+            super(c);
+            mContext = c;
         }
+
         @JavascriptInterface
-        public void gotoPay(String ordno,String ordamt){
-            Intent intent = new Intent();
-            intent.putExtra("ordno",ordno);
-            Log.d("WebAppInterface", ordno);
-            intent.putExtra("totlePrice",ordamt);
-            intent.putExtra(Constant.PAY_TYPE,"course");
-            intent.putExtra("coachid",getIntent().getStringExtra("coachid"));
-            Log.d("WebAppInterface", getIntent().getStringExtra("coachid"));
-            intent.setClass(CourseBuyActivity.this,PayActivity.class);
-            startActivity(intent);
+        public void gotoPay(final String ordno, final String ordamt) {
+            App.getRequestInstance().post(CourseBuyActivity.this,
+                    UrlPath.URL_MBPCOURSE, BeanMbpcourse.class,
+                    new RequestParams("pcourseid", getIntent().getStringExtra("pcourseid")), new RequestJsonListener<BeanMbpcourse>() {
+                        @Override
+                        public void requestSuccess(BeanMbpcourse result) {
+                            String page = "file:///android_asset/reservation.html?coachid=" + result.getCoach().getMemid() + "&nickname=" +
+                                    result.getCoach().getNickname() + "&clubname=" + result.getPcourseInfo().getClubname()
+                                    + "&address=" + result.getPcourseInfo().getAddress();
+                            page += "&coursename=" + result.getPcoursename() + "&enddate=" +
+                                    TimesUtil.timestampToStringS(String.valueOf(System.currentTimeMillis()+1000000000), "yyyy/MM/dd")
+                                    + "&times=" + result.getPcourseInfo().getPcoursetimes() + "&orderid=" + ordno;
+                            page += "&imgsfile=" +result.getCoach().getImgsfilename();
+                            Intent intent = new Intent();
+                            intent.putExtra("ordno", ordno);
+                            Log.d("WebAppInterface", ordno);
+                            intent.putExtra("totlePrice", ordamt);
+                            intent.putExtra(Constant.PAY_TYPE, "course");
+                            intent.putExtra("reservation", page.trim());
+                            intent.setClass(CourseBuyActivity.this, PayActivity.class);
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void requestAgain(NodataFragment nodataFragment) {
+                            gotoPay(ordno, ordamt);
+                        }
+                    });
         }
+
         // 修改收货信息
         @JavascriptInterface
         public void personalInfo() {
@@ -84,14 +113,14 @@ public class CourseBuyActivity extends BaseAty {
 
         @JavascriptInterface
         public String getmemid() {
-           return SPUtils.getString(Constant.MEMID);
+            return SPUtils.getString(Constant.MEMID);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==Constant.RESULT_REQUEST_ONE&&resultCode==Constant.RESULT_OK){
+        if (requestCode == Constant.RESULT_REQUEST_ONE && resultCode == Constant.RESULT_OK) {
             mWebView.reload();
         }
     }

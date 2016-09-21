@@ -375,11 +375,6 @@ public class DemoHelper {
                 } else if (error == EMError.USER_LOGIN_ANOTHER_DEVICE) {
                     onConnectionConflict();
                 }
-                if (NetUtils.hasNetwork(appContext)) {
-                    Toast.makeText(appContext, "连接不到聊天服务器", Toast.LENGTH_SHORT).show();
-                } /*else {
-                    Toast.makeText(appContext, "当前网络不可用，请检查网络设置", Toast.LENGTH_SHORT).show();
-                }*/
             }
 
             @Override

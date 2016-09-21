@@ -43,8 +43,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CoachesListActivity extends BaseAty implements OnRefreshListener, OnLoadMoreListener, View.OnClickListener {
-
-
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
     @Bind(R.id.toolbar_common)
@@ -173,7 +171,6 @@ public class CoachesListActivity extends BaseAty implements OnRefreshListener, O
                     Toast.makeText(mActivity, "刷新什么情况", Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
             public void requestAgain(NodataFragment nodataFragment) {
 

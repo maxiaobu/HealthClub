@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,13 +28,11 @@ import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
-import com.maxiaobu.healthclub.common.beangson.BeanmDynamicList;
+import com.maxiaobu.healthclub.common.beangson.BeanMbclub;
 import com.maxiaobu.healthclub.ui.fragment.ClubCourseFragment;
 import com.maxiaobu.healthclub.ui.fragment.ClubDataFragment;
 import com.maxiaobu.healthclub.ui.fragment.ClubDynamicFragment;
-import com.maxiaobu.healthclub.ui.fragment.TrainerCourseFragment;
-import com.maxiaobu.healthclub.ui.fragment.TrainerDataFragment;
-import com.maxiaobu.healthclub.ui.fragment.TrainerDynamicFragment;
+import com.maxiaobu.healthclub.ui.weiget.GlideCircleTransform;
 import com.maxiaobu.healthclub.ui.weiget.toolsbar.MyNestedScrollView;
 import com.maxiaobu.healthclub.ui.weiget.toolsbar.WrapContentHeightViewPager;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
@@ -49,7 +48,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ClubDetailActivity extends BaseAty implements AppBarLayout.OnOffsetChangedListener, View.OnClickListener{
+public class ClubDetailActivity extends BaseAty implements AppBarLayout.OnOffsetChangedListener, View.OnClickListener {
 
     @Bind(R.id.iv_header)
     ImageView mIvHeader;
@@ -87,10 +86,14 @@ public class ClubDetailActivity extends BaseAty implements AppBarLayout.OnOffset
     FloatingActionButton mFabTalk;
     @Bind(R.id.fab_menu)
     FloatingActionMenu mFabMenu;
+    @Bind(R.id.fab_bind)
+    FloatingActionButton mFabBind;
 
     private Handler mUiHandler = new Handler();
     private int mPreviousVisibleItem;
     private String mNickname = "";
+    private String mClubid = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,22 +141,25 @@ public class ClubDetailActivity extends BaseAty implements AppBarLayout.OnOffset
     public void initData() {
         RequestParams params = new RequestParams();
         params.put("pageIndex", "1");
-        params.put("tarid", getIntent().getStringExtra("tarid"));
-        params.put("memid", SPUtils.getString( Constant.MEMID));
-        App.getRequestInstance().post(this, UrlPath.URL_MEMBER_DYNAMIC_LIST,
+        params.put("clubmemid", getIntent().getStringExtra("tarid"));
+//        Log.d("ClubDetailActivity", getIntent().getStringExtra("tarid"));
+        App.getRequestInstance().post(this, UrlPath.URL_CLUB_DETAIL,
                 params, new RequestListener() {
                     @Override
                     public void requestSuccess(String s) {
-//                        BeanmDynamicList object = JsonUtils.object(s, BeanmDynamicList.class);
-//                        BeanmDynamicList.BBMemberBean mData = object.getBBMember();
-                        Glide.with(ClubDetailActivity.this).load(UrlPath.TEXT_IMG)//mData.getImgsfilename()
-                                .placeholder(R.mipmap.ic_place_holder).into(mIvHeader);
-                        mTvFans.setText("粉丝:" +"11" );//mData.getFollownum()
-                        mTvFollow.setText("关注：" +"11" );//mData.getConcernnum()
-                        mNickname = "杰西卡";//mData.getNickname()
-                        mCtlName.setTitle("杰西卡");//mData.getNickname()
-                        mTvName.setText("杰西卡");//mData.getNickname()
-                        mTvSignature.setText("kjdsahflkjsdahflkjsdahlfkjhs");//mData.getSignature()
+
+//                        Log.d("ClubDetailActivity", s);
+                        BeanMbclub object = JsonUtils.object(s, BeanMbclub.class);
+                        BeanMbclub.BBMemberBean mData = object.getBBMember();
+                        mClubid=object.getClubInfo().getClubid();
+                        Glide.with(ClubDetailActivity.this).load(mData.getImgsfilename())//mData.getImgsfilename()
+                                .transform(new GlideCircleTransform(mActivity)).placeholder(R.mipmap.ic_place_holder).into(mIvHeader);
+                        mTvFans.setText("粉丝:" + mData.getFollownum());//mData.getFollownum()
+                        mTvFollow.setText("关注：" + mData.getConcernnum());//mData.getConcernnum()
+                        mNickname = mData.getNickname();//mData.getNickname()
+                        mCtlName.setTitle(mData.getNickname());//mData.getNickname()
+                        mTvName.setText(mData.getNickname());//mData.getNickname()
+                        mTvSignature.setText(mData.getSignature());//mData.getSignature()
                     }
 
                     @Override
@@ -198,22 +204,29 @@ public class ClubDetailActivity extends BaseAty implements AppBarLayout.OnOffset
         viewPager.setAdapter(adapter);
     }
 
-    @OnClick({R.id.fab_talk})
+    @OnClick({R.id.fab_talk,R.id.fab_bind})
     @Override
     public void onClick(View v) {
-        Intent intent=new Intent();
+        Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.fab_talk:
                 String userId = getIntent().getStringExtra("tarid");
-                if (userId==SPUtils.getString(Constant.MEMID)){
+                if (userId == SPUtils.getString(Constant.MEMID)) {
                     Toast.makeText(this, "自己不能和自己聊天", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     String nickname = DemoHelper.getInstance().getUserInfo(userId).getNickname();
-                    intent.putExtra(Constant.USER_ID,userId);
-                    intent.putExtra(Constant.NICK_NAME,  nickname );
-                    intent.setClass(this,ChatActivity.class);
+                    intent.putExtra(Constant.USER_ID, userId);
+                    intent.putExtra(Constant.NICK_NAME, nickname);
+                    intent.setClass(this, ChatActivity.class);
                     startActivity(intent);
                 }
+                break;
+            case R.id.fab_bind:
+                intent.setClass(this,ApplyBindClubActivity.class);
+                        intent.putExtra("coachid",getIntent().getStringExtra("tarid"));
+                        intent.putExtra("clubid",mClubid);
+
+                startActivity(intent);
                 break;
             default:
                 break;

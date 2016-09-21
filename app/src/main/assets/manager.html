@@ -5,12 +5,15 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta http-equiv="Access-Control-Allow-Origin" content="*">
-		<title isback="1" btn="0" navbar="0">档期管理</title>
+		<title id="titleBar" isback="1" btn="0" navbar="0">档期管理</title>
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" type="text/css" />
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
 		
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script>
+		/*rem布局设置 
+		 * 乔丽娜
+		 **/
 			(function (root) {
 			  var docEl = document.documentElement,
 			    timer = null;
@@ -362,6 +365,8 @@
 					} else {
 						schtimeslice += '"' + i + '" : "' + timestr + '" }';
 					}
+					console.log(schtimeslice);
+
 				}
 				$.ajax({
 					type: "POST",
@@ -374,21 +379,18 @@
 					success: function(data) {
 						if (data.msgFlag == 1) {
 							alertMessage("success","档期保存成功");
-							history.go(-1);
+		            	  	backExe();
 						}
 					}
 				});
 			}
-				//给content定高
+				//给content定高  乔丽娜
 				function height(){
 					var c=myScroll.windowHeight();
-					
-					$(".reservation").css("height",c)
+					$(".reservation").css("height",c);
 					var rheight=parseFloat($("#tag1").css("height"));
 					var con=c-rheight-150;
-					/*var conheight=height-pheight-pbottom-rheight-64;*/
-					$("#content").css("height",con+"px")
-					/*$("#content").css("height",conheight+"px");*/
+					$("#content").css("height",con+"px");
 				}
 					
 				//全选/全不选

@@ -28,7 +28,7 @@
 				<ul class="box01_list">
 					<li class="li_list">
 						<div class="video">
-							<a href="" rel="external" data-role="none"><img src="images/page/big_btn4.png" id="imgpfile" /></a>
+							<a href="" rel="external" data-role="none"><img src="images/page/big_btn4.png" onerror="nofind();" id="imgpfile" /></a>
 						</div>
 						<div class="corder">
 							<p class="corder_title" id="pcoursename">增肌方法论</p>
@@ -131,6 +131,12 @@
 			}
 		</style>
 		<script>/*http://127.0.0.1:8020/assets/pcourse.html?pcourseid=PC000082&memid=M000458*/
+			//图片加载不出来时的图片
+			function nofind(){ 
+				var img=event.srcElement; 
+				img.src="images/page/big_btn4.png"; 
+				img.onerror=null; //控制不要一直跳动 
+			} 
 			$(document).ready(function(e) {
 				//选择框消失出现切换
 			  $("#tog").click(function(){
@@ -162,6 +168,7 @@
 				
 			})
 			$(document).ready(function(e) {
+				//详细介绍页
 				$(".intro_in").click(function(e){
 					$(".li_intro").css("display","block");
 					
@@ -171,20 +178,6 @@
 				})
 				
 			})
-			var url = window.location.href
-			parmData = getUrlParam(url);
-			function getUrlParam(string) {
-				var obj = {};
-				if (string.indexOf("?") != -1) {
-					var string = string.substr(string.indexOf("?") + 1);
-					var strs = string.split("&");
-					for (var i = 0; i < strs.length; i++) {
-						var tempArr = strs[i].split("=");
-						obj[tempArr[0]] = decodeURI(tempArr[1]);
-					}
-				}
-				return obj;
-			}
 			var pcourseid = parmData.pcourseid;
 			var memid = getMemid();
 			var pcourseid2;
@@ -204,7 +197,6 @@
 						var msgFlag = data.msgFlag;
 						if (msgFlag == 1) {
 							var pcourseInfo = data.pcourseInfo;
-							//	console.info(pcourseInfo);
 							$("#pcoursename").text(data.pcoursename);
 							$("#titleText").text(data.pcoursename);
 							$("#pcoursetimes").text(pcourseInfo.pcoursetimes + "次");
@@ -250,7 +242,8 @@
 							 b=$(".choosen .p-hai").text();
 							 $("#club_title").text(b);*/ //自动选中第一个俱乐部
 						}
-						$(".swipe").css("display","block")
+						
+						$(".swipe").css("display","block");
 						
 					}
 				});

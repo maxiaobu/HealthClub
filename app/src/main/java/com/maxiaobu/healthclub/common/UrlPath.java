@@ -128,7 +128,7 @@ public class UrlPath {
      * pageIndex: pageIndex++, //当前页码forderlist
      * listtype: "forderlist",//写死，就写他，区分出订餐订单
      * memid: getMemid()//用户id
-     * http://192.168.1.113:8080/efithealth/morderlist.do?memid=M000455&listtype=corderlist&pageIndex=1
+     *
      */
     public static final String URL_FOOD_ORDER_LIST = URL_BASE + "morderlist.do";
 
@@ -252,6 +252,14 @@ public class UrlPath {
      */
     public static final String URL_COACHES_DETAIL = URL_BASE + "mbcoach.do";
 
+    /**
+     * 俱乐部详情
+     * pageIndex:页码(1开始),
+     * tarid:教练ID,
+     * http://192.168.1.182:8080/efithealth/mbclub.do?pageIndex=1&clubmemid=M000438
+     */
+    public static final String URL_CLUB_DETAIL = URL_BASE + "mbclub.do";
+
 
     /**
      * 修改个人信息
@@ -357,9 +365,10 @@ public class UrlPath {
      */
     public static final String URL_UPDATECOURSE = URL_BASE + "mupdateCourse.do";//
     /**
-     * http://192.168.1.121:8080/efithealth/mupdateCourse.do?pcourseid=
+     * 私课详情
+     * http://192.168.1.121:8080/efithealth/mbpcourse.do?pcourseid=PC000082
      */
-    public static final String URL_DELETECOURSE = URL_BASE + "mdeleteCourse.do";// 课程删除
+    public static final String URL_MBPCOURSE = URL_BASE + "mbpcourse.do";// 课程删除
 
     /**
      * 我的教学预约
@@ -368,4 +377,15 @@ public class UrlPath {
      * http://192.168.1.121:8080/efithealth/mcoachBespeak.do?memid=M000440&pageIndex=1
      */
     public static final String URL_MCOACHBESPEAK = URL_BASE + "mcoachBespeak.do";
+
+    /**
+     * http://192.168.1.121:8080/efithealth/mdeleteCourse.do?pcourseid=课程编号
+     */
+    public static final String URL_DELETECOURSE = URL_BASE + "mdeleteCourse.do";
+
+    /**
+     * 档期管理
+     *http://192.168.1.121:8080/efithealth/mmanager.do?coachid=M000444
+     */
+    public static final String URL_MMANAGER = URL_BASE + "mmanager.do";
 }

@@ -92,8 +92,9 @@
 							var msgFlag = data.msgFlag;
 							if (msgFlag == 1) {
 								alertMessage("success","提交申请成功");
-								var page = "personal.html?memid=" + memid;
-								window.location.href = page;
+								/*var page = "personal.html?memid=" + memid;
+								window.location.href = page;*/
+								!window.mobile||window.mobile.toPersonal();
 							} else {
 								alertMessage("error","提交申请失败，请稍后再试");
 							}
@@ -105,7 +106,6 @@
 					
 					var c=myScroll.windowHeight();
 					$(".iinput").css("height",c+"px");
-					console.log(c)
 				});
 			</script>
 		</div>

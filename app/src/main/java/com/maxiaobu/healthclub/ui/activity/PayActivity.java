@@ -127,14 +127,15 @@ public class PayActivity extends BaseAty implements View.OnClickListener {
     private void pay() {
         if (mCbEPay.isChecked()) {
 //            Log.d("PayActivity", mOrdno);
-            if (mTotalEbi > Integer.parseInt(mTotlePrice)) {//仅 e币
+            if (mTotalEbi > Integer.parseInt(mTotlePrice)) {
+                //仅 e币
                 RequestParams params;
                 String url;
                 if (mPayType != null && mPayType.equals("course")) {
                     params = new RequestParams("ordno", mOrdno);
                     params.put("memid", SPUtils.getString( Constant.MEMID));
                     url = UrlPath.URL_COURSE_EBI_PAY;
-                } else {
+                }else {
                     params = new RequestParams("ordno", "{\"ordno\":" + mOrdno + "}");
                     url = UrlPath.URL_EBI_PAY;
                 }
@@ -186,6 +187,7 @@ public class PayActivity extends BaseAty implements View.OnClickListener {
                             intent.setClass(PayActivity.this, ReservationActivity.class);
                             intent.putExtra("coachid",getIntent().getStringExtra("coachid"));
                             intent.putExtra("orderid", getIntent().getStringExtra("ordno"));
+                            intent.putExtra("reservation", getIntent().getStringExtra("reservation"));
 
                             intent.putExtra(Constant.PAY_RESULT, 0);
                             startActivity(intent);

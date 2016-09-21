@@ -34,6 +34,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 我的教学预约
+ */
 public class MyBespeakActivity extends BaseAty implements OnRefreshListener, OnLoadMoreListener {
 
     @Bind(R.id.tv_title_common)
@@ -91,11 +94,11 @@ public class MyBespeakActivity extends BaseAty implements OnRefreshListener, OnL
     @Override
     public void initData() {
         RequestParams params = new RequestParams();
+        params.put("pageIndex", String.valueOf(mCurrentPage));
         params.put("memid", SPUtils.getString( Constant.MEMID));
         App.getRequestInstance().post(this, UrlPath.URL_MY_BESPEAK, BeanMmyBespeak.class, params, new RequestJsonListener<BeanMmyBespeak>() {
             @Override
             public void requestSuccess(BeanMmyBespeak beanMmyBespeak) {
-                mData = beanMmyBespeak.getBespeaklist();
                 if (mLoadType == 0) {//刷新
                     if (beanMmyBespeak.getBespeaklist().size() == 0) {
                         mRlNoData.setVisibility(View.VISIBLE);

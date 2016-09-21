@@ -1,7 +1,6 @@
 package com.maxiaobu.healthclub.ui.activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,21 +10,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
-import com.maxiaobu.healthclub.common.Constant;
-import com.maxiaobu.healthclub.common.UrlPath;
-import com.maxiaobu.healthclub.utils.storage.SPUtils;
 import com.maxiaobu.healthclub.utils.web.BaseJsToAndroid;
-import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ReservationActivity extends BaseAty {
+public class WeekCourseActivity extends BaseAty {
 
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
@@ -37,7 +30,7 @@ public class ReservationActivity extends BaseAty {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reservation);
+        setContentView(R.layout.activity_week_course);
         ButterKnife.bind(this);
         initView();
         initData();
@@ -45,7 +38,7 @@ public class ReservationActivity extends BaseAty {
 
     @Override
     public void initView() {
-        setCommonBackToolBar(mToolbarCommon, mTvTitleCommon, "预约");
+        setCommonBackToolBar(mToolbarCommon, mTvTitleCommon, "团操课程");
         // 设置WebView支持JavaScript
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
@@ -54,22 +47,14 @@ public class ReservationActivity extends BaseAty {
         mWebView.getSettings().setDefaultTextEncodingName("utf-8");
 
         mWebView.setWebViewClient(new MyWebViewClient());
-        Log.d("ReservationActivity", getIntent().getStringExtra("reservation"));
-        mWebView.loadUrl(getIntent().getStringExtra("reservation").trim());
+//        clubid=C000174&coachid=M000447
+        Log.d("ApplyBindClubActivity", "file:///android_asset/weekcourse.html?clubid=" + getIntent().getStringExtra("clubid") );
+        mWebView.loadUrl("file:///android_asset/weekcourse.html?clubid=" +getIntent().getStringExtra("clubid"));
     }
 
     @Override
     public void initData() {
-    }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent();
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.setClass(ReservationActivity.this, HomeActivity.class);
-        intent.putExtra("foodFlag", 1);
-        startActivity(intent);
     }
 
     public class WebAppInterface extends BaseJsToAndroid {
@@ -79,25 +64,6 @@ public class ReservationActivity extends BaseAty {
             super(c);
             mContext = c;
         }
-
-        @JavascriptInterface
-        public void popNewWindow(String page) {
-//        Intent intent = new Intent();
-//        intent.putExtra("url",page);
-//        intent.setClass(PersionalCourseActivity.this,CourseBuyActivity.class);
-//            startActivity(intent);
-            Toast.makeText(mActivity, "web任何一页控制", Toast.LENGTH_SHORT).show();
-        }
-
-        @JavascriptInterface
-        public void gotoBespeakList() {
-            Intent intent = new Intent();
-            intent.setClass(ReservationActivity.this, MyBespeakActivity.class);
-            ReservationActivity.this.finish();
-            startActivity(intent);
-
-        }
-
 
     }
 
@@ -122,4 +88,5 @@ public class ReservationActivity extends BaseAty {
                     + "document.title,$('title').attr('isback'),$('title').attr('btn'),$('title').attr('navbar'))");
         }
     }
+
 }

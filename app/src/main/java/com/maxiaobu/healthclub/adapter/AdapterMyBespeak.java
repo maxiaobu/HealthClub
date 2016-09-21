@@ -42,7 +42,6 @@ public class AdapterMyBespeak extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         MyViewHolder viewHolder = (MyViewHolder) holder;
         BeanMmyBespeak.BespeaklistBean bean = mData.get(position);
-        //0 代付款；1 待收货；2已完成
         Glide.with(mActivity).load(bean.getImgsfile()).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvPhoto);
         viewHolder.mTvName.setText(bean.getNickname());
         viewHolder.mTvOccupation.setText("教练");

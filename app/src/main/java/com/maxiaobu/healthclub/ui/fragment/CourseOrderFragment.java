@@ -119,7 +119,7 @@ public class CourseOrderFragment extends BaseFrg implements OnRefreshListener, O
                                 dialog.dismiss();
                                 //http://192.168.1.121:8080/efithealth/mcancelForder.do?ordno=FO-20160726-170
                                 // {"msgFlag":"1","msgContent":"取消订单成功"}
-                                RequestParams params = new RequestParams("ordno", what);
+                                RequestParams params = new RequestParams("ordno","'"+ what+"'");
                                 params.put("listtype","corderlist");
                                 App.getRequestInstance().post(getActivity(),
                                         UrlPath.URL_MDELETEBYLIST, params,

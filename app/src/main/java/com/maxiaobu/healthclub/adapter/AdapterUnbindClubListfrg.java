@@ -30,7 +30,7 @@ public class AdapterUnbindClubListfrg extends RecyclerView.Adapter {
 
 
     public interface OnItemClickListener {
-        public void onItemClick(View view, String tarid);
+        public void onItemClick(View view, String clubId);
     }
 
     public OnItemClickListener mListener;
@@ -56,7 +56,7 @@ public class AdapterUnbindClubListfrg extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final MyViewHolder viewHolder = (MyViewHolder) holder;
-        BeanMunbindList.UnbindListBean unbindListBean = mData.get(position);
+        final BeanMunbindList.UnbindListBean unbindListBean = mData.get(position);
         Glide.with(mContext).load(unbindListBean.getClubmemimgsfile()).transform(new GlideCircleTransform(mContext)).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
         viewHolder.mTvName.setText(unbindListBean.getClubname());
         viewHolder.mTvDistance.setText("距您 " +unbindListBean.getDistance()+ "km");
@@ -66,7 +66,7 @@ public class AdapterUnbindClubListfrg extends RecyclerView.Adapter {
             @Override
             public void onClick(View view) {
                 if (mListener != null) {
-                    mListener.onItemClick(viewHolder.mIvHead, "");//mData.get(position).getMemid()
+                    mListener.onItemClick(viewHolder.mIvHead, unbindListBean.getClubmemid());//mData.get(position).getMemid()
                 }
             }
         });

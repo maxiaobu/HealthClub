@@ -24,6 +24,7 @@ import com.maxiaobu.healthclub.ui.activity.CoachesManageActivity;
 import com.maxiaobu.healthclub.ui.activity.MineTeachingAppointmentActivity;
 import com.maxiaobu.healthclub.ui.activity.MyBespeakActivity;
 import com.maxiaobu.healthclub.ui.activity.OrderListActivity;
+import com.maxiaobu.healthclub.ui.activity.ScheduleManagementActivity;
 import com.maxiaobu.healthclub.ui.weiget.observablescrollview.ObservableScrollView;
 import com.maxiaobu.healthclub.ui.weiget.observablescrollview.ScrollViewListener;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
@@ -133,7 +134,8 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
     }
 
     @OnClick({R.id.ly_order, R.id.ly_login_out, R.id.ly_appointment, R.id.ly_authentication,
-            R.id.ly_course_manage, R.id.ly_club_list, R.id.ly_teaching_appointment})
+            R.id.ly_course_manage, R.id.ly_club_list, R.id.ly_teaching_appointment,
+            R.id.ly_file_management})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -163,6 +165,9 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
             //教学预约
             case R.id.ly_teaching_appointment:
                 startActivity(new Intent(getActivity(), MineTeachingAppointmentActivity.class));
+                break;
+            case R.id.ly_file_management:
+                startActivity(new Intent(getActivity(), ScheduleManagementActivity.class));
                 break;
             default:
                 break;

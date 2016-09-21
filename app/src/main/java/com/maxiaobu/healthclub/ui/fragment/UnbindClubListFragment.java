@@ -99,10 +99,10 @@ public class UnbindClubListFragment extends BaseFrg
         mSwipeTarget.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new AdapterUnbindClubListfrg.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, String tarid) {
+            public void onItemClick(View view, String clubId) {
                 Intent intent = new Intent(getActivity(),
                         ClubDetailActivity.class);
-                intent.putExtra("tarid", tarid);
+                intent.putExtra("tarid", clubId);
                 startActivity(intent);
             }
         });

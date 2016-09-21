@@ -184,6 +184,15 @@
         app:menu_labels_position="right"
         app:menu_labels_singleLine="true"
         >
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_bind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_fab_bind"
+            app:fab_colorNormal="#4DD0D0"
+            app:fab_colorPressed="#4DD0D0"
+            app:fab_colorRipple="#99FFFFFF"
+            />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_pull_black"
@@ -214,6 +223,7 @@
             app:fab_colorPressed="#4DD0D0"
             app:fab_colorRipple="#99FFFFFF"
             />
+
 
     </com.github.clans.fab.FloatingActionMenu>
 

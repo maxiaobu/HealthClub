@@ -1,6 +1,7 @@
 package com.maxiaobu.healthclub.ui.activity;
 
 import android.Manifest;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,13 +15,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
-import com.maxiaobu.healthclub.common.Constant;
-import com.maxiaobu.healthclub.utils.storage.SPUtils;
 import com.maxiaobu.healthclub.utils.web.BaseJsToAndroid;
 
 import java.util.List;
@@ -30,10 +30,7 @@ import butterknife.ButterKnife;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
-/**
- * 私教详情
- */
-public class PersionalCourseActivity extends BaseAty implements EasyPermissions.PermissionCallbacks{
+public class ApplyBindClubActivity extends BaseAty implements EasyPermissions.PermissionCallbacks{
 
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
@@ -45,27 +42,26 @@ public class PersionalCourseActivity extends BaseAty implements EasyPermissions.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_persional_course);
+        setContentView(R.layout.activity_apply_bind_club);
         ButterKnife.bind(this);
         initView();
         initData();
-
     }
 
     @Override
     public void initView() {
-        String pcourseid = getIntent().getStringExtra("pcourseid");
-        setCommonBackToolBar(mToolbarCommon, mTvTitleCommon, "课程详情");
+        setCommonBackToolBar(mToolbarCommon, mTvTitleCommon, "申请绑定");
         // 设置WebView支持JavaScript
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
         // 在js中调用本地java方法
         mWebView.addJavascriptInterface(new WebAppInterface(this), "mobile");
         mWebView.getSettings().setDefaultTextEncodingName("utf-8");
-        mWebView.loadUrl( "file:///android_asset/pcourse.html?pcourseid=" + pcourseid);
-//        Log.d("Persional", "file:///android_asset/pcourse.html?pcourseid=" + pcourseid);
-        mWebView.setWebViewClient(new MyWebViewClient());
 
+        mWebView.setWebViewClient(new MyWebViewClient());
+//        clubid=C000174&coachid=M000447
+        Log.d("ApplyBindClubActivity", "file:///android_asset/bindClub.html?clubid=" + getIntent().getStringExtra("tarclubidid") + "&coachid=" + getIntent().getStringExtra("coachid"));
+        mWebView.loadUrl("file:///android_asset/bindClub.html?clubid=" +getIntent().getStringExtra("clubid")+"&coachid="+getIntent().getStringExtra("coachid"));
     }
 
     @Override
@@ -73,35 +69,26 @@ public class PersionalCourseActivity extends BaseAty implements EasyPermissions.
 
     }
 
-    public class WebAppInterface extends BaseJsToAndroid{
+    public class WebAppInterface extends BaseJsToAndroid {
         Context mContext;
-        WebAppInterface(Context c){
+
+        WebAppInterface(Context c) {
             super(c);
-            mContext=c;
-        }
-        @JavascriptInterface
-        public void popNewWindow(String page){
-            Intent intent = new Intent();
-            intent.putExtra("url",page);
-            intent.putExtra("pcourseid",getIntent().getStringExtra("pcourseid"));
-//            intent.putExtra("coachid",getIntent().getStringExtra("coachid"));
-//            Log.d("WebAppInterface", getIntent().getStringExtra("coachid"));
-            intent.setClass(PersionalCourseActivity.this,CourseBuyActivity.class);
-            startActivity(intent);
-        }
-        @JavascriptInterface
-        public void callUp(final String phoneNumber){
-            ringUp(phoneNumber);
+            mContext = c;
         }
 
         @JavascriptInterface
-        public String getmemid() {
-            return SPUtils.getString( Constant.MEMID);
+        public void backExe() {
+            ApplyBindClubActivity.this.finish();
+        }
+        @JavascriptInterface
+        public void callUp(final String phoneNumber) {
+            ringUp(phoneNumber);
         }
     }
 
 
-    private class MyWebViewClient extends WebViewClient{
+    private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             view.loadUrl(url);
@@ -137,13 +124,13 @@ public class PersionalCourseActivity extends BaseAty implements EasyPermissions.
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         dialog.dismiss();
-                        if (EasyPermissions.hasPermissions(PersionalCourseActivity.this, Manifest.permission.CALL_PHONE)) {
+                        if (EasyPermissions.hasPermissions(ApplyBindClubActivity.this, Manifest.permission.CALL_PHONE)) {
                             Intent intent = new Intent(Intent.ACTION_CALL);
                             Uri data = Uri.parse("tel:" + phoneNum);
                             intent.setData(data);
                             startActivity(intent);
                         } else {
-                            EasyPermissions.requestPermissions(PersionalCourseActivity.this, "需要打电话的权限",
+                            EasyPermissions.requestPermissions(ApplyBindClubActivity.this, "需要打电话的权限",
                                     122, Manifest.permission.CALL_PHONE);//让easyPermission去请求权限
                         }
 

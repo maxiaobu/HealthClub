@@ -54,7 +54,7 @@ public class AdapterBindClubListfrg extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final MyViewHolder viewHolder = (MyViewHolder) holder;
-        BeanMbindList.BindListBean bindListBean = mData.get(position);
+        final BeanMbindList.BindListBean bindListBean = mData.get(position);
         Glide.with(mContext).load(bindListBean.getClubmemimgsfile()).transform(new GlideCircleTransform(mContext)).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
         viewHolder.mTvName.setText(bindListBean.getClubname());
         viewHolder.mTvDistance.setText("距您 " +bindListBean.getDistance()+ "km");
@@ -64,7 +64,7 @@ public class AdapterBindClubListfrg extends RecyclerView.Adapter {
             @Override
             public void onClick(View view) {
                 if (mListener != null) {
-                    mListener.onItemClick(viewHolder.mIvHead, "");//mData.get(position).getMemid()
+                    mListener.onItemClick(viewHolder.mIvHead, bindListBean.getClubmemid());//mData.get(position).getMemid()
                 }
             }
         });

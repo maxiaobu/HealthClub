@@ -418,7 +418,7 @@
                     app:mrl_rippleHover="true"
                     app:mrl_rippleOverlay="true"
                     app:mrl_rippleDimension="10dp"
-                    android:layout_marginTop="@dimen/sz_20">
+                    >
                     <LinearLayout
                         android:id="@+id/ly_course_manage"
                         android:layout_width="match_parent"
@@ -595,7 +595,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/sz_20"
                             android:layout_weight="1"
-                            android:text="档案管理"
+                            android:text="档期管理"
                             android:textSize="@dimen/sz_16"
                             />
 

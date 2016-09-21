@@ -144,9 +144,9 @@ public class CoachesOnlineListFragment extends BaseFrg
                         mRlNoData.setVisibility(View.VISIBLE);
                     }
                 } else if (mDataType == 1) {//加载更多
-                    int position = mAdapter.getItemCount();
-                    mData.addAll(beanMcourseList.getCourseList());
-                    mAdapter.notifyItemRangeInserted(position, beanMcourseList.getCourseList().size());
+//                    int position = mAdapter.getItemCount();
+//                    mData.addAll(beanMcourseList.getCourseList());
+//                    mAdapter.notifyItemRangeInserted(position, beanMcourseList.getCourseList().size());
                     mSwipeToLoadLayout.setLoadingMore(false);
                 } else {
                     Toast.makeText(getActivity(), "刷新什么情况", Toast.LENGTH_SHORT).show();

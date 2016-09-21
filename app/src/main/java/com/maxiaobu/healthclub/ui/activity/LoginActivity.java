@@ -253,13 +253,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (!progressShow) {
                     return;
                 }
-                runOnUiThread(new Runnable() {
-                    public void run() {
+//                runOnUiThread(new Runnable() {
+//                    public void run() {
                         pd.dismiss();
                         Toast.makeText(getApplicationContext(), getString(R.string.Login_failed) + s,
                                 Toast.LENGTH_SHORT).show();
-                    }
-                });
+//                    }
+//                });
             }
 
             @Override

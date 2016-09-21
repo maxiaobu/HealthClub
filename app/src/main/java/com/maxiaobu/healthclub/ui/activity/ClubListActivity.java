@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
@@ -84,7 +85,7 @@ public class ClubListActivity extends BaseAty implements OnRefreshListener, OnLo
      */
     private String mSortType;
 
-    List<BeanCoachesListAty.CoachListBean> mData;
+    List<BeanClubList.ClubListBean>  mData;
     private AdapterClubListAty mAdapter;
 
 
@@ -99,6 +100,7 @@ public class ClubListActivity extends BaseAty implements OnRefreshListener, OnLo
 
     @Override
     public void initView() {
+        setCommonBackToolBar(mToolbarCommon,mTvTitleCommon,"club");
         mCurrentPage = 1;
         mDataType = 0;
         mData = new ArrayList<>();
@@ -137,18 +139,33 @@ public class ClubListActivity extends BaseAty implements OnRefreshListener, OnLo
         App.getRequestInstance().post(this, UrlPath.URL_MBCLUBLIST, BeanClubList.class, params, new RequestJsonListener<BeanClubList>() {
             @Override
             public void requestSuccess(BeanClubList beanClubList) {
-
+                if (mDataType == 0) {
+                    //刷新
+                    mData.clear();
+                    mData.addAll( beanClubList.getClubList());
+                    mAdapter.notifyDataSetChanged();
+                    if (mSwipeToLoadLayout != null) {
+                        mSwipeToLoadLayout.setRefreshing(false);
+                    }
+                } else if (mDataType == 1) {//加载更多
+                    int position = mAdapter.getItemCount();
+                    mData.addAll( beanClubList.getClubList());
+                    mAdapter.notifyItemRangeInserted(position,  beanClubList.getClubList().size());
+                    mSwipeToLoadLayout.setLoadingMore(false);
+                } else {
+                    Toast.makeText(mActivity, "刷新什么情况", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void requestAgain(NodataFragment nodataFragment) {
-                nodataFragment.dismissAllowingStateLoss();
+              initData();
             }
         });
 
     }
 
-    @OnClick({R.id.ry_select, R.id.ly_select_root})
+    @OnClick({R.id.ry_select, R.id.fl_select})
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -156,11 +173,8 @@ public class ClubListActivity extends BaseAty implements OnRefreshListener, OnLo
                 switchMenu(1);
                 break;
 
-            case R.id.ly_select_root:
+            case R.id.fl_select:
                 switchMenu(0);
-                break;
-            case R.id.ivNoDataBac:
-                initData();
                 break;
 
             default:
@@ -206,20 +220,17 @@ public class ClubListActivity extends BaseAty implements OnRefreshListener, OnLo
             mRvSelect.setAnimation(AnimationUtils.loadAnimation(this, R.anim.dd_menu_out));
             mFlSelect.setAnimation(AnimationUtils.loadAnimation(this, R.anim.dd_mask_out));
             mFlSelect.setVisibility(View.GONE);
-//            mRlTimeSelect.setBackgroundResource(R.drawable.bg_catering_select);
+            mRySelect.setBackgroundResource(R.drawable.bg_catering_select);
 //            mRlTypeSelect.setBackgroundResource(R.drawable.bg_catering_select);
-//            mIvMenuTime.setImageResource(R.mipmap.ic_lunch_arrow_default);
-//            mIvMenuType.setImageResource(R.mipmap.ic_lunch_arrow_default);
+            mIvMenuTime.setImageResource(R.mipmap.ic_lunch_arrow_default);
 
         } else if (whichMenuType == mMenuType) {
             mMenuType = 0;
             mRvSelect.setAnimation(AnimationUtils.loadAnimation(this, R.anim.dd_menu_out));
             mFlSelect.setAnimation(AnimationUtils.loadAnimation(this, R.anim.dd_mask_out));
-//            mFlSelect.setVisibility(View.GONE);
-//            mRlTimeSelect.setBackgroundResource(R.drawable.bg_catering_select);
-//            mRlTypeSelect.setBackgroundResource(R.drawable.bg_catering_select);
-//            mIvMenuTime.setImageResource(R.mipmap.ic_lunch_arrow_default);
-//            mIvMenuType.setImageResource(R.mipmap.ic_lunch_arrow_default);
+            mFlSelect.setVisibility(View.GONE);
+            mRySelect.setBackgroundResource(R.drawable.bg_catering_select);
+            mIvMenuTime.setImageResource(R.mipmap.ic_lunch_arrow_default);
         } else {//显示
             mFlSelect.setVisibility(View.VISIBLE);
             mRvSelect.setAnimation(AnimationUtils.loadAnimation(this, R.anim.dd_menu_in));

@@ -3,7 +3,6 @@ package com.maxiaobu.healthclub.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.maxiaobu.healthclub.R;
-import com.maxiaobu.healthclub.common.beangson.BeanCoachesDetail;
+import com.maxiaobu.healthclub.common.beangson.BeanMbclub;
 import com.maxiaobu.healthclub.ui.activity.PersionalCourseActivity;
-import com.maxiaobu.healthclub.ui.activity.ReservationActivity;
-import com.maxiaobu.healthclub.utils.TimesUtil;
 
 import java.util.List;
 
@@ -26,13 +23,13 @@ import butterknife.ButterKnife;
 /**
  * Created by 马小布 on 2016/9/1.
  */
-public class AdapterPcourseFrg extends RecyclerView.Adapter {
+public class AdapterClubPcourseFrg extends RecyclerView.Adapter {
 
 
-    private List<BeanCoachesDetail.PcourseListBean> mData;
+    private List<BeanMbclub.PcourseListBean> mData;
     private Activity mActivity;
 
-    public AdapterPcourseFrg(Activity activity, List<BeanCoachesDetail.PcourseListBean> data) {
+    public AdapterClubPcourseFrg(Activity activity, List<BeanMbclub.PcourseListBean> data) {
         mActivity = activity;
         mData = data;
     }
@@ -45,28 +42,19 @@ public class AdapterPcourseFrg extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final BeanCoachesDetail.PcourseListBean listBean = mData.get(position);
+        BeanMbclub.PcourseListBean listBean = mData.get(position);
         MyViewHolder viewHolder = (MyViewHolder) holder;
         viewHolder.mTvPrice.setText(listBean.getPcourseprice());
-        if (Integer.parseInt(listBean.getClubcount())>1){
-            viewHolder.mTvClubName.setVisibility(View.INVISIBLE);
-            viewHolder.mTvAddress.setVisibility(View.INVISIBLE);
-            Glide.with(mActivity).load(listBean.getImgsfilename()).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
-            viewHolder.mTvMoreClub.setVisibility(View.VISIBLE);
-            viewHolder.mTvTitle.setText(listBean.getPcoursename());
-            viewHolder.mTvNum.setText(listBean.getPcoursetimes()+"次/"+listBean.getPcoursedays()+"天");
-        }else {
-            Glide.with(mActivity).load(listBean.getImgsfilename()).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
-            viewHolder.mTvTitle.setText(listBean.getPcoursename());
-            viewHolder.mTvNum.setText(listBean.getPcoursetimes()+"次/"+listBean.getPcoursedays()+"天");
-            viewHolder.mTvClubName.setText(listBean.getClubname());
-            viewHolder.mTvAddress.setText(listBean.getAddress());
-        }
+        Glide.with(mActivity).load(listBean.getImgsfilename()).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
+        viewHolder.mTvTitle.setText(listBean.getPcoursename());
+        viewHolder.mTvNum.setText(listBean.getPcoursetimes() + "次/" + listBean.getPcoursedays() + "天");
+        viewHolder.mTvClubName.setText(listBean.getClubname());
+        viewHolder.mTvAddress.setText(listBean.getAddress());
         viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mActivity, PersionalCourseActivity.class);
-                intent.putExtra("pcourseid",listBean.getPcourseid());
+//                intent.putExtra("pcourseid", listBean.getPcourseid());
 //                intent.putExtra("coachid",coachid);
 //                intent.putExtra("nickname",listBean.get());
 //                intent.putExtra("coachid",listBean.getClubname());

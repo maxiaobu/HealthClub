@@ -31,24 +31,6 @@ public class BaseJsToAndroid {
 	 */
 	@JavascriptInterface
 	public void popNewWindow(String page) {
-		/*Log.i("page", page);
-		int endIndex=page.indexOf("?");
-		String h5=page.substring(0, endIndex);
-		if (page.indexOf("file:///android_asset/") < 0)
-			page = "file:///android_asset/" + page;
-		if (MainActivity.instance.currentPage == 601||h5.equals("dynReview.html")) {
-			Intent intent = new Intent(context, FindActivity.class);
-			intent.putExtra("url", page);
-			context.startActivity(intent);
-		} else {
-			//TODO
-			if (h5.equals("pay.html")) {
-				MainActivity.instance.setTabSelection(505);
-				SharedPreferencesUtils.setParam(context, "paypage", page);
-			}else{
-				MainActivity.instance.setTabWebViewSelection(page);
-			}
-		}*/
 		Toast.makeText(context, "web任何一页控制", Toast.LENGTH_SHORT).show();
 	}
 
@@ -131,31 +113,8 @@ public class BaseJsToAndroid {
 	 * @param phoneNumber
 	 *            电话号码
 	 */
-	@SuppressWarnings("deprecation")
 	@JavascriptInterface
 	public void callUp(final String phoneNumber) {
-		/*MyAlertDiaLog builder = new MyAlertDiaLog(context, phoneNumber);
-		builder.setMessage("您确定呼叫 " + phoneNumber + " 这个电话号码?\n");
-		builder.setButton("取消", new OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-
-			}
-		});
-
-		builder.setButton2("确定", new OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-				Intent phoneIntent = new Intent("android.intent.action.CALL",
-						Uri.parse("tel:" + phoneNumber));
-				// 启动
-				context.startActivity(phoneIntent);
-
-			}
-		});
-		builder.show();*/
 		Toast.makeText(context, "web打电话", Toast.LENGTH_SHORT).show();
 
 	}
@@ -203,5 +162,10 @@ public class BaseJsToAndroid {
 //		MainActivity.instance.setTabSelection(402);
 		Toast.makeText(context, "web订单类型", Toast.LENGTH_SHORT).show();
 
+	}
+
+	@JavascriptInterface
+	public void backExe() {
+		Toast.makeText(context, "backExe", Toast.LENGTH_SHORT).show();
 	}
 }

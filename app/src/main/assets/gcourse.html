@@ -27,7 +27,7 @@
   <div id="slider" class="swipe cou_sw" <!--style="display: none;"-->>
     <ul class="box01_list">
       <li class="li_list">
-        <div class="video"> <a rel="external" data-role="none"><img src="images/page/big_btn4.png" id="imgpfile"/></a> </div>
+        <div class="video"> <a rel="external" data-role="none"><img src="images/page/big_btn4.png" onerror="nofind();" id="imgpfile"/></a> </div>
         <div class="corder">
           <p class="corder_title" id="gcoursename">动感单车</p>
           <span class="price" id="gcourseprice"><i name="gcourseprice" style="color: #969696;font-weight: normal;font-size: 17px;padding-top: 7px;">凭会员卡免费预约</i></span></div>
@@ -99,6 +99,15 @@
   </div>
 </div>
 <script type="text/javascript">  /*http://127.0.0.1:8020/assets/gcourse.html?gcourseid=GC000042&memid=M000455*/
+/*
+ 图片加载失败处理
+ 乔丽娜 2016/9/20
+ * */
+function nofind(){
+	var img=event.srcElement; 
+	img.src="images/page/big_btn4.png"; 
+	img.onerror=null; //控制不要一直跳动 
+} 
 var url = window.location.href
 parmData = getUrlParam(url);
 function getUrlParam(string) {
@@ -148,9 +157,10 @@ function initData(){
 //              $("#gcoursetimes").text(bGcourse.gcoursetimes);
 //              $("#gcoursedays").text(bGcourse.gcoursedays+"月");
 //              $("#detailsurl").attr("href", bGcourse.detailsurlname);
+				
 
             }
-            /*$(".swipe").css("display","block");*/
+           /* $(".swipe").css("display","block");*/
         }
     });		
 }

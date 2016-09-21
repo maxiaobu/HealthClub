@@ -66,8 +66,8 @@
 						<div class="club_2">
 							<h1 id="coursename" class="moveing ">课程名</h1>
 							<p class="p_m"><i id="times">4.0</i>&nbsp;&nbsp;&nbsp;&nbsp;<i id="enddate" style="margin-right: 10px;">5.0</i></p>
-							<p id="nickname" class="coach_1">教练名称</p>
 							<p id="clubname" class="moine_coach">俱乐部名称</p>
+							<p id="nickname" class="coach_1">教练名称</p>
 						</div>
 						<div class="clear"></div>
 						<div class="clear"></div>
@@ -155,7 +155,7 @@
 					</div>
 				</div>
 			</div>
-			<!--mui替换弹出窗口-->
+			<!--mui替换弹出窗口去掉-->
 			<!--<div id="side" r_time="" class="side">
 				<div class="s_content">
 					<p>确认预约11月25日周五13:00？</p>
@@ -243,9 +243,9 @@
 								//初始化订单信息
 								$("#nickname").text(parmData.nickname);
 								$("#clubname").text(parmData.clubname);
-								$("#times").text(parmData.times);
+								$("#times").text("剩余"+parmData.times+"次");
 								$("#address").text(parmData.address);
-								$("#enddate").text(parmData.enddate);
+								$("#enddate").text("截止至："+parmData.enddate);
 								$("#coursename").text(parmData.coursename);
 								$("#imgsfile").attr("src", parmData.imgsfile);
 								var d = new Date();
@@ -286,10 +286,10 @@
 											                /*var btnArray = ['否', '是'];*/
 											                mui.confirm("确认预约" + month + "月" + day + "日(" + $(".current .p1").text() + ")" + parm + ":00?", ' ',function(e) {
 											                  	if (e.index == 1) {
-											                        /*info.innerText = '你刚确认MUI是个好框架';*/
-											                       submit();
+											                        
+											                       submit();//点击确认按钮后
 											                    } else {
-											                        /*info.innerText = 'MUI没有得到你的认可，继续加油'*/
+											                        //点击取消按钮后
 											                       
 											                    }
 											                })
@@ -371,29 +371,20 @@
 //								window.location.href = page;
 								!window.mobile||window.mobile.gotoBespeakList();
 							}
-						},
-						error: function(XMLHttpRequest, textStatus, errorThrown) {
-						console.log(XMLHttpRequest.status);
-						console.log(XMLHttpRequest.readyState);
-						console.log(textStatus);
 						}
 					});
 				}
-				
-					function height(){//content定高
-						var height=myScroll.windowHeight();
+				//给content定高 
+					function height(){
+						var height=myScroll.windowHeight();//获取可视窗口高度
 						$(".reservation").css("height",height)
 						var pheight=parseFloat($(".frame_photo").css("height"));
 						var pbottom=parseFloat($(".frame_photo").css("margin-bottom"))*3;
 						var rheight=parseFloat($("#tag7").css("height"));
-						/*var conheight=height-pheight-pbottom-rheight-64;*/
 						var c=myScroll.windowHeight();
 						var con=c-pheight-pbottom-rheight;
 						$("#content").css("height",con+"px")
 					}
-					
-					/*$("#content").css("height",conheight+"px");*/
-					
 				
 			</script>
 	</body>

@@ -31,6 +31,7 @@ import com.maxiaobu.healthclub.common.beangson.BeanmDynamicList;
 import com.maxiaobu.healthclub.ui.fragment.TrainerCourseFragment;
 import com.maxiaobu.healthclub.ui.fragment.TrainerDataFragment;
 import com.maxiaobu.healthclub.ui.fragment.TrainerDynamicFragment;
+import com.maxiaobu.healthclub.ui.weiget.GlideCircleTransform;
 import com.maxiaobu.healthclub.ui.weiget.toolsbar.MyNestedScrollView;
 import com.maxiaobu.healthclub.ui.weiget.toolsbar.WrapContentHeightViewPager;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
@@ -159,14 +160,12 @@ public class TrainerPersionalActivity extends BaseAty implements AppBarLayout.On
                 BeanmDynamicList object = JsonUtils.object(s, BeanmDynamicList.class);
                 BeanmDynamicList.BBMemberBean mData = object.getBBMember();
                 Glide.with(TrainerPersionalActivity.this).load(mData.getImgsfilename())
-                        .placeholder(R.mipmap.ic_place_holder).into(mIvHeader);
+                        .transform(new GlideCircleTransform(mActivity)).placeholder(R.mipmap.ic_place_holder).into(mIvHeader);
                 mTvFans.setText("粉丝:" + mData.getFollownum());
                 mTvFollow.setText("关注：" + mData.getConcernnum());
                 mNickname = mData.getNickname();
                 mCtlName.setTitle(mData.getNickname());
                 mTvName.setText(mData.getNickname());
-//                mCtlName.setTitle("kjdshfkjdsh");
-//                mTvTitleCommon.setText(mData.getNickname());
                 mTvSignature.setText(mData.getSignature());
             }
 

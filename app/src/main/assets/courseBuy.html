@@ -183,11 +183,12 @@
 						//继续跳转到支付页面
 						alertInfo(data.msgContent);
 						if (mertype == "gcourse") {
-							var page = "personal.html?memid=" + memid;
-							createNewWindow(page);
+							/*var page = "personal.html?memid=" + memid;
+							createNewWindow(page);*/
+							!window.mobile||window.mobile.toPersonal();
 						} else {
 //							var page = "pay.html?ordno=" + data.ordno + "&ordamt=" + data.ordamt + "&memid=" + memid;
-							window.mobile.gotoPay(data.ordno, data.ordamt);
+							!window.mobile||window.mobile.gotoPay(data.ordno, data.ordamt);
 //							createNewWindow(page);
 						}
 					} else {

@@ -15,6 +15,7 @@ import com.maxiaobu.healthclub.common.beangson.BeanGoodsList;
 import com.maxiaobu.healthclub.ui.weiget.TouchHighlightImageButton;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -58,7 +59,12 @@ public class LunchListAdapter extends RecyclerView.Adapter {
         String compodescr = listBean.getCompodescr();
         String[] split = compodescr.split(",");//热量: 0 kcal, 蛋白质含量: 0g, 脂肪含量: 0g, 碳水化合物: 0g, 植物纤维: 0g, 钠: 0mg
         viewHolder.mTvEnergy.setText(split[0]);
-        viewHolder.mTvProtein.setText(split[1].trim());
+        try {
+            viewHolder.mTvProtein.setText(split[1].trim());
+        }catch (ArrayIndexOutOfBoundsException e){
+
+        }
+
 
         viewHolder.mTvPrice.setText(listBean.getMerprice()+"元");
         viewHolder.mTvTitle.setText(listBean.getMername());

@@ -29,8 +29,6 @@ import butterknife.OnClick;
  * maxiaobu 2016.9.5
  */
 public class HomeFragment extends BaseFrg implements View.OnClickListener {
-
-
     @Bind(R.id.searchId)
     RelativeLayout mSearchId;
     @Bind(R.id.qrCodeId)

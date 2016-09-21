@@ -48,8 +48,7 @@ $(document).bind('mobileinit', function () {
     <div class="box01_c" id="weekcon">
         <div style="position:relative;">
         	<dl id="tab0">
-                <dt>周日</dt>
-              	
+                <dt>周日</dt>   	
             </dl>
             <dl id="tab1">
                 <dt>周一</dt>
@@ -116,19 +115,16 @@ $(document).bind('mobileinit', function () {
 	                var bGweekcourseList = data.bGweekcourseList;
 	                var bClub = data.bClub;
 	                $("#clubname").text(bClub.clubname);
-	              //  console.info(bClub);
-	            //    console.info(bGweekcourseList);
 	                
                   $.each(bGweekcourseList, function (index, content) {
-                	//  console.info(content);
                 	  var weekday = content.weekday;
                 	  var gcaltype = content.gcaltype;
-                	//  alert(gcaltype);
                 	  var dd = $("<dd class='dd'><span>"+content.coachname+"</span><a href=''><i>"+content.begintime+"-"+content.endtime+"</i><em>"+content.gcalname+"</em></a></dd>");
                 	  dd.bind("click",function(){
                        //   var page = "member_club.html?tarid="+$(this).attr("id")+"&role="+content.memrole+"&memid="+getMemid()+"&clubid="+$(this).attr("clubid");
-                      var page = "courseList.html?gcoursetype="+gcaltype+"&clubid="+clubid;
-                       window.location.href=page;
+                     	/*window.location.href=page;*/
+                      var page="gcourse.html?gcourseid=" + "GC000043" /*+ "&memid=" + getMemid();*/
+                      createNewWindow(page);
                       });
                 	  $("#tab"+weekday).append(dd);
                    });

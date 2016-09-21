@@ -23,7 +23,7 @@
             android:layout_height="@dimen/sz_60"
             tools:src="@mipmap/ic_test_header"
             android:scaleType="fitXY"
-            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/sz_10"
             android:layout_marginLeft="@dimen/sz_10"
             android:layout_marginRight="@dimen/sz_10"/>
         <RelativeLayout
@@ -49,7 +49,7 @@
                 android:textColor="@color/colorTextThird"
                 android:layout_marginRight="@dimen/sz_20"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/sz_10"/>
+                android:layout_marginTop="@dimen/sz_6"/>
             <RatingBar
                 android:id="@+id/rb_goods"
                 style="@style/MyRatingBar"

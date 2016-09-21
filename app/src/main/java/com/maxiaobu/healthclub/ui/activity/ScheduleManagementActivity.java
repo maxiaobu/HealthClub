@@ -13,19 +13,16 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.Constant;
-import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
 import com.maxiaobu.healthclub.utils.web.BaseJsToAndroid;
-import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ReservationActivity extends BaseAty {
+public class ScheduleManagementActivity extends BaseAty {
 
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
@@ -37,7 +34,7 @@ public class ReservationActivity extends BaseAty {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reservation);
+        setContentView(R.layout.activity_schedule_management);
         ButterKnife.bind(this);
         initView();
         initData();
@@ -45,8 +42,7 @@ public class ReservationActivity extends BaseAty {
 
     @Override
     public void initView() {
-        setCommonBackToolBar(mToolbarCommon, mTvTitleCommon, "预约");
-        // 设置WebView支持JavaScript
+        setCommonBackToolBar(mToolbarCommon,mTvTitleCommon,"档期管理");
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
         // 在js中调用本地java方法
@@ -54,22 +50,22 @@ public class ReservationActivity extends BaseAty {
         mWebView.getSettings().setDefaultTextEncodingName("utf-8");
 
         mWebView.setWebViewClient(new MyWebViewClient());
-        Log.d("ReservationActivity", getIntent().getStringExtra("reservation"));
-        mWebView.loadUrl(getIntent().getStringExtra("reservation").trim());
+        mWebView.loadUrl("file:///android_asset/manager.html?coachid="
+                + SPUtils.getString(Constant.MEMID));
+
+
     }
 
     @Override
     public void initData() {
+
     }
 
     @Override
     public void onBackPressed() {
+        setResult(Constant.RESULT_OK_TWO);
         super.onBackPressed();
-        Intent intent = new Intent();
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.setClass(ReservationActivity.this, HomeActivity.class);
-        intent.putExtra("foodFlag", 1);
-        startActivity(intent);
+
     }
 
     public class WebAppInterface extends BaseJsToAndroid {
@@ -92,13 +88,18 @@ public class ReservationActivity extends BaseAty {
         @JavascriptInterface
         public void gotoBespeakList() {
             Intent intent = new Intent();
-            intent.setClass(ReservationActivity.this, MyBespeakActivity.class);
-            ReservationActivity.this.finish();
+            intent.setClass(ScheduleManagementActivity.this, MyBespeakActivity.class);
+            ScheduleManagementActivity.this.finish();
             startActivity(intent);
 
         }
 
+        @JavascriptInterface
+        public void backExe() {
+            setResult(Constant.RESULT_OK_ONE);
 
+            ScheduleManagementActivity.this.finish();
+        }
     }
 
 

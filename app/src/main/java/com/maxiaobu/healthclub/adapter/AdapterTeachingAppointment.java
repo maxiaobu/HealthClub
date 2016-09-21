@@ -1,6 +1,7 @@
 package com.maxiaobu.healthclub.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.beangson.BeanMcoachBespeak;
 import com.maxiaobu.healthclub.common.beangson.BeanMmyBespeak;
+import com.maxiaobu.healthclub.ui.activity.DataEntryActivity;
 
 import java.util.List;
 
@@ -46,26 +48,21 @@ public class AdapterTeachingAppointment extends RecyclerView.Adapter {
         //0 代付款；1 待收货；2已完成
         Glide.with(mActivity).load(bean.getImgsfile()).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvPhoto);
         viewHolder.mTvName.setText(bean.getNickname());
-        viewHolder.mTvOccupation.setText("教练");
+        viewHolder.mTvOccupation.setText("学员");
         viewHolder.mTvCourse.setText(bean.getCoursename());
         viewHolder.mTvTime.setText(bean.getBegintime());
         viewHolder.mTvAddress.setText(bean.getClubname());
         if (bean.getCoursestatus().equals("0")){
-            viewHolder.mTvEvaluate.setText("等待上课");
+            viewHolder.mTvEvaluate.setText("确认上课");
             viewHolder.mTvEvaluate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mActivity, "等待上课", Toast.LENGTH_SHORT).show();
+
+                    mActivity.startActivity(new Intent( mActivity, DataEntryActivity.class ));
                 }
             });
         }else {
-            viewHolder.mTvEvaluate.setText("评价");
-            viewHolder.mTvEvaluate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mActivity, "评价", Toast.LENGTH_SHORT).show();
-                }
-            });
+            viewHolder.mTvEvaluate.setVisibility(View.INVISIBLE);
         }
 
     }

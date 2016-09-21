@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -21,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.gson.Gson;
 import com.maxiaobu.healthclub.App;
@@ -28,6 +31,7 @@ import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
+import com.maxiaobu.healthclub.common.beangson.BeanMmanager;
 import com.maxiaobu.healthclub.common.beangson.ClubList;
 import com.maxiaobu.healthclub.common.beangson.MpCourseSave;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
@@ -89,6 +93,7 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
     private String mFileName;
     private MpCourseSave mpCourseSave;
     private String clubid;
+    private boolean hadScheduleManagement = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +115,25 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
 
     @Override
     public void initData() {
+        App.getRequestInstance().post(this, UrlPath.URL_MMANAGER,
+                BeanMmanager.class, new RequestParams("coachid", SPUtils.getString(Constant.MEMID))
+                , new RequestJsonListener<BeanMmanager>() {
+                    @Override
+                    public void requestSuccess(BeanMmanager result) {
+                        List<BeanMmanager.ManagerlistBean> managerlist = result.getManagerlist();
+                        for (int i = 0; i < managerlist.size(); i++) {
+                            if (!TextUtils.isEmpty(managerlist.get(i).getSchtimeslice())) {
+                                hadScheduleManagement = true;
+                                return;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void requestAgain(NodataFragment nodataFragment) {
+                        initData();
+                    }
+                });
 
     }
 
@@ -121,7 +145,7 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
                 selectImage();
                 break;
             case R.id.tv_release:
-                if (prepareRelease()){
+                if (prepareRelease()) {
                     releaseCourse();
                 }
 
@@ -131,6 +155,45 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
                 break;
 
             default:
+                break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case IMAGE_REQUEST_CODE:
+                if (resultCode == this.RESULT_CANCELED) {
+                } else {
+                    startPhotoZoom(data.getData());
+                }
+                break;
+            case CAMERA_REQUEST_CODE:
+                if (resultCode == this.RESULT_CANCELED) {
+                } else {
+                    File parent = new File(Constant.CACHE_DIR);
+                    if (!parent.exists()) {
+                        parent.mkdirs();
+                    }
+                    File tempFile = new File(Constant.CACHE_DIR + "temp.jpg");
+                    startPhotoZoom(Uri.fromFile(tempFile));
+                }
+                break;
+            case RESULT_REQUEST_CODE:
+                if (resultCode == this.RESULT_CANCELED) {
+                } else {
+                    if (data != null) {
+                        getImageToView(data);
+                    }
+                }
+                break;
+            case Constant.RESULT_REQUEST_THIRD:
+                if (resultCode == Constant.RESULT_OK_ONE) {
+                    initData();
+                } else if (requestCode == Constant.RESULT_OK_TWO) {
+                    hadScheduleManagement = false;
+                }
                 break;
         }
     }
@@ -169,15 +232,35 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
     }
 
     private boolean prepareRelease() {
-        if (mTvClub.getText().toString().equals("合作俱乐部(必选)")||
-                TextUtils.isEmpty(mEtName.getText().toString())||
-                TextUtils.isEmpty(mEtDays.getText().toString())||
-                TextUtils.isEmpty(mEtTimes.getText().toString())||
-                TextUtils.isEmpty(mEtPrice.getText().toString())||
-                TextUtils.isEmpty(mEdContent.getText().toString())){
+        if (mTvClub.getText().toString().equals("合作俱乐部(必选)") ||
+                TextUtils.isEmpty(mEtName.getText().toString()) ||
+                TextUtils.isEmpty(mEtDays.getText().toString()) ||
+                TextUtils.isEmpty(mEtTimes.getText().toString()) ||
+                TextUtils.isEmpty(mEtPrice.getText().toString()) ||
+                TextUtils.isEmpty(mEdContent.getText().toString())) {
             Toast.makeText(mActivity, "请填写完整信息", Toast.LENGTH_SHORT).show();
             return false;
-        }else {
+        } else if (!hadScheduleManagement) {
+            new MaterialDialog.Builder(mActivity)
+                    .title("提示")
+                    .content("您需要选择课程档期后才能发布课程")
+                    .positiveText("去选择")
+                    .negativeText("稍后")
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            startActivityForResult(new Intent(CoachesReleaseActivity.this, ScheduleManagementActivity.class), Constant.RESULT_REQUEST_THIRD);
+                        }
+                    })
+                    .onNegative(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            dialog.dismiss();
+                        }
+                    }).show();
+            return false;
+        } else {
+
             return true;
         }
     }
@@ -203,6 +286,7 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
                     mpCourseSave = gson.fromJson(json, MpCourseSave.class);
                     if ("1".equals(mpCourseSave.getMsgFlag())) {
                         Toast.makeText(mActivity, mpCourseSave.getMsgContent(), Toast.LENGTH_SHORT).show();
+
                         CoachesReleaseActivity.this.finish();
                     } else {
                         Toast.makeText(mActivity, mpCourseSave.getMsgContent(), Toast.LENGTH_SHORT).show();
@@ -249,37 +333,6 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
 
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case IMAGE_REQUEST_CODE:
-                if (resultCode == this.RESULT_CANCELED) {
-                } else {
-                    startPhotoZoom(data.getData());
-                }
-                break;
-            case CAMERA_REQUEST_CODE:
-                if (resultCode == this.RESULT_CANCELED) {
-                } else {
-                    File parent = new File(Constant.CACHE_DIR);
-                    if (!parent.exists()) {
-                        parent.mkdirs();
-                    }
-                    File tempFile = new File(Constant.CACHE_DIR + "temp.jpg");
-                    startPhotoZoom(Uri.fromFile(tempFile));
-                }
-                break;
-            case RESULT_REQUEST_CODE:
-                if (resultCode == this.RESULT_CANCELED) {
-                } else {
-                    if (data != null) {
-                        getImageToView(data);
-                    }
-                }
-                break;
-        }
-    }
 
     public void startPhotoZoom(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");

@@ -13,7 +13,9 @@ import com.balysv.materialripple.MaterialRippleLayout;
 import com.bumptech.glide.Glide;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.UrlPath;
+import com.maxiaobu.healthclub.common.beangson.BeanClubList;
 import com.maxiaobu.healthclub.common.beangson.BeanCoachesListAty;
+import com.maxiaobu.healthclub.ui.weiget.GlideCircleTransform;
 
 import java.util.List;
 
@@ -33,9 +35,9 @@ public class AdapterClubListAty extends RecyclerView.Adapter {
     }
 
     private Context mContext;
-    private List<BeanCoachesListAty.CoachListBean> mData;
+    private    List<BeanClubList.ClubListBean>  mData;
 
-    public AdapterClubListAty(Context context, List<BeanCoachesListAty.CoachListBean> mData) {
+    public AdapterClubListAty(Context context,    List<BeanClubList.ClubListBean>  mData) {
         mContext = context;
         this.mData = mData;
     }
@@ -49,18 +51,18 @@ public class AdapterClubListAty extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         final MyViewHolder viewHolder = (MyViewHolder) holder;
-//        BeanCoachesListAty.CoachListBean listBean = mData.get(position);
-        Glide.with(mContext).load(UrlPath.TEXT_IMG).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
-        viewHolder.mTvName.setText("马小布");
-        viewHolder.mTvDistance.setText("距您" + "12KM");
-        viewHolder.mRbGoods.setRating(3.5f);
-        viewHolder.mTvStar.setText("("+"3.5"+")");
-        viewHolder.mTvContent.setText("快捷方式的回复可见很快就会失控垃圾发电");
+        final BeanClubList.ClubListBean bean = mData.get(position);
+        Glide.with(mContext).load(bean.getImgsfilename()).transform(new GlideCircleTransform(mContext)).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
+        viewHolder.mTvName.setText(bean.getClubname());
+        viewHolder.mTvDistance.setText("距您" + bean.getDistancestr());
+        viewHolder.mRbGoods.setRating(bean.getEvascore());
+        viewHolder.mTvStar.setText("("+bean.getEvascore()+")");
+        viewHolder.mTvContent.setText(bean.getAddress());
         viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mListener!=null){
-                    mListener.onItemClick(viewHolder.mIvHead,"");//mData.get(position).getMemid()
+                    mListener.onItemClick(viewHolder.mIvHead,bean.getMemid());//mData.get(position).getMemid()
                 }
             }
         });
@@ -69,7 +71,7 @@ public class AdapterClubListAty extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return 15;
+        return mData.size();
     }
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
