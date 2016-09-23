@@ -98,7 +98,7 @@ public class BeanCorderList {
 
         private OrdenddateBean ordenddate;
         private String ordno;
-        private int ordscourseamt;
+        private float ordscourseamt;
         private String ordstatus;
         private String ordtype;
         private int payamt;
@@ -241,11 +241,11 @@ public class BeanCorderList {
             this.ordno = ordno;
         }
 
-        public int getOrdscourseamt() {
+        public float getOrdscourseamt() {
             return ordscourseamt;
         }
 
-        public void setOrdscourseamt(int ordscourseamt) {
+        public void setOrdscourseamt(float ordscourseamt) {
             this.ordscourseamt = ordscourseamt;
         }
 

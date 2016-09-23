@@ -42,7 +42,7 @@ public class AdapterClubPcourseFrg extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        BeanMbclub.PcourseListBean listBean = mData.get(position);
+        final BeanMbclub.PcourseListBean listBean = mData.get(position);
         MyViewHolder viewHolder = (MyViewHolder) holder;
         viewHolder.mTvPrice.setText(listBean.getPcourseprice());
         Glide.with(mActivity).load(listBean.getImgsfilename()).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
@@ -53,17 +53,9 @@ public class AdapterClubPcourseFrg extends RecyclerView.Adapter {
         viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mActivity, PersionalCourseActivity.class);
-//                intent.putExtra("pcourseid", listBean.getPcourseid());
-//                intent.putExtra("coachid",coachid);
-//                intent.putExtra("nickname",listBean.get());
-//                intent.putExtra("coachid",listBean.getClubname());
-//                intent.putExtra("coachid",coachid);
-//                intent.putExtra("coachid",coachid);
-//                intent.putExtra("coachid",coachid);
-//                intent.putExtra("coachid",coachid);
 
-//                Log.d("AdapterPcourseFrg", listBean.getCoachid());
+                Intent intent = new Intent(mActivity, PersionalCourseActivity.class);
+                intent.putExtra("pcourseid",listBean.getPcourseid());
                 mActivity.startActivity(intent);
             }
         });

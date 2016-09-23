@@ -1,5 +1,6 @@
 package com.maxiaobu.healthclub.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -155,5 +156,11 @@ public class MineTeachingAppointmentActivity extends BaseAty implements OnRefres
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        initData();
     }
 }

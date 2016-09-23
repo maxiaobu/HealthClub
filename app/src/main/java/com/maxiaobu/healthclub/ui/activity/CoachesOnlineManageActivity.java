@@ -117,7 +117,7 @@ public class CoachesOnlineManageActivity extends BaseAty implements EasyPermissi
     public void initData() {
     }
 
-    @OnClick({R.id.iv_top,R.id.tv_online,R.id.tv_delete})//, R.id.tv_release
+    @OnClick({R.id.iv_top, R.id.tv_online, R.id.tv_delete})//, R.id.tv_release
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -144,7 +144,7 @@ public class CoachesOnlineManageActivity extends BaseAty implements EasyPermissi
         App.getRequestInstance().post(this, UrlPath.URL_UPDATECOURSE, params, new RequestListener() {
             @Override
             public void requestSuccess(String json) {
-                Log.d("CoachesReleaseActivity", json);
+//                Log.d("CoachesReleaseActivity", json);
                 Gson gson = new Gson();
                 mpCourseSave = gson.fromJson(json, MpCourseSave.class);
                 if ("1".equals(mpCourseSave.getMsgFlag())) {
@@ -186,7 +186,7 @@ public class CoachesOnlineManageActivity extends BaseAty implements EasyPermissi
                 params.put("imagefile", inputStream, mFileName);// 图片修改
             }
             params.put("pcourseid", getIntent().getStringExtra("pcourseid"));// 课程编号
-            params.put("pcoursename",  mEtName.getText().toString().trim());// 名称修改
+            params.put("pcoursename", mEtName.getText().toString().trim());// 名称修改
             params.put("pcoursetimes", mEtTimes.getText().toString().trim());
             params.put("pcoursedays", mEtDays.getText().toString().trim());
             params.put("pcourseprice", mEtPrice.getText().toString().trim());

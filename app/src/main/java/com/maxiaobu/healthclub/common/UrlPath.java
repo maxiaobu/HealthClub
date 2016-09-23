@@ -32,6 +32,13 @@ public class UrlPath {
     public static final String URL_BASE = URL_HOST;//"http://123.56.195.32:8080/efithealth/";
 
     /**
+     * 获取验证码
+     * mobphone电话号码
+     * http://192.168.1.121:8080/efithealth/msendCode.do?mobphone=18624616670
+     */
+    public static final String URL_UPDATE = URL_BASE + "msendCode.do";
+
+    /**
      * 登录
      * http://192.168.1.121:8080/efithealth/mlogin.do?mobphone=18624616670&mempass=123456&phonedeviceno=
      * mobphone  用户名
@@ -321,7 +328,7 @@ public class UrlPath {
 
     /**
      * 课程管理
-     * http://192.168.1.121:8080/efithealth/mcourseList.do?linestatus=1&coachid=M000440
+     * http://192.168.1.121:8080/efithealth/mcourseList.do?linestatus=0&coachid=M000440
      * map.put("coachid", (String) SharedPreferencesUtils.getParam(
      * getActivity(), "memid", "")); // 会员id
      * map.put("linestatus", "1");// 状态 0 历史 1 上线

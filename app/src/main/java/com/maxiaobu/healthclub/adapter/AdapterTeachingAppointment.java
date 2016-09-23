@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.maxiaobu.healthclub.R;
+import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.beangson.BeanMcoachBespeak;
 import com.maxiaobu.healthclub.common.beangson.BeanMmyBespeak;
+import com.maxiaobu.healthclub.dao.DataEntryDbHelper;
 import com.maxiaobu.healthclub.ui.activity.DataEntryActivity;
 
 import java.util.List;
@@ -28,9 +30,9 @@ import butterknife.ButterKnife;
 public class AdapterTeachingAppointment extends RecyclerView.Adapter {
 
     private Activity mActivity;
-    private  List<BeanMcoachBespeak.CoachBespeaklistBean> mData;
+    private List<BeanMcoachBespeak.CoachBespeaklistBean> mData;
 
-    public AdapterTeachingAppointment(Activity activity,List<BeanMcoachBespeak.CoachBespeaklistBean> mData) {
+    public AdapterTeachingAppointment(Activity activity, List<BeanMcoachBespeak.CoachBespeaklistBean> mData) {
         mActivity = activity;
         this.mData = mData;
     }
@@ -44,7 +46,7 @@ public class AdapterTeachingAppointment extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         MyViewHolder viewHolder = (MyViewHolder) holder;
-        BeanMcoachBespeak.CoachBespeaklistBean bean = mData.get(position);
+        final BeanMcoachBespeak.CoachBespeaklistBean bean = mData.get(position);
         //0 代付款；1 待收货；2已完成
         Glide.with(mActivity).load(bean.getImgsfile()).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvPhoto);
         viewHolder.mTvName.setText(bean.getNickname());
@@ -52,16 +54,17 @@ public class AdapterTeachingAppointment extends RecyclerView.Adapter {
         viewHolder.mTvCourse.setText(bean.getCoursename());
         viewHolder.mTvTime.setText(bean.getBegintime());
         viewHolder.mTvAddress.setText(bean.getClubname());
-        if (bean.getCoursestatus().equals("0")){
+        if (bean.getCoursestatus().equals("0")) {
             viewHolder.mTvEvaluate.setText("确认上课");
             viewHolder.mTvEvaluate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    mActivity.startActivity(new Intent( mActivity, DataEntryActivity.class ));
+                    Intent intent = new Intent(mActivity, DataEntryActivity.class);
+                    intent.putExtra("corderlessonid",bean.getCorderlessonid());
+                    mActivity.startActivityForResult(intent, Constant.RESULT_REQUEST_ONE);
                 }
             });
-        }else {
+        } else {
             viewHolder.mTvEvaluate.setVisibility(View.INVISIBLE);
         }
 

@@ -177,7 +177,7 @@ public class HomeActivity extends BaseAty {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                HealthUtil.update_local_myinfo();
+//                HealthUtil.update_local_myinfo();
             }
         }).start();
 

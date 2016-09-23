@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/ly_root"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+    android:background="@color/grayBackgroud">
+    <TextView
+        android:id="@+id/tv_group"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sz_50"
+        android:text="1"/>
+    <TextView
+        android:id="@+id/tv_times"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sz_50"
+        android:text="10次，"
+        android:layout_toRightOf="@id/tv_group"/>
+    <TextView
+        android:id="@+id/tv_strength"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sz_50"
+        android:text="200斤"
+        android:layout_toRightOf="@id/tv_times"/>
+    <ImageView
+        android:id="@+id/iv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_data_entry_content"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/sz_10"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        />
+
+
+
+</RelativeLayout>
