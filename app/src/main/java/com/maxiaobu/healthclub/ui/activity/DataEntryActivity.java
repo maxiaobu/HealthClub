@@ -141,7 +141,7 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
         mRvRight.setAdapter(mRightAdapter);
         mRightAdapter.setOnItemClickListener(new AdapterDataEntryRightListAty.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, String itemId, String title, int status) {
+            public void onItemClick(View view, String itemId, String title,int position, int status) {
                 if (status == 0) {
                     inputType = status;
                     currentItemID = itemId;
@@ -153,7 +153,7 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
                     mRightAdapter.notifyDataSetChanged();
                 }else if (status==3){
                     inputType = status;
-                    mRightAdapter.notifyDataSetChanged();
+                    mRightAdapter.notifyItemChanged(position);
                 }
 
             }

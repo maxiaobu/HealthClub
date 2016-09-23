@@ -35,7 +35,7 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
 
 
     public interface OnItemClickListener {
-        public void onItemClick(View view, String itemId, String title, int status);//status 0无数据1 有数据
+        public void onItemClick(View view, String itemId, String title,int position, int status);//status 0无数据1 有数据
     }
 
     public OnItemClickListener mListener;
@@ -78,11 +78,10 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
                 public void onClick(View v) {
                     if (mListener != null) {
                         selectPosition = position;
-                        mListener.onItemClick(v, bean.getItemid(), bean.getItemname() + "第1组", 0);
+                        mListener.onItemClick(v, bean.getItemid(), bean.getItemname() + "第1组",position, 0);
                     }
                 }
             });
-
         } else if (position != selectPosition) {
             //有数据未打开
             viewHolder.mIvRight.setImageResource(R.mipmap.ic_down_arrow_data_entry);
@@ -95,13 +94,11 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
                 public void onClick(View v) {
                     if (mListener != null) {
                         selectPosition = position;
-                        mListener.onItemClick(v, bean.getItemid(), null , 1);
+                        mListener.onItemClick(v, bean.getItemid(), null ,position, 1);
                     }
                 }
             });
-
         } else {
-
             viewHolder.mIvRight.setImageResource(R.mipmap.ic_down_up_data_entry);
             viewHolder.mTvTitle.setText(bean.getItemname());
             Cursor c = mActivity.query(bean.getItemid());
@@ -112,11 +109,10 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
                 public void onClick(View v) {
                     if (mListener != null) {
                         selectPosition = 999999;
-                        mListener.onItemClick(v, bean.getItemid(), null , 3);
+                        mListener.onItemClick(v, bean.getItemid(), null ,position, 3);
                     }
                 }
             });
-
             LinearLayoutManager layoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
             viewHolder.mRvContent.setLayoutManager(layoutManager);
             viewHolder.mRvContent.setItemAnimator(new DefaultItemAnimator());
@@ -132,12 +128,7 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
                 }
             });
 
-            mAdapter.setOnItemClickListener(new AdapterDataEntryContentListAty.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    Toast.makeText(mActivity, "sdjkfhsdkjhfsdkajhflksdjhfglkjsdhglkjsdfhglj", Toast.LENGTH_SHORT).show();
-                }
-            });
+
 
 //        viewHolder.mLyRoot.setOnLongClickListener(new View.OnLongClickListener() {
 //            @Override
@@ -152,7 +143,8 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
                 public void onClick(View view) {
                     if (mListener != null) {
                         selectPosition = position;
-                        mListener.onItemClick(view, bean.getItemid(), bean.getItemname() + "第1组", 1);
+                        mListener.onItemClick(view, bean.getItemid(),
+                                bean.getItemname() + "第1组",position, 1);
                     }
                 }
             });
