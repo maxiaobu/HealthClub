@@ -24,7 +24,7 @@
 
 <div data-role="content" class="p_content">
 
-  <div id="slider" class="swipe cou_sw" <!--style="display: none;"-->>
+  <div id="slider" class="swipe cou_sw" style="display: none;">
     <ul class="box01_list">
       <li class="li_list">
         <div class="video"> <a rel="external" data-role="none"><img src="images/page/big_btn4.png" onerror="nofind();" id="imgpfile"/></a> </div>
@@ -59,7 +59,7 @@
       	<a id="tog" href="" class="click_club" rel="external" data-role="none" style="display:block;">
 			<p id="address">沈阳市和平区市府大路北<span id="club_title" style="color:#D6D6D6 ;float: right;"></span></p>
 			<!--<img id="arrou" class="arrou" src="images/jiantou_botton_default.png" style="width: 18px;height: 18px;"/>--> </a>
-		<a href="" rel="external" data-role="none" class="click_times"> <span class="tenper"><!--<em id="pcoursetimes">10次</em>/<em id="pcoursedays">2月</em>--><em id="pcoursedate">10月29日</em></span><!--<img class="arrou" src="images/jiantou_botton_default.png" style="width: 18px;height: 18px.;"> --></a>
+		<a href="" rel="external" data-role="none" class="click_times"> <span class="tenper"><!--<em id="pcoursetimes">10次</em>/<em id="pcoursedays">2月</em>--><em id="begintime">10月29日</em></span><!--<img class="arrou" src="images/jiantou_botton_default.png" style="width: 18px;height: 18px.;"> --></a>
 		<a rel="external" data-role="none" class="click_tel">
 			<p id="conphone" href="tel:130111">13011111111</p>
 			<img class="arrou" src="images/jiantou_botton_default.png" style="width: 18px;height: 18px;">
@@ -108,69 +108,62 @@ function nofind(){
 	img.src="images/page/big_btn4.png"; 
 	img.onerror=null; //控制不要一直跳动 
 } 
-var url = window.location.href
-parmData = getUrlParam(url);
-function getUrlParam(string) {
-	var obj = {};
-	if (string.indexOf("?") != -1) {
-		var string = string.substr(string.indexOf("?") + 1);
-		var strs = string.split("&");
-		for (var i = 0; i < strs.length; i++) {
-			var tempArr = strs[i].split("=");
-			obj[tempArr[0]] = decodeURI(tempArr[1]);
-		}
-	}
-	return obj;
-}
-var gcourseid = parmData.gcourseid;
+var lessonid = parmData.lessonid;
+$(document).ready(function() {
+		initData();
+});
 function initData(){
 	$.ajax({
         type: "POST", //请求方式
-        url: serviceUrl+"mgcourse.do", //请求路径
+        url: serviceUrl+"mglesson.do", //请求路径
         cache: false,
         data: {
-        	gcourseid: gcourseid//团操id
+        	lessonid: lessonid//团操id
         },
         dataType: 'JSON',   //返回值类型
+        beforeSend:function(){
+				!window.mobile||window.mobile.Loading(true);
+		},
         success: function (data) {
             var msgFlag = data.msgFlag;
             if (msgFlag == 1) {
-                var bGcourse = data.bGcourse;
+            	console.info(data.bGlesson);
+                var bGlesson = data.bGlesson;
                 var bClub = data.bClub;
             //    console.info(bGcourse);
-                document.title = bGcourse.gcoursename;
-                $("#gcoursename").text(bGcourse.gcoursename);
- 		        $("#imgpfile").attr("src", bGcourse.imgpfilename);
+                document.title = bGlesson.gcalname;
+                $("#gcoursename").text(bGlesson.gcalname);//课程名称
+ 		        $("#imgpfile").attr("src", bGlesson.imgpfilename);//课程图片
 				//根据业务需求免费
 //     		    $("i[name=gcourseprice]").text(bGcourse.gcourseprice);
-                $("#coachname").text(bGcourse.coachname);
-                $("#clubname").text(bClub.clubname);
-                $("#resinform").text(bGcourse.resinform);//须知
-                $("#address").text(bClub.address)
+                $("#coachname").text(bGlesson.coachname);//教练名称
+                $("#clubname").text(bClub.clubname);//俱乐部名称
+                $("#resinform").text(bClub.resinform);//须知
+                $("#address").text(bClub.address);//俱乐部地址
                 $(".star_shi").css("width",parseFloat(bClub.evascore*20) + "px");//星数
+                console.info(bGlesson.begintime);
+                $("#begintime").text(formatdate(bGlesson.begintime,"yyyy-MM-dd hh:mm"));
                 var mobphone = $("#conphone");
-                mobphone.text(bClub.conphone);
-                mobphone.parent("a").bind("click", function(){
+                mobphone.text(bClub.conphone);//俱乐部联系电话
+                mobphone.parent("a").bind("click", function(){//绑定点击事件为调用原生拨打电话方法
                 	callUp(this, bClub.conphone);
                 });
-                /*$("#address").text(bClub.address);*/
-//              $("#gcoursetimes").text(bGcourse.gcoursetimes);
-//              $("#gcoursedays").text(bGcourse.gcoursedays+"月");
-//              $("#detailsurl").attr("href", bGcourse.detailsurlname);
+                //循环开始
+                var timeList = ['18:00','19:00','20:00'];
 				
-
             }
-           /* $(".swipe").css("display","block");*/
-        }
+           
+        },
+		complete:function(){
+			!window.mobile||window.mobile.Loading(false);
+		    $(".swipe").css("display","block");
+		}
     });		
 }
   function gotoExe(){
     var page = "courseBuy.html?mertype=gcourse&courseid="+gcourseid+"&memid="+getMemid();
-    window.location.href=page;
+    createNewWindow(page);
   }
-$(document).ready(function() {
-		initData();
-});
 </script>
 </body>
 </html>

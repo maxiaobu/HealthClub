@@ -27,8 +27,8 @@
       </div>
       <div class="datum_d">
       	<ul>
-        	<li><input data-role="none" type="text" placeholder="单次场地费用：" id="clubprice"></li>
-            <li><input data-role="none" type="text" placeholder="单次教学价格：" id="coachprice"></li>
+        	<li><input data-role="none" type="number" placeholder="单次场地费用：" id="clubprice"></li>
+            <li><input data-role="none" type="number" placeholder="单次教学价格：" id="coachprice"></li>
             <li><textarea data-role="none" rows="4" placeholder="绑定申请说明：" id="bapplydescr"></textarea></li>
         </ul>
       </div>
@@ -54,6 +54,9 @@ function initData(){  /*http://127.0.0.1:8020/assets/bindClub.html?clubid=C00017
 	            coachid:coachid
 	        },
 	        dataType: 'JSON',   //返回值类型
+	        beforeSend:function(){
+				!window.mobile||window.mobile.Loading(true);
+			},
 	        success: function (data) {
 	            var msgFlag = data.msgFlag;
 	            if (msgFlag == 1) {
@@ -69,7 +72,10 @@ function initData(){  /*http://127.0.0.1:8020/assets/bindClub.html?clubid=C00017
 	                $("#address").text(address);
 	            }
 	           /* $(".bind").show();*/
-	        }
+	        },
+			complete:function(){
+				!window.mobile||window.mobile.Loading(false);
+			}
 	    });	
 }
 function bindSubmit(){
@@ -86,6 +92,15 @@ function bindSubmit(){
 		alertMessage("warn","请输入绑定申请理由");
 		return;
 	} 
+	
+	if(isNaN($.trim(clubprice))){
+		alertMessage("warn","单次场地费用请输入数字");
+		return;
+	} else if(isNaN($.trim(coachprice))){
+		alertMessage("warn","单次教学价格请输入数字");
+		return;
+	}
+	
 	 $.ajax({
 	        type: "POST", //请求方式
 	        url: serviceUrl +"mbindsave.do", //请求路径

@@ -20,6 +20,7 @@
 
 	<body>
 		<div data-role="page" style="background:#f5f5f5;">
+			<!--<img class="loader" src="images/ajax-loader.gif" style="display: none;position: absolute;left:50% ;top: 50%;width: 30px; height: 30px;"/>-->
 			<div class="courseBuy">
 				<div data-role="content">
 					<div class="course_top">
@@ -74,7 +75,6 @@
 	</body>
 	<script>/*http://127.0.0.1:8020/assets/courseBuy.html?mertype=pcourse&courseid=PC000082&memid=M000458*/
 	//http://127.0.0.1:8020/assets/courseBuy.html?mertype=gcourse&courseid=GC000020&memid=M000455
-		/*$(".courseBuy").hide();*/
 		var mertype = parmData.mertype;
 		var memid = getMemid();
 		var courseid = parmData.courseid;
@@ -101,6 +101,9 @@
 					memid: memid
 				},
 				dataType: 'JSON',
+				beforeSend:function(){
+					!window.mobile||window.mobile.Loading(true);
+				},
 				success: function(data) {
 					var msgFlag = data.msgFlag;
 					if (msgFlag == 1) {
@@ -137,6 +140,9 @@
 						gotoErrorPage(data.msgContent);
 					}
 					$(".courseBuy").show();
+				},
+				complete:function(){
+					!window.mobile||window.mobile.Loading(false);
 				}
 			});
 		}
@@ -185,7 +191,7 @@
 						if (mertype == "gcourse") {
 							/*var page = "personal.html?memid=" + memid;
 							createNewWindow(page);*/
-							!window.mobile||window.mobile.toPersonal();
+							!window.mobile||window.mobile.toReservation();
 						} else {
 //							var page = "pay.html?ordno=" + data.ordno + "&ordamt=" + data.ordamt + "&memid=" + memid;
 							!window.mobile||window.mobile.gotoPay(data.ordno, data.ordamt);

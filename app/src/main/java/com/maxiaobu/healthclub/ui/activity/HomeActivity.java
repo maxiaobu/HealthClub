@@ -158,8 +158,6 @@ public class HomeActivity extends BaseAty {
             public void onTabReselected(int position) {
             }
         });
-//        bottomNavigationBar.setBarBackgroundColor(R.color.white);
-
         mHomeFragment = HomeFragment.newInstance();
         mTalkFragment = TalkFragment.newInstance();
         mDiscoveryFragment = DiscoveryFragment.newInstance();
@@ -269,7 +267,6 @@ public class HomeActivity extends BaseAty {
     private void switchContent(Fragment from, Fragment to) {
         if (nowFragment != to) {
             nowFragment = to;
-
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);

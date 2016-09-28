@@ -1,52 +1,65 @@
 package com.maxiaobu.healthclub.ui.activity;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.adapter.AdapterDataEntryLeftListAty;
 import com.maxiaobu.healthclub.adapter.AdapterDataEntryRightListAty;
+import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanItems;
 import com.maxiaobu.healthclub.common.beangson.BeanMgettrainingitem;
 import com.maxiaobu.healthclub.dao.DataEntryDbHelper;
+import com.maxiaobu.healthclub.utils.storage.SPUtils;
 import com.maxiaobu.healthclub.volleykit.JsonUtils;
 import com.maxiaobu.healthclub.volleykit.NodataFragment;
 import com.maxiaobu.healthclub.volleykit.RequestListener;
+import com.maxiaobu.healthclub.volleykit.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnTextChanged;
 
 
 public class DataEntryActivity extends BaseAty implements View.OnClickListener {
 
+
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
+    @Bind(R.id.tv_title_save)
+    TextView mTvTitleSave;
     @Bind(R.id.toolbar_common)
     Toolbar mToolbarCommon;
     @Bind(R.id.rv_left)
@@ -60,7 +73,7 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
     @Bind(R.id.iv_times_add)
     ImageView mIvTimesAdd;
     @Bind(R.id.tv_times_num)
-    TextView mTvTimesNum;
+    AppCompatEditText mTvTimesNum;
     @Bind(R.id.iv_times_reduce)
     ImageView mIvTimesReduce;
     @Bind(R.id.tv_strength)
@@ -68,7 +81,7 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
     @Bind(R.id.iv_strength_add)
     ImageView mIvStrengthAdd;
     @Bind(R.id.tv_strength_num)
-    TextView mTvStrengthNum;
+    AppCompatEditText mTvStrengthNum;
     @Bind(R.id.iv_strength_reduce)
     ImageView mIvStrengthReduce;
     @Bind(R.id.tv_delete)
@@ -87,7 +100,7 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
     private String mCorderlessonid;//表名
     private int mTimesNum = 1;
     private int mStrengthNum = 1;
-    private int inputType;//0第一次录入数据  1有数据未打开
+    private int inputType;//0第一次录入数据  1有数据未打开3收起来
     private String currentItemID;
 
 
@@ -95,23 +108,6 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_entry);
-//        ContentValues values = new ContentValues();
-//        values.put(DataEntryDbHelper.ITEMID, "itemid");
-//        values.put(DataEntryDbHelper.GROUPS, "groups");
-//        values.put(DataEntryDbHelper.STRENGTH, "strength");
-//        values.put(DataEntryDbHelper.TIMES, "times");
-//        long biaoming = mDb.insert("biaoming", null, values);
-//        Log.d("DataEntryActivity", "biaoming:" + biaoming);
-//
-//        Cursor biaoming1 = db.query("biaoming", new String[]{DataEntryDbHelper.ITEMID, DataEntryDbHelper.GROUPS},
-//                null, null, null, null, DataEntryDbHelper.STRENGTH);
-//        while (biaoming1.moveToNext()) {
-//            Log.d("DataEntryActivity", "biaoming1.getColumnCount():" + biaoming1.getColumnCount());
-//            Log.d("DataEntryActivity", biaoming1.getString(0));
-//        }
-//
-//        int biaming = db.delete("biaoming", DataEntryDbHelper.GROUPS+" LIKE ?", new String[]{"groups"});
-
         ButterKnife.bind(this);
         initView();
         initData();
@@ -141,21 +137,116 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
         mRvRight.setAdapter(mRightAdapter);
         mRightAdapter.setOnItemClickListener(new AdapterDataEntryRightListAty.OnItemClickListener() {
             @Override
-            public void onItemClick(View view, String itemId, String title,int position, int status) {
+            public void onItemClick(View view, String itemId, String title, int position, int status) {
                 if (status == 0) {
                     inputType = status;
                     currentItemID = itemId;
                     mTvTitle.setText(title);
+                    mTvSave.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            add(currentItemID, "1", mTvStrengthNum.getText().toString(), mTvTimesNum.getText().toString());
+                            mRightAdapter.notifyDataSetChanged();
+                            hideMenu();
+                        }
+                    });
                     showMenu();
-                }else if (status==1){
+                } else if (status == 1) {
                     inputType = status;
                     currentItemID = itemId;
                     mRightAdapter.notifyDataSetChanged();
-                }else if (status==3){
+                } else if (status == 3) {
                     inputType = status;
-                    mRightAdapter.notifyItemChanged(position);
+                    mRightAdapter.notifyDataSetChanged();
                 }
+            }
+        });
 
+        mRightAdapter.setOnItemAddClickListener(new AdapterDataEntryRightListAty.OnItemAddClickListener() {
+            @Override
+            public void onItemClick(View view, final int position, List<List<String>> mData) {
+                currentItemID = mData.get(0).get(0);
+                mTvTitle.setText("第" + (mData.size() + 1) + "组");
+                mTvSave.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        add(currentItemID, String.valueOf(position + 1), mTvStrengthNum.getText().toString(), mTvTimesNum.getText().toString());
+                        mRightAdapter.notifyDataSetChanged();
+
+                        hideMenu();
+                    }
+                });
+                mTvDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        hideMenu();
+                    }
+                });
+                showMenu();
+            }
+        });
+
+        mRightAdapter.setOnItemModifyClickListener(new AdapterDataEntryRightListAty.OnItemModifyClickListener() {
+            @Override
+            public void onItemClick(View view, final int position, final List<List<String>> mData) {
+                currentItemID = mData.get(0).get(0);
+                mTvTitle.setText("第" + (position + 1) + "组");
+                mTvSave.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ContentValues values = new ContentValues();
+                        values.put(DataEntryDbHelper.STRENGTH, mTvStrengthNum.getText().toString());
+                        values.put(DataEntryDbHelper.TIMES, mTvTimesNum.getText().toString());
+                        int update = mDb.update(mCorderlessonid, values,
+                                "itemid = ? and groups = ? ", new String[]{currentItemID, mData.get(position).get(1)});
+                        Log.d("DataEntryActivity", "update:" + update);
+                        mRightAdapter.notifyDataSetChanged();
+                        hideMenu();
+                    }
+                });
+                mTvDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        delete(currentItemID, mData.get(position).get(1));
+//                        mRightAdapter.notifyDataSetChanged();
+                        hideMenu();
+                    }
+                });
+                showMenu();
+            }
+        });
+
+        mRightAdapter.setOnItemModifyLongClickListener(new AdapterDataEntryRightListAty.OnItemModifyLongClickListener() {
+            @Override
+            public void onItemClick(View view, final int ps, final List<List<String>> mData) {
+                new MaterialDialog.Builder(DataEntryActivity.this)
+                        .items("修改", "删除")
+                        .itemsCallback(new MaterialDialog.ListCallback() {
+                            @Override
+                            public void onSelection(MaterialDialog dialog, View itemView, final int position, CharSequence text) {
+                                if (position == 0) {
+                                    currentItemID = mData.get(0).get(0);
+                                    mTvTitle.setText("第" + (position + 1) + "组");
+                                    mTvSave.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            ContentValues values = new ContentValues();
+                                            values.put(DataEntryDbHelper.STRENGTH, mTvStrengthNum.getText().toString());
+                                            values.put(DataEntryDbHelper.TIMES, mTvTimesNum.getText().toString());
+                                            int update = mDb.update(mCorderlessonid, values,
+                                                    "itemid = ? and groups = ? ", new String[]{currentItemID, mData.get(position).get(1)});
+                                            Log.d("DataEntryActivity", "update:" + update);
+                                            mRightAdapter.notifyDataSetChanged();
+                                            hideMenu();
+                                        }
+                                    });
+                                    showMenu();
+                                } else {
+                                    delete(currentItemID, mData.get(ps).get(1));
+                                    mRightAdapter.notifyDataSetChanged();
+                                }
+                            }
+                        }).show();
             }
         });
     }
@@ -205,19 +296,18 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
                     e.printStackTrace();
                     Toast.makeText(mActivity, "DataEntryActivityjson解析失败", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
             public void requestAgain(NodataFragment fragment) {
-
+                initData();
             }
         });
 
     }
 
     @OnClick({R.id.iv_times_add, R.id.iv_times_reduce, R.id.iv_strength_add,
-            R.id.iv_strength_reduce, R.id.tv_save, R.id.tv_delete})
+            R.id.iv_strength_reduce, R.id.tv_save, R.id.tv_delete, R.id.tv_title_save})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -239,12 +329,55 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
                     mStrengthNum--;
                 mTvStrengthNum.setText(String.valueOf(mStrengthNum));
                 break;
-            case R.id.tv_save:
-                if (inputType == 0) {
-                    add(currentItemID, "1", mTvStrength.getText().toString(), mTvTimes.getText().toString());
-                    mRightAdapter.notifyDataSetChanged();
-                    hideMenu();
+            case R.id.tv_title_save:
+                //保存
+                Cursor cursor = mDb.query(mCorderlessonid, null, null,
+                        null, null, null, DataEntryDbHelper.GROUPS);
+                String head = "{\"detial\":[";
+                String end = "]}";
+                //cursor!=null&&
+                if (cursor.moveToFirst()) {
+                    int count = cursor.getCount();
+                    for (int i = 1; i <= count; i++) {
+                        String item = "{\"groups\": \"" + cursor.getString(2) + "\",\"strength\": \""
+                                + cursor.getString(3) + "\",\"times\": \"" + cursor.getString(4) +
+                                "\",\"itemid\":\"" + cursor.getString(1) + "\",\"remark\":\"adasasdaa\"}";
+                        cursor.moveToNext();
+                        if (i != count) {
+                            item += ",";
+                        } else {
+                            item += end;
+                        }
+                        head += item;
+                    }
                 }
+                cursor.close();
+                Log.d("DataEntryActivity", head);
+                RequestParams params = new RequestParams();
+                params.put("corderlessonid", mCorderlessonid);
+                params.put("trainingdetial", head);
+                params.put("memid", SPUtils.getString(Constant.MEMID));
+                App.getRequestInstance().post(DataEntryActivity.this, UrlPath.URL_MCONFIRMLESSION, params, new RequestListener() {
+                    @Override
+                    public void requestSuccess(String json) {
+                        Log.d("DataEntryActivity", json);
+                        try {
+                            JSONObject object = new JSONObject(json);
+                            Object msgFlag = object.get("msgFlag");
+                            if ("1".equals(msgFlag.toString())) {
+                                DataEntryActivity.this.finish();
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(mActivity, "返回数据解析失败", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void requestAgain(NodataFragment fragment) {
+                        initData();
+                    }
+                });
 
                 break;
             case R.id.tv_delete:
@@ -266,27 +399,18 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
         } else {
             super.onBackPressed();
         }
-
     }
 
     public Cursor query(String itemid) {
-        Cursor c = mDb.rawQuery("select * from " + mCorderlessonid + " where itemid=?", new String[]{itemid});
-//                mDb.query(mCorderlessonid, null, DataEntryDbHelper.ITEMID,
-//                new String[]{"?",itemid}, null, null, DataEntryDbHelper.GROUPS);
-//        while (c.moveToNext()) {
-//            Log.d("DataEntryActivity", "biaoming1.getColumnCount():" + c.getColumnCount());
-//            Log.d("DataEntryActivity", c.getString(0));
-//        }
-return c;
-//        int biaming = mDb.delete("biaoming", DataEntryDbHelper.GROUPS+" LIKE ?", new String[]{"groups"});
+        Cursor c = mDb.query(mCorderlessonid, null, DataEntryDbHelper.ITEMID + "=?",
+                new String[]{itemid}, null, null, DataEntryDbHelper.GROUPS);
+        return c;
     }
 
     public boolean hasData(String itemid) {
         Cursor c = mDb.rawQuery("select * from " + mCorderlessonid + " where itemid=?", new String[]{itemid});
         int count = c.getCount();
-        Log.d("DataEntryActivity", "biaoming1.getColumnCount():" + count);
         return count > 0;
-//        int biaming = mDb.delete("biaoming", DataEntryDbHelper.GROUPS+" LIKE ?", new String[]{"groups"});
     }
 
     public void add(String itemId, String groups, String strength, String times) {
@@ -296,12 +420,60 @@ return c;
         values.put(DataEntryDbHelper.STRENGTH, strength);
         values.put(DataEntryDbHelper.TIMES, times);
         long biaoming = mDb.insert(mCorderlessonid, null, values);
-        Log.d("DataEntryActivity", "biaoming:" + biaoming);
     }
 
+    //             1               2 -1
+    public void upData(String groupsFrom, String groupsTo, String itemId) {
+        try {
+            mDb.beginTransaction();
+            ContentValues values = new ContentValues();
+            values.put(DataEntryDbHelper.GROUPS, "-1");
+            int update = mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?", new String[]{itemId, groupsTo});
+//            Log.d("DataEntryActivity", "update:" + update);
+            values.clear();
+            values.put(DataEntryDbHelper.GROUPS, groupsTo);
+            int update1 = mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?", new String[]{itemId, groupsFrom});
+//            Log.d("DataEntryActivity", "update1:" + update1);
+            values.clear();
+            values.put(DataEntryDbHelper.GROUPS, groupsFrom);
+            int update2 = mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?", new String[]{itemId, "-1"});
+            mDb.setTransactionSuccessful();
+
+        } catch (Exception e) {
+            Toast.makeText(mActivity, "位置更换失败", Toast.LENGTH_SHORT).show();
+        } finally {
+            mDb.endTransaction();
+        }
+    }
+
+    public void delete(String itemID, String groups) {
+        int delete = mDb.delete(mCorderlessonid, DataEntryDbHelper.ITEMID + " = ? and " +
+                DataEntryDbHelper.GROUPS + " = ?", new String[]{itemID, groups});
+        Log.d("DataEntryActivity", "delete:" + delete);
+        Cursor c = mDb.query(mCorderlessonid, null, DataEntryDbHelper.ITEMID + "=?",
+                new String[]{itemID}, null, null, DataEntryDbHelper.GROUPS);
+        int count = c.getCount();
+        c.close();
+        try {
+            mDb.beginTransaction();
+            ContentValues values = new ContentValues();
+            for (int i = Integer.parseInt(groups); i <= count; i++) {
+                values.put(DataEntryDbHelper.GROUPS, String.valueOf(i));
+                int update = mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?",
+                        new String[]{itemID, String.valueOf(i + 1)});
+                values.clear();
+            }
+            mDb.setTransactionSuccessful();
+        } catch (Exception e) {
+            Toast.makeText(mActivity, "位置更换失败", Toast.LENGTH_SHORT).show();
+        } finally {
+            mDb.endTransaction();
+        }
+    }
 
     public void hideMenu() {
-
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         mFlEdit.setVisibility(View.GONE);
         mFlEdit.setAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.dd_mask_out));
         mLlEdit.setAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.bottom_menu_out));
@@ -309,7 +481,6 @@ return c;
         mStrengthNum = 1;
         mTvTimesNum.setText(String.valueOf(mTimesNum));
         mTvStrengthNum.setText(String.valueOf(mStrengthNum));
-
     }
 
     public void showMenu() {

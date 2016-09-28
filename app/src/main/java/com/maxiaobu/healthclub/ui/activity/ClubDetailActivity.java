@@ -29,6 +29,7 @@ import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanMbclub;
+import com.maxiaobu.healthclub.common.beangson.BeanMrelation;
 import com.maxiaobu.healthclub.ui.fragment.ClubCourseFragment;
 import com.maxiaobu.healthclub.ui.fragment.ClubDataFragment;
 import com.maxiaobu.healthclub.ui.fragment.ClubDynamicFragment;
@@ -38,6 +39,7 @@ import com.maxiaobu.healthclub.ui.weiget.toolsbar.WrapContentHeightViewPager;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
 import com.maxiaobu.healthclub.volleykit.JsonUtils;
 import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestJsonListener;
 import com.maxiaobu.healthclub.volleykit.RequestListener;
 import com.maxiaobu.healthclub.volleykit.RequestParams;
 
@@ -147,7 +149,6 @@ public class ClubDetailActivity extends BaseAty implements AppBarLayout.OnOffset
                 params, new RequestListener() {
                     @Override
                     public void requestSuccess(String s) {
-
 //                        Log.d("ClubDetailActivity", s);
                         BeanMbclub object = JsonUtils.object(s, BeanMbclub.class);
                         BeanMbclub.BBMemberBean mData = object.getBBMember();
@@ -167,6 +168,31 @@ public class ClubDetailActivity extends BaseAty implements AppBarLayout.OnOffset
                         initData();
                     }
                 });
+
+        params=new RequestParams();
+        params.put("memid",SPUtils.getString(Constant.MEMID));
+        params.put("tarid",getIntent().getStringExtra("tarid"));
+        params.put("tarrole","clubadmin");
+        App.getRequestInstance().post(this, UrlPath.URL_MRELATION, BeanMrelation.class, params, new RequestJsonListener<BeanMrelation>() {
+            @Override
+            public void requestSuccess(BeanMrelation result) {
+                if (null!=result.getIsbind()){
+                    mFabBind.setVisibility(View.VISIBLE);
+                    if (!result.getIsbind().equals("0")){
+                        mFabBind.setImageResource(R.mipmap.ic_fab_unbind);
+                        mFabBind.setClickable(false);
+                    }
+
+                }
+            }
+
+            @Override
+            public void requestAgain(NodataFragment nodataFragment) {
+initData();
+            }
+        });
+
+
     }
 
     /**
@@ -223,9 +249,8 @@ public class ClubDetailActivity extends BaseAty implements AppBarLayout.OnOffset
                 break;
             case R.id.fab_bind:
                 intent.setClass(this,ApplyBindClubActivity.class);
-                        intent.putExtra("coachid",getIntent().getStringExtra("tarid"));
+                        intent.putExtra("coachid",SPUtils.getString(Constant.MEMID));
                         intent.putExtra("clubid",mClubid);
-
                 startActivity(intent);
                 break;
             default:

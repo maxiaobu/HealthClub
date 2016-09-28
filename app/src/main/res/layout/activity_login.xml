@@ -4,7 +4,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@mipmap/test_bg"
+                android:background="@mipmap/test_login5"
                 tools:context=".ui.activity.LoginActivity">
     <!--如果不设置 app:cardUseCompatPadding=”true”的话会造成在5.0系统的Android手机上不能看到阴影效果。-->
     <android.support.v7.widget.CardView

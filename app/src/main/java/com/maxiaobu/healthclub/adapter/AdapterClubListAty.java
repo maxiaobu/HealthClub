@@ -55,7 +55,7 @@ public class AdapterClubListAty extends RecyclerView.Adapter {
         Glide.with(mContext).load(bean.getImgsfilename()).transform(new GlideCircleTransform(mContext)).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvHead);
         viewHolder.mTvName.setText(bean.getClubname());
         viewHolder.mTvDistance.setText("距您" + bean.getDistancestr());
-        viewHolder.mRbGoods.setRating(bean.getEvascore());
+        viewHolder.mRbGoods.setRating(Float.parseFloat(bean.getEvascore()));
         viewHolder.mTvStar.setText("("+bean.getEvascore()+")");
         viewHolder.mTvContent.setText(bean.getAddress());
         viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {

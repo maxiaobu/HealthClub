@@ -247,8 +247,7 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
         App.getRequestInstance().post(this, UrlPath.URL_SENDCODE, params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {
-                Log.d("LoginActivity", s);
-                // TODO: 2016/9/5 换bean
+//                Log.d("LoginActivity", s);
                 BeanMrsendCode data = JsonUtils.object(s, BeanMrsendCode.class);
                 data.getMsgFlag();
                 Toast.makeText(RegisterActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
@@ -278,9 +277,8 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
         App.getRequestInstance().post(this, UrlPath.URL_SENDCODE_CHECK, params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {
-                // TODO: 2016/9/5 换bean
                 BeanMrsendCode data = JsonUtils.object(s, BeanMrsendCode.class);
-                data.getMsgFlag();
+//                data.getMsgFlag();
                 Toast.makeText(RegisterActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                 if ("1".equals(data.getMsgFlag())) {
                     Intent intent = new Intent();
@@ -310,7 +308,7 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == 1) {
             RegisterActivity.this.setResult(1);
-            RegisterActivity.this.finish();
+            animateRevealClose();
         }
     }
 

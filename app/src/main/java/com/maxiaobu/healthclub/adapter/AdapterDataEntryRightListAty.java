@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,13 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.beangson.BeanItems;
+import com.maxiaobu.healthclub.dao.DataEntryDbHelper;
 import com.maxiaobu.healthclub.ui.activity.DataEntryActivity;
 import com.maxiaobu.healthclub.utils.recyeler.OnStartDragListener;
 import com.maxiaobu.healthclub.utils.recyeler.SimpleItemTouchHelperCallback;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
@@ -35,7 +39,7 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
 
 
     public interface OnItemClickListener {
-        public void onItemClick(View view, String itemId, String title,int position, int status);//status 0无数据1 有数据
+        public void onItemClick(View view, String itemId, String title, int position, int status);//status 0无数据1 有数据
     }
 
     public OnItemClickListener mListener;
@@ -44,11 +48,42 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
         mListener = listener;
     }
 
+    public interface OnItemAddClickListener {
+        public void onItemClick(View view, int position, List<List<String>> mData);
+    }
+
+    public OnItemAddClickListener mAddListener;
+
+    public void setOnItemAddClickListener(OnItemAddClickListener listener) {
+        mAddListener = listener;
+    }
+
+    public interface OnItemModifyClickListener {
+        public void onItemClick(View view, int position, List<List<String>> mData);
+    }
+
+    public OnItemModifyClickListener mModifyListener;
+
+    public void setOnItemModifyClickListener(OnItemModifyClickListener listener) {
+        mModifyListener = listener;
+    }
+
+
+    public interface OnItemModifyLongClickListener {
+        public void onItemClick(View view, int position, List<List<String>> mData);
+    }
+
+    public OnItemModifyLongClickListener mModifyLongListener;
+
+    public void setOnItemModifyLongClickListener(OnItemModifyLongClickListener listener) {
+        mModifyLongListener = listener;
+    }
+
 
     private DataEntryActivity mActivity;
     private List<BeanItems.ItemsBean> mData;
     SQLiteDatabase mDb;
-    private int selectPosition = 0;
+    private int selectPosition = -1;
     private ItemTouchHelper mItemTouchHelper;
 
     public AdapterDataEntryRightListAty(Activity activity, List<BeanItems.ItemsBean> mData, SQLiteDatabase mDb) {
@@ -65,6 +100,7 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+//        Log.d("AdapterDataEntryRightLi", "selectPosition:" + selectPosition);
         final MyViewHolder viewHolder = (MyViewHolder) holder;
         final BeanItems.ItemsBean bean = mData.get(position);
         viewHolder.setIsRecyclable(false);
@@ -78,7 +114,7 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
                 public void onClick(View v) {
                     if (mListener != null) {
                         selectPosition = position;
-                        mListener.onItemClick(v, bean.getItemid(), bean.getItemname() + "第1组",position, 0);
+                        mListener.onItemClick(v, bean.getItemid(), bean.getItemname() + "第1组", position, 0);
                     }
                 }
             });
@@ -94,7 +130,7 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
                 public void onClick(View v) {
                     if (mListener != null) {
                         selectPosition = position;
-                        mListener.onItemClick(v, bean.getItemid(), null ,position, 1);
+                        mListener.onItemClick(v, bean.getItemid(), null, position, 1);
                     }
                 }
             });
@@ -103,54 +139,74 @@ public class AdapterDataEntryRightListAty extends RecyclerView.Adapter implement
             viewHolder.mTvTitle.setText(bean.getItemname());
             Cursor c = mActivity.query(bean.getItemid());
             viewHolder.mTvContent.setText("已录入" + c.getCount() + "组");
+            c.moveToFirst();
+            List<String> data = new ArrayList<>();
+            List<List<String>> datas = new ArrayList<>();
+            String itemID = c.getString(1);
+            String group = c.getString(2);
+            String strength = c.getString(3);
+            String time = c.getString(4);
+//            Log.d("AdapterDataEntryRightLi", strength);
+            data.add(itemID);
+            data.add(group);
+            data.add(strength);
+            data.add(time);
+            datas.add(data);
+            while (c.moveToNext()) {
+                data = new ArrayList<>();
+                itemID = c.getString(1);
+                group = c.getString(2);
+                strength = c.getString(3);
+                time = c.getString(4);
+                Log.d("data", strength);
+                data.add(itemID);
+                data.add(group);
+                data.add(strength);
+                data.add(time);
+                datas.add(data);
+            }
             c.close();
             viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mListener != null) {
                         selectPosition = 999999;
-                        mListener.onItemClick(v, bean.getItemid(), null ,position, 3);
+                        mListener.onItemClick(v, bean.getItemid(), null, position, 3);
                     }
                 }
             });
             LinearLayoutManager layoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false);
             viewHolder.mRvContent.setLayoutManager(layoutManager);
             viewHolder.mRvContent.setItemAnimator(new DefaultItemAnimator());
-            AdapterDataEntryContentListAty mAdapter = new AdapterDataEntryContentListAty(mActivity, mData, AdapterDataEntryRightListAty.this);
+//            String itemid = bean.getItemid();
+            AdapterDataEntryContentListAty mAdapter = new AdapterDataEntryContentListAty(mActivity, datas, AdapterDataEntryRightListAty.this);
             viewHolder.mRvContent.setAdapter(mAdapter);
             ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mAdapter);
             mItemTouchHelper = new ItemTouchHelper(callback);
             mItemTouchHelper.attachToRecyclerView(viewHolder.mRvContent);
             mAdapter.setOnItemClickListener(new AdapterDataEntryContentListAty.OnItemClickListener() {
                 @Override
-                public void onItemClick(View view, int position) {
-                    Toast.makeText(mActivity, "sdjkfhsdkjhfsdkajhflksdjhfglkjsdhglkjsdfhglj", Toast.LENGTH_SHORT).show();
+                public void onItemClick(View view, int position, List<List<String>> mData) {
+                    if (mModifyListener != null) {
+                        mModifyListener.onItemClick(view, position, mData);
+                    }
                 }
             });
-
-
-
-//        viewHolder.mLyRoot.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View v) {
-//                Toast.makeText(mContext, "傻逼傻逼傻逼傻逼傻逼傻逼傻逼", Toast.LENGTH_SHORT).show();
-//                return true;
-//            }
-//        });
-
-            viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {
+            mAdapter.setOnItemAddClickListener(new AdapterDataEntryContentListAty.OnItemAddClickListener() {
                 @Override
-                public void onClick(View view) {
-                    if (mListener != null) {
-                        selectPosition = position;
-                        mListener.onItemClick(view, bean.getItemid(),
-                                bean.getItemname() + "第1组",position, 1);
-                    }
+                public void onItemClick(View view, int position, List<List<String>> mData) {
+                    mAddListener.onItemClick(view, position, mData);
+                }
+            });
+//            mAdapter.seti
+            mAdapter.setOnItemLongClickListener(new AdapterDataEntryContentListAty.OnItemLongClickListener() {
+                @Override
+                public void onItemClick(View view, int position, List<List<String>> mData) {
+                    mModifyLongListener.onItemClick(view, position, mData);
                 }
             });
         }
     }
-
 
     @Override
     public int getItemCount() {

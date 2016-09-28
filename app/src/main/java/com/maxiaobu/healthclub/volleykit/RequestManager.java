@@ -199,6 +199,7 @@ public class RequestManager {
                 try {
                     data = new String(arg0, "UTF-8");
                     JSONObject a = new JSONObject(data);
+
                     data_request = a.getString("msgContent");
                     int code = Integer.parseInt(a.get("msgFlag").toString());
                     if (1 == code) {

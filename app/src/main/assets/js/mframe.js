@@ -1,6 +1,6 @@
 //请求URL根目录
 //var serviceUrl="http://192.168.1.185:18080/efithealth/";
-var serviceUrl="http://192.168.1.121:8080/efithealth/";
+var serviceUrl="http://192.168.1.182:8080/efithealth/";
 //var serviceUrl = "http://192.168.1.88:8188/efithealth/";
 //var serviceUrl = "http://192.168.1.137:8080/efithealth/";
 var parmData = getUrlParam(window.location.href);
@@ -184,6 +184,7 @@ function imgView(urlStr, imgList, index) {
 function backExe(){
 	!window.mobile||window.mobile.backExe();
 }
+
 
 /**
  * 判断是否函数 

@@ -70,7 +70,7 @@ public class BeanGoodsList {
         private String merdescr;
         private String merid;
         private String mername;
-        private int merprice;
+        private String merprice;
         private String mertype;
 
         public String getCompodescr() {
@@ -161,11 +161,11 @@ public class BeanGoodsList {
             this.mername = mername;
         }
 
-        public int getMerprice() {
+        public String getMerprice() {
             return merprice;
         }
 
-        public void setMerprice(int merprice) {
+        public void setMerprice(String merprice) {
             this.merprice = merprice;
         }
 

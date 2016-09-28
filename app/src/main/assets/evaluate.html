@@ -46,7 +46,7 @@
 				<div class="course_pic"><img src="" id="imgsfilename"></div>
 				<div class="course_text">
 					<p class="p1" id="coursename">力量训练</p>
-					<p class="p2"><em id="coursedate">11月</em>&nbsp;&nbsp;<em id="coursetime">5:00</em></p>
+					<p class="p2"><em id="begintime">2016-10-23 6:00</em></p>
 					<p class="p3"><em id="address">市府路</em></p>
 				</div>
 			</div>
@@ -86,6 +86,7 @@
 						 var msgFlag = data.msgFlag;
 				            if (msgFlag == 1) {
 				            	console.log(score);
+				            	alert("2");
 				            	alertMessage("success","评价成功");
 				            	!window.mobile||window.mobile.gotoBespeakList();
 				            }
@@ -97,8 +98,7 @@
 				$("#nickname").text(parmData.nickname);
 				$("#imgsfile").attr("src",parmData.imgsfile);
 				$("#sign").text(parmData.sign);
-				$("#coursetime").text(parmData.coursetime);
-				$("#coursedate").text(parmData.coursedate);
+				$("#begintime").text(parmData.begintime);
 				$("#coursename").text(parmData.coursename);
 				$("#address").text(parmData.address);
 				$(".star_shi").css("width",parseFloat(parmData.evascore*20) + "px");

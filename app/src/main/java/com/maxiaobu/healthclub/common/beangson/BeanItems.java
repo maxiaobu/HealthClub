@@ -207,70 +207,70 @@ public class BeanItems {
         }
 
         public static class CreatetimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -282,19 +282,19 @@ public class BeanItems {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }

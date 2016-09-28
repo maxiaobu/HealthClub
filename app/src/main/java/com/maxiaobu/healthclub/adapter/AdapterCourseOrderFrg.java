@@ -169,7 +169,7 @@ public class AdapterCourseOrderFrg extends RecyclerView.Adapter {
                 }
             });
 //            corder.querySelector("#orderExe1").href = "javascript:commitExe('bespeak','" + corderData.ordno + "','" + corderData.coachid + "')";
-        } else if (listBean.getBespeaknum() > listBean.getCoursenum()) {
+        } else if (Integer.parseInt(listBean.getBespeaknum()) > Integer.parseInt(listBean.getCoursenum())) {
             viewHolder.mTvComplete.setText("已预约");
             viewHolder.mTvAppointment.setVisibility(View.VISIBLE);
             viewHolder.mLyNopay.setVisibility(View.GONE);

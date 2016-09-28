@@ -69,20 +69,20 @@ public class BeanCorderList {
 
     public static class CorderListBean {
         private String address;
-        private int bespeaknum;
-        private int buynum;
+        private String bespeaknum;
+        private String buynum;
         private String ca_imgsfilename;
         private String ca_nickname;
         private String clubid;
         private String clubname;
         private String coachid;
         private String coachname;
-        private int coursedays;
+        private String coursedays;
         private String coursename;
-        private int coursenum;
-        private int coursetimes;
-        private int ordamt;
-        private int ordcoursetimes;
+        private String coursenum;
+        private String coursetimes;
+        private String ordamt;
+        private String ordcoursetimes;
         /**
          * date : 29
          * day : 4
@@ -101,7 +101,7 @@ public class BeanCorderList {
         private float ordscourseamt;
         private String ordstatus;
         private String ordtype;
-        private int payamt;
+        private String payamt;
         private String paystatus;
         private String pkeyListStr;
 
@@ -113,19 +113,19 @@ public class BeanCorderList {
             this.address = address;
         }
 
-        public int getBespeaknum() {
+        public String getBespeaknum() {
             return bespeaknum;
         }
 
-        public void setBespeaknum(int bespeaknum) {
+        public void setBespeaknum(String bespeaknum) {
             this.bespeaknum = bespeaknum;
         }
 
-        public int getBuynum() {
+        public String getBuynum() {
             return buynum;
         }
 
-        public void setBuynum(int buynum) {
+        public void setBuynum(String buynum) {
             this.buynum = buynum;
         }
 
@@ -177,11 +177,11 @@ public class BeanCorderList {
             this.coachname = coachname;
         }
 
-        public int getCoursedays() {
+        public String getCoursedays() {
             return coursedays;
         }
 
-        public void setCoursedays(int coursedays) {
+        public void setCoursedays(String coursedays) {
             this.coursedays = coursedays;
         }
 
@@ -193,35 +193,35 @@ public class BeanCorderList {
             this.coursename = coursename;
         }
 
-        public int getCoursenum() {
+        public String getCoursenum() {
             return coursenum;
         }
 
-        public void setCoursenum(int coursenum) {
+        public void setCoursenum(String coursenum) {
             this.coursenum = coursenum;
         }
 
-        public int getCoursetimes() {
+        public String getCoursetimes() {
             return coursetimes;
         }
 
-        public void setCoursetimes(int coursetimes) {
+        public void setCoursetimes(String coursetimes) {
             this.coursetimes = coursetimes;
         }
 
-        public int getOrdamt() {
+        public String getOrdamt() {
             return ordamt;
         }
 
-        public void setOrdamt(int ordamt) {
+        public void setOrdamt(String ordamt) {
             this.ordamt = ordamt;
         }
 
-        public int getOrdcoursetimes() {
+        public String getOrdcoursetimes() {
             return ordcoursetimes;
         }
 
-        public void setOrdcoursetimes(int ordcoursetimes) {
+        public void setOrdcoursetimes(String ordcoursetimes) {
             this.ordcoursetimes = ordcoursetimes;
         }
 
@@ -265,11 +265,11 @@ public class BeanCorderList {
             this.ordtype = ordtype;
         }
 
-        public int getPayamt() {
+        public String getPayamt() {
             return payamt;
         }
 
-        public void setPayamt(int payamt) {
+        public void setPayamt(String payamt) {
             this.payamt = payamt;
         }
 
@@ -290,70 +290,70 @@ public class BeanCorderList {
         }
 
         public static class OrdenddateBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -365,19 +365,19 @@ public class BeanCorderList {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }

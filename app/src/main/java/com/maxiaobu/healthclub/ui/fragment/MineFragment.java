@@ -3,6 +3,7 @@ package com.maxiaobu.healthclub.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -15,12 +16,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.hyphenate.EMCallBack;
+import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
+import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.ui.activity.BindClubListActivity;
 import com.maxiaobu.healthclub.ui.activity.CoachcertApplyActivity;
 import com.maxiaobu.healthclub.ui.activity.CoachesManageActivity;
+import com.maxiaobu.healthclub.ui.activity.LoginActivity;
 import com.maxiaobu.healthclub.ui.activity.MineTeachingAppointmentActivity;
 import com.maxiaobu.healthclub.ui.activity.MyBespeakActivity;
 import com.maxiaobu.healthclub.ui.activity.OrderListActivity;
@@ -37,8 +44,6 @@ import butterknife.OnClick;
  * maxiaobu 2016-9-5
  */
 public class MineFragment extends BaseFrg implements View.OnClickListener, ScrollViewListener {
-
-
     @Bind(R.id.iv_header)
     ImageView mIvHeader;
     @Bind(R.id.tv_header_edit)
@@ -100,7 +105,6 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
     public MineFragment() {
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -116,7 +120,6 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
         mScrollView.setScrollViewListener(this);
         // 判断身份的
         String memrole =SPUtils.getString(Constant.MEMROLE,"-1");
-//        Log.d("MineFragment", memrole);
         if (memrole.equals("coach")) {
             mLyTrainerRoot.setVisibility(View.VISIBLE);
             mLyAuthentication.setVisibility(View.GONE);
@@ -143,8 +146,8 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
                 startActivity(new Intent(getActivity(), OrderListActivity.class));
                 break;
             case R.id.ly_login_out:
-                SPUtils.clearAllData(getActivity());
-                Toast.makeText(getActivity(), "njhjj", Toast.LENGTH_SHORT).show();
+                logout();
+
                 break;
             //预约
             case R.id.ly_appointment:
@@ -192,7 +195,45 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
         float a = y;
         float b = a / 1000;
         float max = (float) Math.max(0, 1 - b);
-        Log.d("MineFragment", String.valueOf(b));
+//        Log.d("MineFragment", String.valueOf(b));
         mAppBarLayout.setAlpha(max);
     }
+
+    public void logout(){
+        new MaterialDialog.Builder(getActivity())
+                .title("退出登录")
+                .positiveText("确定")
+                .negativeText("取消")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        DemoHelper.getInstance().logout(true, new EMCallBack() {
+                            @Override
+                            public void onSuccess() {
+                                SPUtils.clearAllData(getActivity());
+                                getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                                getActivity().finish();
+                            }
+
+                            @Override
+                            public void onError(int i, String s) {
+                                Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onProgress(int i, String s) {
+                                Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
 }

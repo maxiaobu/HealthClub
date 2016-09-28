@@ -148,7 +148,6 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
                 if (prepareRelease()) {
                     releaseCourse();
                 }
-
                 break;
             case R.id.ly_club:
                 showClubDialog();
@@ -204,7 +203,7 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
             @Override
             public void requestSuccess(final ClubList clubList) {
                 if ("1".equals(clubList.getMsgFlag())) {
-                    Log.d("===教练绑定的俱乐部信息 ok", "ok");
+//                    Log.d("===教练绑定的俱乐部信息 ok", "ok");
                     ArrayList<String> clubs = new ArrayList<String>();
                     for (int i = 0; i < clubList.getBindList().size(); i++) {
                         clubs.add(clubList.getBindList().get(i).getClubname());
@@ -223,7 +222,6 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
                     Toast.makeText(mActivity, "没有教练绑定信息", Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void requestAgain(NodataFragment nodataFragment) {
                 initData();
@@ -260,7 +258,6 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
                     }).show();
             return false;
         } else {
-
             return true;
         }
     }
@@ -330,7 +327,6 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
                         }
                     }
                 }).show();
-
     }
 
 

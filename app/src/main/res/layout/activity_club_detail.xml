@@ -192,7 +192,7 @@
             app:fab_colorNormal="#4DD0D0"
             app:fab_colorPressed="#4DD0D0"
             app:fab_colorRipple="#99FFFFFF"
-            />
+            android:visibility="gone"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_pull_black"

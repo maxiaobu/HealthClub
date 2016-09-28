@@ -9,7 +9,7 @@
         android:id="@+id/toolbar_common"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#F27241"
+        android:background="@color/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:navigationIcon="@mipmap/ic_navigation_icon"
         app:collapseIcon="@mipmap/ic_navigation_icon"

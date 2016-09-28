@@ -3,17 +3,20 @@ package com.maxiaobu.healthclub.utils.web;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.ui.activity.ChatActivity;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
+import com.maxiaobu.healthclub.volleykit.LoadingFragment;
 
 
 @SuppressLint("NewApi")
 public class BaseJsToAndroid {
 	private Context context;
+ public LoadingFragment dialog = LoadingFragment.getInstance();
 
 	public BaseJsToAndroid(Context context) {
 		this.context = context;
@@ -24,9 +27,6 @@ public class BaseJsToAndroid {
 	/**
 	 * 任何一页控制
 	 * 
-	 * @param fromPage
-	 * @param toPage
-	 * @param bottom
 	 *            底栏
 	 */
 	@JavascriptInterface
@@ -42,9 +42,6 @@ public class BaseJsToAndroid {
 	 * 
 	 * 个人信息 "?tarid=" +memid +"&role="+memrole+"&memid="+memid
 	 * 
-	 * @param tarid
-	 * @param memrole
-	 * @param memid
 	 */
 	@JavascriptInterface
 	public void memberIndex(String page) {
@@ -84,7 +81,6 @@ public class BaseJsToAndroid {
 	 * 
 	 * @param type
 	 *            提示类型:success成功，error错误，warn警告, message(无文本)
-	 * @param message
 	 */
 	@JavascriptInterface
 	public void alertInfo(String type, String content) {
@@ -122,7 +118,6 @@ public class BaseJsToAndroid {
 	/**
 	 * 退出当前登录
 	 * 
-	 * @param str
 	 */
 	@JavascriptInterface
 	public void logout() {
@@ -133,7 +128,6 @@ public class BaseJsToAndroid {
 	/**
 	 * 生成二维码
 	 * 
-	 * @param memid
 	 */
 	@JavascriptInterface
 	public void getMyQrCode() {
@@ -168,4 +162,19 @@ public class BaseJsToAndroid {
 	public void backExe() {
 		Toast.makeText(context, "backExe", Toast.LENGTH_SHORT).show();
 	}
+
+	@JavascriptInterface
+	public void Loading(boolean load) {
+		if (load){
+			dialog.show(((FragmentActivity) context).getSupportFragmentManager(),
+					"Loading");
+		}else {
+			if (dialog.isVisible()||dialog.isCancelable()||dialog.isResumed()){
+				dialog.dismissAllowingStateLoss();
+			}
+		}
+//
+	}
+
+
 }

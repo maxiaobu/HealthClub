@@ -61,11 +61,11 @@
 								<img class="arrou" src="images/jiantou_botton_default.png" style="width: 18px;height: 18px;">
 								<div class="hr1-cxl"></div>
 							</a>
-							<a id="tog" href="javascript:void(0);" rel="external" data-role="none" class="click_club" style="display:block;">
+							<a id="tog" href="javascript:void(0);" rel="external" data-role="none" class="click_club click_bor" style="display:block;">
 								<p>俱乐部<span id="club_title" style="color:#D6D6D6 ;float: right;"></span></p>
-								<img id="arrou" class="arrou" src="images/jiantou_botton_default.png" style="width: 18px; height: 18px;"/> </a><!--class="arrox"切换-->
+								<img id="arrou" class="arrou" src="images/jiantou_botton_down.png" style="width: 18px; height: 18px;"/> </a><!--class="arrox"切换-->
 							<!--a多俱乐部可选点击下拉菜单-->
-							<div id="togg" style="display:none">
+							<div id="togg" style="display:block">
 								<div class="clear_mar" id="address">
 									<div class="div" id="address_clone">
 										<p class="p-hai" id="clubname">海底捞健身俱乐部</p>
@@ -193,6 +193,9 @@
 						pcourseid: pcourseid
 					},
 					dataType: "JSON",
+					beforeSend:function(){
+						!window.mobile||window.mobile.Loading(true);
+					},
 					success: function(data) {
 						var msgFlag = data.msgFlag;
 						if (msgFlag == 1) {
@@ -238,13 +241,17 @@
 								address.appendTo($("#togg"));
 								
 							});
-							/*$(".clear_mar1").eq(0).find(".div").addClass("choosen");
+							$(".clear_mar1").eq(0).find(".div").addClass("choosen");
 							 b=$(".choosen .p-hai").text();
-							 $("#club_title").text(b);*/ //自动选中第一个俱乐部
+							 $("#club_title").text(b); //自动选中第一个俱乐部
+							 pcourseid2 = $(".choosen").parent().attr("id")
 						}
 						
 						$(".swipe").css("display","block");
 						
+					},
+					complete:function(){
+						!window.mobile||window.mobile.Loading(false);
 					}
 				});
 			}

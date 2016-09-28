@@ -72,10 +72,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
         initView();
         initData();
     }
@@ -149,10 +147,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onActivityResult(requestCode, resultCode, data);
         if ((requestCode==REGISTER||requestCode==FIND_PASSWORD)&&resultCode==1){
 //            注册去主界面
-            // TODO: 2016/9/7 登录
-            String userName = data.getStringExtra("userName");
-            String passWord=data.getStringExtra("passWord");
-            login(userName,passWord);
+            // TODO: 2016/9/7 注册回来的
+
         }
     }
 
@@ -188,7 +184,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             params.put("mobphone", userName);
             params.put("mempass", password);
             params.put("phonedeviceno", "");
-            App.getRequestInstance().post(this, UrlPath.URL_LOGIN, params, new RequestListener() {
+            App.getRequestInstance().post(UrlPath.URL_LOGIN,this,  params, new RequestListener() {
                 @Override
                 public void requestSuccess(String s) {
                     final BeanMlogin data = JsonUtils.object(s, BeanMlogin.class);
@@ -253,13 +249,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (!progressShow) {
                     return;
                 }
-//                runOnUiThread(new Runnable() {
-//                    public void run() {
+                runOnUiThread(new Runnable() {
+                    public void run() {
                         pd.dismiss();
                         Toast.makeText(getApplicationContext(), getString(R.string.Login_failed) + s,
                                 Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+                    }
+                });
             }
 
             @Override

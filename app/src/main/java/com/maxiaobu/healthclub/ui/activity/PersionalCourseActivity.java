@@ -146,9 +146,6 @@ public class PersionalCourseActivity extends BaseAty implements EasyPermissions.
                             EasyPermissions.requestPermissions(PersionalCourseActivity.this, "需要打电话的权限",
                                     122, Manifest.permission.CALL_PHONE);//让easyPermission去请求权限
                         }
-
-
-
                     }
                 })
                 .negativeColor(getResources().getColor(R.color.colorTextPrimary))

@@ -100,10 +100,9 @@ public class RevampAddress extends BaseAty {
             public void requestSuccess(String s) {
                 try {
                     JSONObject data = new JSONObject(s);
-                    String code = data.getString("msgFlag");// ["1","1"]
+                    String code = data.getString("msgFlag");
 //                    Log.i("String code1", code);
-                    if (code.equals("[\"1\",\"1\"]")) {
-//                        Log.i("flag", code.equals("[\"1\",\"1\"]") + "");
+                    if (code.equals("1")) {
                         Toast.makeText(RevampAddress.this, "修改成功", Toast.LENGTH_SHORT).show();
                         HealthUtil.update_local_myinfo();
                         Intent intent = new Intent();

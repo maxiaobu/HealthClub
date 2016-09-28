@@ -99,16 +99,16 @@ public class BeanMunbindList {
         private String clubmemimgsfile;
         private String clubmemname;
         private String clubname;
-        private int clubprice;
+        private String clubprice;
         private String coachid;
-        private int coachprice;
+        private String coachprice;
         private Object createtime;
         private String createuser;
-        private double distance;
+        private String distance;
         private String imgsfile;
         private String istrans;
-        private double latitude;
-        private double longitude;
+        private String latitude;
+        private String longitude;
         private Object modifytime;
         private String modifyuser;
         private String nickname;
@@ -262,11 +262,11 @@ public class BeanMunbindList {
             this.clubname = clubname;
         }
 
-        public int getClubprice() {
+        public String getClubprice() {
             return clubprice;
         }
 
-        public void setClubprice(int clubprice) {
+        public void setClubprice(String clubprice) {
             this.clubprice = clubprice;
         }
 
@@ -278,11 +278,11 @@ public class BeanMunbindList {
             this.coachid = coachid;
         }
 
-        public int getCoachprice() {
+        public String getCoachprice() {
             return coachprice;
         }
 
-        public void setCoachprice(int coachprice) {
+        public void setCoachprice(String coachprice) {
             this.coachprice = coachprice;
         }
 
@@ -302,11 +302,11 @@ public class BeanMunbindList {
             this.createuser = createuser;
         }
 
-        public double getDistance() {
+        public String getDistance() {
             return distance;
         }
 
-        public void setDistance(double distance) {
+        public void setDistance(String distance) {
             this.distance = distance;
         }
 
@@ -326,19 +326,19 @@ public class BeanMunbindList {
             this.istrans = istrans;
         }
 
-        public double getLatitude() {
+        public String getLatitude() {
             return latitude;
         }
 
-        public void setLatitude(double latitude) {
+        public void setLatitude(String latitude) {
             this.latitude = latitude;
         }
 
-        public double getLongitude() {
+        public String getLongitude() {
             return longitude;
         }
 
-        public void setLongitude(double longitude) {
+        public void setLongitude(String longitude) {
             this.longitude = longitude;
         }
 

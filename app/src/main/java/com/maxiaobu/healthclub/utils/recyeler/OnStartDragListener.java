@@ -18,6 +18,8 @@ package com.maxiaobu.healthclub.utils.recyeler;
 
 import android.support.v7.widget.RecyclerView;
 
+import java.util.List;
+
 /**
  * Listener for manual initiation of a drag.
  */
@@ -29,5 +31,6 @@ public interface OnStartDragListener {
      * @param viewHolder The holder of the view to drag.
      */
     void onStartDrag(RecyclerView.ViewHolder viewHolder);
+
 
 }

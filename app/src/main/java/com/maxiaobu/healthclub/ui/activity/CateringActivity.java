@@ -400,28 +400,14 @@ public class CateringActivity extends BaseAty implements OnRefreshListener, OnLo
 
     /**
      * 大小图缩放
-     * "Zooms" in a thumbnail view by assigning the high resolution image to a hidden "zoomed-in"
-     * image view and animating its bounds to fit the entire activity content area. More
-     * specifically:
-     * <p>
-     * <ol>
-     * <li>Assign the high-res image to the hidden "zoomed-in" (expanded) image view.</li>
-     * <li>Calculate the starting and ending bounds for the expanded view.</li>
-     * <li>Animate each of four positioning/sizing properties (X, Y, SCALE_X, SCALE_Y)
-     * simultaneously, from the starting bounds to the ending bounds.</li>
-     * <li>Zoom back out by running the reverse animation on click.</li>
-     * </ol>
-     *
      * @param thumbView The thumbnail view to zoom in.
      * @param url       图片网址
      */
     private void zoomImageFromThumb(final View thumbView, String url) {
-        // If there's an animation in progress, cancel it immediately and proceed with this one.
         if (mCurrentAnimator != null) {
             mCurrentAnimator.cancel();
         }
 
-        // Load the high-resolution "zoomed-in" image.
         Glide.with(mActivity).load(url).placeholder(R.mipmap.ic_place_holder).into(mIvDetail);
         // Calculate the starting and ending bounds for the zoomed-in image. This step
         // involves lots of math. Yay, math.
@@ -429,29 +415,20 @@ public class CateringActivity extends BaseAty implements OnRefreshListener, OnLo
         final Rect finalBounds = new Rect();
         final Point globalOffset = new Point();
 
-        // The start bounds are the global visible rectangle of the thumbnail, and the
-        // final bounds are the global visible rectangle of the container view. Also
-        // set the container view's offset as the origin for the bounds, since that's
-        // the origin for the positioning animation properties (X, Y).
         thumbView.getGlobalVisibleRect(startBounds);
         findViewById(R.id.container).getGlobalVisibleRect(finalBounds, globalOffset);
         startBounds.offset(-globalOffset.x, -globalOffset.y);
         finalBounds.offset(-globalOffset.x, -globalOffset.y);
 
-        // Adjust the start bounds to be the same aspect ratio as the final bounds using the
-        // "center crop" technique. This prevents undesirable stretching during the animation.
-        // Also calculate the start scaling factor (the end scaling factor is always 1.0).
         float startScale;
         if ((float) finalBounds.width() / finalBounds.height()
                 > (float) startBounds.width() / startBounds.height()) {
-            // Extend start bounds horizontally
             startScale = (float) startBounds.height() / finalBounds.height();
             float startWidth = startScale * finalBounds.width();
             float deltaWidth = (startWidth - startBounds.width()) / 2;
             startBounds.left -= deltaWidth;
             startBounds.right += deltaWidth;
         } else {
-            // Extend start bounds vertically
             startScale = (float) startBounds.width() / finalBounds.width();
             float startHeight = startScale * finalBounds.height();
             float deltaHeight = (startHeight - startBounds.height()) / 2;
@@ -459,18 +436,12 @@ public class CateringActivity extends BaseAty implements OnRefreshListener, OnLo
             startBounds.bottom += deltaHeight;
         }
 
-        // Hide the thumbnail and show the zoomed-in view. When the animation begins,
-        // it will position the zoomed-in view in the place of the thumbnail.
         thumbView.setAlpha(0f);
         mIvDetail.setVisibility(View.VISIBLE);
 
-        // Set the pivot point for SCALE_X and SCALE_Y transformations to the top-left corner of
-        // the zoomed-in view (the default is the center of the view).
         mIvDetail.setPivotX(0f);
         mIvDetail.setPivotY(0f);
 
-        // Construct and run the parallel animation of the four translation and scale properties
-        // (X, Y, SCALE_X, and SCALE_Y).
         AnimatorSet set = new AnimatorSet();
         set
                 .play(ObjectAnimator.ofFloat(mIvDetail, View.X, startBounds.left,
@@ -495,8 +466,6 @@ public class CateringActivity extends BaseAty implements OnRefreshListener, OnLo
         set.start();
         mCurrentAnimator = set;
 
-        // Upon clicking the zoomed-in image, it should zoom back down to the original bounds
-        // and show the thumbnail instead of the expanded image.
         final float startScaleFinal = startScale;
         mIvDetail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -505,8 +474,6 @@ public class CateringActivity extends BaseAty implements OnRefreshListener, OnLo
                     mCurrentAnimator.cancel();
                 }
 
-                // Animate the four positioning/sizing properties in parallel, back to their
-                // original values.
                 AnimatorSet set = new AnimatorSet();
                 set
                         .play(ObjectAnimator.ofFloat(mIvDetail, View.X, startBounds.left))

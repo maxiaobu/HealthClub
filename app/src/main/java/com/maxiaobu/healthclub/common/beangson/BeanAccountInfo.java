@@ -12,10 +12,10 @@ public class BeanAccountInfo {
      * msgContent : 我的账户
      * memid : M000439
      * imgsfile : http://efithealthresource.oss-cn-beijing.aliyuncs.com/image/bmember/M000439_1471834590778_s.png
-     * nickname : 小孩
+     * nickname : 小孩p
      * ycoinnum : 1000
      * ycoincashnum : 0
-     * bYcoinInoutlist : [{"busitype":"","busitypename":"","createtime":{"date":25,"day":4,"hours":9,"minutes":16,"month":7,"nanos":0,"seconds":6,"time":1472087766000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001078","inouttype":"in","inouttypename":"收入","maintitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-25日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":1000},{"busitype":"","busitypename":"","createtime":{"date":24,"day":3,"hours":9,"minutes":23,"month":7,"nanos":0,"seconds":44,"time":1472001824000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001073","inouttype":"in","inouttypename":"收入","maintitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-24日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":700},{"busitype":"","busitypename":"","createtime":{"date":23,"day":2,"hours":9,"minutes":49,"month":7,"nanos":0,"seconds":7,"time":1471916947000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001070","inouttype":"in","inouttypename":"收入","maintitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-23日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":400},{"busitype":"massage","busitypename":"","createtime":{"date":22,"day":1,"hours":13,"minutes":19,"month":7,"nanos":0,"seconds":50,"time":1471843190000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"按摩订单支付","inoutid":"I001055","inouttype":"out","inouttypename":"支出","maintitle":"按摩订单支付","memid":"M000439","memname":"小孩","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"MO-20160822-369","pkeyListStr":"","remark":"","subtitle":"2016-08-22日按摩订单支付","ycoinamt":60,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":6000,"ycoininoutnumtotal":6000,"ycoinnum":100},{"busitype":"massage","busitypename":"","createtime":{"date":22,"day":1,"hours":13,"minutes":17,"month":7,"nanos":0,"seconds":17,"time":1471843037000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"按摩订单支付","inoutid":"I001054","inouttype":"out","inouttypename":"支出","maintitle":"按摩订单支付","memid":"M000439","memname":"小孩","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"MO-20160822-368","pkeyListStr":"","remark":"","subtitle":"2016-08-22日按摩订单支付","ycoinamt":60,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":6000,"ycoininoutnumtotal":6000,"ycoinnum":6100},{"busitype":"","busitypename":"","createtime":{"date":22,"day":1,"hours":10,"minutes":57,"month":7,"nanos":0,"seconds":19,"time":1471834639000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001026","inouttype":"in","inouttypename":"收入","maintitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-22日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":12100},{"busitype":"","busitypename":"","createtime":{"date":22,"day":1,"hours":10,"minutes":56,"month":7,"nanos":0,"seconds":52,"time":1471834612000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001023","inouttype":"in","inouttypename":"收入","maintitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-22日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":11200},{"busitype":"","busitypename":"","createtime":{"date":22,"day":1,"hours":10,"minutes":56,"month":7,"nanos":0,"seconds":52,"time":1471834612000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001024","inouttype":"in","inouttypename":"收入","maintitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-22日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":11500},{"busitype":"","busitypename":"","createtime":{"date":22,"day":1,"hours":10,"minutes":56,"month":7,"nanos":0,"seconds":52,"time":1471834612000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001025","inouttype":"in","inouttypename":"收入","maintitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-22日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":11800},{"busitype":"","busitypename":"","createtime":{"date":22,"day":1,"hours":10,"minutes":56,"month":7,"nanos":0,"seconds":51,"time":1471834611000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001022","inouttype":"in","inouttypename":"收入","maintitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-22日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":10900}]
+     * bYcoinInoutlist : [{"busitype":"","busitypename":"","createtime":{"date":25,"day":4,"hours":9,"minutes":16,"month":7,"nanos":0,"seconds":6,"time":1472087766000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001078","inouttype":"in","inouttypename":"收入","maStringitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-25日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":1000},{"busitype":"","busitypename":"","createtime":{"date":24,"day":3,"hours":9,"minutes":23,"month":7,"nanos":0,"seconds":44,"time":1472001824000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001073","inouttype":"in","inouttypename":"收入","maStringitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-24日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":700},{"busitype":"","busitypename":"","createtime":{"date":23,"day":2,"hours":9,"minutes":49,"month":7,"nanos":0,"seconds":7,"time":1471916947000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001070","inouttype":"in","inouttypename":"收入","maStringitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-23日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":400},{"busitype":"massage","busitypename":"","createtime":{"date":22,"day":1,"hours":13,"minutes":19,"month":7,"nanos":0,"seconds":50,"time":1471843190000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"按摩订单支付","inoutid":"I001055","inouttype":"out","inouttypename":"支出","maStringitle":"按摩订单支付","memid":"M000439","memname":"小孩","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"MO-20160822-369","pkeyListStr":"","remark":"","subtitle":"2016-08-22日按摩订单支付","ycoinamt":60,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":6000,"ycoininoutnumtotal":6000,"ycoinnum":100},{"busitype":"massage","busitypename":"","createtime":{"date":22,"day":1,"hours":13,"minutes":17,"month":7,"nanos":0,"seconds":17,"time":1471843037000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"按摩订单支付","inoutid":"I001054","inouttype":"out","inouttypename":"支出","maStringitle":"按摩订单支付","memid":"M000439","memname":"小孩","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"MO-20160822-368","pkeyListStr":"","remark":"","subtitle":"2016-08-22日按摩订单支付","ycoinamt":60,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":6000,"ycoininoutnumtotal":6000,"ycoinnum":6100},{"busitype":"","busitypename":"","createtime":{"date":22,"day":1,"hours":10,"minutes":57,"month":7,"nanos":0,"seconds":19,"time":1471834639000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001026","inouttype":"in","inouttypename":"收入","maStringitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-22日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":12100},{"busitype":"","busitypename":"","createtime":{"date":22,"day":1,"hours":10,"minutes":56,"month":7,"nanos":0,"seconds":52,"time":1471834612000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001023","inouttype":"in","inouttypename":"收入","maStringitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-22日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":11200},{"busitype":"","busitypename":"","createtime":{"date":22,"day":1,"hours":10,"minutes":56,"month":7,"nanos":0,"seconds":52,"time":1471834612000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001024","inouttype":"in","inouttypename":"收入","maStringitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-22日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":11500},{"busitype":"","busitypename":"","createtime":{"date":22,"day":1,"hours":10,"minutes":56,"month":7,"nanos":0,"seconds":52,"time":1471834612000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001025","inouttype":"in","inouttypename":"收入","maStringitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-22日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":11800},{"busitype":"","busitypename":"","createtime":{"date":22,"day":1,"hours":10,"minutes":56,"month":7,"nanos":0,"seconds":51,"time":1471834611000,"timezoneOffset":-480,"year":116},"createuser":"M000439","inoutdescr":"签到赠送","inoutid":"I001022","inouttype":"in","inouttypename":"收入","maStringitle":"签到赠送","memid":"","memname":"","modifytime":null,"modifyuser":"","objid":"M000439","objname":"小孩","objtype":"mem","objtypename":"会员","ordno":"","pkeyListStr":"","remark":"","subtitle":"2016-08-22日签到送羿币","ycoinamt":3,"ycoincashnum":0,"ycoininoutcashnum":0,"ycoininoutnum":300,"ycoininoutnumtotal":300,"ycoinnum":10900}]
      */
 
     private String msgFlag;
@@ -23,8 +23,8 @@ public class BeanAccountInfo {
     private String memid;
     private String imgsfile;
     private String nickname;
-    private int ycoinnum;
-    private int ycoincashnum;
+    private String ycoinnum;
+    private String ycoincashnum;
     /**
      * busitype :
      * busitypename :
@@ -34,7 +34,7 @@ public class BeanAccountInfo {
      * inoutid : I001078
      * inouttype : in
      * inouttypename : 收入
-     * maintitle : 签到赠送
+     * maStringitle : 签到赠送
      * memid :
      * memname :
      * modifytime : null
@@ -97,19 +97,19 @@ public class BeanAccountInfo {
         this.nickname = nickname;
     }
 
-    public int getYcoinnum() {
+    public String getYcoinnum() {
         return ycoinnum;
     }
 
-    public void setYcoinnum(int ycoinnum) {
+    public void setYcoinnum(String ycoinnum) {
         this.ycoinnum = ycoinnum;
     }
 
-    public int getYcoincashnum() {
+    public String getYcoincashnum() {
         return ycoincashnum;
     }
 
-    public void setYcoincashnum(int ycoincashnum) {
+    public void setYcoincashnum(String ycoincashnum) {
         this.ycoincashnum = ycoincashnum;
     }
 
@@ -143,7 +143,7 @@ public class BeanAccountInfo {
         private String inoutid;
         private String inouttype;
         private String inouttypename;
-        private String maintitle;
+        private String maStringitle;
         private String memid;
         private String memname;
         private Object modifytime;
@@ -156,12 +156,12 @@ public class BeanAccountInfo {
         private String pkeyListStr;
         private String remark;
         private String subtitle;
-        private int ycoinamt;
-        private int ycoincashnum;
-        private int ycoininoutcashnum;
-        private int ycoininoutnum;
-        private int ycoininoutnumtotal;
-        private int ycoinnum;
+        private double ycoinamt;
+        private String ycoincashnum;
+        private String ycoininoutcashnum;
+        private String ycoininoutnum;
+        private String ycoininoutnumtotal;
+        private String ycoinnum;
 
         public String getBusitype() {
             return busitype;
@@ -227,12 +227,12 @@ public class BeanAccountInfo {
             this.inouttypename = inouttypename;
         }
 
-        public String getMaintitle() {
-            return maintitle;
+        public String getMaStringitle() {
+            return maStringitle;
         }
 
-        public void setMaintitle(String maintitle) {
-            this.maintitle = maintitle;
+        public void setMaStringitle(String maStringitle) {
+            this.maStringitle = maStringitle;
         }
 
         public String getMemid() {
@@ -331,119 +331,119 @@ public class BeanAccountInfo {
             this.subtitle = subtitle;
         }
 
-        public int getYcoinamt() {
+        public double getYcoinamt() {
             return ycoinamt;
         }
 
-        public void setYcoinamt(int ycoinamt) {
+        public void setYcoinamt(double ycoinamt) {
             this.ycoinamt = ycoinamt;
         }
 
-        public int getYcoincashnum() {
+        public String getYcoincashnum() {
             return ycoincashnum;
         }
 
-        public void setYcoincashnum(int ycoincashnum) {
+        public void setYcoincashnum(String ycoincashnum) {
             this.ycoincashnum = ycoincashnum;
         }
 
-        public int getYcoininoutcashnum() {
+        public String getYcoininoutcashnum() {
             return ycoininoutcashnum;
         }
 
-        public void setYcoininoutcashnum(int ycoininoutcashnum) {
+        public void setYcoininoutcashnum(String ycoininoutcashnum) {
             this.ycoininoutcashnum = ycoininoutcashnum;
         }
 
-        public int getYcoininoutnum() {
+        public String getYcoininoutnum() {
             return ycoininoutnum;
         }
 
-        public void setYcoininoutnum(int ycoininoutnum) {
+        public void setYcoininoutnum(String ycoininoutnum) {
             this.ycoininoutnum = ycoininoutnum;
         }
 
-        public int getYcoininoutnumtotal() {
+        public String getYcoininoutnumtotal() {
             return ycoininoutnumtotal;
         }
 
-        public void setYcoininoutnumtotal(int ycoininoutnumtotal) {
+        public void setYcoininoutnumtotal(String ycoininoutnumtotal) {
             this.ycoininoutnumtotal = ycoininoutnumtotal;
         }
 
-        public int getYcoinnum() {
+        public String getYcoinnum() {
             return ycoinnum;
         }
 
-        public void setYcoinnum(int ycoinnum) {
+        public void setYcoinnum(String ycoinnum) {
             this.ycoinnum = ycoinnum;
         }
 
         public static class CreatetimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -455,19 +455,19 @@ public class BeanAccountInfo {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }

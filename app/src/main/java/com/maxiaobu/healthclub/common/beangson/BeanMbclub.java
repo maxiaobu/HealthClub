@@ -221,10 +221,10 @@ public class BeanMbclub {
         private String coachadept;
         private String coachcert;
         private String coachcertname;
-        private int coachprice;
-        private int concernnum;
-        private int courseprice;
-        private int coursetimes;
+        private String coachprice;
+        private String concernnum;
+        private String courseprice;
+        private String coursetimes;
         /**
          * date : 19
          * day : 2
@@ -242,13 +242,13 @@ public class BeanMbclub {
         private String createuser;
         private String curMemrole;
         private String dayadd;
-        private int distance;
+        private String distance;
         private String distancestr;
-        private int dynamicnum;
-        private int evascore;
-        private int evascoretotal;
-        private int evatimes;
-        private int follownum;
+        private String dynamicnum;
+        private String evascore;
+        private String evascoretotal;
+        private String evatimes;
+        private String follownum;
         private String gender;
         private String gendername;
         private String headpage;
@@ -270,11 +270,11 @@ public class BeanMbclub {
         private String isstealth;
         private String istrans;
         private double latitude;
-        private int lessonresent;
-        private int lessontotal;
+        private String lessonresent;
+        private String lessontotal;
         private String linkurl;
         private double longitude;
-        private int massagetimes;
+        private String massagetimes;
         private String memid;
         private String memname;
         private String mempass;
@@ -296,7 +296,7 @@ public class BeanMbclub {
         private ModifytimeBean modifytime;
         private String modifyuser;
         private String nickname;
-        private int nowTime;
+        private String nowTime;
         private String nowtimestr;
         private String openid;
         private String phonedeviceno;
@@ -343,8 +343,8 @@ public class BeanMbclub {
         private String wxnickname;
         private String wxopenid;
         private String wxregiarea;
-        private int ycoincashnum;
-        private int ycoinnum;
+        private String ycoincashnum;
+        private String ycoinnum;
         private List<?> imagefile;
         private List<?> istopfile;
 
@@ -444,35 +444,35 @@ public class BeanMbclub {
             this.coachcertname = coachcertname;
         }
 
-        public int getCoachprice() {
+        public String getCoachprice() {
             return coachprice;
         }
 
-        public void setCoachprice(int coachprice) {
+        public void setCoachprice(String coachprice) {
             this.coachprice = coachprice;
         }
 
-        public int getConcernnum() {
+        public String getConcernnum() {
             return concernnum;
         }
 
-        public void setConcernnum(int concernnum) {
+        public void setConcernnum(String concernnum) {
             this.concernnum = concernnum;
         }
 
-        public int getCourseprice() {
+        public String getCourseprice() {
             return courseprice;
         }
 
-        public void setCourseprice(int courseprice) {
+        public void setCourseprice(String courseprice) {
             this.courseprice = courseprice;
         }
 
-        public int getCoursetimes() {
+        public String getCoursetimes() {
             return coursetimes;
         }
 
-        public void setCoursetimes(int coursetimes) {
+        public void setCoursetimes(String coursetimes) {
             this.coursetimes = coursetimes;
         }
 
@@ -508,11 +508,11 @@ public class BeanMbclub {
             this.dayadd = dayadd;
         }
 
-        public int getDistance() {
+        public String getDistance() {
             return distance;
         }
 
-        public void setDistance(int distance) {
+        public void setDistance(String distance) {
             this.distance = distance;
         }
 
@@ -524,43 +524,43 @@ public class BeanMbclub {
             this.distancestr = distancestr;
         }
 
-        public int getDynamicnum() {
+        public String getDynamicnum() {
             return dynamicnum;
         }
 
-        public void setDynamicnum(int dynamicnum) {
+        public void setDynamicnum(String dynamicnum) {
             this.dynamicnum = dynamicnum;
         }
 
-        public int getEvascore() {
+        public String getEvascore() {
             return evascore;
         }
 
-        public void setEvascore(int evascore) {
+        public void setEvascore(String evascore) {
             this.evascore = evascore;
         }
 
-        public int getEvascoretotal() {
+        public String getEvascoretotal() {
             return evascoretotal;
         }
 
-        public void setEvascoretotal(int evascoretotal) {
+        public void setEvascoretotal(String evascoretotal) {
             this.evascoretotal = evascoretotal;
         }
 
-        public int getEvatimes() {
+        public String getEvatimes() {
             return evatimes;
         }
 
-        public void setEvatimes(int evatimes) {
+        public void setEvatimes(String evatimes) {
             this.evatimes = evatimes;
         }
 
-        public int getFollownum() {
+        public String getFollownum() {
             return follownum;
         }
 
-        public void setFollownum(int follownum) {
+        public void setFollownum(String follownum) {
             this.follownum = follownum;
         }
 
@@ -732,19 +732,19 @@ public class BeanMbclub {
             this.latitude = latitude;
         }
 
-        public int getLessonresent() {
+        public String getLessonresent() {
             return lessonresent;
         }
 
-        public void setLessonresent(int lessonresent) {
+        public void setLessonresent(String lessonresent) {
             this.lessonresent = lessonresent;
         }
 
-        public int getLessontotal() {
+        public String getLessontotal() {
             return lessontotal;
         }
 
-        public void setLessontotal(int lessontotal) {
+        public void setLessontotal(String lessontotal) {
             this.lessontotal = lessontotal;
         }
 
@@ -764,11 +764,11 @@ public class BeanMbclub {
             this.longitude = longitude;
         }
 
-        public int getMassagetimes() {
+        public String getMassagetimes() {
             return massagetimes;
         }
 
-        public void setMassagetimes(int massagetimes) {
+        public void setMassagetimes(String massagetimes) {
             this.massagetimes = massagetimes;
         }
 
@@ -836,11 +836,11 @@ public class BeanMbclub {
             this.nickname = nickname;
         }
 
-        public int getNowTime() {
+        public String getNowTime() {
             return nowTime;
         }
 
-        public void setNowTime(int nowTime) {
+        public void setNowTime(String nowTime) {
             this.nowTime = nowTime;
         }
 
@@ -1004,19 +1004,19 @@ public class BeanMbclub {
             this.wxregiarea = wxregiarea;
         }
 
-        public int getYcoincashnum() {
+        public String getYcoincashnum() {
             return ycoincashnum;
         }
 
-        public void setYcoincashnum(int ycoincashnum) {
+        public void setYcoincashnum(String ycoincashnum) {
             this.ycoincashnum = ycoincashnum;
         }
 
-        public int getYcoinnum() {
+        public String getYcoinnum() {
             return ycoinnum;
         }
 
-        public void setYcoinnum(int ycoinnum) {
+        public void setYcoinnum(String ycoinnum) {
             this.ycoinnum = ycoinnum;
         }
 
@@ -1037,70 +1037,70 @@ public class BeanMbclub {
         }
 
         public static class BirthdayBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -1112,88 +1112,88 @@ public class BeanMbclub {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }
 
         public static class CreatetimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -1205,88 +1205,88 @@ public class BeanMbclub {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }
 
         public static class ModifytimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -1298,88 +1298,88 @@ public class BeanMbclub {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }
 
         public static class PosiupdatetimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -1391,88 +1391,88 @@ public class BeanMbclub {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }
 
         public static class UpdatetimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -1484,19 +1484,19 @@ public class BeanMbclub {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }
@@ -1507,15 +1507,15 @@ public class BeanMbclub {
         private String baiduurl;
         private String clubid;
         private String clubname;
-        private int clubprice;
+        private String clubprice;
         private String conphone;
         private String detailsurl;
-        private int distance;
-        private int evascore;
+        private String distance;
+        private String evascore;
         private String imgsfile;
         private String imgsfilename;
-        private int latitude;
-        private int longitude;
+        private String latitude;
+        private String longitude;
         private String memid;
         private String nickname;
         private Object ordenddate;
@@ -1555,11 +1555,11 @@ public class BeanMbclub {
             this.clubname = clubname;
         }
 
-        public int getClubprice() {
+        public String getClubprice() {
             return clubprice;
         }
 
-        public void setClubprice(int clubprice) {
+        public void setClubprice(String clubprice) {
             this.clubprice = clubprice;
         }
 
@@ -1579,19 +1579,19 @@ public class BeanMbclub {
             this.detailsurl = detailsurl;
         }
 
-        public int getDistance() {
+        public String getDistance() {
             return distance;
         }
 
-        public void setDistance(int distance) {
+        public void setDistance(String distance) {
             this.distance = distance;
         }
 
-        public int getEvascore() {
+        public String getEvascore() {
             return evascore;
         }
 
-        public void setEvascore(int evascore) {
+        public void setEvascore(String evascore) {
             this.evascore = evascore;
         }
 
@@ -1611,19 +1611,19 @@ public class BeanMbclub {
             this.imgsfilename = imgsfilename;
         }
 
-        public int getLatitude() {
+        public String getLatitude() {
             return latitude;
         }
 
-        public void setLatitude(int latitude) {
+        public void setLatitude(String latitude) {
             this.latitude = latitude;
         }
 
-        public int getLongitude() {
+        public String getLongitude() {
             return longitude;
         }
 
-        public void setLongitude(int longitude) {
+        public void setLongitude(String longitude) {
             this.longitude = longitude;
         }
 
@@ -1678,7 +1678,7 @@ public class BeanMbclub {
 
     public static class PcourseListBean {
         private String address;
-        private int clubcount;
+        private String clubcount;
         private String clubid;
         private String clubname;
         private String coachid;
@@ -1691,11 +1691,11 @@ public class BeanMbclub {
         private String imgsfilename;
         private String mobphone;
         private Object modifytime;
-        private int pcoursedays;
+        private String pcoursedays;
         private String pcourseid;
         private String pcoursename;
         private String pcourseprice;
-        private int pcoursetimes;
+        private String pcoursetimes;
         private String resinform;
 
         public String getAddress() {
@@ -1706,11 +1706,11 @@ public class BeanMbclub {
             this.address = address;
         }
 
-        public int getClubcount() {
+        public String getClubcount() {
             return clubcount;
         }
 
-        public void setClubcount(int clubcount) {
+        public void setClubcount(String clubcount) {
             this.clubcount = clubcount;
         }
 
@@ -1810,11 +1810,11 @@ public class BeanMbclub {
             this.modifytime = modifytime;
         }
 
-        public int getPcoursedays() {
+        public String getPcoursedays() {
             return pcoursedays;
         }
 
-        public void setPcoursedays(int pcoursedays) {
+        public void setPcoursedays(String pcoursedays) {
             this.pcoursedays = pcoursedays;
         }
 
@@ -1842,11 +1842,11 @@ public class BeanMbclub {
             this.pcourseprice = pcourseprice;
         }
 
-        public int getPcoursetimes() {
+        public String getPcoursetimes() {
             return pcoursetimes;
         }
 
-        public void setPcoursetimes(int pcoursetimes) {
+        public void setPcoursetimes(String pcoursetimes) {
             this.pcoursetimes = pcoursetimes;
         }
 

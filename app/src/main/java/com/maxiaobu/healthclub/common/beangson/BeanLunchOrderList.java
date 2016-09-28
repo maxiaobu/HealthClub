@@ -74,10 +74,10 @@ public class BeanLunchOrderList {
         private String expresstype;
         private String imagesfilename;
         private String mername;
-        private int ordamt;
+        private String ordamt;
         private String ordno;
         private String ordstatus;
-        private int payamt;
+        private String payamt;
         private String paystatus;
         private String pkeyListStr;
         private String recaddress;
@@ -155,11 +155,11 @@ public class BeanLunchOrderList {
             this.mername = mername;
         }
 
-        public int getOrdamt() {
+        public String getOrdamt() {
             return ordamt;
         }
 
-        public void setOrdamt(int ordamt) {
+        public void setOrdamt(String ordamt) {
             this.ordamt = ordamt;
         }
 
@@ -179,11 +179,11 @@ public class BeanLunchOrderList {
             this.ordstatus = ordstatus;
         }
 
-        public int getPayamt() {
+        public String getPayamt() {
             return payamt;
         }
 
-        public void setPayamt(int payamt) {
+        public void setPayamt(String payamt) {
             this.payamt = payamt;
         }
 
@@ -276,18 +276,18 @@ public class BeanLunchOrderList {
         }
 
         public static class MbfordermerlistBean {
-            private int buynum;
+            private String buynum;
             private String imgsfile;
             private String merid;
             private String mername;
             private String ordno;
             private String pkeyListStr;
 
-            public int getBuynum() {
+            public String getBuynum() {
                 return buynum;
             }
 
-            public void setBuynum(int buynum) {
+            public void setBuynum(String buynum) {
                 this.buynum = buynum;
             }
 

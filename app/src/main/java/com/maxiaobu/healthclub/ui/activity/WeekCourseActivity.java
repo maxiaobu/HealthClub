@@ -1,6 +1,7 @@
 package com.maxiaobu.healthclub.ui.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,9 +11,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
+import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.utils.web.BaseJsToAndroid;
 
 import butterknife.Bind;
@@ -47,8 +50,9 @@ public class WeekCourseActivity extends BaseAty {
         mWebView.getSettings().setDefaultTextEncodingName("utf-8");
 
         mWebView.setWebViewClient(new MyWebViewClient());
-//        clubid=C000174&coachid=M000447
+//        clubid=C000174
         Log.d("ApplyBindClubActivity", "file:///android_asset/weekcourse.html?clubid=" + getIntent().getStringExtra("clubid") );
+//        file:///android_asset/weekcourse.html?clubid=C000172
         mWebView.loadUrl("file:///android_asset/weekcourse.html?clubid=" +getIntent().getStringExtra("clubid"));
     }
 
@@ -63,6 +67,24 @@ public class WeekCourseActivity extends BaseAty {
         WebAppInterface(Context c) {
             super(c);
             mContext = c;
+        }
+
+        @JavascriptInterface
+        public void popNewWindow(String page) {
+//            Log.d("MyWebViewClient", page);
+            //gcourse.html?gcourseid=GC000043
+            Intent intent = new Intent();
+            intent.putExtra("page",page);
+            intent.setClass(WeekCourseActivity.this,GcourseActivity.class);
+            startActivity(intent);
+        }
+
+        // 修改收货信息
+        @JavascriptInterface
+        public void personalInfo() {
+            Intent intent = new Intent();
+            intent.setClass(WeekCourseActivity.this, RevampAddress.class);
+            startActivityForResult(intent, Constant.RESULT_REQUEST_ONE);
         }
 
     }
@@ -87,6 +109,7 @@ public class WeekCourseActivity extends BaseAty {
             view.loadUrl("javascript:window.mobile.loadPageData("
                     + "document.title,$('title').attr('isback'),$('title').attr('btn'),$('title').attr('navbar'))");
         }
+
     }
 
 }

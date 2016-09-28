@@ -1,6 +1,7 @@
 package com.maxiaobu.healthclub.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.beangson.BeanMmyBespeak;
+import com.maxiaobu.healthclub.ui.activity.EvaluateActivity;
 
 import java.util.List;
 
@@ -25,9 +27,9 @@ import butterknife.ButterKnife;
 public class AdapterMyBespeak extends RecyclerView.Adapter {
 
     private Activity mActivity;
-    private  List<BeanMmyBespeak.BespeaklistBean> mData;
+    private List<BeanMmyBespeak.BespeaklistBean> mData;
 
-    public AdapterMyBespeak(Activity activity,  List<BeanMmyBespeak.BespeaklistBean> mData) {
+    public AdapterMyBespeak(Activity activity, List<BeanMmyBespeak.BespeaklistBean> mData) {
         mActivity = activity;
         this.mData = mData;
     }
@@ -41,27 +43,31 @@ public class AdapterMyBespeak extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         MyViewHolder viewHolder = (MyViewHolder) holder;
-        BeanMmyBespeak.BespeaklistBean bean = mData.get(position);
+        final BeanMmyBespeak.BespeaklistBean bean = mData.get(position);
         Glide.with(mActivity).load(bean.getImgsfile()).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mIvPhoto);
         viewHolder.mTvName.setText(bean.getNickname());
         viewHolder.mTvOccupation.setText("教练");
         viewHolder.mTvCourse.setText(bean.getCoursename());
         viewHolder.mTvTime.setText(bean.getBegintime());
         viewHolder.mTvAddress.setText(bean.getClubname());
-        if (bean.getCoursestatus().equals("0")){
+        if (bean.getCoursestatus().equals("0")) {
             viewHolder.mTvEvaluate.setText("等待上课");
-            viewHolder.mTvEvaluate.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(mActivity, "等待上课", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }else {
+        } else {
             viewHolder.mTvEvaluate.setText("评价");
             viewHolder.mTvEvaluate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mActivity, "评价", Toast.LENGTH_SHORT).show();
+
+                    //tarid=M000448&lessonid=L000142&nickname=教练_A2&
+                    // imgsfile=http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S&
+                    // sign=我今天不开心&coursename=A2私教课程商品&begintime=2016-09-22 11:00&address=健身俱乐部CLUB_A
+                    String s="tarid="+bean.getMemid()+"&lessonid="+bean.getCorderlessonid()+"&nickname="+
+                            bean.getNickname()+"&imgsfile="+bean.getImgsfilename()+"&sign="+
+                            bean.getSignature()+"&coursename="+bean.getCoursename()+"&begintime="+bean.getBegintime()
+                            +"&address="+bean.getClubname();
+                    Intent intent = new Intent(mActivity, EvaluateActivity.class);
+                    intent.putExtra("url",s);
+                    mActivity.startActivityForResult(intent,1);
                 }
             });
         }

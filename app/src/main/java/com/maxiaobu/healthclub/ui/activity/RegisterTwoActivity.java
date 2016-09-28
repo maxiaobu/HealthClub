@@ -234,13 +234,12 @@ public class RegisterTwoActivity extends BaseAty implements View.OnClickListener
             App.getRequestInstance().post(this, UrlPath.URL_REGISTER, params, new RequestListener() {
                 @Override
                 public void requestSuccess(String s) {
-                    // TODO: 2016/9/5 换bean
                     BeanMrsendCode data = JsonUtils.object(s, BeanMrsendCode.class);
-                    data.getMsgFlag();
+//                    data.getMsgFlag();
                     Toast.makeText(RegisterTwoActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                     if ("1".equals(data.getMsgFlag())) {
                         RegisterTwoActivity.this.setResult(1);
-                        RegisterTwoActivity.this.finish();
+                        animateRevealClose();
                     } else {
                         Toast.makeText(RegisterTwoActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                     }

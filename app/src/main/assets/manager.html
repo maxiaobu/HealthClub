@@ -57,43 +57,43 @@
 							<li id="tag7">
 								<a href="#" name="#tab7">
 									<p class="p1">周日</p>
-									<p class="p2"></p>
+									<!--<p class="p2"></p>-->
 								</a>
 							</li>
 							<li id="tag1">
 								<a href="#" name="#tab1">
 									<p class="p1">周一</p>
-									<p class="p2"></p>
+									<!--<p class="p2"></p>-->
 								</a>
 							</li>
 							<li id="tag2">
 								<a href="#" name="#tab2">
 									<p class="p1">周二</p>
-									<p class="p2"></p>
+									<!--<p class="p2"></p>-->
 								</a>
 							</li>
 							<li id="tag3">
 								<a href="#" name="#tab3">
 									<p class="p1">周三</p>
-									<p class="p2"></p>
+									<!--<p class="p2"></p>-->
 								</a>
 							</li>
 							<li id="tag4">
 								<a href="#" name="#tab4">
 									<p class="p1">周四</p>
-									<p class="p2"></p>
+									<!--<p class="p2"></p>-->
 								</a>
 							</li>
 							<li id="tag5">
 								<a href="#" name="#tab5">
 									<p class="p1">周五</p>
-									<p class="p2"></p>
+									<!--<p class="p2"></p>-->
 								</a>
 							</li>
 							<li id="tag6">
 								<a href="#" name="#tab6">
 									<p class="p1">周六</p>
-									<p class="p2"></p>
+									<!--<p class="p2"></p>-->
 								</a>
 							</li>
 						</ul>
@@ -274,11 +274,11 @@
 						if (curDate > curMonthDays) {
 							curDate -= curMonthDays;
 						}
-						if (dayOfWeek==0) {
+						/*if (dayOfWeek==0) {
 							$("#tag" + 7 + " p.p2").text(curDate);
 						}else{
 							$("#tag" + dayOfWeek + " p.p2").text(curDate);
-						}
+						}*/
 						
 						if (i == 0) {
 							if (dayOfWeek==0) {
@@ -302,6 +302,9 @@
 						coachid: parmData.coachid //当前用户id
 					},
 					dataType: 'JSON', //返回值类型
+					beforeSend:function(){
+						!window.mobile||window.mobile.Loading(true);
+					},
 					success: function(data) {
 						$($("#tabs .current").attr('name')).fadeIn();//显示当天选项卡
 						$("#selectAll").bind("click", selectAll);
@@ -322,6 +325,9 @@
 								});
 							});
 						}
+					},
+					complete:function(){
+						!window.mobile||window.mobile.Loading(false);
 					}
 				});
 			}
@@ -365,7 +371,6 @@
 					} else {
 						schtimeslice += '"' + i + '" : "' + timestr + '" }';
 					}
-					console.log(schtimeslice);
 
 				}
 				$.ajax({

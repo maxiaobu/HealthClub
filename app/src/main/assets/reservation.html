@@ -75,7 +75,7 @@
 						<!--<p id="address" class="a_ddress">俱乐部地址</p>-->
 					</div>
 				</div>
-				<div class="res_down">
+				<div class="res_down res_choose">
 					<div class="re_nav">
 						<ul id="tabs">
 							<li id="tag7">
@@ -237,6 +237,9 @@
 							coachid: parmData.coachid //教练id
 						},
 						dataType: 'JSON',
+						beforeSend:function(){
+							!window.mobile||window.mobile.Loading(true);
+						},
 						success: function(data) {
 							var msgFlag = data.msgFlag;
 							if (msgFlag == 1) {
@@ -310,6 +313,9 @@
 								/*$("#tab" + d.getDay()).fadeIn(); // 显示第一个选项卡的内容*/
 								$($("#tabs .current").attr('name')).fadeIn();//显示当天选项卡
 							}
+						},
+						complete:function(){
+							!window.mobile||window.mobile.Loading(false);
 						}
 					});
 				}

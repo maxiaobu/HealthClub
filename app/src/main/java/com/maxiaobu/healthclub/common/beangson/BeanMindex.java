@@ -161,7 +161,7 @@ public class BeanMindex {
         private String nickname;
         private String pkeyListStr;
         private String remark;
-        private int sequ;
+        private String sequ;
         private String status;
         private String statusname;
         private Object videofile;
@@ -415,11 +415,11 @@ public class BeanMindex {
             this.remark = remark;
         }
 
-        public int getSequ() {
+        public String getSequ() {
             return sequ;
         }
 
-        public void setSequ(int sequ) {
+        public void setSequ(String sequ) {
             this.sequ = sequ;
         }
 
@@ -488,7 +488,7 @@ public class BeanMindex {
         private String nickname;
         private String pkeyListStr;
         private String remark;
-        private int sequ;
+        private String sequ;
         private String status;
         private String statusname;
         private Object videofile;
@@ -742,11 +742,11 @@ public class BeanMindex {
             this.remark = remark;
         }
 
-        public int getSequ() {
+        public String getSequ() {
             return sequ;
         }
 
-        public void setSequ(int sequ) {
+        public void setSequ(String sequ) {
             this.sequ = sequ;
         }
 

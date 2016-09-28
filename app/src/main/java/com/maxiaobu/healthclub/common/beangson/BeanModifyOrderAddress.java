@@ -13,7 +13,7 @@ public class BeanModifyOrderAddress {
 
     private String msgFlag;
     private String msgContent;
-    private int res;
+    private String res;
 
     public String getMsgFlag() {
         return msgFlag;
@@ -31,11 +31,11 @@ public class BeanModifyOrderAddress {
         this.msgContent = msgContent;
     }
 
-    public int getRes() {
+    public String getRes() {
         return res;
     }
 
-    public void setRes(int res) {
+    public void setRes(String res) {
         this.res = res;
     }
 }

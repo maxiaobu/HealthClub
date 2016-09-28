@@ -60,8 +60,9 @@ public class ApplyBindClubActivity extends BaseAty implements EasyPermissions.Pe
 
         mWebView.setWebViewClient(new MyWebViewClient());
 //        clubid=C000174&coachid=M000447
-        Log.d("ApplyBindClubActivity", "file:///android_asset/bindClub.html?clubid=" + getIntent().getStringExtra("tarclubidid") + "&coachid=" + getIntent().getStringExtra("coachid"));
+//        Log.d("ApplyBindClubActivity", "file:///android_asset/bindClub.html?clubid=" + getIntent().getStringExtra("tarclubidid") + "&coachid=" + getIntent().getStringExtra("coachid"));
         mWebView.loadUrl("file:///android_asset/bindClub.html?clubid=" +getIntent().getStringExtra("clubid")+"&coachid="+getIntent().getStringExtra("coachid"));
+//        Log.d("ApplyBindClubActivity", "file:///android_asset/bindClub.html?clubid=" + getIntent().getStringExtra("clubid") + "&coachid=" + getIntent().getStringExtra("coachid"));
     }
 
     @Override

@@ -61,7 +61,7 @@ public class AdapterDataEntryLeftListAty extends RecyclerView.Adapter {
         }
 
         BeanMgettrainingitem.ListBean.ItemsBean bean = mData.get(position);
-        Glide.with(mContext).load(bean.getImgsfilename()).placeholder(R.mipmap.ic_place_holder).into(viewHolder.mImageView);
+        Glide.with(mContext).load(bean.getImgsfilename()).into(viewHolder.mImageView);
         viewHolder.mTextView.setText(bean.getItemname());
 
         viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +74,6 @@ public class AdapterDataEntryLeftListAty extends RecyclerView.Adapter {
                 }
             }
         });
-
     }
 
     @Override

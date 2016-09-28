@@ -30,9 +30,13 @@ import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.common.Constant;
+import com.maxiaobu.healthclub.common.UrlPath;
+import com.maxiaobu.healthclub.common.beangson.BeanUpdata;
 import com.maxiaobu.healthclub.service.UpdataService;
 import com.maxiaobu.healthclub.utils.HealthUtil;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
+import com.maxiaobu.healthclub.volleykit.NodataFragment;
+import com.maxiaobu.healthclub.volleykit.RequestJsonListener;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -66,14 +70,11 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-
         mLocationClient = new LocationClient(App.getInstance());
         mTimer = new Timer();
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-
                 long start = System.currentTimeMillis();
                 myListener = new MyLocationListener();
                 mLocationClient.registerLocationListener(myListener);
@@ -84,8 +85,6 @@ public class SplashActivity extends AppCompatActivity {
 //                    EMClient.getInstance().groupManager().loadAllGroups();
 //                    EMClient.getInstance().chatManager().loadAllConversations();
                     long costTime = System.currentTimeMillis() - start;
-                    // TODO: 2016/9/7 版本更新 、context用app
-                    checkVersion();
                     //没到两秒等两秒
                     if (sleepTime - costTime > 0) {
                         try {
@@ -116,9 +115,6 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void initImageAnimation() {
-//        final ScaleAnimation scaleAnim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f,
-//                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
-//                0.5f);
         AlphaAnimation alphaAnimation = new AlphaAnimation(0f, 1f);
         alphaAnimation.setFillAfter(true);
         alphaAnimation.setDuration(2000);
@@ -141,27 +137,33 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
+//    String lastVersion = "1.0.2";
+//    String apkUrl = "http:/\\/zhstatic.zhihu.com\\/pkg\\/store\\/daily\\/zhihu-daily-zhihu-2.6.0(744)-release.apk";
+//    String msg = "【更新】\\r\\n\\r\\n- 极大提升性能及稳定性\\r\\n- 部分用户无法使用新浪微博登录\\r\\n- 部分用户无图模式无法分享至微信及朋友圈";
+//    String version = "100";
+//    String versionName = getAppVersionName(SplashActivity.this);
+//    if (versionName.equals(version)) {
+//    } else {
+//        //版本需要更新
+//        showUpdateDialog(msg, apkUrl);
+//    }
     private void checkVersion() {
-        /*App.getRequestInstance().get(this, "http://192.168.1.121:8080/efithealth/mbcoach.do?pageIndex=1&tarid=M000440", new RequestListener() {
-            @Override
-            public void requestSuccess(String s) {
-                String lastVersion = "1.0.2";
-                String apkUrl = "http:/\\/zhstatic.zhihu.com\\/pkg\\/store\\/daily\\/zhihu-daily-zhihu-2.6.0(744)-release.apk";
-                String msg = "【更新】\\r\\n\\r\\n- 极大提升性能及稳定性\\r\\n- 部分用户无法使用新浪微博登录\\r\\n- 部分用户无图模式无法分享至微信及朋友圈";
-                String version = "100";
-                String versionName = getAppVersionName(SplashActivity.this);
-                if (versionName.equals(version)) {
-                } else {
-                    //版本需要更新
-                    showUpdateDialog(msg, apkUrl);
-                }
-            }
+        App.getRequestInstance().post(UrlPath.URL_MVERSIONUPD, SplashActivity.this,
+                BeanUpdata.class, null, new RequestJsonListener<BeanUpdata>() {
+                    @Override
+                    public void requestSuccess(BeanUpdata result) {
+                        String versionName = getAppVersionName(SplashActivity.this);
+                        if (!versionName.equals(result.getLatest())) {
+                            //版本需要更新
+                            showUpdateDialog(result.getMsgContent(), result.getUrl());
+                        }
+                    }
 
-            @Override
-            public void requestAgain(NodataFragment nodataFragment) {
-                checkVersion();
-            }
-        });*/
+                    @Override
+                    public void requestAgain(NodataFragment nodataFragment) {
+                        nodataFragment.dismiss();
+                    }
+                });
     }
 
 
@@ -180,7 +182,6 @@ public class SplashActivity extends AppCompatActivity {
                         startService(intent);
                         dialog.dismiss();
                         goHomeActivity();
-
                     }
                 })
                 .negativeColor(getResources().getColor(R.color.colorTextPrimary))
@@ -246,7 +247,6 @@ public class SplashActivity extends AppCompatActivity {
             Log.i("myapp", "beyond");
 
             if (local_city != null) {
-//                String cityname = local_city.substring(0, local_city.length() - 1).toString();
                 SPUtils.putString(Constant.CITY, location.getCity());
                 Log.d("MyLocationListener", location.getCity());
             } else {

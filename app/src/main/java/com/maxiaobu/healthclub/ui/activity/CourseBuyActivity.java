@@ -88,7 +88,7 @@ public class CourseBuyActivity extends BaseAty {
                             page += "&imgsfile=" +result.getCoach().getImgsfilename();
                             Intent intent = new Intent();
                             intent.putExtra("ordno", ordno);
-                            Log.d("WebAppInterface", ordno);
+//                            Log.d("WebAppInterface", ordno);
                             intent.putExtra("totlePrice", ordamt);
                             intent.putExtra(Constant.PAY_TYPE, "course");
                             intent.putExtra("reservation", page.trim());
@@ -102,6 +102,8 @@ public class CourseBuyActivity extends BaseAty {
                         }
                     });
         }
+
+
 
         // 修改收货信息
         @JavascriptInterface

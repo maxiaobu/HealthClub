@@ -1,8 +1,5 @@
 package com.maxiaobu.healthclub.common;
 
-import com.maxiaobu.healthclub.ui.activity.RevampAddress;
-import com.maxiaobu.healthclub.utils.storage.SPUtils;
-
 /**
  * Created by 马小布 on 2016/9/3.
  */
@@ -14,7 +11,7 @@ public class UrlPath {
      * http://192.168.1.173:8080/efithealth/
      * 121
      */
-    public static final String URL_HOST = "http://192.168.1.121:8080/efithealth/";
+    public static final String URL_HOST = "http://192.168.1.182:8080/efithealth/";
     /**
      * 外网
      * http://192.168.1.185:18080/efithealth/
@@ -135,7 +132,6 @@ public class UrlPath {
      * pageIndex: pageIndex++, //当前页码forderlist
      * listtype: "forderlist",//写死，就写他，区分出订餐订单
      * memid: getMemid()//用户id
-     *
      */
     public static final String URL_FOOD_ORDER_LIST = URL_BASE + "morderlist.do";
 
@@ -154,14 +150,14 @@ public class UrlPath {
     public static final String URL_ACCOUNT_INFO = URL_BASE + "maccount.do";
     /**
      * 配餐订单的e币支付
-     * <p/>
+     * <p>
      * http://192.168.1.121:8080/efithealth/mfoodoutBYcoin.do?ordno={"ordno":["FO-20160825-305","FO-20160825-306"]}
      * {"msgFlag":"1","msgContent":"配餐支付成功"}
      */
     public static final String URL_EBI_PAY = URL_BASE + "mfoodoutBYcoin.do";
     /**
      * 课程订单的e币支付
-     * <p/>
+     * <p>
      * http://192.168.1.121:8080/efithealth/moutBYcoin.do?ordno=CO-20160905-994
      * {"msgFlag":"1","msgContent":"配餐支付成功"}
      */
@@ -186,7 +182,7 @@ public class UrlPath {
     /**
      * 单个订单修改地址
      * http://192.168.1.121:8080/efithealth/mupdateAddress.do?updateMode=all&region
-     * <p/>
+     * <p>
      * 参数：updateMode（all，tomorrow）
      * region（区域）
      * address（地址）
@@ -211,7 +207,7 @@ public class UrlPath {
      * 取消课程订单
      * http://192.168.1.121:8080/efithealth/mdeleteByList.do?ordno=FO-20160726-170&listtype=corderlist
      * ordno: "'" + orderid + "'",
-     *listtype: "corderlist"
+     * listtype: "corderlist"
      * {"msgFlag":"1","msgContent":"取消订单成功"}
      */
     public static final String URL_MDELETEBYLIST = URL_BASE + "mdeleteByList.do";
@@ -224,7 +220,7 @@ public class UrlPath {
 
     /**
      * 查看配送详情
-     * <p/>
+     * <p>
      * http://192.168.1.121:8080/efithealth/mselectDelivery.do?ordno=FO-20160726-170
      */
     public static final String URL_FOOD_DISPATCH_DETAIL = URL_BASE + "mselectDelivery.do";
@@ -237,7 +233,7 @@ public class UrlPath {
      * longitude: 经度,
      * sorttype: 不限；按距离、按好评(evascore)、按热度(coursetimes),
      * gender:不限；男(1)；女(0)
-     * <p/>
+     * <p>
      * http://192.168.1.121:8080/efithealth/mcoachList.do?memid=M000439&pageIndex=1&latitude=41.811237&longitude=123.432856&sorttytpe=distance&gender=all
      */
     public static final String URL_COACHES_LIST = URL_BASE + "mcoachList.do";
@@ -392,7 +388,25 @@ public class UrlPath {
 
     /**
      * 档期管理
-     *http://192.168.1.121:8080/efithealth/mmanager.do?coachid=M000444
+     * http://192.168.1.121:8080/efithealth/mmanager.do?coachid=M000444
      */
     public static final String URL_MMANAGER = URL_BASE + "mmanager.do";
+
+    /**
+     * 提交数据录入
+     */
+    public static final String URL_MCONFIRMLESSION = URL_BASE + "mconfirmLession.do";
+
+
+    /**
+     * 俱乐部绑定关系
+     * http://192.168.1.121:8080/efithealth/mrelation.do?memid=M000440&tarid=M000504&tarrole=clubadmin
+     */
+    public static final String URL_MRELATION = URL_BASE + "mrelation.do";
+
+    /**
+     * 版本更新
+     * http://192.168.1.121:8080/efithealth/mversionupd.do
+     */
+    public static final String URL_MVERSIONUPD = URL_BASE + "mversionupd.do";
 }

@@ -17,9 +17,16 @@ import com.maxiaobu.healthclub.R;
  *         62015/12/18 0018  进度条Fragment
  */
 public class LoadingFragment extends DialogFragment {
+    public static LoadingFragment sLoadingFragment;
     private String mMsg = "loading··";
 
     public LoadingFragment() {
+    }
+    public static LoadingFragment getInstance(){
+        if (sLoadingFragment==null){
+            sLoadingFragment=new LoadingFragment();
+        }
+        return sLoadingFragment;
     }
 
     @SuppressLint("InflateParams")

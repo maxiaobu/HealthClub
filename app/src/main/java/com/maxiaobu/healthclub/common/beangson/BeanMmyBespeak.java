@@ -7,30 +7,33 @@ import java.util.List;
  */
 public class BeanMmyBespeak {
 
+
     /**
      * msgFlag : 1
      * msgContent : 我的预约
-     * bespeaklist : [{"begintime":"2016-09-15 18:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000093","coursename":"教练_A2教练","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000448","memrole":"","nickname":"教练_A2","signature":"我今天不开心"},{"begintime":"2016-09-15 18:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000092","coursename":"教练_A2教练","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000448","memrole":"","nickname":"教练_A2","signature":"我今天不开心"},{"begintime":"2016-09-15 17:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000101","coursename":"教练_A2教练","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000448","memrole":"","nickname":"教练_A2","signature":"我今天不开心"},{"begintime":"2016-09-15 17:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000124","coursename":"教练A2的私教课","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000448","memrole":"","nickname":"教练_A2","signature":"我今天不开心"},{"begintime":"2016-09-15 17:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000091","coursename":"教练_A2教练","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000448","memrole":"","nickname":"教练_A2","signature":"我今天不开心"},{"begintime":"2016-09-15 16:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000089","coursename":"教练_A1教练","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000447_1469429249870_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000447_1469429249870_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000447","memrole":"","nickname":"教练_A1","signature":"我今天也好开心呀"},{"begintime":"2016-09-15 16:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000090","coursename":"教练_A1教练","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000447_1469429249870_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000447_1469429249870_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000447","memrole":"","nickname":"教练_A1","signature":"我今天也好开心呀"},{"begintime":"2016-09-15 15:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000087","coursename":"教练_A2教练","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000448","memrole":"","nickname":"教练_A2","signature":"我今天不开心"},{"begintime":"2016-09-15 13:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000116","coursename":"教练A2的私教课","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000448","memrole":"","nickname":"教练_A2","signature":"我今天不开心"},{"begintime":"2016-09-15 13:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000123","coursename":"教练A2的私教课","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000448","memrole":"","nickname":"教练_A2","signature":"我今天不开心"}]
+     * bespeaklist : [{"begintime":"2016-10-01 13:00","clubid":"","clubname":"羿健康健身俱乐部","coachcert":"","corderlessonid":"L000168","coursename":"赵文卓私教课程","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","isclubadmin":"","memid":"M000440","memrole":"","nickname":"我媳妇儿","signature":"我"},{"begintime":"2016-09-30 10:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000160","coursename":"000000","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","isclubadmin":"","memid":"M000440","memrole":"","nickname":"我媳妇儿","signature":"我"},{"begintime":"2016-09-26 10:18","clubid":"","clubname":"羿健康健身俱乐部","coachcert":"","corderlessonid":"L000147","coursename":"私教课程B","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","isclubadmin":"","memid":"M000440","memrole":"","nickname":"我媳妇儿","signature":"我"},{"begintime":"2016-09-23 20:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000155","coursename":"333","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","isclubadmin":"","memid":"M000440","memrole":"","nickname":"我媳妇儿","signature":"我"},{"begintime":"2016-09-23 19:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000154","coursename":"333","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","isclubadmin":"","memid":"M000440","memrole":"","nickname":"我媳妇儿","signature":"我"},{"begintime":"2016-09-23 14:00","clubid":"","clubname":"羿健康健身俱乐部","coachcert":"","corderlessonid":"L000149","coursename":"私教课程B","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","isclubadmin":"","memid":"M000440","memrole":"","nickname":"我媳妇儿","signature":"我"},{"begintime":"2016-09-23 10:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000153","coursename":"qqqqqq","coursestatus":"0","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","isclubadmin":"","memid":"M000440","memrole":"","nickname":"我媳妇儿","signature":"我"},{"begintime":"2016-09-22 16:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000151","coursename":"A2私教课程商品","coursestatus":"1","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000448","memrole":"","nickname":"教练_A2","signature":"我今天不开心"},{"begintime":"2016-09-22 15:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000150","coursename":"A2私教课程商品","coursestatus":"1","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000448","memrole":"","nickname":"教练_A2","signature":"我今天不开心"},{"begintime":"2016-09-22 14:00","clubid":"","clubname":"健身俱乐部CLUB_A","coachcert":"","corderlessonid":"L000144","coursename":"A2私教课程商品","coursestatus":"1","evastatus":"0","imgpfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg","imgsfile":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S","isclubadmin":"","memid":"M000448","memrole":"","nickname":"教练_A2","signature":"我今天不开心"}]
      */
 
     private String msgFlag;
     private String msgContent;
     /**
-     * begintime : 2016-09-15 18:00
+     * begintime : 2016-10-01 13:00
      * clubid :
-     * clubname : 健身俱乐部CLUB_A
+     * clubname : 羿健康健身俱乐部
      * coachcert :
-     * corderlessonid : L000093
-     * coursename : 教练_A2教练
+     * corderlessonid : L000168
+     * coursename : 赵文卓私教课程
      * coursestatus : 0
      * evastatus : 0
-     * imgpfile : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg
-     * imgsfile : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000448_1469429236884_p.jpg@!BMEMBER_S
+     * imgpfile : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P
+     * imgpfilename : http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P
+     * imgsfile : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S
+     * imgsfilename : http://efithealthresource.img-cn-beijing.aliyuncs.comhttp://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S
      * isclubadmin :
-     * memid : M000448
+     * memid : M000440
      * memrole :
-     * nickname : 教练_A2
-     * signature : 我今天不开心
+     * nickname : 我媳妇儿
+     * signature : 我
      */
 
     private List<BespeaklistBean> bespeaklist;
@@ -69,7 +72,9 @@ public class BeanMmyBespeak {
         private String coursestatus;
         private String evastatus;
         private String imgpfile;
+        private String imgpfilename;
         private String imgsfile;
+        private String imgsfilename;
         private String isclubadmin;
         private String memid;
         private String memrole;
@@ -148,12 +153,28 @@ public class BeanMmyBespeak {
             this.imgpfile = imgpfile;
         }
 
+        public String getImgpfilename() {
+            return imgpfilename;
+        }
+
+        public void setImgpfilename(String imgpfilename) {
+            this.imgpfilename = imgpfilename;
+        }
+
         public String getImgsfile() {
             return imgsfile;
         }
 
         public void setImgsfile(String imgsfile) {
             this.imgsfile = imgsfile;
+        }
+
+        public String getImgsfilename() {
+            return imgsfilename;
+        }
+
+        public void setImgsfilename(String imgsfilename) {
+            this.imgsfilename = imgsfilename;
         }
 
         public String getIsclubadmin() {

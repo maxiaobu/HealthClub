@@ -105,12 +105,12 @@ public class BeanFoodDetail {
     }
 
     public static class BFoodmerBean {
-        private int caloric;
-        private double clubsplitamt;
-        private int clubsplitratio;
-        private double coachsplitamt;
-        private int coachsplitratio;
-        private int coh;
+        private String caloric;
+        private String clubsplitamt;
+        private String clubsplitratio;
+        private String coachsplitamt;
+        private String coachsplitratio;
+        private String coh;
         private String compodescr;
         /**
          * date : 13
@@ -127,18 +127,18 @@ public class BeanFoodDetail {
 
         private CreatetimeBean createtime;
         private String createuser;
-        private int deliverydays;
+        private String deliverydays;
         private String detailcontent;
         private Object detailimg;
         private String detailsurl;
         private String energydescr;
-        private int fats;
+        private String fats;
         private String foodmertype;
         private String fplatConperson;
         private String fplatConphone;
         private Object fqrimgfile;
         private String fri;
-        private int gmsplitamt;
+        private String gmsplitamt;
         private String imgdetail;
         private Object imgfile;
         private String imgfileFileName;
@@ -150,7 +150,7 @@ public class BeanFoodDetail {
         private String merdescr;
         private String merid;
         private String mername;
-        private int merprice;
+        private String merprice;
         private String mertype;
         private String mertypename;
         /**
@@ -171,16 +171,16 @@ public class BeanFoodDetail {
         private String mon;
         private String ordernotice;
         private String pkeyListStr;
-        private int plantfiber;
-        private int platsplitamt;
-        private int platsplitratio;
-        private int protein;
+        private String plantfiber;
+        private String platsplitamt;
+        private String platsplitratio;
+        private String protein;
         private String qrimgfile;
         private String qrimgfilename;
         private String remark;
-        private int salenum;
+        private String salenum;
         private String sat;
-        private int sodium;
+        private String sodium;
         private String status;
         private String statusname;
         private String sun;
@@ -188,51 +188,51 @@ public class BeanFoodDetail {
         private String tues;
         private String wed;
 
-        public int getCaloric() {
+        public String getCaloric() {
             return caloric;
         }
 
-        public void setCaloric(int caloric) {
+        public void setCaloric(String caloric) {
             this.caloric = caloric;
         }
 
-        public double getClubsplitamt() {
+        public String getClubsplitamt() {
             return clubsplitamt;
         }
 
-        public void setClubsplitamt(double clubsplitamt) {
+        public void setClubsplitamt(String clubsplitamt) {
             this.clubsplitamt = clubsplitamt;
         }
 
-        public int getClubsplitratio() {
+        public String getClubsplitratio() {
             return clubsplitratio;
         }
 
-        public void setClubsplitratio(int clubsplitratio) {
+        public void setClubsplitratio(String clubsplitratio) {
             this.clubsplitratio = clubsplitratio;
         }
 
-        public double getCoachsplitamt() {
+        public String getCoachsplitamt() {
             return coachsplitamt;
         }
 
-        public void setCoachsplitamt(double coachsplitamt) {
+        public void setCoachsplitamt(String coachsplitamt) {
             this.coachsplitamt = coachsplitamt;
         }
 
-        public int getCoachsplitratio() {
+        public String getCoachsplitratio() {
             return coachsplitratio;
         }
 
-        public void setCoachsplitratio(int coachsplitratio) {
+        public void setCoachsplitratio(String coachsplitratio) {
             this.coachsplitratio = coachsplitratio;
         }
 
-        public int getCoh() {
+        public String getCoh() {
             return coh;
         }
 
-        public void setCoh(int coh) {
+        public void setCoh(String coh) {
             this.coh = coh;
         }
 
@@ -260,11 +260,11 @@ public class BeanFoodDetail {
             this.createuser = createuser;
         }
 
-        public int getDeliverydays() {
+        public String getDeliverydays() {
             return deliverydays;
         }
 
-        public void setDeliverydays(int deliverydays) {
+        public void setDeliverydays(String deliverydays) {
             this.deliverydays = deliverydays;
         }
 
@@ -300,11 +300,11 @@ public class BeanFoodDetail {
             this.energydescr = energydescr;
         }
 
-        public int getFats() {
+        public String getFats() {
             return fats;
         }
 
-        public void setFats(int fats) {
+        public void setFats(String fats) {
             this.fats = fats;
         }
 
@@ -348,11 +348,11 @@ public class BeanFoodDetail {
             this.fri = fri;
         }
 
-        public int getGmsplitamt() {
+        public String getGmsplitamt() {
             return gmsplitamt;
         }
 
-        public void setGmsplitamt(int gmsplitamt) {
+        public void setGmsplitamt(String gmsplitamt) {
             this.gmsplitamt = gmsplitamt;
         }
 
@@ -444,11 +444,11 @@ public class BeanFoodDetail {
             this.mername = mername;
         }
 
-        public int getMerprice() {
+        public String getMerprice() {
             return merprice;
         }
 
-        public void setMerprice(int merprice) {
+        public void setMerprice(String merprice) {
             this.merprice = merprice;
         }
 
@@ -508,35 +508,35 @@ public class BeanFoodDetail {
             this.pkeyListStr = pkeyListStr;
         }
 
-        public int getPlantfiber() {
+        public String getPlantfiber() {
             return plantfiber;
         }
 
-        public void setPlantfiber(int plantfiber) {
+        public void setPlantfiber(String plantfiber) {
             this.plantfiber = plantfiber;
         }
 
-        public int getPlatsplitamt() {
+        public String getPlatsplitamt() {
             return platsplitamt;
         }
 
-        public void setPlatsplitamt(int platsplitamt) {
+        public void setPlatsplitamt(String platsplitamt) {
             this.platsplitamt = platsplitamt;
         }
 
-        public int getPlatsplitratio() {
+        public String getPlatsplitratio() {
             return platsplitratio;
         }
 
-        public void setPlatsplitratio(int platsplitratio) {
+        public void setPlatsplitratio(String platsplitratio) {
             this.platsplitratio = platsplitratio;
         }
 
-        public int getProtein() {
+        public String getProtein() {
             return protein;
         }
 
-        public void setProtein(int protein) {
+        public void setProtein(String protein) {
             this.protein = protein;
         }
 
@@ -564,11 +564,11 @@ public class BeanFoodDetail {
             this.remark = remark;
         }
 
-        public int getSalenum() {
+        public String getSalenum() {
             return salenum;
         }
 
-        public void setSalenum(int salenum) {
+        public void setSalenum(String salenum) {
             this.salenum = salenum;
         }
 
@@ -580,11 +580,11 @@ public class BeanFoodDetail {
             this.sat = sat;
         }
 
-        public int getSodium() {
+        public String getSodium() {
             return sodium;
         }
 
-        public void setSodium(int sodium) {
+        public void setSodium(String sodium) {
             this.sodium = sodium;
         }
 
@@ -637,70 +637,70 @@ public class BeanFoodDetail {
         }
 
         public static class CreatetimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -712,88 +712,88 @@ public class BeanFoodDetail {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }
 
         public static class ModifytimeBean {
-            private int date;
-            private int day;
-            private int hours;
-            private int minutes;
-            private int month;
-            private int nanos;
-            private int seconds;
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
             private long time;
-            private int timezoneOffset;
-            private int year;
+            private String timezoneOffset;
+            private String year;
 
-            public int getDate() {
+            public String getDate() {
                 return date;
             }
 
-            public void setDate(int date) {
+            public void setDate(String date) {
                 this.date = date;
             }
 
-            public int getDay() {
+            public String getDay() {
                 return day;
             }
 
-            public void setDay(int day) {
+            public void setDay(String day) {
                 this.day = day;
             }
 
-            public int getHours() {
+            public String getHours() {
                 return hours;
             }
 
-            public void setHours(int hours) {
+            public void setHours(String hours) {
                 this.hours = hours;
             }
 
-            public int getMinutes() {
+            public String getMinutes() {
                 return minutes;
             }
 
-            public void setMinutes(int minutes) {
+            public void setMinutes(String minutes) {
                 this.minutes = minutes;
             }
 
-            public int getMonth() {
+            public String getMonth() {
                 return month;
             }
 
-            public void setMonth(int month) {
+            public void setMonth(String month) {
                 this.month = month;
             }
 
-            public int getNanos() {
+            public String getNanos() {
                 return nanos;
             }
 
-            public void setNanos(int nanos) {
+            public void setNanos(String nanos) {
                 this.nanos = nanos;
             }
 
-            public int getSeconds() {
+            public String getSeconds() {
                 return seconds;
             }
 
-            public void setSeconds(int seconds) {
+            public void setSeconds(String seconds) {
                 this.seconds = seconds;
             }
 
@@ -805,19 +805,19 @@ public class BeanFoodDetail {
                 this.time = time;
             }
 
-            public int getTimezoneOffset() {
+            public String getTimezoneOffset() {
                 return timezoneOffset;
             }
 
-            public void setTimezoneOffset(int timezoneOffset) {
+            public void setTimezoneOffset(String timezoneOffset) {
                 this.timezoneOffset = timezoneOffset;
             }
 
-            public int getYear() {
+            public String getYear() {
                 return year;
             }
 
-            public void setYear(int year) {
+            public void setYear(String year) {
                 this.year = year;
             }
         }

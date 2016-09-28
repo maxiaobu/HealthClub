@@ -6111,7 +6111,7 @@ a.abtn span {
 .reservation .photo_myself .img {
 	float: left;
 	margin-top: 10px;
-	margin-left: 20px;
+	margin-left: 16px;
 	border: 1px solid #cec0bc;
 	border-radius: 100%;
 	width: 2.1875rem;
@@ -6153,7 +6153,7 @@ a.abtn span {
 .reservation .club_2 {
 	float: right;
 	/*margin-top: 20px;*/
-	width: 68%;
+	width: 70%;
 	text-align: right;
 	text-shadow: none;
 	padding-bottom: 0.2rem;
@@ -6199,10 +6199,12 @@ a.abtn span {
 	/*height: 285px;*/
 	/*height: 378px;*/
 }
-.res_down .re_nav .p1{
+.res_manager .re_nav .p1{
 	color: #f27241;
 	font-weight: normal;
-	font-size: 0.455rem;
+	font-size: 0.4rem;
+	margin: 0;
+	padding: 0.6rem 0;
 }
 .res_down .re_nav .p2{
 	padding: 0.5rem 0;
@@ -6224,14 +6226,22 @@ a.abtn span {
 	background: #fff;
 	margin-top: 10px;
 }
-.res_down .re_nav li {
+.res_choose .re_nav li {
 	float: left;
 	width: 14.28%;
 	text-align: center;
 	cursor: pointer;
 	line-height: 10px;
-	/*background: url(../images/page/shuxian.png) no-repeat right center;
-	background-size: 2px 57px;*/
+	
+	
+}
+.res_manager .re_nav li {
+	float: left;
+	width: 14.28%;
+	text-align: center;
+	cursor: pointer;
+	line-height: 10px;
+	margin-bottom: 17px;
 }
 .bor{
 	height:1px;
@@ -6247,10 +6257,21 @@ a.abtn span {
 	text-shadow: none;
 	
 }
-.res_down .re_nav li a.current .p2 {
+.res_manager .re_nav li a.current .p1 {
+	background: url(../images/button_dangqi_circle.png) no-repeat center center;
+	background-size:1.2rem 1.2rem ;
+	color: #fff;
+	line-height: 0.4rem;
+}
+.res_choose .re_nav li a.current .p2 {
 	background: url(../images/button_yuyue_circle.png) no-repeat center center;
-	background-size:1rem 1rem ;
-	color: #404040;
+	background-size:1.1rem 1.1rem ;
+	color: #000;
+}
+.res_choose .re_nav .p1{
+	color: #f27241;
+	font-weight: normal;
+	font-size: 0.455rem;
 }
 .res_down .re_nav li:last-child {
 	background: none;
