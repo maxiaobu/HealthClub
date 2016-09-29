@@ -8,7 +8,7 @@
                                                 android:background="@android:color/white"
                                                 app:mrl_rippleAlpha="0.1"
                                                 app:mrl_rippleColor="#585858"
-                                                app:mrl_rippleDelayClick="true"
+                                                app:mrl_rippleDelayClick="false"
                                                 app:mrl_rippleHover="true"
                                                 app:mrl_rippleOverlay="true"
     >
