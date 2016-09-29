@@ -33,8 +33,6 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class TrainerCourseFragment extends BaseFrg {
-
-
     @Bind(R.id.tv_personal)
     TextView mTvPersonal;
     @Bind(R.id.rv_personal)
@@ -56,7 +54,6 @@ public class TrainerCourseFragment extends BaseFrg {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_trainer_course, container, false);
         ButterKnife.bind(this, view);
         initView();

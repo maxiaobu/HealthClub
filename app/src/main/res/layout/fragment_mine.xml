@@ -32,6 +32,7 @@
                     android:layout_height="@dimen/sz_80"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/sz_80"
+                    android:scaleType="fitXY"
                     android:background="@android:color/transparent"
                     android:src="@mipmap/test_header"/>
 
@@ -754,11 +755,11 @@
                 android:textColor="@android:color/white"/>
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:layout_gravity="right|center_vertical"
                 android:layout_marginRight="20dp"
-                android:src="@mipmap/ic_plus"/>
+                android:src="@mipmap/ic_mine_two_code"/>
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 </FrameLayout>

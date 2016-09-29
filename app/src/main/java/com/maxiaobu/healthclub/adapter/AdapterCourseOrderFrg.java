@@ -3,6 +3,7 @@ package com.maxiaobu.healthclub.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,16 +87,16 @@ public class AdapterCourseOrderFrg extends RecyclerView.Adapter {
 
         viewHolder.mTvCourseName.setText(listBean.getCoursename());
         viewHolder.mTvClubName.setText(listBean.getClubname());
-        viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(mActivity, FoodOrderDetailActivity.class);
-//                intent.putExtra("merid",String.valueOf( mData.get(position).getMbfordermerlist().get(0).getMerid()));
-                intent.putExtra("ordno", mData.get(position).getOrdno());
-                mActivity.startActivity(intent);
-            }
-        });
+//        viewHolder.mLyRoot.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent();
+//                intent.setClass(mActivity, FoodOrderDetailActivity.class);
+////                intent.putExtra("merid",String.valueOf( mData.get(position).getMbfordermerlist().get(0).getMerid()));
+//                intent.putExtra("ordno", mData.get(position).getOrdno());
+//                mActivity.startActivity(intent);
+//            }
+//        });
 
 
         if (listBean.getPaystatus().equals("0")) {
@@ -144,7 +145,7 @@ public class AdapterCourseOrderFrg extends RecyclerView.Adapter {
                 }
             });
 
-        } else if (listBean.getBespeaknum() == listBean.getCoursenum()) {
+        } else if (listBean.getBespeaknum().equals(listBean.getCoursenum())) {
             viewHolder.mTvComplete.setText("待预约");
             viewHolder.mTvAppointment.setVisibility(View.VISIBLE);
             viewHolder.mLyNopay.setVisibility(View.GONE);
@@ -162,6 +163,7 @@ public class AdapterCourseOrderFrg extends RecyclerView.Adapter {
                             TimesUtil.timestampToStringS(String.valueOf(listBean.getOrdenddate().getTime()), "yyyy/MM/dd")
                             + "&times=" + listBean.getOrdcoursetimes() + "&orderid=" + listBean.getOrdno();
                     page += "&imgsfile=" + listBean.getCa_imgsfilename();
+//                    Log.d("AdapterCourseOrderFrg", page);
                     Intent intent=new Intent();
                     intent.putExtra("reservation",page.trim());
                     intent.setClass(mActivity, ReservationActivity.class);
@@ -181,6 +183,7 @@ public class AdapterCourseOrderFrg extends RecyclerView.Adapter {
                }
            });
         }
+
         if (listBean.getPaystatus().equals("0")) {
 //            viewHolder.mTvResidueTimes.setText("剩余" + listBean.getOrdcoursetimes() + "次");
             viewHolder.mTvResidueTimes.setText(listBean.getCoursedays() + "天/" + listBean.getOrdcoursetimes() + "次");
@@ -200,10 +203,7 @@ public class AdapterCourseOrderFrg extends RecyclerView.Adapter {
         } else {
             viewHolder.mTvPrice.setText("共计：" + listBean.getOrdamt() + "元");
         }
-
-
     }
-
 
     @Override
     public int getItemCount() {

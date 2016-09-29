@@ -94,7 +94,7 @@
                         android:paddingLeft="@dimen/sz_4"
                         android:paddingRight="@dimen/sz_4"
                         android:paddingTop="@dimen/sz_2"
-                        android:text="已定阅"
+                        android:text="已订阅"
                         android:textColor="@color/colorTextPrimary"
                         android:textSize="@dimen/sz_12"/>
 

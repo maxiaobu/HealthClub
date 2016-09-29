@@ -131,6 +131,7 @@ public class UrlPath {
      * 配餐订单列表
      * pageIndex: pageIndex++, //当前页码forderlist
      * listtype: "forderlist",//写死，就写他，区分出订餐订单
+     * http://192.168.1.121:8080/efithealth/morderlist.do?memid=M000455&listtype=corderlist&pageIndex=1
      * memid: getMemid()//用户id
      */
     public static final String URL_FOOD_ORDER_LIST = URL_BASE + "morderlist.do";
@@ -409,4 +410,11 @@ public class UrlPath {
      * http://192.168.1.121:8080/efithealth/mversionupd.do
      */
     public static final String URL_MVERSIONUPD = URL_BASE + "mversionupd.do";
+
+    /**
+     * 版本更新
+     * http://192.168.1.121:8080/efithealth/mcoachGallisthList.do
+     */
+    public static final String URL_mcoachGallisthList = URL_BASE + "mcoachGallisthList.do";
+
 }

@@ -64,8 +64,6 @@ public class LunchListAdapter extends RecyclerView.Adapter {
         }catch (ArrayIndexOutOfBoundsException e){
 
         }
-
-
         viewHolder.mTvPrice.setText(listBean.getMerprice()+"元");
         viewHolder.mTvTitle.setText(listBean.getMername());
         viewHolder.mTvFoodType.setText(listBean.getMerdescr());

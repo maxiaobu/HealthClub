@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -54,7 +52,7 @@ import butterknife.OnClick;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.PermissionCallbacks, View.OnClickListener {
+public class CourseReleaseActivity extends BaseAty implements EasyPermissions.PermissionCallbacks, View.OnClickListener {
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
     @Bind(R.id.toolbar_common)
@@ -98,7 +96,7 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coaches_release);
+        setContentView(R.layout.activity_course_release);
         ButterKnife.bind(this);
         initView();
         initData();
@@ -247,7 +245,7 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            startActivityForResult(new Intent(CoachesReleaseActivity.this, ScheduleManagementActivity.class), Constant.RESULT_REQUEST_THIRD);
+                            startActivityForResult(new Intent(CourseReleaseActivity.this, ScheduleManagementActivity.class), Constant.RESULT_REQUEST_THIRD);
                         }
                     })
                     .onNegative(new MaterialDialog.SingleButtonCallback() {
@@ -278,13 +276,12 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
             App.getRequestInstance().post(this, UrlPath.URL_ISSUE_COURSE, params, new RequestListener() {
                 @Override
                 public void requestSuccess(String json) {
-                    Log.d("CoachesReleaseActivity", json);
                     Gson gson = new Gson();
                     mpCourseSave = gson.fromJson(json, MpCourseSave.class);
                     if ("1".equals(mpCourseSave.getMsgFlag())) {
                         Toast.makeText(mActivity, mpCourseSave.getMsgContent(), Toast.LENGTH_SHORT).show();
 
-                        CoachesReleaseActivity.this.finish();
+                        CourseReleaseActivity.this.finish();
                     } else {
                         Toast.makeText(mActivity, mpCourseSave.getMsgContent(), Toast.LENGTH_SHORT).show();
                     }
@@ -406,7 +403,7 @@ public class CoachesReleaseActivity extends BaseAty implements EasyPermissions.P
 
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
-        EasyPermissions.checkDeniedPermissionsNeverAskAgain(this, "你妈的，瞎恩个jb，点设置---》权限---》访问相机的权限给我", R.string.setting, R.string.cancel, perms);
+        EasyPermissions.checkDeniedPermissionsNeverAskAgain(this, "点设置---》权限---》访问相机的权限给我", R.string.setting, R.string.cancel, perms);
     }
 
     // 获取点击事件

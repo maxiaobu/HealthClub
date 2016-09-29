@@ -84,7 +84,7 @@ public class CourseOrderFragment extends BaseFrg implements OnRefreshListener, O
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_course_order, container, false);
         ButterKnife.bind(this, view);
         initView();
@@ -112,7 +112,6 @@ public class CourseOrderFragment extends BaseFrg implements OnRefreshListener, O
                         .title("确定删除订单？")
                         .positiveColor(getResources().getColor(R.color.colorTextPrimary))
                         .positiveText("确认")
-
                         .onPositive(new MaterialDialog.SingleButtonCallback() {
                             @Override
                             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -157,7 +156,6 @@ public class CourseOrderFragment extends BaseFrg implements OnRefreshListener, O
                         .show();
             }
         });
-
         mAdapter.setOnAgainItemClickListener(new AdapterCourseOrderFrg.OnAgainItemClickListener() {
             @Override
             public void onItemClick(View view, String what) {

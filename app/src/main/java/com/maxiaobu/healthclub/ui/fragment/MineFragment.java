@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,20 +17,21 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
 import com.hyphenate.EMCallBack;
-import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.ui.activity.BindClubListActivity;
 import com.maxiaobu.healthclub.ui.activity.CoachcertApplyActivity;
-import com.maxiaobu.healthclub.ui.activity.CoachesManageActivity;
+import com.maxiaobu.healthclub.ui.activity.CourseManageActivity;
 import com.maxiaobu.healthclub.ui.activity.LoginActivity;
 import com.maxiaobu.healthclub.ui.activity.MineTeachingAppointmentActivity;
 import com.maxiaobu.healthclub.ui.activity.MyBespeakActivity;
 import com.maxiaobu.healthclub.ui.activity.OrderListActivity;
 import com.maxiaobu.healthclub.ui.activity.ScheduleManagementActivity;
+import com.maxiaobu.healthclub.ui.weiget.GlideCircleTransform;
 import com.maxiaobu.healthclub.ui.weiget.observablescrollview.ObservableScrollView;
 import com.maxiaobu.healthclub.ui.weiget.observablescrollview.ScrollViewListener;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
@@ -133,7 +133,10 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
 
     @Override
     public void initData() {
-
+        Glide.with(getActivity()).load(SPUtils.getString(Constant.AVATAR))
+                .transform(new GlideCircleTransform(getActivity()))
+                .placeholder(R.mipmap.ic_place_holder).into(mIvHeader);
+        mTvHeaderEdit.setText(SPUtils.getString(Constant.NICK_NAME));
     }
 
     @OnClick({R.id.ly_order, R.id.ly_login_out, R.id.ly_appointment, R.id.ly_authentication,
@@ -163,7 +166,7 @@ public class MineFragment extends BaseFrg implements View.OnClickListener, Scrol
                 break;
             //课程管理
             case R.id.ly_course_manage:
-                startActivity(new Intent(getActivity(), CoachesManageActivity.class));
+                startActivity(new Intent(getActivity(), CourseManageActivity.class));
                 break;
             //教学预约
             case R.id.ly_teaching_appointment:

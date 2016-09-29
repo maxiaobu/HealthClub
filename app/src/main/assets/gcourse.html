@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head>
@@ -24,7 +23,7 @@
 
 <div data-role="content" class="p_content">
 
-  <div id="slider" class="swipe cou_sw" style="display: none;">
+  <div id="slider" class="swipe cou_sw" <!--style="display: none;"-->>
     <ul class="box01_list">
       <li class="li_list">
         <div class="video"> <a rel="external" data-role="none"><img src="images/page/big_btn4.png" onerror="nofind();" id="imgpfile"/></a> </div>
@@ -56,10 +55,15 @@
         <div id="datum-arr">
 		
           <!--<a id="tog"  rel="external" data-role="none">-->
-      	<a id="tog" href="" class="click_club" rel="external" data-role="none" style="display:block;">
+      	<a href="" class="click_club" rel="external" data-role="none" style="display:block;">
 			<p id="address">沈阳市和平区市府大路北<span id="club_title" style="color:#D6D6D6 ;float: right;"></span></p>
 			<!--<img id="arrou" class="arrou" src="images/jiantou_botton_default.png" style="width: 18px;height: 18px;"/>--> </a>
-		<a href="" rel="external" data-role="none" class="click_times"> <span class="tenper"><!--<em id="pcoursetimes">10次</em>/<em id="pcoursedays">2月</em>--><em id="begintime">10月29日</em></span><!--<img class="arrou" src="images/jiantou_botton_default.png" style="width: 18px;height: 18px.;"> --></a>
+		<a id="tog" href="javascript:void(0);" rel="external" data-role="none" class="click_times"> <p><span class="tenper"><!--<em id="pcoursetimes">10次</em>/<em id="pcoursedays">2月</em>--><em id="begintime">10月29日</em></span><span id="coursetitle" style="float: right;color: #d6d6d6;">123</span></p><img class="arrou" id="arrou" src="images/jiantou_botton_down.png" style="width: 18px;height: 18px.;"> </a>
+		<div id="togg">
+			<ul>
+				
+			</ul>
+		</div>
 		<a rel="external" data-role="none" class="click_tel">
 			<p id="conphone" href="tel:130111">13011111111</p>
 			<img class="arrou" src="images/jiantou_botton_default.png" style="width: 18px;height: 18px;">
@@ -111,6 +115,42 @@ function nofind(){
 var lessonid = parmData.lessonid;
 $(document).ready(function() {
 		initData();
+		/*
+		 * 时间列表显示消失切换
+		 * */
+		$("#tog").click(function(){
+			if($("#arrou").attr("src")=="images/jiantou_botton_default.png")
+			   {
+				$("#arrou").attr("src","images/jiantou_botton_down.png");
+				$("#arrou").addClass("arrox");
+			   }
+			   else
+			   {
+				$("#arrou").attr("src","images/jiantou_botton_default.png");
+				$("#arrou").removeClass("arrox");
+			   }
+			   $("#togg").toggle();
+		})
+		var timeList = ['18:00','19:00','20:00'];
+        $.each(timeList,function(index,content){
+        	var li = $("<li><a href='javascript:void(0);'><span>" + content + "<span></a></li>");
+        	$("#togg ul").append(li);
+        	var coursetitle=$(".choosen span").text();
+        	$("#coursetitle").text(coursetitle);
+        	$("#togg ul li").eq(0).addClass("choosen");//选中第一个
+        	/*
+        	 * 点击选中
+        	 * */
+        	li.bind("click", function() {
+        		$("#togg li").removeClass("choosen");
+        		$(this).addClass("choosen");
+        		var coursetitle=$(".choosen span").text();
+        		$("#coursetitle").text(coursetitle);
+        		
+        	})
+        	
+        })
+		
 });
 function initData(){
 	$.ajax({
@@ -122,7 +162,7 @@ function initData(){
         },
         dataType: 'JSON',   //返回值类型
         beforeSend:function(){
-				!window.mobile||window.mobile.Loading(true);
+			!window.mobile||window.mobile.Loading(true);
 		},
         success: function (data) {
             var msgFlag = data.msgFlag;
@@ -149,8 +189,7 @@ function initData(){
                 	callUp(this, bClub.conphone);
                 });
                 //循环开始
-                var timeList = ['18:00','19:00','20:00'];
-				
+                
             }
            
         },

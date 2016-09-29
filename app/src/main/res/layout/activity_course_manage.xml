@@ -1,13 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.maxiaobu.healthclub.ui.activity.CourseManageActivity">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activity.CourseManageActivity">
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/common_title"/>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sz_50"
+            android:background="@color/colorTextPrimary"
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextAppearance="@style/TabBlackOrange"
+            app:tabTextColor="@color/white"/>
+
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/float_action_button"
+        android:layout_width="@dimen/sz_50"
+        android:layout_height="@dimen/sz_50"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/sz_24"
+        android:clickable="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_release_course"
+        />
+</android.support.design.widget.CoordinatorLayout>

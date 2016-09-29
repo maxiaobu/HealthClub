@@ -240,17 +240,12 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".ui.activity.CourseManageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
             android:name=".ui.activity.ClubDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".ui.activity.CoachesManageActivity"
+            android:name=".ui.activity.CourseManageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
@@ -267,7 +262,7 @@
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden">
         </activity>
         <activity
-            android:name=".ui.activity.CoachesReleaseActivity"
+            android:name=".ui.activity.CourseReleaseActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|stateAlwaysHidden">

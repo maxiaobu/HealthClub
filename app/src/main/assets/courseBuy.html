@@ -26,7 +26,7 @@
 					<div class="course_top">
 						<p class="title">课程信息</p>
 						<div class="name">
-							<div class="img"><img src="images/page/photo.jpg" id="ca_imgsfilename" width="60" height="60"></div>
+							<div class="img"><img src="images/defaultuser.png" id="ca_imgsfilename" width="60" height="60"></div>
 							<div class="txt2">
 								<p class="p1" id="ca_nickname">12</p>
 								<p class="p2" id="ca_signature">233333</p>
@@ -78,6 +78,8 @@
 		var mertype = parmData.mertype;
 		var memid = getMemid();
 		var courseid = parmData.courseid;
+		var clubname;
+		var coachid;
 		window.onload = function() {
 			initData();
 		};
@@ -111,6 +113,7 @@
 						//教练信息
 						$("#ca_nickname").text(data.ca_nickname);
 						$("#ca_signature").text(data.ca_signature);
+						coachid = data.ca_id;
 						//课程信息
 						$("#coursename").text(data.coursename);
 						if (parmData.mertype == "gcourse") {
@@ -119,9 +122,9 @@
 							$("#coachname").text(data.coursename);
 							$("#coachname").show();
 						}else{
-							
-							$(".qqq a").text("确认订单")
+							$(".qqq a").text("确认订单");
 						}
+						clubname = data.clubname;
 						$("#address").text(data.address);
 						$("#ca_mobphone").text(data.ca_mobphone);
 						$("#coursefee").text(data.courseprice);
@@ -193,8 +196,12 @@
 							createNewWindow(page);*/
 							!window.mobile||window.mobile.toReservation();
 						} else {
+							var order = data.order;
 //							var page = "pay.html?ordno=" + data.ordno + "&ordamt=" + data.ordamt + "&memid=" + memid;
-							!window.mobile||window.mobile.gotoPay(data.ordno, data.ordamt);
+							//课程名. 俱乐部名称, 教练名称, 教练头像.
+							console.log($("#coursename").text(), clubname, $("#ca_nickname").text(), $("#ca_imgsfilename").attr("src"));
+							//将订单编号, 订单总价, 订单截止日期, 订单剩余次数, 课程名, 俱乐部名称, 教练名称, 教练头像. 传递给原生. 后两项参数用于支付成功后直接预约.
+							!window.mobile||window.mobile.gotoPay(order.ordno, data.ordamt, formatdate(order.ordenddate), order.ordcoursetimes - order.coursenum, $("#coursename").text(), clubname, $("#ca_nickname").text(), $("#ca_imgsfilename").attr("src"), coachid);
 //							createNewWindow(page);
 						}
 					} else {

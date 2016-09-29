@@ -174,8 +174,8 @@ public class CateringDetailActivity extends BaseAty implements AppBarLayout.OnOf
             case R.id.tv_now_order:
                 if (mData != null) {
                     Intent intent = new Intent(this, CateringOrderConfirmActivity.class);
-                    intent.putExtra("price", mData.getMerprice());
-                    intent.putExtra("num", Integer.valueOf((String) mTvFoodNum.getText()));
+                    intent.putExtra("price",Integer.parseInt(mData.getMerprice()) );
+                    intent.putExtra("num", Integer.parseInt((String) mTvFoodNum.getText()));
                     intent.putExtra("merid", mMerid);
                     intent.putExtra("phoneNum", mTvPhoneNum.getText());
                     ActivityOptionsCompat compat = ActivityOptionsCompat.makeScaleUpAnimation(mTvNowOrder,

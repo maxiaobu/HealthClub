@@ -147,7 +147,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onActivityResult(requestCode, resultCode, data);
         if ((requestCode==REGISTER||requestCode==FIND_PASSWORD)&&resultCode==1){
 //            注册去主界面
-            // TODO: 2016/9/7 注册回来的
 
         }
     }
@@ -192,7 +191,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if ("1".equals(data.getMsgFlag())) {
                         final String nickname = data.getMember().getNickname();
                         final String memid = data.getMember().getMemid();
-                        final String avatar=data.getMember().getImgsfile();
+                        final String avatar=data.getMember().getImgsfilename();
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
@@ -210,6 +209,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         loginHx("m"+memid.substring(1),password,nickname,avatar,pd);
                     } else {
                         Toast.makeText(LoginActivity.this, data.getMsgContent().get(0), Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
                     }
                 }
 
@@ -245,7 +245,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             @Override
             public void onError(int i, final String s) {
-
                 if (!progressShow) {
                     return;
                 }

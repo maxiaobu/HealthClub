@@ -2,8 +2,7 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:fitsSystemWindows="true"
-             tools:context="com.maxiaobu.healthclub.ui.fragment.CoachesOnlineListFragment">
+             tools:context=".ui.fragment.CourseHistoryListFragment">
 
     <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
         android:id="@+id/swipeToLoadLayout"
@@ -29,5 +28,6 @@
             android:layout_height="50dp"
             android:gravity="center"/>
     </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+
     <include layout="@layout/common_nodata"/>
 </FrameLayout>

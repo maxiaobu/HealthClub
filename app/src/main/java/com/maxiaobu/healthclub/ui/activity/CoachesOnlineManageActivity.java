@@ -144,7 +144,6 @@ public class CoachesOnlineManageActivity extends BaseAty implements EasyPermissi
         App.getRequestInstance().post(this, UrlPath.URL_UPDATECOURSE, params, new RequestListener() {
             @Override
             public void requestSuccess(String json) {
-//                Log.d("CoachesReleaseActivity", json);
                 Gson gson = new Gson();
                 mpCourseSave = gson.fromJson(json, MpCourseSave.class);
                 if ("1".equals(mpCourseSave.getMsgFlag())) {
@@ -195,7 +194,6 @@ public class CoachesOnlineManageActivity extends BaseAty implements EasyPermissi
             App.getRequestInstance().post(this, UrlPath.URL_UPDATECOURSE, params, new RequestListener() {
                 @Override
                 public void requestSuccess(String json) {
-                    Log.d("CoachesReleaseActivity", json);
                     Gson gson = new Gson();
                     mpCourseSave = gson.fromJson(json, MpCourseSave.class);
                     if ("1".equals(mpCourseSave.getMsgFlag())) {

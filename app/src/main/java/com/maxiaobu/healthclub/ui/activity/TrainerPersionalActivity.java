@@ -98,21 +98,16 @@ public class TrainerPersionalActivity extends BaseAty implements AppBarLayout.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainer_persional);
         ButterKnife.bind(this);
-        ButterKnife.bind(this);
         initView();
         initData();
     }
 
     @Override
     public void initView() {
-//        mNestedScrollView.setFillViewport(true);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mAppBar.addOnOffsetChangedListener(this);
-//        mToolbar.setTitle("");
-
         mCtlName.setTitle("");
-
         mFabMenu.hideMenuButton(false);
         mUiHandler.postDelayed(new Runnable() {
             @Override
@@ -139,12 +134,6 @@ public class TrainerPersionalActivity extends BaseAty implements AppBarLayout.On
             mViewpager.setOffscreenPageLimit(1);
         }
         mTabs.setupWithViewPager(mViewpager);
-
-//        LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) mAppBar.getLayoutParams();
-//        WindowManager wm = this.getWindowManager();
-//        int width = wm.getDefaultDisplay().getWidth();
-//        linearParams.height = width;
-//        mAppBar.setLayoutParams(linearParams);
     }
 
     @Override

@@ -8166,12 +8166,13 @@ li.ui-block-b,
 .clear_mar1 .div {
 	padding: 8px 0;
 	/*width: 70%;*/
-	background: url(../images/button_up.png) no-repeat 95.8% center;
+	background: url(../images/button_up.png) no-repeat right center;
 	background-size: 20px 20px;
+	margin-right: 14px;
 }
 
 .clear_mar1 .choosen{/*2016 8.31 按钮被选择样式*/
-	background: url(../images/button_down.png) no-repeat 95.8% center;
+	background: url(../images/button_down.png) no-repeat right center;
 	background-size: 20px 20px;
 }
 .clear_mar:last-child .div {
@@ -8313,11 +8314,15 @@ li.ui-block-b,
 /*新增间隔*/
 #datum-arr a p {
 	float: left;
-	width: 70%;
+	width: 100%;
 	line-height: 32px;
 	padding-left: 50px;
 	font-size: 14px;
 	color: #4c4c4c;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding-right: 40px;
 }
 
 #datum-arr a .sderss {
@@ -8325,7 +8330,21 @@ li.ui-block-b,
 	color: #4c4c4c;
 	line-height: 17px;
 }
+#togg ul li span {
+	margin-left: 50px;
+}
+#togg ul li a {
+	background: url(../images/button_up.png) no-repeat right center;
+	background-size:20px 20px ;
 
+}
+#togg ul li.choosen a{
+	background: url(../images/button_down.png) no-repeat right center;
+	background-size:20px 20px ;
+}
+#togg ul li{
+	padding-right: 14px;
+}
 .arrou {
 	margin-right: 14px;
 	position: absolute;
@@ -8355,15 +8374,15 @@ li.ui-block-b,
 	background-size: 22px 22px;
 }
 
-#datum-arr .click_times p {
+/*#datum-arr .click_times p {
 	background: url(../images/page/person.png) no-repeat 15px center;
 	background-size: 22px 22px;
-}
+}*/
 
-#datum-arr a:nth-child(4) p {
+/*#datum-arr a:nth-child(4) p {
 	background: url(../images/page/person.png) no-repeat 15px center;
 	background-size: 18px 22px;
-}
+}*/
 
 #datum-arr a:nth-child(5) p {
 	background: url(../images/page/person.png) no-repeat 15px center;
@@ -8442,6 +8461,7 @@ li.ui-block-b,
 	padding:10px 0 10px 50px;
 	background: url(../images/page/icon_clock.png) no-repeat 15px center;
 	background-size: 22px 22px;
+	margin-left: -50px;
 }
 
 .title-daydayup {
@@ -8568,7 +8588,7 @@ li.ui-block-b,
 
 .arrox {
 	float: right;
-	margin-top: -2px;
+	margin-top: -9px;
 	/*margin-top: 25px;
 	margin-right: 10px;*/
 }

@@ -71,7 +71,7 @@ public class AdapterDataEntryContentListAty extends RecyclerView.Adapter impleme
 
     @Override
     public void onItemClear() {
-        Log.d("AdapterDataEntryContent", "from" + fromPosition + "-----to:" + toPosition);
+//        Log.d("AdapterDataEntryContent", "from" + fromPosition + "-----to:" + toPosition);
 //        Toast.makeText(mActivity, "dskjfhsdkjhfkjh", Toast.LENGTH_SHORT).show();
         if (fromPosition != -1) {
             mActivity.upData(String.valueOf(fromPosition + 1), String.valueOf(toPosition + 1), mData.get(0).get(0));

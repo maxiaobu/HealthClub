@@ -54,7 +54,7 @@ public class ReservationActivity extends BaseAty {
         mWebView.getSettings().setDefaultTextEncodingName("utf-8");
 
         mWebView.setWebViewClient(new MyWebViewClient());
-//        Log.d("ReservationActivity", getIntent().getStringExtra("reservation"));
+        Log.d("ReservationActivity", getIntent().getStringExtra("reservation"));
         mWebView.loadUrl(getIntent().getStringExtra("reservation"));
     }
 

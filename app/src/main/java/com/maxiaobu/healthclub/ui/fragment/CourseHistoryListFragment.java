@@ -21,11 +21,9 @@ import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.adapter.AdapterCoachesHistoryListfrg;
-import com.maxiaobu.healthclub.adapter.AdapterUnbindClubListfrg;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanMcourseList;
-import com.maxiaobu.healthclub.ui.activity.ClubDetailActivity;
 import com.maxiaobu.healthclub.ui.activity.CoachesHistoryManageActivity;
 import com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView;
 import com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView;
@@ -45,7 +43,7 @@ import butterknife.OnClick;
  * create by maxiaobu 2016.9.12
  * 历史课程
  */
-public class CoachesHistoryListFragment extends BaseFrg
+public class CourseHistoryListFragment extends BaseFrg
         implements OnRefreshListener, OnLoadMoreListener, View.OnClickListener {
 
 
@@ -73,18 +71,24 @@ public class CoachesHistoryListFragment extends BaseFrg
     private List<BeanMcourseList.CourseListBean> mData;
     private AdapterCoachesHistoryListfrg mAdapter;
 
-    public CoachesHistoryListFragment() {
+    public CourseHistoryListFragment() {
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_coaches_history_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_course_history_list, container, false);
         ButterKnife.bind(this, view);
         initView();
         initData();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 
     @Override
@@ -140,9 +144,6 @@ public class CoachesHistoryListFragment extends BaseFrg
                         mRlNoData.setVisibility(View.VISIBLE);
                     }
                 } else if (mDataType == 1) {//加载更多
-//                    int position = mAdapter.getItemCount();
-//                    mData.addAll(beanMcourseList.getCourseList());
-//                    mAdapter.notifyItemRangeInserted(position, beanMcourseList.getCourseList().size());
                     mSwipeToLoadLayout.setLoadingMore(false);
                 } else {
                     Toast.makeText(getActivity(), "刷新什么情况", Toast.LENGTH_SHORT).show();

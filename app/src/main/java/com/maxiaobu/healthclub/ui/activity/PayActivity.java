@@ -196,7 +196,7 @@ public class PayActivity extends BaseAty implements View.OnClickListener {
     private void startAty() {
         if (!TextUtils.isEmpty(mPayType) && mPayType.equals("course")) {
             new MaterialDialog.Builder(PayActivity.this)
-                    .content("支付成功，是否下载预约")
+                    .content("支付成功，是否现在预约")
                     .positiveText("现在预约")
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override

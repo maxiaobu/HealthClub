@@ -15,6 +15,7 @@ import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
+import com.maxiaobu.healthclub.common.beangson.BeanGoodsList;
 import com.maxiaobu.healthclub.common.beangson.BeanMbpcourse;
 import com.maxiaobu.healthclub.utils.TimesUtil;
 import com.maxiaobu.healthclub.utils.storage.SPUtils;
@@ -27,7 +28,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class CourseBuyActivity extends BaseAty {
-
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
     @Bind(R.id.toolbar_common)
@@ -73,37 +73,24 @@ public class CourseBuyActivity extends BaseAty {
         }
 
         @JavascriptInterface
-        public void gotoPay(final String ordno, final String ordamt) {
-            App.getRequestInstance().post(CourseBuyActivity.this,
-                    UrlPath.URL_MBPCOURSE, BeanMbpcourse.class,
-                    new RequestParams("pcourseid", getIntent().getStringExtra("pcourseid")), new RequestJsonListener<BeanMbpcourse>() {
-                        @Override
-                        public void requestSuccess(BeanMbpcourse result) {
-                            String page = "file:///android_asset/reservation.html?coachid=" + result.getCoach().getMemid() + "&nickname=" +
-                                    result.getCoach().getNickname() + "&clubname=" + result.getPcourseInfo().getClubname()
-                                    + "&address=" + result.getPcourseInfo().getAddress();
-                            page += "&coursename=" + result.getPcoursename() + "&enddate=" +
-                                    TimesUtil.timestampToStringS(String.valueOf(System.currentTimeMillis()+1000000000), "yyyy/MM/dd")
-                                    + "&times=" + result.getPcourseInfo().getPcoursetimes() + "&orderid=" + ordno;
-                            page += "&imgsfile=" +result.getCoach().getImgsfilename();
-                            Intent intent = new Intent();
-                            intent.putExtra("ordno", ordno);
+        public void gotoPay(String ordno, String ordamt, String endDate,
+                            String courseTimes, String courseName, String clubName,
+                            String coachName, String coachAvatar, String coachId) {
+            String page = "file:///android_asset/reservation.html?coachid="
+                    + coachId + "&nickname=" + coachName + "&clubname=" +
+                    clubName + "&address=1";
+            page += "&coursename=" + courseName + "&enddate=" +
+                    endDate + "&times=" + courseTimes + "&orderid=" + ordno;
+            page += "&imgsfile=" + coachAvatar;
+            Intent intent = new Intent();
+            intent.putExtra("ordno", ordno);
 //                            Log.d("WebAppInterface", ordno);
-                            intent.putExtra("totlePrice", ordamt);
-                            intent.putExtra(Constant.PAY_TYPE, "course");
-                            intent.putExtra("reservation", page.trim());
-                            intent.setClass(CourseBuyActivity.this, PayActivity.class);
-                            startActivity(intent);
-                        }
-
-                        @Override
-                        public void requestAgain(NodataFragment nodataFragment) {
-                            gotoPay(ordno, ordamt);
-                        }
-                    });
+            intent.putExtra("totlePrice", ordamt);
+            intent.putExtra(Constant.PAY_TYPE, "course");
+            intent.putExtra("reservation", page.trim());
+            intent.setClass(CourseBuyActivity.this, PayActivity.class);
+            startActivity(intent);
         }
-
-
 
         // 修改收货信息
         @JavascriptInterface

@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -52,10 +53,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
-
+/**
+ * 数据录入
+ */
 public class DataEntryActivity extends BaseAty implements View.OnClickListener {
-
-
     @Bind(R.id.tv_title_common)
     TextView mTvTitleCommon;
     @Bind(R.id.tv_title_save)
@@ -145,9 +146,11 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
                     mTvSave.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            add(currentItemID, "1", mTvStrengthNum.getText().toString(), mTvTimesNum.getText().toString());
-                            mRightAdapter.notifyDataSetChanged();
-                            hideMenu();
+                            if (checkZero()){
+                                add(currentItemID, "1", mTvStrengthNum.getText().toString(), mTvTimesNum.getText().toString());
+                                mRightAdapter.notifyDataSetChanged();
+                                hideMenu();
+                            }
                         }
                     });
                     showMenu();
@@ -170,10 +173,11 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
                 mTvSave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        add(currentItemID, String.valueOf(position + 1), mTvStrengthNum.getText().toString(), mTvTimesNum.getText().toString());
-                        mRightAdapter.notifyDataSetChanged();
-
-                        hideMenu();
+                        if (checkZero()){
+                            add(currentItemID, String.valueOf(position + 1), mTvStrengthNum.getText().toString(), mTvTimesNum.getText().toString());
+                            mRightAdapter.notifyDataSetChanged();
+                            hideMenu();
+                        }
                     }
                 });
                 mTvDelete.setOnClickListener(new View.OnClickListener() {
@@ -194,14 +198,16 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
                 mTvSave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ContentValues values = new ContentValues();
-                        values.put(DataEntryDbHelper.STRENGTH, mTvStrengthNum.getText().toString());
-                        values.put(DataEntryDbHelper.TIMES, mTvTimesNum.getText().toString());
-                        int update = mDb.update(mCorderlessonid, values,
-                                "itemid = ? and groups = ? ", new String[]{currentItemID, mData.get(position).get(1)});
-                        Log.d("DataEntryActivity", "update:" + update);
-                        mRightAdapter.notifyDataSetChanged();
-                        hideMenu();
+                        if (checkZero()){
+                            ContentValues values = new ContentValues();
+                            values.put(DataEntryDbHelper.STRENGTH, mTvStrengthNum.getText().toString());
+                            values.put(DataEntryDbHelper.TIMES, mTvTimesNum.getText().toString());
+                            int update = mDb.update(mCorderlessonid, values,
+                                    "itemid = ? and groups = ? ", new String[]{currentItemID, mData.get(position).get(1)});
+                            Log.d("DataEntryActivity", "update:" + update);
+                            mRightAdapter.notifyDataSetChanged();
+                            hideMenu();
+                        }
                     }
                 });
                 mTvDelete.setOnClickListener(new View.OnClickListener() {
@@ -294,6 +300,7 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+
                     Toast.makeText(mActivity, "DataEntryActivityjson解析失败", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -303,7 +310,6 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
                 initData();
             }
         });
-
     }
 
     @OnClick({R.id.iv_times_add, R.id.iv_times_reduce, R.id.iv_strength_add,
@@ -425,20 +431,38 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
     //             1               2 -1
     public void upData(String groupsFrom, String groupsTo, String itemId) {
         try {
+            Log.d("AdapterDataEntryContent", "from" + groupsFrom + "-----to:" + groupsTo);
             mDb.beginTransaction();
-            ContentValues values = new ContentValues();
-            values.put(DataEntryDbHelper.GROUPS, "-1");
-            int update = mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?", new String[]{itemId, groupsTo});
-//            Log.d("DataEntryActivity", "update:" + update);
-            values.clear();
-            values.put(DataEntryDbHelper.GROUPS, groupsTo);
-            int update1 = mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?", new String[]{itemId, groupsFrom});
-//            Log.d("DataEntryActivity", "update1:" + update1);
-            values.clear();
-            values.put(DataEntryDbHelper.GROUPS, groupsFrom);
-            int update2 = mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?", new String[]{itemId, "-1"});
+            if (Integer.parseInt(groupsFrom)<Integer.parseInt(groupsTo)){
+                ContentValues values = new ContentValues();
+                values.put(DataEntryDbHelper.GROUPS, "-1");
+                int update = mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?", new String[]{itemId, groupsFrom});
+                values.clear();
+                for (int i = Integer.parseInt(groupsFrom); i <= Integer.parseInt(groupsTo); i++) {
+                    values.put(DataEntryDbHelper.GROUPS, String.valueOf(i-1));
+                    mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?",
+                            new String[]{itemId, String.valueOf(i)});
+                    values.clear();
+                }
+                values.clear();
+                values.put(DataEntryDbHelper.GROUPS, groupsTo);
+                int update2 = mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?", new String[]{itemId, "-1"});
+            }else {
+                ContentValues values = new ContentValues();
+                values.put(DataEntryDbHelper.GROUPS, "-1");
+                int update = mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?", new String[]{itemId, groupsFrom});
+                values.clear();
+                for (int i = Integer.parseInt(groupsFrom)-1; i >=Integer.parseInt(groupsTo); i--) {
+                    values.put(DataEntryDbHelper.GROUPS, String.valueOf(i+1));
+                    mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?",
+                            new String[]{itemId, String.valueOf(i)});
+                    values.clear();
+                }
+                values.clear();
+                values.put(DataEntryDbHelper.GROUPS, groupsTo);
+                int update2 = mDb.update(mCorderlessonid, values, "itemid = ? and groups = ?", new String[]{itemId, "-1"});
+            }
             mDb.setTransactionSuccessful();
-
         } catch (Exception e) {
             Toast.makeText(mActivity, "位置更换失败", Toast.LENGTH_SHORT).show();
         } finally {
@@ -487,6 +511,20 @@ public class DataEntryActivity extends BaseAty implements View.OnClickListener {
         mFlEdit.setVisibility(View.VISIBLE);
         mFlEdit.setAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.dd_mask_in));
         mLlEdit.setAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.bottom_menu_in));
+    }
+
+    public boolean checkZero(){
+        if ( TextUtils.isEmpty(mTvTimesNum.getText().toString())||
+                mTvTimesNum.getText().toString().substring(0,1).equals("0") ){
+            Toast.makeText(mActivity, "请填写合乎逻辑的训练次数", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if ( TextUtils.isEmpty(mTvStrengthNum.getText().toString())||
+                mTvStrengthNum.getText().toString().substring(0,1).equals("0")){
+            Toast.makeText(mActivity, "请填写合乎逻辑的训练强度", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
 

@@ -22,12 +22,9 @@ import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.adapter.AdapterCoachesHistoryListfrg;
-import com.maxiaobu.healthclub.adapter.AdapterUnbindClubListfrg;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
-import com.maxiaobu.healthclub.common.beangson.BeanClubList;
 import com.maxiaobu.healthclub.common.beangson.BeanMcourseList;
-import com.maxiaobu.healthclub.common.beangson.BeanMunbindList;
 import com.maxiaobu.healthclub.ui.activity.CoachesOnlineManageActivity;
 import com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView;
 import com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView;
@@ -46,7 +43,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CoachesOnlineListFragment extends BaseFrg
+public class CourseOnlineListFragment extends BaseFrg
         implements OnRefreshListener, OnLoadMoreListener, View.OnClickListener {
 
 
@@ -74,19 +71,24 @@ public class CoachesOnlineListFragment extends BaseFrg
     private List<BeanMcourseList.CourseListBean> mData;
     private AdapterCoachesHistoryListfrg mAdapter;
 
-    public CoachesOnlineListFragment() {
+    public CourseOnlineListFragment() {
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_coaches_online_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_course_online_list, container, false);
         ButterKnife.bind(this, view);
         initView();
         initData();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 
     @Override
@@ -116,9 +118,7 @@ public class CoachesOnlineListFragment extends BaseFrg
                 intent.putExtra("pcourseprice", courseListBean.getPcourseprice());
                 intent.putExtra("resinform", courseListBean.getResinform());//内容
                 intent.putExtra("clubid", courseListBean.getClubid());
-
                 intent.putExtra("pcourseid", courseListBean.getPcourseid());
-
                 startActivityForResult(intent,Constant.RESULT_REQUEST_SECOND);
             }
         });
