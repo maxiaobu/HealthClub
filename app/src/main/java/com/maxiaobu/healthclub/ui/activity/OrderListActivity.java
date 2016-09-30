@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.maxiaobu.healthclub.BaseAty;
 import com.maxiaobu.healthclub.R;
-import com.maxiaobu.healthclub.ui.fragment.CourseOrderFragment;
+import com.maxiaobu.healthclub.ui.fragment.CourseOrderListFragment;
 import com.maxiaobu.healthclub.ui.fragment.LunchOrderFragment;
 import com.maxiaobu.healthclub.ui.fragment.MsjOrderFragment;
 
@@ -62,7 +62,7 @@ public class OrderListActivity extends BaseAty {
 
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new CourseOrderFragment(), "课程");
+        adapter.addFragment(new CourseOrderListFragment(), "课程");
         adapter.addFragment(new LunchOrderFragment(), "配餐");
         adapter.addFragment(new MsjOrderFragment(), "按摩");
         viewPager.setAdapter(adapter);

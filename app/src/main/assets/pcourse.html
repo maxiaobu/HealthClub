@@ -28,7 +28,7 @@
 				<ul class="box01_list">
 					<li class="li_list">
 						<div class="video">
-							<a href="" rel="external" data-role="none"><img src="images/page/big_btn4.png" onerror="nofind();" id="imgpfile" /></a>
+							<a href="" rel="external" data-role="none"><img src="images/page/zhanwei.png" onerror="nofind();" id="imgpfile" /></a>
 						</div>
 						<div class="corder">
 							<p class="corder_title" id="pcoursename">增肌方法论</p>
@@ -82,7 +82,7 @@
 								</div>
 							</div>
 							<!--多俱乐部可选点击下拉菜单结束-->
-							<a href="javascript:void(0);" rel="external" data-role="none" class="click_times"> <span class="tenper" style="margin: 0px;"><em id="pcoursetimes">10次</em>/<em id="pcoursedays">2月</em></span> </a>
+							<a href="javascript:void(0);" rel="external" data-role="none" class="click_times"> <p><span class="" style="margin: 0px;"><em id="pcoursetimes">10次</em>/<em id="pcoursedays">2月</em></span> </p></a>
 							<!-- 详细介绍栏 -->
 							<!--<a id="detailsurl" rel="external" data-role="none">
 								<p>点击查看详细介绍</p>
@@ -134,7 +134,7 @@
 			//图片加载不出来时的图片
 			function nofind(){ 
 				var img=event.srcElement; 
-				img.src="images/page/big_btn4.png"; 
+				img.src="images/page/zhanwei.png"; 
 				img.onerror=null; //控制不要一直跳动 
 			} 
 			$(document).ready(function(e) {
@@ -204,18 +204,19 @@
 							$("#titleText").text(data.pcoursename);
 							$("#pcoursetimes").text(pcourseInfo.pcoursetimes + "次");
 							$("#pcoursedays").text(pcourseInfo.pcoursedays + "天");
-							$("#resinform").text(data.resinform);
+							$("#resinform").text(data.resinform);//下单须知
 							$("#coachname").text(parmData.coachname);
 							$("#pcourseprice").text(data.pcourseprice + "元");
 							$("#pcourseprices").text(data.pcourseprice + "元");
-							$(".star_shi").css("width",parseFloat(data.coach.evascore)*20+"px");//评分
+							var starwidth=(data.coach.evascore-parseInt(data.coach.evascore))*16+parseInt(data.coach.evascore)*20+3+"px";
+							$(".star_shi").css("width",starwidth);//评分显示
 							var mobphone = $("#conphone");
 							//mobphone.text(data.conphone);俱乐部电话
 							mobphone.text(data.coach.mobphone);//教练电话
-							mobphone.parent("a").bind("click",function(){
+							mobphone.parent("a").bind("click",function(){//打电话方法
 								callUp(this, data.coach.mobphone);
 							});
-							$("#clubname").text(data.clubname);
+							$("#clubname").text(data.clubname);//俱乐部名称
 							$("#imgpfile").attr("src", pcourseInfo.imgpfile);
 							$("#detailsurl").attr("href", pcourseInfo.detailsurl);
 							var pcourseList = data.pcourseList;

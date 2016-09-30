@@ -64,7 +64,7 @@ public class AdapterMyBespeak extends RecyclerView.Adapter {
                     String s="tarid="+bean.getMemid()+"&lessonid="+bean.getCorderlessonid()+"&nickname="+
                             bean.getNickname()+"&imgsfile="+bean.getImgsfilename()+"&sign="+
                             bean.getSignature()+"&coursename="+bean.getCoursename()+"&begintime="+bean.getBegintime()
-                            +"&address="+bean.getClubname();
+                            +"&address="+bean.getClubname()+"&evascore="+bean.getEvastatus();
                     Intent intent = new Intent(mActivity, EvaluateActivity.class);
                     intent.putExtra("url",s);
                     mActivity.startActivityForResult(intent,1);

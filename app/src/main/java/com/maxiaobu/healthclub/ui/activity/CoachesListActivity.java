@@ -7,6 +7,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
@@ -146,11 +147,11 @@ public class CoachesListActivity extends BaseAty implements OnRefreshListener, O
         RequestParams params = new RequestParams();
         params.put("pageIndex", String.valueOf(mCurrentPage));
         params.put("memid", SPUtils.getString( Constant.MEMID));
-        params.put("latitude", String.valueOf(SPUtils.getString(Constant.LATITUDE)));
-        params.put("longitude", String.valueOf(SPUtils.getString( Constant.LONGITUDE)));
+        params.put("latitude", SPUtils.getString(Constant.LATITUDE)==null?"0":SPUtils.getString(Constant.LATITUDE));
+        params.put("longitude", SPUtils.getString(Constant.LONGITUDE)==null?"0":SPUtils.getString(Constant.LONGITUDE));
         params.put("sorttytpe", mSortType);
         params.put("gender", mFilterType);
-        //        Log.d("CoachesListActivity", String.valueOf(mCurrentPage) + "+++++" + SPUtils.getString(this, Index.MEMID) + "+++++" + String.valueOf(SPUtils.getFloat(this, Index.LATITUDE)) + "+++++" + String.valueOf(SPUtils.getFloat(this, Index.LONGITUDE)) + "+++++" + mSortType);
+//        Log.d("CoachesListActivity", String.valueOf(mCurrentPage) + "+++++" + SPUtils.getString(Constant.MEMID) + "+++++" + String.valueOf(SPUtils.getFloat(this, Index.LATITUDE)) + "+++++" + String.valueOf(SPUtils.getFloat(this, Index.LONGITUDE)) + "+++++" + mSortType);
         App.getRequestInstance().post(this, UrlPath.URL_COACHES_LIST, params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {

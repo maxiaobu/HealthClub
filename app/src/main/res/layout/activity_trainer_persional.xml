@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/sz_260"
             android:background="@mipmap/bg_trainer_header"
-            android:foreground="#10F27241"
             app:collapsedTitleGravity="center"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/colorPrimary"
@@ -55,7 +54,7 @@
                     android:layout_gravity="center_horizontal"
                     android:text="杰西卡"
                     android:textSize="@dimen/sz_18"
-                    android:textColor="@color/white"
+                    android:textColor="@color/colorTextSecondary"
                     android:layout_marginTop="@dimen/sz_8"/>
 
                 <LinearLayout
@@ -70,7 +69,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="粉丝:18"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorTextSecondary"
                         android:textSize="@dimen/sz_14"/>
 
                     <TextView
@@ -79,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/sz_10"
                         android:text="关注:18"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorTextSecondary"
                         android:textSize="@dimen/sz_14"/>
 
                     <TextView

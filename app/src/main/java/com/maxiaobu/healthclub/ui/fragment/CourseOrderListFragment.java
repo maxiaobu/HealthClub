@@ -26,11 +26,9 @@ import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseFrg;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.adapter.AdapterCourseOrderFrg;
-import com.maxiaobu.healthclub.adapter.AdapterLunchOrderFrg;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanCorderList;
-import com.maxiaobu.healthclub.common.beangson.BeanLunchOrderList;
 import com.maxiaobu.healthclub.ui.activity.CateringDetailActivity;
 import com.maxiaobu.healthclub.ui.weiget.refresh.LoadMoreFooterView;
 import com.maxiaobu.healthclub.ui.weiget.refresh.RefreshHeaderView;
@@ -52,7 +50,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CourseOrderFragment extends BaseFrg implements OnRefreshListener, OnLoadMoreListener {
+public class CourseOrderListFragment extends BaseFrg implements OnRefreshListener, OnLoadMoreListener {
 
 
     @Bind(R.id.swipe_refresh_header)
@@ -78,19 +76,21 @@ public class CourseOrderFragment extends BaseFrg implements OnRefreshListener, O
     private AdapterCourseOrderFrg mAdapter;
     private List<BeanCorderList.CorderListBean> mData;
 
-    public CourseOrderFragment() {
+    public CourseOrderListFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_course_order, container, false);
+        View view = inflater.inflate(R.layout.fragment_course_order_list, container, false);
         ButterKnife.bind(this, view);
         initView();
         initData();
         return view;
     }
+
+
 
     @Override
     public void initView() {
@@ -209,12 +209,6 @@ public class CourseOrderFragment extends BaseFrg implements OnRefreshListener, O
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-    }
-
-    @Override
-    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-        super.onViewStateRestored(savedInstanceState);
-        initData();
     }
 
     @Override

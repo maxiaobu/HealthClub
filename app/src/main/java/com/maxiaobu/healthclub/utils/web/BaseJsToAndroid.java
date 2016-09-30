@@ -173,7 +173,12 @@ public class BaseJsToAndroid {
 				dialog.dismissAllowingStateLoss();
 			}
 		}
-//
+	}
+
+
+	@JavascriptInterface
+	public void gotoBespeakList() {
+		Toast.makeText(context, "gotoBespeakList", Toast.LENGTH_SHORT).show();
 	}
 
 

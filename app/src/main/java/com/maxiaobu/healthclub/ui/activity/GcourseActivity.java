@@ -20,6 +20,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
+import com.maxiaobu.healthclub.MainActivity;
 import com.maxiaobu.healthclub.R;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
@@ -67,7 +68,7 @@ public class GcourseActivity extends BaseAty implements EasyPermissions.Permissi
 
         mWebView.setWebViewClient(new MyWebViewClient());
 //        clubid=C000174
-//        Log.d("ApplyBindClubActivity", "file:///android_asset/weekcourse.html?clubid=" + getIntent().getStringExtra("clubid"));
+        Log.d("ApplyBindClubActivity", "file:///android_asset/" + getIntent().getStringExtra("page"));
         //gcourse.html?gcourseid=GC000043
         mWebView.loadUrl("file:///android_asset/" + getIntent().getStringExtra("page"));
 
@@ -91,18 +92,25 @@ public class GcourseActivity extends BaseAty implements EasyPermissions.Permissi
             ringUp(phoneNumber);
         }
 
+        //教练团超2确认订单
         @JavascriptInterface
         public void popNewWindow(String page) {
-            Log.d("WebAppInterface", page);
+//            Log.d("WebAppInterface", page);
+            // courseBuy.html?mertype=gcourse&courseid=G000034&memid=M000510
+            Intent intent = new Intent(GcourseActivity.this, CourseBuyActivity.class);
+            intent.putExtra("url", page);
+            startActivity(intent);
         }
 
-
-        // 修改收货信息
+        //俱乐部课表2预约
         @JavascriptInterface
-        public void personalInfo() {
-            Intent intent = new Intent();
-            intent.setClass(GcourseActivity.this, RevampAddress.class);
-            startActivityForResult(intent, Constant.RESULT_REQUEST_ONE);
+        public void gotoBespeakList() {
+//            Toast.makeText(context, "gotoBespeakList", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(GcourseActivity.this, HomeActivity.class);
+            intent.putExtra(Constant.JUMP_KEY, Constant.GCOURSE_TO_BESPEAKLIST);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+
         }
     }
 

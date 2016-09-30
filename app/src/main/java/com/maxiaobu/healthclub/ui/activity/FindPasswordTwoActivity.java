@@ -73,7 +73,12 @@ public class FindPasswordTwoActivity extends BaseAty implements View.OnClickList
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animateRevealClose();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    animateRevealClose();
+                }else {
+                    onBackPressed();
+                }
+
             }
         });
     }

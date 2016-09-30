@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TrainerCourseFragment extends BaseFrg {
+public class CoachCourseFragment extends BaseFrg {
     @Bind(R.id.tv_personal)
     TextView mTvPersonal;
     @Bind(R.id.rv_personal)
@@ -47,14 +47,14 @@ public class TrainerCourseFragment extends BaseFrg {
     private AdapterPcourseFrg mPersonalAdapter;
     private AdapterGcourseFrg mGroupAdapter;
 
-    public TrainerCourseFragment() {
+    public CoachCourseFragment() {
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_trainer_course, container, false);
+        View view = inflater.inflate(R.layout.fragment_coach_course, container, false);
         ButterKnife.bind(this, view);
         initView();
         initData();
@@ -77,14 +77,14 @@ public class TrainerCourseFragment extends BaseFrg {
         LinearLayoutManager layoutManagerGroup = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRvGroup.setLayoutManager(layoutManagerGroup);
         mRvGroup.setItemAnimator(new DefaultItemAnimator());
-        mGroupAdapter = new AdapterGcourseFrg(getActivity(), mPcourseData);
+        mGroupAdapter = new AdapterGcourseFrg(getActivity(), mGcourseData);
         mRvGroup.setAdapter(mGroupAdapter);
     }
 
     @Override
     public void initData() {
         RequestParams params = new RequestParams();
-        params.put("pageIndex", "1");
+//        params.put("pageIndex", "1");
         params.put("tarid", getActivity().getIntent().getStringExtra("tarid"));
         App.getRequestInstance().post(getActivity(), UrlPath.URL_COACHES_DETAIL,
                 params, new RequestListener() {

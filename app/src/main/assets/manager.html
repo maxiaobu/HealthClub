@@ -308,7 +308,7 @@
 					success: function(data) {
 						$($("#tabs .current").attr('name')).fadeIn();//显示当天选项卡
 						$("#selectAll").bind("click", selectAll);
-						$("ul li img").bind("click", clickItem);
+						$("#content ul li").bind("click", clickItem);
 						var test = 0;
 						var msgFlag = data.msgFlag;
 						
@@ -353,9 +353,7 @@
 					}
 				})();
 				
-				/*$("#close").click(function() {
-					$("#side").attr("style", "display:none");
-				});*/
+				
 				//保存档期
 			function manangersave() {
 				var schtimeslice = "{";
@@ -413,7 +411,7 @@
 			
 			//点击档期事件
 			function clickItem() {
-				var img = $(this);
+				var img = $(this).find("img");
 				if (img.attr("src") == "images/button_down.png") {
 					img.attr("src", "images/page/iconfont.png");
 				} else {

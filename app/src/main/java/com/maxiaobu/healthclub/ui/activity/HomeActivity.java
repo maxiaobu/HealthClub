@@ -11,6 +11,7 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -196,6 +197,16 @@ public class HomeActivity extends BaseAty {
                 orderIntent.putExtra("orderFlag", 1);
                 orderIntent.setClass(HomeActivity.this, OrderListActivity.class);
                 startActivity(orderIntent);
+            }
+        }
+        int jumpKey = intent.getIntExtra(com.maxiaobu.healthclub.common.Constant.JUMP_KEY, -1);
+        if (jumpKey!=-1){
+            switch (jumpKey){
+                case com.maxiaobu.healthclub.common.Constant.GCOURSE_TO_BESPEAKLIST:
+                    startActivity(new Intent(this,MyBespeakActivity.class));
+                    break;
+                default:
+                    break;
             }
         }
 

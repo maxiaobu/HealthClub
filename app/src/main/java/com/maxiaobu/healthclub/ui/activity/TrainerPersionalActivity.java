@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.github.clans.fab.FloatingActionButton;
@@ -28,7 +27,7 @@ import com.maxiaobu.healthclub.chat.DemoHelper;
 import com.maxiaobu.healthclub.common.Constant;
 import com.maxiaobu.healthclub.common.UrlPath;
 import com.maxiaobu.healthclub.common.beangson.BeanmDynamicList;
-import com.maxiaobu.healthclub.ui.fragment.TrainerCourseFragment;
+import com.maxiaobu.healthclub.ui.fragment.CoachCourseFragment;
 import com.maxiaobu.healthclub.ui.fragment.TrainerDataFragment;
 import com.maxiaobu.healthclub.ui.fragment.TrainerDynamicFragment;
 import com.maxiaobu.healthclub.ui.weiget.GlideCircleTransform;
@@ -46,8 +45,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import maxiaobu.easeui.EaseConstant;
-import maxiaobu.easeui.utils.EaseUserUtils;
 
 
 public class TrainerPersionalActivity extends BaseAty implements AppBarLayout.OnOffsetChangedListener, View.OnClickListener {
@@ -195,7 +192,7 @@ public class TrainerPersionalActivity extends BaseAty implements AppBarLayout.On
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new TrainerDataFragment(), "资料");
-        adapter.addFragment(new TrainerCourseFragment(), "课程");
+        adapter.addFragment(new CoachCourseFragment(), "课程");
         adapter.addFragment(new TrainerDynamicFragment(), "动态");
         viewPager.setAdapter(adapter);
     }

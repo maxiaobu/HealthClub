@@ -54,7 +54,7 @@ public class ReservationActivity extends BaseAty {
         mWebView.getSettings().setDefaultTextEncodingName("utf-8");
 
         mWebView.setWebViewClient(new MyWebViewClient());
-        Log.d("ReservationActivity", getIntent().getStringExtra("reservation"));
+//        Log.d("ReservationActivity", getIntent().getStringExtra("reservation"));
         mWebView.loadUrl(getIntent().getStringExtra("reservation"));
     }
 
@@ -65,11 +65,13 @@ public class ReservationActivity extends BaseAty {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent();
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.setClass(ReservationActivity.this, HomeActivity.class);
-        intent.putExtra("foodFlag", 1);
-        startActivity(intent);
+        if (Constant.PAY_TO_RESERVATION==getIntent().getIntExtra(Constant.JUMP_KEY,-1)){
+            Intent intent = new Intent();
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.setClass(ReservationActivity.this, HomeActivity.class);
+            intent.putExtra("foodFlag", 1);
+            startActivity(intent);
+        }
     }
 
     public class WebAppInterface extends BaseJsToAndroid {

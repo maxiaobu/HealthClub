@@ -45,12 +45,31 @@ public class Constant {
     }
 
 
-    public static final int RESULT_OK=0x0001;
-    public static final int RESULT_OK_ONE=0x0011;
-    public static final int RESULT_OK_TWO=0x0012;
-    public static final int RESULT_REQUEST_ONE=0x0002;
-    public static final int RESULT_REQUEST_SECOND=0x0003;
-    public static final int RESULT_REQUEST_THIRD=0x0004;
+    public static final int RESULT_OK=0x0101;
+    public static final int RESULT_OK_ONE=0x0102;
+    public static final int RESULT_OK_TWO=0x0103;
+    public static final int RESULT_REQUEST_ONE=0x0201;
+    public static final int RESULT_REQUEST_SECOND=0x0202;
+    public static final int RESULT_REQUEST_THIRD=0x0203;
+
+
+
+
+    public static final String JUMP_KEY="jump_key";
+    /**
+     * 支付2预约
+     */
+    public static final int PAY_TO_RESERVATION=0x0300;
+    /**
+     * 团超详情2预约
+     */
+    public static final int GCOURSE_TO_BESPEAKLIST=0x0301;
+    /**
+     * 团超详情2团操
+     */
+    public static final int GCOURSE_TO_GCOURSE=0x0301;
+
+
     public static final String PAY_TYPE="payType";
     public static final String PAY_RESULT="payResult";
 

@@ -4,13 +4,16 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -43,8 +46,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -92,6 +98,7 @@ public class CourseReleaseActivity extends BaseAty implements EasyPermissions.Pe
     private MpCourseSave mpCourseSave;
     private String clubid;
     private boolean hadScheduleManagement = false;
+    private Uri uritempFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,7 +115,6 @@ public class CourseReleaseActivity extends BaseAty implements EasyPermissions.Pe
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         int width = wm.getDefaultDisplay().getWidth();
         mIvTop.getLayoutParams().height = (int) (width / 22 * 15);
-
     }
 
     @Override
@@ -160,12 +166,14 @@ public class CourseReleaseActivity extends BaseAty implements EasyPermissions.Pe
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
+            //获取系统的现有图片
             case IMAGE_REQUEST_CODE:
                 if (resultCode == this.RESULT_CANCELED) {
                 } else {
                     startPhotoZoom(data.getData());
                 }
                 break;
+            //拍照得到的图片
             case CAMERA_REQUEST_CODE:
                 if (resultCode == this.RESULT_CANCELED) {
                 } else {
@@ -177,11 +185,21 @@ public class CourseReleaseActivity extends BaseAty implements EasyPermissions.Pe
                     startPhotoZoom(Uri.fromFile(tempFile));
                 }
                 break;
+            //返回的结果
             case RESULT_REQUEST_CODE:
                 if (resultCode == this.RESULT_CANCELED) {
                 } else {
                     if (data != null) {
-                        getImageToView(data);
+//                        getImageToView(data);
+                        //将Uri图片转换为Bitmap
+                        try {
+                            Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uritempFile));
+
+                            mFileName =   saveBmp(bitmap);
+                            mIvTop.setImageBitmap(bitmap);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
                 break;
@@ -280,7 +298,6 @@ public class CourseReleaseActivity extends BaseAty implements EasyPermissions.Pe
                     mpCourseSave = gson.fromJson(json, MpCourseSave.class);
                     if ("1".equals(mpCourseSave.getMsgFlag())) {
                         Toast.makeText(mActivity, mpCourseSave.getMsgContent(), Toast.LENGTH_SHORT).show();
-
                         CourseReleaseActivity.this.finish();
                     } else {
                         Toast.makeText(mActivity, mpCourseSave.getMsgContent(), Toast.LENGTH_SHORT).show();
@@ -293,7 +310,7 @@ public class CourseReleaseActivity extends BaseAty implements EasyPermissions.Pe
                 }
             });
         } catch (Exception e) {
-//            Log.d("Coaches", e.toString());
+            Log.d("Coaches", e.toString());
             Toast.makeText(mActivity, "请上传图片", Toast.LENGTH_SHORT).show();
         }
     }
@@ -327,10 +344,15 @@ public class CourseReleaseActivity extends BaseAty implements EasyPermissions.Pe
     }
 
 
+    /**
+     * 调用系统裁剪功能
+     * @param uri  要裁剪的地址。
+     */
     public void startPhotoZoom(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
         // 设置裁剪
+        // crop为true是设置在开启的intent中设置显示的view可以剪裁
         intent.putExtra("crop", "true");
         // aspectX aspectY 是宽高的比例
         intent.putExtra("aspectX", 5);
@@ -338,18 +360,59 @@ public class CourseReleaseActivity extends BaseAty implements EasyPermissions.Pe
         // outputX outputY 是裁剪图片宽高
         intent.putExtra("outputX", 550);
         intent.putExtra("outputY", 375);
-        intent.putExtra("return-data", true);
+
+        //uritempFile为Uri类变量，实例化uritempFile
+        uritempFile = Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + "small.jpg");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uritempFile);
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         startActivityForResult(intent, RESULT_REQUEST_CODE);
     }
 
+    private Map<Bundle, SoftReference<Bitmap>> imageCache = new HashMap<Bundle, SoftReference<Bitmap>>();
+
+    /**
+     * 得到图片的地址，设置上图片
+     * @param data
+     */
     private void getImageToView(Intent data) {
         Bundle extras = data.getExtras();
         if (extras != null) {
-            Bitmap photo = extras.getParcelable("data");
-            mFileName = saveBmp(photo);
+            addBitmapToCache(extras);
+            mFileName = saveBmp(getBitmapByPath(extras));
             mIvTop.setImageURI(Uri.parse(mFileName));
         }
     }
+
+    /**
+     * 图片到内存。软引用
+     * @param bundle
+     */
+    public void addBitmapToCache(Bundle bundle) {
+        // 强引用的Bitmap对象
+        Bitmap bitmap = bundle.getParcelable("data");
+        // 软引用的Bitmap对象
+        SoftReference<Bitmap> softBitmap = new SoftReference<Bitmap>(bitmap);
+        // 添加该对象到Map中使其缓存
+        imageCache.put(bundle, softBitmap);
+    }
+
+    /**
+     * 从软引用中提出存入的bitmap
+     * @param path 这是存入的bundle.
+     * @return  返回是一个Bitmap
+     */
+    public Bitmap getBitmapByPath(Bundle path) {
+        // 从缓存中取软引用的Bitmap对象
+        SoftReference<Bitmap> softBitmap = imageCache.get(path);
+        // 判断是否存在软引用
+        if (softBitmap == null) {
+            return null;
+        }
+        // 取出Bitmap对象，如果由于内存不足Bitmap被回收，将取得空
+        Bitmap bit = softBitmap.get();
+        return bit;
+    }
+
 
     private String saveBmp(Bitmap bmp) {
         String fileName = Constant.CACHE_DIR + System.currentTimeMillis() + ".jpg";
@@ -371,7 +434,7 @@ public class CourseReleaseActivity extends BaseAty implements EasyPermissions.Pe
                 e.printStackTrace();
             }
         }
-        bmp.recycle();
+//        bmp.recycle();
         return fileName;
     }
 

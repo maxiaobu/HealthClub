@@ -122,9 +122,8 @@ $(document).bind('mobileinit', function () {
                 	  var gcaltype = content.gcaltype;
                 	  var dd = $("<dd class='dd'><span>"+content.coachname+"</span><a href=''><i>"+content.begintime+"-"+content.endtime+"</i><em>"+content.gcalname+"</em></a></dd>");
                 	  dd.bind("click",function(){
-                       //   var page = "member_club.html?tarid="+$(this).attr("id")+"&role="+content.memrole+"&memid="+getMemid()+"&clubid="+$(this).attr("clubid");
-                       /*window.location.href=page;*/
-                      var page="gcourse.html?lessonid=" + "L000365" /*+ "&memid=" + getMemid();*/
+                      /*var page="gcourse.html?lessonid=" + "L000365" + "&memid=" + getMemid();*/
+                      var page="gcourse.html?gcalid=" +content.gcalid + "&memid="+getMemid();
                       createNewWindow(page);
                       });
                 	  $("#tab"+weekday).append(dd);
@@ -141,7 +140,7 @@ $(document).bind('mobileinit', function () {
 	$(document).ready(function(){
 		var imgheight=parseInt($(".title").css("height"));
 		var height=myScroll.windowHeight()-imgheight
-		$(".box01_c").css("height",height+"px")
+		$(".box01_c").css("height",height+"px");
 	})
 </script>
 </body>

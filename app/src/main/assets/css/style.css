@@ -6205,6 +6205,7 @@ a.abtn span {
 	font-size: 0.4rem;
 	margin: 0;
 	padding: 0.6rem 0;
+	line-height: 0.4rem;
 }
 .res_down .re_nav .p2{
 	padding: 0.5rem 0;
@@ -6319,11 +6320,17 @@ a.abtn span {
   position: absolute;
   bottom:0px;
   left:0px;
-  right:0px;
-  border-bottom:1px solid #dadada;
   -webkit-transform:scaleY(.5);
+  -moz-transform: scaleY(.5);
   transform: scaleY(.5);
   -webkit-transform-origin:0 0;
+  /*border-bottom:1px solid #dadada;
+  box-sizing:border-box ;
+  -webkit-box-sizing: border-box;*/
+  height: 1px ;
+  width: 100%;
+  background: #fff;
+  border-bottom:1px solid #dadada
 }
 .res_down #content ul li:after
 .res_down #content ul li:last-of-type {
@@ -6353,9 +6360,11 @@ a.abtn span {
 .res_down #content ul img.noreservation{
 	position: absolute;
 	left: 50%;
-	top: 50%;
-	margin-left:-88px;
-	margin-top: -88px;
+	top: 40%;
+	margin-left:-60px;
+	margin-top: -60px;
+	width: 120px;
+	height: 120px;
 }
 /*弹窗*/
 
@@ -6659,7 +6668,7 @@ a.abtn span {
 	font-size: 1.6em;
 	line-height: 45px;
 	font-weight: normal;
-	background: #f27241;
+	background: #fb8435;
 	text-shadow: none;
 	color: #fff;
 	width: 95.74%;
@@ -7203,8 +7212,9 @@ a.abtn span {
 	height: 65px;
 	float: left;
 	margin-right:15px ;
-	background: #ccc;
+	/*background: #ccc;*/
 	margin-top: 3px;
+	border: 1px solid #dadada;
 }
 .evaluate .e_center .course_pic img {
 	width: 100%;
@@ -7227,13 +7237,13 @@ a.abtn span {
 	color: #939393;
 }
 .evaluate .e_down {
-	width: 55%;
+	width: 52%;
 	margin: 0 auto;
 	margin-top: 10px;
 	overflow: hidden;
 	position: absolute;
-	bottom: 25%;
-	margin-left: 22.5%;
+	bottom: 18%;
+	margin-left: 24%;
 }
 
 .evaluate .e_down p {
@@ -8011,7 +8021,9 @@ li.ui-block-b,
 
 
 /*私教课程详情页 chengxl 16-1-22*/
-
+.video{
+	background: #eee;
+}
 .corder {
 	overflow: hidden;
 }
@@ -8021,7 +8033,7 @@ li.ui-block-b,
 	color: #4c4c4c;
 	font-weight: bold;
 	display: inline-block;
-	margin-left: 15px;
+	margin-left: 14px;
 	float: left;
 	line-height: 15px;
 }
@@ -8270,7 +8282,7 @@ li.ui-block-b,
 #datum-arr a {
 	display: block;
 	line-height: 60px;
-	font-size: 1.6em;
+	font-size: 1.4em;
 	color: #4c4c4c;
 	font-weight: normal;
 	overflow: hidden;
@@ -8288,8 +8300,31 @@ li.ui-block-b,
    bottom: 0;
    height: 0;
    width: 100%;
+   box-sizing: border-box;
+   -webkit-box-sizing: border-box;
 }
 #datum-arr a:after{
+	content: "";
+	border-top: 1px solid #dadada;
+	position: absolute;
+	-webkit-transform:scaleY(.5);
+   transform: scaleY(.5);
+  -webkit-transform-origin:0 0;
+   transform-origin: 0 0;
+   left: 0;
+   top: 0;
+   height: 0;
+   width: 100%;
+}
+.mess-list #togg a:after{
+	content: "";
+	border: 0 none !important;
+	
+}
+.mess-list li{
+	position: relative;
+}
+.mess-list li:after{
 	content: "";
 	border-top: 1px solid #dadada;
 	position: absolute;
@@ -8374,10 +8409,10 @@ li.ui-block-b,
 	background-size: 22px 22px;
 }
 
-/*#datum-arr .click_times p {
-	background: url(../images/page/person.png) no-repeat 15px center;
+#datum-arr .click_times p {
+	background: url(../images/page/icon_clock.png) no-repeat 15px center;
 	background-size: 22px 22px;
-}*/
+}
 
 /*#datum-arr a:nth-child(4) p {
 	background: url(../images/page/person.png) no-repeat 15px center;
@@ -8483,7 +8518,7 @@ li.ui-block-b,
 	font-size: 18px;
 	float: right;
 	padding-right: 15px;
-	padding-top: 26px;
+	padding-top: 27px;
 	font-weight: bolder;
 }
 
@@ -9207,7 +9242,7 @@ li.ui-block-b,
 	color: #4c4c4c !important;
 	font-size: 1.6em;
 	font-weight: normal;
-	background: #f27241;
+	background: #fb8435;
 	text-shadow: none;
 	color: #fff !important;
 }
@@ -9428,7 +9463,7 @@ li.ui-block-b,
     font-weight: normal;
     height: 46px;
     line-height: 46px;
-    background: #f27241;
+    background: #fb8435;
     width: 94.2%;
     margin: 0 auto;
     border-radius: 5px;
@@ -9799,7 +9834,7 @@ li.ui-block-b,
 		font-size: 1.6em;
 		margin: 8px auto;
 		height: 45px;
-		background: #f27241;
+		background: #fb8435;
 		color: #fff;
 	}
 	/*.iinput-cxl input[type="submit"]:active {

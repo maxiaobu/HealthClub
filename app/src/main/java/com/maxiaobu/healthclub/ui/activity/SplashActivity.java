@@ -244,11 +244,11 @@ public class SplashActivity extends AppCompatActivity {
             SPUtils.putString(Constant.LATITUDE, location.getLatitude() + "");
             SPUtils.putString(Constant.LONGITUDE, location.getLongitude() + "");
             String local_city = location.getCity();
-            Log.i("myapp", "beyond");
+            Log.i("myapp",  location.getLatitude() + "");
 
             if (local_city != null) {
                 SPUtils.putString(Constant.CITY, location.getCity());
-                Log.d("MyLocationListener", location.getCity());
+//                Log.d("MyLocationListener", location.getCity());
             } else {
                 SPUtils.putString(Constant.CITY, "沈阳");
             }

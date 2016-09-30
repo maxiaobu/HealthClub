@@ -71,8 +71,6 @@
 						</div>
 						<div class="clear"></div>
 						<div class="clear"></div>
-						
-						<!--<p id="address" class="a_ddress">俱乐部地址</p>-->
 					</div>
 				</div>
 				<div class="res_down res_choose">
@@ -173,20 +171,6 @@
 					mui.init();
 					height();
 				};
-				var url = window.location.href
-				parmData = getUrlParam(url);
-				function getUrlParam(string) {
-					var obj = {};
-					if (string.indexOf("?") != -1) {
-						var string = string.substr(string.indexOf("?") + 1);
-						var strs = string.split("&");
-						for (var i = 0; i < strs.length; i++) {
-							var tempArr = strs[i].split("=");
-							obj[tempArr[0]] = decodeURI(tempArr[1]);
-						}
-					}
-					return obj;
-				}
 				function resetTabs() {
 					$("#content > div").hide(); //隐藏所有内容
 					$("#tabs a").attr("class", ""); //重置“id”
@@ -246,9 +230,9 @@
 								//初始化订单信息
 								$("#nickname").text(parmData.nickname);
 								$("#clubname").text(parmData.clubname);
-								$("#times").text("剩余"+parmData.times+"次");
+								$("#times").text("剩余"+parmData.times+"次");//剩余次数
 								$("#address").text(parmData.address);
-								$("#enddate").text("截止至："+parmData.enddate);
+								$("#enddate").text("截止至："+parmData.enddate);//截止日期
 								$("#coursename").text(parmData.coursename);
 								$("#imgsfile").attr("src", parmData.imgsfile);
 								var d = new Date();
@@ -302,7 +286,7 @@
 												$("#tab" + content.weekday + " ul").append(li);
 												
 											}else{//没时间段显示无预约
-												var img=$("<img src='images/page/icon_wuyuyue.png' />");
+												var img=$("<img src='images/page/icon_wudangqi.png' />");
 												img.addClass("noreservation");
 												$("#tab" + content.weekday + " ul").append(img);
 												$("#tab" + content.weekday + " ul").find("li").nextAll("img").css("display","none");
@@ -340,9 +324,6 @@
 						}
 					}
 				})();
-				/*$("#close").click(function() {
-					$("#side").attr("style", "display:none");
-				});*/
 				//确认预约
 				function submit() {
 					var d = new Date();

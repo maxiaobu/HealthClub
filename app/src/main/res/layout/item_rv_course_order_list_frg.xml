@@ -39,16 +39,6 @@
                     />
 
                 <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/sz_10"
-                    android:layout_toRightOf="@id/iv_photo"
-                    android:textColor="@color/colorTextPrimary"
-                    android:textSize="@dimen/sz_18"
-                    tools:text="张兴宇"/>
-
-                <TextView
                     android:id="@+id/tv_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,6 +49,19 @@
                     android:text="教练"
                     android:textColor="@color/colorTextThird"
                     android:textSize="@dimen/sz_16"/>
+
+                <TextView
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:id="@+id/tv_title"
+                    android:layout_marginRight="@dimen/sz_100"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/sz_10"
+                    android:layout_toRightOf="@id/iv_photo"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/sz_18"
+                    tools:text="张兴宇"/>
 
                 <TextView
                     android:id="@+id/tv_complete"

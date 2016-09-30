@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/sz_240">
+
+    <ImageView
+        android:id="@+id/iv_header"
+        android:layout_width="@dimen/sz_80"
+        android:layout_height="@dimen/sz_80"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/sz_100"
+        android:scaleType="fitXY"
+        android:background="@android:color/transparent"
+        android:src="@mipmap/test_header"/>
+
+    <TextView
+        android:id="@+id/tv_header_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/sz_12"
+        android:drawablePadding="@dimen/sz_4"
+        android:drawableRight="@mipmap/ic_mine_edit"
+        android:text="马小布"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sz_16"/>
+
+</RelativeLayout>

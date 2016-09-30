@@ -45,8 +45,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterTwoActivity extends BaseAty implements View.OnClickListener {
-
-
     @Bind(R.id.et_password)
     EditText mEtPassword;
     @Bind(R.id.et_config_password)
@@ -81,7 +79,12 @@ public class RegisterTwoActivity extends BaseAty implements View.OnClickListener
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animateRevealClose();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    animateRevealClose();
+                }else {
+                    onBackPressed();
+                }
+
             }
         });
     }
@@ -112,7 +115,6 @@ public class RegisterTwoActivity extends BaseAty implements View.OnClickListener
                             }
                         })
                         .show();
-
                 break;
             default:
                 break;
@@ -121,7 +123,12 @@ public class RegisterTwoActivity extends BaseAty implements View.OnClickListener
 
     @Override
     public void onBackPressed() {
-        animateRevealClose();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            animateRevealClose();
+        }else {
+            super.onBackPressed();
+        }
+
     }
 
     private void ShowEnterAnimation() {

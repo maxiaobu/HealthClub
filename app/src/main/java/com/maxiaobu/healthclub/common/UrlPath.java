@@ -128,7 +128,7 @@ public class UrlPath {
     public static final String URL_SAVE_ORDER_INDO = URL_BASE + "mfordersave.do";
 
     /**
-     * 配餐订单列表
+     * 配餐订单列表+课程订单列表
      * pageIndex: pageIndex++, //当前页码forderlist
      * listtype: "forderlist",//写死，就写他，区分出订餐订单
      * http://192.168.1.121:8080/efithealth/morderlist.do?memid=M000455&listtype=corderlist&pageIndex=1

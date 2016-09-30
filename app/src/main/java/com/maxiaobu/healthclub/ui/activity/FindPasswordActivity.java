@@ -77,7 +77,12 @@ public class FindPasswordActivity extends BaseAty implements View.OnClickListene
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animateRevealClose();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    animateRevealClose();
+                }else {
+                    onBackPressed();
+                }
+
             }
         });
     }
@@ -266,8 +271,6 @@ public class FindPasswordActivity extends BaseAty implements View.OnClickListene
                 Toast.makeText(FindPasswordActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                 if ("1".equals(data.getMsgFlag())) {
                     // TODO: 2016/9/5 填写验证码
-                } else {
-//                    Toast.makeText(FindPasswordActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -290,7 +293,6 @@ public class FindPasswordActivity extends BaseAty implements View.OnClickListene
         App.getRequestInstance().post(this, UrlPath.URL_SENDCODE_CHECK_FORGET, params, new RequestListener() {
             @Override
             public void requestSuccess(String s) {
-                // TODO: 2016/9/5 换bean
                 BeanMrsendCode data = JsonUtils.object(s, BeanMrsendCode.class);
                 data.getMsgFlag();
                 Toast.makeText(FindPasswordActivity.this, data.getMsgContent(), Toast.LENGTH_SHORT).show();

@@ -9,6 +9,7 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.maxiaobu.healthclub.App;
 import com.maxiaobu.healthclub.BaseAty;
@@ -99,6 +100,15 @@ public class CourseBuyActivity extends BaseAty {
             intent.setClass(CourseBuyActivity.this, RevampAddress.class);
             startActivityForResult(intent, Constant.RESULT_REQUEST_ONE);
         }
+        @JavascriptInterface
+        public void gotoPayForGcourse(String ordno, String ordamt) {
+            Toast.makeText(mContext, "sdkajhkljsdahflkjsdahflkjsadhf", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.putExtra(Constant.JUMP_KEY, Constant.GCOURSE_TO_GCOURSE);
+
+            intent.setClass(CourseBuyActivity.this, PayActivity.class);
+            startActivityForResult(intent, Constant.RESULT_REQUEST_SECOND);
+        }
 
         @JavascriptInterface
         public String getmemid() {
@@ -111,6 +121,8 @@ public class CourseBuyActivity extends BaseAty {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.RESULT_REQUEST_ONE && resultCode == Constant.RESULT_OK) {
             mWebView.reload();
+        }else if (requestCode == Constant.RESULT_REQUEST_SECOND && resultCode == Constant.RESULT_OK){
+            this.finish();
         }
     }
 }

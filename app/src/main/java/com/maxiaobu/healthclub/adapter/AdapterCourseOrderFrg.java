@@ -112,6 +112,14 @@ public class AdapterCourseOrderFrg extends RecyclerView.Adapter {
                     intent.putExtra(Constant.PAY_TYPE, "course");
                     intent.putExtra("totlePrice", String.valueOf(mData.get(position).getOrdamt()));
                     intent.putExtra("ordno", String.valueOf(mData.get(position).getOrdno()));
+                    String page = "file:///android_asset/reservation.html?coachid=" + listBean.getCoachid() + " &nickname="+
+                            listBean.getCa_nickname()+"&clubname=" + listBean.getClubname()
+                            + "&address=" + listBean.getAddress();
+                    page += "&coursename=" + listBean.getCoursename() + "&enddate=" +
+                            TimesUtil.timestampToStringS(String.valueOf(listBean.getOrdenddate().getTime()), "yyyy/MM/dd")
+                            + "&times=" + listBean.getOrdcoursetimes() + "&orderid=" + listBean.getOrdno();
+                    page += "&imgsfile=" + listBean.getCa_imgsfilename();
+                    intent.putExtra("reservation",page.trim());
 //                                Log.d("OrderConfirmActivity", object.getOrdno().toString());
                     mActivity.startActivity(intent);
                 }

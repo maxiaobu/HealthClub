@@ -9,10 +9,10 @@ public class BeanCoachesDetail {
 
     /**
      * msgFlag : 1
-     * msgContent : 教练单页
-     * bBMember : {"applydate":{"date":21,"day":4,"hours":18,"minutes":22,"month":6,"nanos":0,"seconds":26,"time":1469096546000,"timezoneOffset":-480,"year":116},"applydatestr":"","applydescr":"1111","area":"","birth":"","birthday":{"date":1,"day":2,"hours":0,"minutes":0,"month":0,"nanos":0,"seconds":0,"time":315504000000,"timezoneOffset":-480,"year":80},"checkopinion":"","clubid":"","clubname":"","coachadept":"111","coachcert":"2","coachcertname":"已认证","coachprice":111,"concernnum":0,"courseprice":0,"coursetimes":0,"createtime":{"date":21,"day":4,"hours":18,"minutes":8,"month":6,"nanos":0,"seconds":46,"time":1469095726000,"timezoneOffset":-480,"year":116},"createuser":"M000440","curMemrole":"coach","dayadd":"","distance":0,"distancestr":"","dynamicnum":0,"evascore":0,"evascoretotal":0,"evatimes":0,"follownum":1,"gender":"1","gendername":"男","headpage":"1","headpagename":"天气预报","identcode":"","identity":"","imagefile":[],"img":null,"imgfile":null,"imgfileFileName":"","imgpfile":"/image/bmember/M000440_1471935220977_p.png","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1471935220977_p.png","imgsfile":"/image/bmember/M000440_1471935220977_s.png@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1471935220977_s.png@!BMEMBER_S","isclubadmin":"0","isclubadminname":"否","ismanager":"","ispush":"1","ispushname":"开启","isstealth":"0","istopfile":[],"istrans":"1","latitude":41.811237,"lessonresent":0,"lessontotal":0,"linkurl":"","longitude":123.432856,"massagetimes":2,"memid":"M000440","memname":"","mempass":"e10adc3949ba59abbe56e057f20f883e","memrole":"","mobphone":"13897900910","modifytime":{"date":1,"day":4,"hours":16,"minutes":42,"month":8,"nanos":0,"seconds":48,"time":1472719368000,"timezoneOffset":-480,"year":116},"modifyuser":"M000440","nickname":"赵文卓","nowTime":0,"nowtimestr":"","openid":"","phonedeviceno":"86B9A044-C864-4E8A-80A3-A8C6B96987ED","pkeyListStr":"","posiupdatetime":{"date":3,"day":6,"hours":8,"minutes":45,"month":8,"nanos":0,"seconds":26,"time":1472863526000,"timezoneOffset":-480,"year":116},"recaddress":"和平区马达加斯加奥斯特洛夫斯基\n","recname":"赵子龙","recphone":"13897900910","remark":"教练认证审核人:平台管理员","resinform":"","signature":"","sorttype":"","status":"1","statusname":"有效","transtime":null,"updatetime":{"date":2,"day":5,"hours":10,"minutes":11,"month":8,"nanos":0,"seconds":7,"time":1472782267000,"timezoneOffset":-480,"year":116},"wxheadimgurl":"","wxnickname":"","wxopenid":"","wxregiarea":"","ycoincashnum":2561700,"ycoinnum":0}
-     * pcourseList : [{"address":"沈阳市东陵区奥体中心","clubcount":1,"clubid":"","clubname":"健身俱乐部CLUB_A","coachid":"","coachname":"赵文卓","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000086_1472711289727.jpg@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000086_1472711289727.jpg@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":50,"pcourseid":"PC000086","pcoursename":"私教课程A","pcourseprice":"1000元","pcoursetimes":5,"resinform":""},{"address":"沈阳市东陵区新华国际C座","clubcount":1,"clubid":"","clubname":"羿健康健身俱乐部","coachid":"","coachname":"赵文卓","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000087_1472711336247.jpg@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000087_1472711336247.jpg@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":40,"pcourseid":"PC000087","pcoursename":"私教课程B","pcourseprice":"800元","pcoursetimes":10,"resinform":""},{"address":"沈阳市东陵区奥体中心","clubcount":1,"clubid":"","clubname":"健身俱乐部CLUB_A","coachid":"","coachname":"赵文卓","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000088_1472711716027.jpg@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000088_1472711716027.jpg@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":100,"pcourseid":"PC000088","pcoursename":"私教课程C","pcourseprice":"3000元","pcoursetimes":50,"resinform":""},{"address":"沈阳市东陵区新华国际C座","clubcount":2,"clubid":"","clubname":"羿健康健身俱乐部","coachid":"","coachname":"赵文卓","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000083_1472699416202.jpg@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000083_1472699416202.jpg@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":60,"pcourseid":"PC000083","pcoursename":"赵文卓私教课程","pcourseprice":"1500元起","pcoursetimes":10,"resinform":""},{"address":"沈阳市东陵区新华国际C座","clubcount":1,"clubid":"","clubname":"羿健康健身俱乐部","coachid":"","coachname":"赵文卓","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000082_1472699371292.jpg@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000082_1472699371292.jpg@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":60,"pcourseid":"PC000082","pcoursename":"赵文卓私教课程1","pcourseprice":"2000元","pcoursetimes":10,"resinform":""}]
-     * gcourseList : [{"address":"沈阳市东陵区新华国际C座","clubid":"C000172","clubname":"羿健康健身俱乐部","clubpricemin":100,"clubpriceratio":0.5,"coachid":"M000440","coachname":"付哥教练","coursetimes":0,"createtime":{"date":4,"day":4,"hours":13,"minutes":31,"month":7,"nanos":0,"seconds":44,"time":1470288704000,"timezoneOffset":-480,"year":116},"createuser":"platAdmin","detailcontent":"","detailsurl":"","gcourseattr":"club","gcourseattrname":"俱乐部团操","gcoursecode":"","gcoursedays":60,"gcourseid":"GC000026","gcourseminutes":60,"gcoursename":"弈健康会籍订单","gcoursenum":20,"gcourseprice":100,"gcoursetimes":10,"gcoursetype":"all","gcoursetypedescr":"团操类型不限","imgfile":null,"imgfileFileName":"","imgpfile":"","imgpfilename":"","imgsfile":"","imgsfilename":"","istop":"0","linestatus":"1","linestatusname":"上线","modifytime":null,"modifyuser":"","pkeyListStr":"","remark":"","resinform":"阿斯顿发送到","scourseamt":10,"sequ":0},{"address":"沈阳市东陵区奥体中心","clubid":"C000174","clubname":"健身俱乐部CLUB_A","clubpricemin":100,"clubpriceratio":0.3,"coachid":"M000440","coachname":"赵文卓教练","coursetimes":0,"createtime":{"date":1,"day":4,"hours":11,"minutes":29,"month":8,"nanos":0,"seconds":0,"time":1472700540000,"timezoneOffset":-480,"year":116},"createuser":"platAdmin","detailcontent":"","detailsurl":"","gcourseattr":"club","gcourseattrname":"俱乐部团操","gcoursecode":"","gcoursedays":60,"gcourseid":"GC000040","gcourseminutes":60,"gcoursename":"赵文卓团操","gcoursenum":20,"gcourseprice":120,"gcoursetimes":10,"gcoursetype":"30","gcoursetypedescr":"力量类","imgfile":null,"imgfileFileName":"","imgpfile":"/image/bgcourse/GC000040_1472700540602.jpg@!PCOURSE_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcourse/GC000040_1472700540602.jpg@!PCOURSE_P","imgsfile":"/image/bgcourse/GC000040_1472700540602.jpg@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcourse/GC000040_1472700540602.jpg@!PCOURSE_S","istop":"0","linestatus":"1","linestatusname":"上线","modifytime":null,"modifyuser":"","pkeyListStr":"","remark":"","resinform":"阿斯顿发生的发生","scourseamt":12,"sequ":0},{"address":"沈阳市东陵区新华国际C座","clubid":"C000172","clubname":"羿健康健身俱乐部","clubpricemin":100,"clubpriceratio":0.2,"coachid":"M000440","coachname":"赵文卓教练","coursetimes":0,"createtime":{"date":1,"day":4,"hours":11,"minutes":29,"month":8,"nanos":0,"seconds":51,"time":1472700591000,"timezoneOffset":-480,"year":116},"createuser":"platAdmin","detailcontent":"","detailsurl":"","gcourseattr":"club","gcourseattrname":"俱乐部团操","gcoursecode":"","gcoursedays":60,"gcourseid":"GC000041","gcourseminutes":60,"gcoursename":"赵文卓团操","gcoursenum":20,"gcourseprice":150,"gcoursetimes":10,"gcoursetype":"20","gcoursetypedescr":"舞蹈类","imgfile":null,"imgfileFileName":"","imgpfile":"/image/bgcourse/GC000041_1472700591160.jpg@!PCOURSE_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcourse/GC000041_1472700591160.jpg@!PCOURSE_P","imgsfile":"/image/bgcourse/GC000041_1472700591160.jpg@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcourse/GC000041_1472700591160.jpg@!PCOURSE_S","istop":"0","linestatus":"1","linestatusname":"上线","modifytime":null,"modifyuser":"","pkeyListStr":"","remark":"","resinform":"阿斯顿发射","scourseamt":15,"sequ":0},{"address":"沈阳市东陵区奥体中心","clubid":"C000174","clubname":"健身俱乐部CLUB_A","clubpricemin":100,"clubpriceratio":0.5,"coachid":"M000440","coachname":"赵文卓教练","coursetimes":0,"createtime":{"date":1,"day":4,"hours":14,"minutes":29,"month":8,"nanos":0,"seconds":46,"time":1472711386000,"timezoneOffset":-480,"year":116},"createuser":"platAdmin","detailcontent":"","detailsurl":"","gcourseattr":"club","gcourseattrname":"俱乐部团操","gcoursecode":"","gcoursedays":60,"gcourseid":"GC000042","gcourseminutes":60,"gcoursename":"赵文卓团操A","gcoursenum":20,"gcourseprice":1200,"gcoursetimes":20,"gcoursetype":"40","gcoursetypedescr":"身心平衡类","imgfile":null,"imgfileFileName":"","imgpfile":"/image/bgcourse/GC000042_1472711386482.jpg@!PCOURSE_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcourse/GC000042_1472711386482.jpg@!PCOURSE_P","imgsfile":"/image/bgcourse/GC000042_1472711386482.jpg@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcourse/GC000042_1472711386482.jpg@!PCOURSE_S","istop":"0","linestatus":"1","linestatusname":"上线","modifytime":null,"modifyuser":"","pkeyListStr":"","remark":"","resinform":"速度发生违法","scourseamt":60,"sequ":0},{"address":"沈阳市东陵区奥体中心","clubid":"C000174","clubname":"健身俱乐部CLUB_A","clubpricemin":100,"clubpriceratio":0.5,"coachid":"M000440","coachname":"赵文卓教练","coursetimes":0,"createtime":{"date":1,"day":4,"hours":14,"minutes":34,"month":8,"nanos":0,"seconds":18,"time":1472711658000,"timezoneOffset":-480,"year":116},"createuser":"platAdmin","detailcontent":"","detailsurl":"","gcourseattr":"coach","gcourseattrname":"私教团操","gcoursecode":"","gcoursedays":60,"gcourseid":"GC000043","gcourseminutes":60,"gcoursename":"赵文卓团操B","gcoursenum":20,"gcourseprice":1500,"gcoursetimes":30,"gcoursetype":"10","gcoursetypedescr":"操课类","imgfile":null,"imgfileFileName":"","imgpfile":"/image/bgcourse/GC000043_1472711658467.jpg@!PCOURSE_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcourse/GC000043_1472711658467.jpg@!PCOURSE_P","imgsfile":"/image/bgcourse/GC000043_1472711658467.jpg@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcourse/GC000043_1472711658467.jpg@!PCOURSE_S","istop":"0","linestatus":"1","linestatusname":"上线","modifytime":null,"modifyuser":"","pkeyListStr":"","remark":"","resinform":"色阿瑟发色费萨尔","scourseamt":50,"sequ":0},{"address":"沈阳市东陵区奥体中心","clubid":"C000174","clubname":"健身俱乐部CLUB_A","clubpricemin":100,"clubpriceratio":0.2,"coachid":"M000440","coachname":"赵文卓教练","coursetimes":0,"createtime":{"date":1,"day":4,"hours":14,"minutes":36,"month":8,"nanos":0,"seconds":28,"time":1472711788000,"timezoneOffset":-480,"year":116},"createuser":"platAdmin","detailcontent":"","detailsurl":"","gcourseattr":"club","gcourseattrname":"俱乐部团操","gcoursecode":"","gcoursedays":60,"gcourseid":"GC000044","gcourseminutes":60,"gcoursename":"赵文卓团操Cc","gcoursenum":20,"gcourseprice":1000,"gcoursetimes":20,"gcoursetype":"20","gcoursetypedescr":"舞蹈类","imgfile":null,"imgfileFileName":"","imgpfile":"/image/bgcourse/GC000044_1472711788682.jpg@!PCOURSE_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcourse/GC000044_1472711788682.jpg@!PCOURSE_P","imgsfile":"/image/bgcourse/GC000044_1472711788682.jpg@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcourse/GC000044_1472711788682.jpg@!PCOURSE_S","istop":"0","linestatus":"1","linestatusname":"上线","modifytime":null,"modifyuser":"","pkeyListStr":"","remark":"","resinform":"阿萨德发斯蒂芬","scourseamt":50,"sequ":0}]
+     * msgContent : 鏁欑粌鍗曢〉
+     * bBMember : {"applydate":{"date":21,"day":4,"hours":18,"minutes":22,"month":6,"nanos":0,"seconds":26,"time":1469096546000,"timezoneOffset":-480,"year":116},"applydatestr":"","applydescr":"1111","area":"","birth":"","birthday":{"date":1,"day":2,"hours":0,"minutes":0,"month":0,"nanos":0,"seconds":0,"time":315504000000,"timezoneOffset":-480,"year":80},"checkopinion":"","clubid":"","clubname":"","coachadept":"111","coachcert":"2","coachcertname":"宸茶璇�","coachprice":111,"concernnum":0,"courseprice":0,"coursetimes":19,"createtime":{"date":21,"day":4,"hours":18,"minutes":8,"month":6,"nanos":0,"seconds":46,"time":1469095726000,"timezoneOffset":-480,"year":116},"createuser":"M000440","curMemrole":"coach","dayadd":"","distance":0,"distancestr":"","dynamicnum":0,"evascore":3.83,"evascoretotal":2.8864,"evatimes":8,"follownum":1,"gender":"0","gendername":"濂�","headpage":"2","headpagename":"璇剧▼棰勭害","identcode":"","identity":"","imagefile":[],"img":null,"imgfile":null,"imgfileFileName":"","imgpfile":"/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P","imgsfile":"/image/bmember/M000440_1474946581342.png@!BMEMBER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S","isclubadmin":"0","isclubadminname":"鍚�","ismanager":"","ispush":"1","ispushname":"寮�鍚�","isstealth":"0","istopfile":[],"istrans":"1","latitude":41.811237,"lessonresent":0,"lessontotal":0,"linkurl":"","longitude":123.432856,"massagetimes":2,"memid":"M000440","memname":"","mempass":"e10adc3949ba59abbe56e057f20f883e","memrole":"","mobphone":"13897900910","modifytime":{"date":29,"day":4,"hours":20,"minutes":35,"month":8,"nanos":0,"seconds":56,"time":1475152556000,"timezoneOffset":-480,"year":116},"modifyuser":"M000440","nickname":"鎴戝濡囧効","nowTime":0,"nowtimestr":"","openid":"","phonedeviceno":"","pkeyListStr":"","posiupdatetime":{"date":30,"day":5,"hours":9,"minutes":36,"month":8,"nanos":0,"seconds":52,"time":1475199412000,"timezoneOffset":-480,"year":116},"recaddress":"鍜屽钩鍖篴sdfsdf","recname":"sdafsdf","recphone":"18624616670","remark":"鏁欑粌璁よ瘉瀹℃牳浜�:骞冲彴绠＄悊鍛�","resinform":"","signature":"鎴�","sorttype":"","status":"1","statusname":"鏈夋晥","transtime":null,"updatetime":{"date":30,"day":5,"hours":8,"minutes":42,"month":8,"nanos":0,"seconds":38,"time":1475196158000,"timezoneOffset":-480,"year":116},"wxheadimgurl":"","wxnickname":"","wxopenid":"","wxregiarea":"","ycoincashnum":92684434,"ycoinnum":300}
+     * pcourseList : [{"address":"娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�","clubcount":1,"clubid":"","clubname":"缇垮仴搴峰仴韬勘涔愰儴","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000180_1475138919468.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000180_1475138919468.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":30,"pcourseid":"PC000180","pcoursename":"1000","pcourseprice":"9999鍏�","pcoursetimes":2,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�","clubcount":1,"clubid":"","clubname":"缇垮仴搴峰仴韬勘涔愰儴","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000173_1475112840395.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000173_1475112840395.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":23,"pcourseid":"PC000173","pcoursename":"1212","pcourseprice":"3232鍏�","pcoursetimes":1,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯濂ヤ綋涓績","clubcount":1,"clubid":"","clubname":"鍋ヨ韩淇变箰閮\u2013LUB_A","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000138_1474444506077.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000138_1474444506077.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":3333,"pcourseid":"PC000138","pcoursename":"333","pcourseprice":"3333鍏�","pcoursetimes":22,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�","clubcount":1,"clubid":"","clubname":"缇垮仴搴峰仴韬勘涔愰儴","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000156_1475138939706.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000156_1475138939706.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":21,"pcourseid":"PC000156","pcoursename":"Qqqq","pcourseprice":"9999鍏�","pcoursetimes":12,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯濂ヤ綋涓績","clubcount":1,"clubid":"","clubname":"鍋ヨ韩淇变箰閮\u2013LUB_A","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000151_1474948479818.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000151_1474948479818.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":23,"pcourseid":"PC000151","pcoursename":"淇韩璇�","pcourseprice":"3000鍏�","pcoursetimes":10,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�","clubcount":1,"clubid":"","clubname":"缇垮仴搴峰仴韬勘涔愰儴","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000152_1475130926259.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000152_1475130926259.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":30,"pcourseid":"PC000152","pcoursename":"鍑忚偉璇�","pcourseprice":"9999鍏�","pcoursetimes":11,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯濂ヤ綋涓績","clubcount":1,"clubid":"","clubname":"鍋ヨ韩淇变箰閮\u2013LUB_A","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000194_1475138515444.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000194_1475138515444.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":5,"pcourseid":"PC000194","pcoursename":"鍠斿枖","pcourseprice":"5000鍏�","pcoursetimes":3,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�","clubcount":1,"clubid":"","clubname":"缇垮仴搴峰仴韬勘涔愰儴","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000187_1475130766040.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000187_1475130766040.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":12,"pcourseid":"PC000187","pcoursename":"寮犲ぉ楹掓祴璇�","pcourseprice":"9999鍏�","pcoursetimes":12,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯濂ヤ綋涓績","clubcount":1,"clubid":"","clubname":"鍋ヨ韩淇变箰閮\u2013LUB_A","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000086_1475131095311.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000086_1475131095311.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":50,"pcourseid":"PC000086","pcoursename":"寮犲竻绉佹暀璇�","pcourseprice":"1000鍏�","pcoursetimes":5,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�","clubcount":1,"clubid":"","clubname":"缇垮仴搴峰仴韬勘涔愰儴","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000192_1475138721151.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000192_1475138721151.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":30,"pcourseid":"PC000192","pcoursename":"寰风帥瑗夸簹","pcourseprice":"3000鍏�","pcoursetimes":20,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�","clubcount":1,"clubid":"","clubname":"缇垮仴搴峰仴韬勘涔愰儴","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000196_1475138999740.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000196_1475138999740.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":1,"pcourseid":"PC000196","pcoursename":"鎴戦棶闂�","pcourseprice":"500鍏�","pcoursetimes":1,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯濂ヤ綋涓績","clubcount":1,"clubid":"","clubname":"鍋ヨ韩淇变箰閮\u2013LUB_A","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000193_1475138459652.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000193_1475138459652.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":50,"pcourseid":"PC000193","pcoursename":"鎴戦棶闂�","pcourseprice":"3500鍏�","pcoursetimes":3,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�","clubcount":1,"clubid":"","clubname":"缇垮仴搴峰仴韬勘涔愰儴","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000083_1475131129136.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000083_1475131129136.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":60,"pcourseid":"PC000083","pcoursename":"璧垫枃鍗撶鏁欒绋�","pcourseprice":"2000鍏�","pcoursetimes":10,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯濂ヤ綋涓績","clubcount":1,"clubid":"","clubname":"鍋ヨ韩淇变箰閮\u2013LUB_A","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000084_1474954334098.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000084_1474954334098.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":60,"pcourseid":"PC000084","pcoursename":"璧垫枃鍗撶鏁欒绋�","pcourseprice":"1500鍏�","pcoursetimes":100,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�","clubcount":1,"clubid":"","clubname":"缇垮仴搴峰仴韬勘涔愰儴","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000082_1472699371292.jpg@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000082_1472699371292.jpg@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":60,"pcourseid":"PC000082","pcoursename":"璧垫枃鍗撶鏁欒绋�1","pcourseprice":"2000鍏�","pcoursetimes":10,"resinform":""},{"address":"娌堥槼甯備笢闄靛尯濂ヤ綋涓績","clubcount":1,"clubid":"","clubname":"鍋ヨ韩淇变箰閮\u2013LUB_A","coachid":"","coachname":"鎴戝濡囧効","conphone":"","detailsurl":"","imgpfile":"","imgpfilename":"","imgsfile":"/image/bpcourse/PC000166_1475039287071.png@!PCOURSE_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000166_1475039287071.png@!PCOURSE_S","mobphone":"","modifytime":null,"pcoursedays":1,"pcourseid":"PC000166","pcoursename":"闆坏璞嗘矙","pcourseprice":"1鍏�","pcoursetimes":1,"resinform":""}]
+     * gcourseList : [{"address":"娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�","begStringime":null,"clubid":"C000172","clubname":"缇垮仴搴峰仴韬勘涔愰儴","clubpricemin":0,"clubpriceratio":0,"coachid":"M000440","coachname":"璧垫枃鍗撴暀缁�","coursetimes":0,"createtime":{"date":1,"day":4,"hours":11,"minutes":13,"month":8,"nanos":0,"seconds":34,"time":1472699614000,"timezoneOffset":-480,"year":116},"createuser":"platAdmin","detailcontent":"<p>\r\n\t鏄殑鍙戠敓澶т簨鐨勯樋鐡� <img src=\"http://efithealthresource.oss-cn-beijing.aliyuncs.com/image/editor/01111212591_926_p.jpg\" alt=\"\" />鍟婂疄鎵撳疄鐨勫彂鐢熺殑\r\n<\/p>\r\n<p>\r\n\tasdfasdf\r\n<\/p>\r\n<br />","detailsurl":"","gcalattr":"club","gcalattrname":"淇变箰閮ㄥ洟鎿�","gcalid":"G000034","gcalname":"璧垫枃鍗撳洟鎿嶈1","gcaltype":"20","gcaltypename":"鑸炶箞绫�","gcoursedays":12,"gcourseminutes":60,"gcoursenum":20,"gcourseprice":0,"gcoursetimes":12,"imgfile":null,"imgfileFileName":"","imgpfile":"/image/bgcallisth/G000034_1472699614478.jpg@!FOODMER_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcallisth/G000034_1472699614478.jpg@!FOODMER_P","imgsfile":"/image/bgcallisth/G000034_1472699614478.jpg@!FOODMER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcallisth/G000034_1472699614478.jpg@!FOODMER_S","modifytime":{"date":30,"day":5,"hours":9,"minutes":41,"month":8,"nanos":0,"seconds":22,"time":1475199682000,"timezoneOffset":-480,"year":116},"modifyuser":"platAdmin","pkeyListStr":"","remark":"","scourseamt":0,"status":"1","statusname":"鏈夋晥"},{"address":"娌堥槼甯備笢闄靛尯濂ヤ綋涓績","begStringime":null,"clubid":"C000174","clubname":"鍋ヨ韩淇变箰閮\u2013LUB_A","clubpricemin":0,"clubpriceratio":0,"coachid":"M000440","coachname":"鎴戝濡囧効鏁欑粌","coursetimes":0,"createtime":{"date":29,"day":4,"hours":20,"minutes":38,"month":8,"nanos":0,"seconds":35,"time":1475152715000,"timezoneOffset":-480,"year":116},"createuser":"platAdmin","detailcontent":"asdfasd<br />","detailsurl":"","gcalattr":"coach","gcalattrname":"绉佹暀鍥㈡搷","gcalid":"G000052","gcalname":"asdf","gcaltype":"10","gcaltypename":"鎿嶈绫�","gcoursedays":0,"gcourseminutes":60,"gcoursenum":20,"gcourseprice":0,"gcoursetimes":0,"imgfile":null,"imgfileFileName":"","imgpfile":"/image/bgcallisth/G000052_1475152715090.jpg@!FOODMER_P","imgpfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcallisth/G000052_1475152715090.jpg@!FOODMER_P","imgsfile":"/image/bgcallisth/G000052_1475152715090.jpg@!FOODMER_S","imgsfilename":"http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcallisth/G000052_1475152715090.jpg@!FOODMER_S","modifytime":null,"modifyuser":"","pkeyListStr":"","remark":"","scourseamt":0,"status":"1","statusname":"鏈夋晥"}]
      * mediaList : []
      */
 
@@ -30,11 +30,11 @@ public class BeanCoachesDetail {
      * clubname :
      * coachadept : 111
      * coachcert : 2
-     * coachcertname : 已认证
+     * coachcertname : 宸茶璇�
      * coachprice : 111
      * concernnum : 0
      * courseprice : 0
-     * coursetimes : 0
+     * coursetimes : 19
      * createtime : {"date":21,"day":4,"hours":18,"minutes":8,"month":6,"nanos":0,"seconds":46,"time":1469095726000,"timezoneOffset":-480,"year":116}
      * createuser : M000440
      * curMemrole : coach
@@ -42,29 +42,29 @@ public class BeanCoachesDetail {
      * distance : 0
      * distancestr :
      * dynamicnum : 0
-     * evascore : 0
-     * evascoretotal : 0
-     * evatimes : 0
+     * evascore : 3.83
+     * evascoretotal : 2.8864
+     * evatimes : 8
      * follownum : 1
-     * gender : 1
-     * gendername : 男
-     * headpage : 1
-     * headpagename : 天气预报
+     * gender : 0
+     * gendername : 濂�
+     * headpage : 2
+     * headpagename : 璇剧▼棰勭害
      * identcode :
      * identity :
      * imagefile : []
      * img : null
      * imgfile : null
      * imgfileFileName :
-     * imgpfile : /image/bmember/M000440_1471935220977_p.png
-     * imgpfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1471935220977_p.png
-     * imgsfile : /image/bmember/M000440_1471935220977_s.png@!BMEMBER_S
-     * imgsfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1471935220977_s.png@!BMEMBER_S
+     * imgpfile : /image/bmember/M000440_1474946581342.png@!BMEMBER_P
+     * imgpfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_P
+     * imgsfile : /image/bmember/M000440_1474946581342.png@!BMEMBER_S
+     * imgsfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bmember/M000440_1474946581342.png@!BMEMBER_S
      * isclubadmin : 0
-     * isclubadminname : 否
+     * isclubadminname : 鍚�
      * ismanager :
      * ispush : 1
-     * ispushname : 开启
+     * ispushname : 寮�鍚�
      * isstealth : 0
      * istopfile : []
      * istrans : 1
@@ -79,101 +79,103 @@ public class BeanCoachesDetail {
      * mempass : e10adc3949ba59abbe56e057f20f883e
      * memrole :
      * mobphone : 13897900910
-     * modifytime : {"date":1,"day":4,"hours":16,"minutes":42,"month":8,"nanos":0,"seconds":48,"time":1472719368000,"timezoneOffset":-480,"year":116}
+     * modifytime : {"date":29,"day":4,"hours":20,"minutes":35,"month":8,"nanos":0,"seconds":56,"time":1475152556000,"timezoneOffset":-480,"year":116}
      * modifyuser : M000440
-     * nickname : 赵文卓
+     * nickname : 鎴戝濡囧効
      * nowTime : 0
      * nowtimestr :
      * openid :
-     * phonedeviceno : 86B9A044-C864-4E8A-80A3-A8C6B96987ED
+     * phonedeviceno :
      * pkeyListStr :
-     * posiupdatetime : {"date":3,"day":6,"hours":8,"minutes":45,"month":8,"nanos":0,"seconds":26,"time":1472863526000,"timezoneOffset":-480,"year":116}
-     * recaddress : 和平区马达加斯加奥斯特洛夫斯基
-
-     * recname : 赵子龙
-     * recphone : 13897900910
-     * remark : 教练认证审核人:平台管理员
+     * posiupdatetime : {"date":30,"day":5,"hours":9,"minutes":36,"month":8,"nanos":0,"seconds":52,"time":1475199412000,"timezoneOffset":-480,"year":116}
+     * recaddress : 鍜屽钩鍖篴sdfsdf
+     * recname : sdafsdf
+     * recphone : 18624616670
+     * remark : 鏁欑粌璁よ瘉瀹℃牳浜�:骞冲彴绠＄悊鍛�
      * resinform :
-     * signature :
+     * signature : 鎴�
      * sorttype :
      * status : 1
-     * statusname : 有效
+     * statusname : 鏈夋晥
      * transtime : null
-     * updatetime : {"date":2,"day":5,"hours":10,"minutes":11,"month":8,"nanos":0,"seconds":7,"time":1472782267000,"timezoneOffset":-480,"year":116}
+     * updatetime : {"date":30,"day":5,"hours":8,"minutes":42,"month":8,"nanos":0,"seconds":38,"time":1475196158000,"timezoneOffset":-480,"year":116}
      * wxheadimgurl :
      * wxnickname :
      * wxopenid :
      * wxregiarea :
-     * ycoincashnum : 2561700
-     * ycoinnum : 0
+     * ycoincashnum : 92684434
+     * ycoinnum : 300
      */
 
     private BBMemberBean bBMember;
     /**
-     * address : 沈阳市东陵区奥体中心
+     * address : 娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�
      * clubcount : 1
      * clubid :
-     * clubname : 健身俱乐部CLUB_A
+     * clubname : 缇垮仴搴峰仴韬勘涔愰儴
      * coachid :
-     * coachname : 赵文卓
+     * coachname : 鎴戝濡囧効
      * conphone :
      * detailsurl :
      * imgpfile :
      * imgpfilename :
-     * imgsfile : /image/bpcourse/PC000086_1472711289727.jpg@!PCOURSE_S
-     * imgsfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000086_1472711289727.jpg@!PCOURSE_S
+     * imgsfile : /image/bpcourse/PC000180_1475138919468.png@!PCOURSE_S
+     * imgsfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bpcourse/PC000180_1475138919468.png@!PCOURSE_S
      * mobphone :
      * modifytime : null
-     * pcoursedays : 50
-     * pcourseid : PC000086
-     * pcoursename : 私教课程A
-     * pcourseprice : 1000元
-     * pcoursetimes : 5
+     * pcoursedays : 30
+     * pcourseid : PC000180
+     * pcoursename : 1000
+     * pcourseprice : 9999鍏�
+     * pcoursetimes : 2
      * resinform :
      */
 
     private List<PcourseListBean> pcourseList;
     /**
-     * address : 沈阳市东陵区新华国际C座
+     * address : 娌堥槼甯備笢闄靛尯鏂板崕鍥介檯C搴�
+     * begStringime : null
      * clubid : C000172
-     * clubname : 羿健康健身俱乐部
-     * clubpricemin : 100
-     * clubpriceratio : 0.5
+     * clubname : 缇垮仴搴峰仴韬勘涔愰儴
+     * clubpricemin : 0
+     * clubpriceratio : 0
      * coachid : M000440
-     * coachname : 付哥教练
+     * coachname : 璧垫枃鍗撴暀缁�
      * coursetimes : 0
-     * createtime : {"date":4,"day":4,"hours":13,"minutes":31,"month":7,"nanos":0,"seconds":44,"time":1470288704000,"timezoneOffset":-480,"year":116}
+     * createtime : {"date":1,"day":4,"hours":11,"minutes":13,"month":8,"nanos":0,"seconds":34,"time":1472699614000,"timezoneOffset":-480,"year":116}
      * createuser : platAdmin
-     * detailcontent :
+     * detailcontent : <p>
+     鏄殑鍙戠敓澶т簨鐨勯樋鐡� <img src="http://efithealthresource.oss-cn-beijing.aliyuncs.com/image/editor/01111212591_926_p.jpg" alt="" />鍟婂疄鎵撳疄鐨勫彂鐢熺殑
+     </p>
+     <p>
+     asdfasdf
+     </p>
+     <br />
      * detailsurl :
-     * gcourseattr : club
-     * gcourseattrname : 俱乐部团操
-     * gcoursecode :
-     * gcoursedays : 60
-     * gcourseid : GC000026
+     * gcalattr : club
+     * gcalattrname : 淇变箰閮ㄥ洟鎿�
+     * gcalid : G000034
+     * gcalname : 璧垫枃鍗撳洟鎿嶈1
+     * gcaltype : 20
+     * gcaltypename : 鑸炶箞绫�
+     * gcoursedays : 12
      * gcourseminutes : 60
-     * gcoursename : 弈健康会籍订单
      * gcoursenum : 20
-     * gcourseprice : 100
-     * gcoursetimes : 10
-     * gcoursetype : all
-     * gcoursetypedescr : 团操类型不限
+     * gcourseprice : 0
+     * gcoursetimes : 12
      * imgfile : null
      * imgfileFileName :
-     * imgpfile :
-     * imgpfilename :
-     * imgsfile :
-     * imgsfilename :
-     * istop : 0
-     * linestatus : 1
-     * linestatusname : 上线
-     * modifytime : null
-     * modifyuser :
+     * imgpfile : /image/bgcallisth/G000034_1472699614478.jpg@!FOODMER_P
+     * imgpfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcallisth/G000034_1472699614478.jpg@!FOODMER_P
+     * imgsfile : /image/bgcallisth/G000034_1472699614478.jpg@!FOODMER_S
+     * imgsfilename : http://efithealthresource.img-cn-beijing.aliyuncs.com/image/bgcallisth/G000034_1472699614478.jpg@!FOODMER_S
+     * modifytime : {"date":30,"day":5,"hours":9,"minutes":41,"month":8,"nanos":0,"seconds":22,"time":1475199682000,"timezoneOffset":-480,"year":116}
+     * modifyuser : platAdmin
      * pkeyListStr :
      * remark :
-     * resinform : 阿斯顿发送到
-     * scourseamt : 10
-     * sequ : 0
+     * scourseamt : 0
+     * status : 1
+     * statusname : 鏈夋晥
      */
 
     private List<GcourseListBean> gcourseList;
@@ -290,8 +292,8 @@ public class BeanCoachesDetail {
         private String distance;
         private String distancestr;
         private String dynamicnum;
-        private String evascore;
-        private String evascoretotal;
+        private double evascore;
+        private double evascoretotal;
         private String evatimes;
         private String follownum;
         private String gender;
@@ -326,14 +328,14 @@ public class BeanCoachesDetail {
         private String memrole;
         private String mobphone;
         /**
-         * date : 1
+         * date : 29
          * day : 4
-         * hours : 16
-         * minutes : 42
+         * hours : 20
+         * minutes : 35
          * month : 8
          * nanos : 0
-         * seconds : 48
-         * time : 1472719368000
+         * seconds : 56
+         * time : 1475152556000
          * timezoneOffset : -480
          * year : 116
          */
@@ -347,14 +349,14 @@ public class BeanCoachesDetail {
         private String phonedeviceno;
         private String pkeyListStr;
         /**
-         * date : 3
-         * day : 6
-         * hours : 8
-         * minutes : 45
+         * date : 30
+         * day : 5
+         * hours : 9
+         * minutes : 36
          * month : 8
          * nanos : 0
-         * seconds : 26
-         * time : 1472863526000
+         * seconds : 52
+         * time : 1475199412000
          * timezoneOffset : -480
          * year : 116
          */
@@ -371,14 +373,14 @@ public class BeanCoachesDetail {
         private String statusname;
         private Object transtime;
         /**
-         * date : 2
+         * date : 30
          * day : 5
-         * hours : 10
-         * minutes : 11
+         * hours : 8
+         * minutes : 42
          * month : 8
          * nanos : 0
-         * seconds : 7
-         * time : 1472782267000
+         * seconds : 38
+         * time : 1475196158000
          * timezoneOffset : -480
          * year : 116
          */
@@ -577,19 +579,19 @@ public class BeanCoachesDetail {
             this.dynamicnum = dynamicnum;
         }
 
-        public String getEvascore() {
+        public double getEvascore() {
             return evascore;
         }
 
-        public void setEvascore(String evascore) {
+        public void setEvascore(double evascore) {
             this.evascore = evascore;
         }
 
-        public String getEvascoretotal() {
+        public double getEvascoretotal() {
             return evascoretotal;
         }
 
-        public void setEvascoretotal(String evascoretotal) {
+        public void setEvascoretotal(double evascoretotal) {
             this.evascoretotal = evascoretotal;
         }
 
@@ -1825,22 +1827,23 @@ public class BeanCoachesDetail {
 
     public static class GcourseListBean {
         private String address;
+        private Object begStringime;
         private String clubid;
         private String clubname;
         private String clubpricemin;
-        private double clubpriceratio;
+        private String clubpriceratio;
         private String coachid;
         private String coachname;
         private String coursetimes;
         /**
-         * date : 4
+         * date : 1
          * day : 4
-         * hours : 13
-         * minutes : 31
-         * month : 7
+         * hours : 11
+         * minutes : 13
+         * month : 8
          * nanos : 0
-         * seconds : 44
-         * time : 1470288704000
+         * seconds : 34
+         * time : 1472699614000
          * timezoneOffset : -480
          * year : 116
          */
@@ -1849,34 +1852,43 @@ public class BeanCoachesDetail {
         private String createuser;
         private String detailcontent;
         private String detailsurl;
-        private String gcourseattr;
-        private String gcourseattrname;
-        private String gcoursecode;
+        private String gcalattr;
+        private String gcalattrname;
+        private String gcalid;
+        private String gcalname;
+        private String gcaltype;
+        private String gcaltypename;
         private String gcoursedays;
-        private String gcourseid;
         private String gcourseminutes;
-        private String gcoursename;
         private String gcoursenum;
         private String gcourseprice;
         private String gcoursetimes;
-        private String gcoursetype;
-        private String gcoursetypedescr;
         private Object imgfile;
         private String imgfileFileName;
         private String imgpfile;
         private String imgpfilename;
         private String imgsfile;
         private String imgsfilename;
-        private String istop;
-        private String linestatus;
-        private String linestatusname;
-        private Object modifytime;
+        /**
+         * date : 30
+         * day : 5
+         * hours : 9
+         * minutes : 41
+         * month : 8
+         * nanos : 0
+         * seconds : 22
+         * time : 1475199682000
+         * timezoneOffset : -480
+         * year : 116
+         */
+
+        private ModifytimeBean modifytime;
         private String modifyuser;
         private String pkeyListStr;
         private String remark;
-        private String resinform;
         private String scourseamt;
-        private String sequ;
+        private String status;
+        private String statusname;
 
         public String getAddress() {
             return address;
@@ -1884,6 +1896,14 @@ public class BeanCoachesDetail {
 
         public void setAddress(String address) {
             this.address = address;
+        }
+
+        public Object getBegStringime() {
+            return begStringime;
+        }
+
+        public void setBegStringime(Object begStringime) {
+            this.begStringime = begStringime;
         }
 
         public String getClubid() {
@@ -1910,11 +1930,11 @@ public class BeanCoachesDetail {
             this.clubpricemin = clubpricemin;
         }
 
-        public double getClubpriceratio() {
+        public String getClubpriceratio() {
             return clubpriceratio;
         }
 
-        public void setClubpriceratio(double clubpriceratio) {
+        public void setClubpriceratio(String clubpriceratio) {
             this.clubpriceratio = clubpriceratio;
         }
 
@@ -1974,28 +1994,52 @@ public class BeanCoachesDetail {
             this.detailsurl = detailsurl;
         }
 
-        public String getGcourseattr() {
-            return gcourseattr;
+        public String getGcalattr() {
+            return gcalattr;
         }
 
-        public void setGcourseattr(String gcourseattr) {
-            this.gcourseattr = gcourseattr;
+        public void setGcalattr(String gcalattr) {
+            this.gcalattr = gcalattr;
         }
 
-        public String getGcourseattrname() {
-            return gcourseattrname;
+        public String getGcalattrname() {
+            return gcalattrname;
         }
 
-        public void setGcourseattrname(String gcourseattrname) {
-            this.gcourseattrname = gcourseattrname;
+        public void setGcalattrname(String gcalattrname) {
+            this.gcalattrname = gcalattrname;
         }
 
-        public String getGcoursecode() {
-            return gcoursecode;
+        public String getGcalid() {
+            return gcalid;
         }
 
-        public void setGcoursecode(String gcoursecode) {
-            this.gcoursecode = gcoursecode;
+        public void setGcalid(String gcalid) {
+            this.gcalid = gcalid;
+        }
+
+        public String getGcalname() {
+            return gcalname;
+        }
+
+        public void setGcalname(String gcalname) {
+            this.gcalname = gcalname;
+        }
+
+        public String getGcaltype() {
+            return gcaltype;
+        }
+
+        public void setGcaltype(String gcaltype) {
+            this.gcaltype = gcaltype;
+        }
+
+        public String getGcaltypename() {
+            return gcaltypename;
+        }
+
+        public void setGcaltypename(String gcaltypename) {
+            this.gcaltypename = gcaltypename;
         }
 
         public String getGcoursedays() {
@@ -2006,28 +2050,12 @@ public class BeanCoachesDetail {
             this.gcoursedays = gcoursedays;
         }
 
-        public String getGcourseid() {
-            return gcourseid;
-        }
-
-        public void setGcourseid(String gcourseid) {
-            this.gcourseid = gcourseid;
-        }
-
         public String getGcourseminutes() {
             return gcourseminutes;
         }
 
         public void setGcourseminutes(String gcourseminutes) {
             this.gcourseminutes = gcourseminutes;
-        }
-
-        public String getGcoursename() {
-            return gcoursename;
-        }
-
-        public void setGcoursename(String gcoursename) {
-            this.gcoursename = gcoursename;
         }
 
         public String getGcoursenum() {
@@ -2052,22 +2080,6 @@ public class BeanCoachesDetail {
 
         public void setGcoursetimes(String gcoursetimes) {
             this.gcoursetimes = gcoursetimes;
-        }
-
-        public String getGcoursetype() {
-            return gcoursetype;
-        }
-
-        public void setGcoursetype(String gcoursetype) {
-            this.gcoursetype = gcoursetype;
-        }
-
-        public String getGcoursetypedescr() {
-            return gcoursetypedescr;
-        }
-
-        public void setGcoursetypedescr(String gcoursetypedescr) {
-            this.gcoursetypedescr = gcoursetypedescr;
         }
 
         public Object getImgfile() {
@@ -2118,35 +2130,11 @@ public class BeanCoachesDetail {
             this.imgsfilename = imgsfilename;
         }
 
-        public String getIstop() {
-            return istop;
-        }
-
-        public void setIstop(String istop) {
-            this.istop = istop;
-        }
-
-        public String getLinestatus() {
-            return linestatus;
-        }
-
-        public void setLinestatus(String linestatus) {
-            this.linestatus = linestatus;
-        }
-
-        public String getLinestatusname() {
-            return linestatusname;
-        }
-
-        public void setLinestatusname(String linestatusname) {
-            this.linestatusname = linestatusname;
-        }
-
-        public Object getModifytime() {
+        public ModifytimeBean getModifytime() {
             return modifytime;
         }
 
-        public void setModifytime(Object modifytime) {
+        public void setModifytime(ModifytimeBean modifytime) {
             this.modifytime = modifytime;
         }
 
@@ -2174,14 +2162,6 @@ public class BeanCoachesDetail {
             this.remark = remark;
         }
 
-        public String getResinform() {
-            return resinform;
-        }
-
-        public void setResinform(String resinform) {
-            this.resinform = resinform;
-        }
-
         public String getScourseamt() {
             return scourseamt;
         }
@@ -2190,15 +2170,116 @@ public class BeanCoachesDetail {
             this.scourseamt = scourseamt;
         }
 
-        public String getSequ() {
-            return sequ;
+        public String getStatus() {
+            return status;
         }
 
-        public void setSequ(String sequ) {
-            this.sequ = sequ;
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public String getStatusname() {
+            return statusname;
+        }
+
+        public void setStatusname(String statusname) {
+            this.statusname = statusname;
         }
 
         public static class CreatetimeBean {
+            private String date;
+            private String day;
+            private String hours;
+            private String minutes;
+            private String month;
+            private String nanos;
+            private String seconds;
+            private long time;
+            private String timezoneOffset;
+            private String year;
+
+            public String getDate() {
+                return date;
+            }
+
+            public void setDate(String date) {
+                this.date = date;
+            }
+
+            public String getDay() {
+                return day;
+            }
+
+            public void setDay(String day) {
+                this.day = day;
+            }
+
+            public String getHours() {
+                return hours;
+            }
+
+            public void setHours(String hours) {
+                this.hours = hours;
+            }
+
+            public String getMinutes() {
+                return minutes;
+            }
+
+            public void setMinutes(String minutes) {
+                this.minutes = minutes;
+            }
+
+            public String getMonth() {
+                return month;
+            }
+
+            public void setMonth(String month) {
+                this.month = month;
+            }
+
+            public String getNanos() {
+                return nanos;
+            }
+
+            public void setNanos(String nanos) {
+                this.nanos = nanos;
+            }
+
+            public String getSeconds() {
+                return seconds;
+            }
+
+            public void setSeconds(String seconds) {
+                this.seconds = seconds;
+            }
+
+            public long getTime() {
+                return time;
+            }
+
+            public void setTime(long time) {
+                this.time = time;
+            }
+
+            public String getTimezoneOffset() {
+                return timezoneOffset;
+            }
+
+            public void setTimezoneOffset(String timezoneOffset) {
+                this.timezoneOffset = timezoneOffset;
+            }
+
+            public String getYear() {
+                return year;
+            }
+
+            public void setYear(String year) {
+                this.year = year;
+            }
+        }
+
+        public static class ModifytimeBean {
             private String date;
             private String day;
             private String hours;

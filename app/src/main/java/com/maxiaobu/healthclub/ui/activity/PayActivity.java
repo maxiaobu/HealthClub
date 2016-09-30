@@ -88,7 +88,7 @@ public class PayActivity extends BaseAty implements View.OnClickListener {
                 BeanAccountInfo.class, params, new RequestJsonListener<BeanAccountInfo>() {
                     @Override
                     public void requestSuccess(BeanAccountInfo result) {
-                        mTotalEbi = (Integer.parseInt(result.getYcoincashnum()) +Integer.parseInt(result.getYcoinnum()) ) / 100;
+                        mTotalEbi = (Integer.parseInt(result.getYcoincashnum()) + Integer.parseInt(result.getYcoinnum())) / 100;
                         if (mTotalEbi > Integer.parseInt(mTotlePrice)) {
                             mTvEbiContent.setText("本次可抵现" + mTotlePrice + "元，抵现后还需支付0元");
                         } else {
@@ -145,7 +145,7 @@ public class PayActivity extends BaseAty implements View.OnClickListener {
     private void pay() {
         if (mCbEPay.isChecked()) {
 //            Log.d("PayActivity", mOrdno);
-            if (mTotalEbi >Double.parseDouble(mTotlePrice)) {
+            if (mTotalEbi > Double.parseDouble(mTotlePrice)) {
                 //仅 e币
                 RequestParams params;
                 String url;
@@ -194,6 +194,11 @@ public class PayActivity extends BaseAty implements View.OnClickListener {
     }
 
     private void startAty() {
+        if (getIntent().getIntExtra(Constant.JUMP_KEY, -1) == Constant.GCOURSE_TO_GCOURSE) {
+            this.setResult(RESULT_OK);
+            this.finish();
+        }
+
         if (!TextUtils.isEmpty(mPayType) && mPayType.equals("course")) {
             new MaterialDialog.Builder(PayActivity.this)
                     .content("支付成功，是否现在预约")
@@ -206,7 +211,7 @@ public class PayActivity extends BaseAty implements View.OnClickListener {
                             intent.putExtra("coachid", getIntent().getStringExtra("coachid"));
                             intent.putExtra("orderid", getIntent().getStringExtra("ordno"));
                             intent.putExtra("reservation", getIntent().getStringExtra("reservation"));
-                            intent.putExtra(Constant.PAY_RESULT, 0);
+                            intent.putExtra(Constant.JUMP_KEY, Constant.PAY_TO_RESERVATION);
                             startActivity(intent);
                             PayActivity.this.finish();
                         }

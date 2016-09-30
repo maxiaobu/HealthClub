@@ -43,7 +43,7 @@
 				</div>
 			</div>
 			<div class="e_center" style="padding: 20px;overflow: hidden;background: #fff;">
-				<div class="course_pic"><img src="" id="imgsfilename"></div>
+				<div class="course_pic"><img src="images/page/course.png" id="imgsfilename"></div>
 				<div class="course_text">
 					<p class="p1" id="coursename">力量训练</p>
 					<p class="p2"><em id="begintime">2016-10-23 6:00</em></p>
@@ -100,8 +100,9 @@
 				$("#sign").text(parmData.sign);
 				$("#begintime").text(parmData.begintime);
 				$("#coursename").text(parmData.coursename);
-				$("#address").text(parmData.address);
-				$(".star_shi").css("width",parseFloat(parmData.evascore*20) + "px");
+				$("#address").text(parmData.address);//地址
+				var starwidth=(data.coach.evascore-parseInt(data.coach.evascore))*16+parseInt(data.coach.evascore)*20+3+"px";
+				$(".star_shi").css("width",starwidth);//评分
 				$("#imgsfilename").attr("src",parmData.imgsfilename);
 			}
 			

@@ -74,7 +74,6 @@
 		</div>
 	</body>
 	<script>/*http://127.0.0.1:8020/assets/courseBuy.html?mertype=pcourse&courseid=PC000082&memid=M000458*/
-	//http://127.0.0.1:8020/assets/courseBuy.html?mertype=gcourse&courseid=GC000020&memid=M000455
 		var mertype = parmData.mertype;
 		var memid = getMemid();
 		var courseid = parmData.courseid;
@@ -118,13 +117,14 @@
 						$("#coursename").text(data.coursename);
 						if (parmData.mertype == "gcourse") {
 							
-							$(".qqq a").text("确认预约");
+							$(".qqq a").text("确认订单");
 							$("#coachname").text(data.coursename);
 							$("#coachname").show();
 						}else{
 							$(".qqq a").text("确认订单");
 						}
 						clubname = data.clubname;
+						console.log(data.ca_imgsfilename)
 						$("#address").text(data.address);
 						$("#ca_mobphone").text(data.ca_mobphone);
 						$("#coursefee").text(data.courseprice);
@@ -132,17 +132,17 @@
 						$("#coursedays").text(data.coursedays);
 						$("#coursetimes").text(data.coursetimes);
 						//$("#courseprice").text(data.courseprice);
-						//会员信息
-						$("#memname").text(member.recname);
-						$("#memmobphone").text(member.recphone);
+						
 						if (data.ca_imgsfilename != "") {
 							$("#ca_imgsfilename").attr("src", data.ca_imgsfilename);
 						}
+						//会员信息
+						$("#memname").text(member.recname);
+						$("#memmobphone").text(member.recphone);
 						$("#pagetitle").text(data.pagetitle);
 					} else {
 						gotoErrorPage(data.msgContent);
 					}
-					$(".courseBuy").show();
 				},
 				complete:function(){
 					!window.mobile||window.mobile.Loading(false);
@@ -194,7 +194,7 @@
 						if (mertype == "gcourse") {
 							/*var page = "personal.html?memid=" + memid;
 							createNewWindow(page);*/
-							!window.mobile||window.mobile.toReservation();
+							!window.mobile||window.mobile.gotoPayForGcourse(order.ordno, data.ordamt);
 						} else {
 							var order = data.order;
 //							var page = "pay.html?ordno=" + data.ordno + "&ordamt=" + data.ordamt + "&memid=" + memid;

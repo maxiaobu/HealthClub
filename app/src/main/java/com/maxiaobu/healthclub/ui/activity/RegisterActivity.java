@@ -79,7 +79,11 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animateRevealClose();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    animateRevealClose();
+                }else {
+                    onBackPressed();
+                }
             }
         });
 
@@ -121,7 +125,12 @@ public class RegisterActivity extends BaseAty implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        animateRevealClose();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            animateRevealClose();
+        }else {
+            super.onBackPressed();
+        }
+
     }
 
     private void ShowEnterAnimation() {
